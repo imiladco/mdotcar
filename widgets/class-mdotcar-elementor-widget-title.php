@@ -805,8 +805,11 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 					),
 				),
 				'selectors'   => array(
-					// font-size drives the glyph; the SVG is sized in `em` in CSS.
-					'{{WRAPPER}} .mdotcar-title__icon' => 'font-size: {{SIZE}}{{UNIT}};',
+					// font-size drives font icons; SVGs get the size spelled out
+					// as well, so they never fall back to their intrinsic size
+					// if the stylesheet is missing or overridden.
+					'{{WRAPPER}} .mdotcar-title__icon'       => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .mdotcar-title__icon > svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);

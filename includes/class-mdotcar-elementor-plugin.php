@@ -64,7 +64,7 @@ final class MDotCar_Elementor_Plugin {
 		add_action( 'elementor/elements/categories_registered', array( $this, 'register_category' ) );
 		add_action( 'elementor/widgets/register', array( $this, 'register_widgets' ) );
 		add_action( 'elementor/frontend/after_register_styles', array( $this, 'register_assets' ) );
-		add_action( 'elementor/editor/after_enqueue_styles', array( $this, 'enqueue_editor_assets' ) );
+		add_action( 'elementor/preview/enqueue_styles', array( $this, 'enqueue_preview_assets' ) );
 		add_action( 'admin_init', array( 'MDotCar_Elementor_Installer', 'maybe_upgrade' ) );
 	}
 
@@ -133,15 +133,15 @@ final class MDotCar_Elementor_Plugin {
 	}
 
 	/**
-	 * Loads the same stylesheet inside the Elementor editor preview shell so
-	 * widget previews match the front end.
+	 * Loads the stylesheet inside the editor's preview iframe, where the widgets
+	 * are actually rendered.
+	 *
+	 * On the front end `get_style_depends()` pulls the style in only on pages
+	 * using a widget, but in the editor a widget can be dropped at any moment —
+	 * and the JS preview does not run `get_style_depends()` at all — so the
+	 * preview always gets it.
 	 */
-	public function enqueue_editor_assets() {
-		wp_enqueue_style(
-			self::HANDLE . '-editor',
-			MDOTCAR_ELEMENTOR_URL . 'assets/css/mdotcar-elementor.css',
-			array(),
-			MDOTCAR_ELEMENTOR_VERSION
-		);
+	public function enqueue_preview_assets() {
+		wp_enqueue_style( self::HANDLE );
 	}
 }

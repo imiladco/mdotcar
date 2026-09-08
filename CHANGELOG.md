@@ -17,6 +17,20 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.4.1] - 2026-09-08
+
+### Fixed
+
+- The stylesheet never reached the Elementor editor's preview iframe: it was
+  enqueued on `elementor/editor/after_enqueue_styles`, which loads assets into
+  the panel document, not the preview where widgets actually render. It is now
+  enqueued on `elementor/preview/enqueue_styles`.
+- An SVG icon therefore fell back to the intrinsic size in its file (a 72×72
+  file rendered 72×72) instead of the configured Icon Size. Beyond fixing the
+  enqueue, Icon Size now also writes the SVG's `width`/`height` directly, so the
+  size holds even where the stylesheet is missing or overridden, and the
+  stylesheet caps the SVG at the icon box with `max-width`/`max-height`.
+
 ## [0.4.0] - 2026-09-08
 
 ### Added

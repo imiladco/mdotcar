@@ -98,11 +98,17 @@ a.mdotcar-title {
 	overflow: hidden;
 }
 
-/* Both icon kinds scale from the wrapper's font-size, so one control covers both. */
+/*
+ * Both icon kinds scale from the wrapper's font-size. An inline SVG carries its
+ * own width/height attributes, so it must be sized explicitly or it renders at
+ * whatever the file happens to be.
+ */
 .mdotcar-title__icon > svg {
 	display: block;
 	width: 1em;
 	height: 1em;
+	max-width: 100%;
+	max-height: 100%;
 	fill: currentColor;
 }
 

@@ -34,11 +34,11 @@ msgstr ""
 msgid "Box"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:864
+#: widgets/class-mdotcar-elementor-widget-title.php:867
 msgid "Box Radius"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:831
+#: widgets/class-mdotcar-elementor-widget-title.php:834
 msgid "Box Size"
 msgstr ""
 
@@ -49,20 +49,20 @@ msgstr ""
 msgid "Center"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:882
+#: widgets/class-mdotcar-elementor-widget-title.php:885
 msgid "Clip"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:877
+#: widgets/class-mdotcar-elementor-widget-title.php:880
 msgid "Clip to Box"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:878
+#: widgets/class-mdotcar-elementor-widget-title.php:881
 msgid "Clipping keeps a background inside the radius; turn it off when a shadow or an oversized glyph should spill out."
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-title.php:745
-#: widgets/class-mdotcar-elementor-widget-title.php:905
+#: widgets/class-mdotcar-elementor-widget-title.php:908
 msgid "Color"
 msgstr ""
 
@@ -94,7 +94,7 @@ msgstr ""
 msgid "Display"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:883
+#: widgets/class-mdotcar-elementor-widget-title.php:886
 msgid "Do not clip"
 msgstr ""
 
@@ -118,7 +118,7 @@ msgstr ""
 msgid "Fixed"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:817
+#: widgets/class-mdotcar-elementor-widget-title.php:820
 msgid "Fixed Box"
 msgstr ""
 
@@ -134,7 +134,7 @@ msgstr ""
 msgid "Gap"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:818
+#: widgets/class-mdotcar-elementor-widget-title.php:821
 msgid "Gives the icon an explicit width and height instead of letting the glyph decide. A fixed box keeps every icon the same size, is immune to the extra leading font icons carry, and cannot be stretched by Align Items."
 msgstr ""
 
@@ -155,7 +155,7 @@ msgid "Hover"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-title.php:756
-#: widgets/class-mdotcar-elementor-widget-title.php:917
+#: widgets/class-mdotcar-elementor-widget-title.php:920
 msgid "Hover Color"
 msgstr ""
 
@@ -239,11 +239,11 @@ msgstr ""
 msgid "Normal"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:821
+#: widgets/class-mdotcar-elementor-widget-title.php:824
 msgid "Off"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:820
+#: widgets/class-mdotcar-elementor-widget-title.php:823
 msgid "On"
 msgstr ""
 
