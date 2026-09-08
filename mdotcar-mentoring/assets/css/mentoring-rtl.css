@@ -1,0 +1,8 @@
+/**
+ * MDotCar Mentoring — RTL overrides (loaded automatically for fa_IR and other RTL locales).
+ */
+
+.mdotcar-mentoring {
+	direction: rtl;
+	text-align: right;
+}
