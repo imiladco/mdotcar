@@ -452,8 +452,9 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'fit',
 				'options'   => array(
-					'fit'    => __( 'Fit to content', 'mdotcar-elementor' ),
-					'custom' => __( 'Custom', 'mdotcar-elementor' ),
+					'fit'   => __( 'Fit to content', 'mdotcar-elementor' ),
+					'min'   => __( 'Minimum (grows with content)', 'mdotcar-elementor' ),
+					'fixed' => __( 'Fixed', 'mdotcar-elementor' ),
 				),
 				'separator' => 'before',
 			)
@@ -462,7 +463,7 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 		$this->add_responsive_control(
 			'height',
 			array(
-				'label'      => __( 'Custom Height', 'mdotcar-elementor' ),
+				'label'      => __( 'Height Value', 'mdotcar-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', 'em', 'rem', 'vh' ),
 				'default'    => array(
@@ -473,10 +474,12 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 					'px' => array( 'min' => 0, 'max' => 600 ),
 					'vh' => array( 'min' => 0, 'max' => 100 ),
 				),
-				'condition'  => array( 'height_type' => 'custom' ),
+				'condition'  => array( 'height_type' => array( 'min', 'fixed' ) ),
 				'selectors'  => array(
-					// min-height lets the box grow if the text wraps.
-					self::BOX => 'height: {{SIZE}}{{UNIT}}; min-height: {{SIZE}}{{UNIT}};',
+					// The height mode class in the stylesheet decides whether this
+					// lands on `min-height` (grows with the content) or `height`
+					// (holds the box at exactly this size).
+					self::BOX => '--mdotcar-title-height: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);

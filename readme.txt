@@ -4,7 +4,7 @@ Tags: elementor, widget, title, heading, flexbox
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.3.0
+Stable tag: 0.3.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,10 @@ and height can each be left to fit the content or set to a custom value.
    *MDotCar*.
 
 == Changelog ==
+
+= 0.3.1 =
+* Fixed: a custom height locked the box, so a wrapping title overflowed it.
+  Height is now Fit / Minimum / Fixed.
 
 = 0.3.0 =
 * Title widget: icon can now use a fixed box (explicit width and height, with

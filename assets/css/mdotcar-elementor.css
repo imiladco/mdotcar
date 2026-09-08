@@ -43,6 +43,19 @@
 	height: auto;
 }
 
+/*
+ * Minimum height: the box never goes below the value but still grows when the
+ * title wraps, which is what a fixed `height` quietly prevented.
+ */
+.mdotcar-title--height-min {
+	min-height: var( --mdotcar-title-height, 0 );
+}
+
+/* Fixed height: the box holds the value; overflowing content is the author's call. */
+.mdotcar-title--height-fixed {
+	height: var( --mdotcar-title-height, auto );
+}
+
 .mdotcar-title__text {
 	margin: 0;
 	min-width: 0;

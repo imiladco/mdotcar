@@ -17,6 +17,16 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.3.1] - 2026-09-08
+
+### Fixed
+
+- Title widget: a custom height no longer traps the content. The control set
+  `height` and `min-height` to the same value, so a wrapping title overflowed
+  the box instead of growing it. Height is now a mode — *Fit to content*,
+  *Minimum (grows with content)* or *Fixed* — and the value feeds a CSS
+  variable the mode class turns into `min-height` or `height`.
+
 ## [0.3.0] - 2026-09-08
 
 ### Added
