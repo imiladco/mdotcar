@@ -1,18 +1,20 @@
 <?php
 /**
- * Class autoloading for the plugin's `MDotCar_Mentoring_*` classes.
+ * Class autoloading for the plugin's `MDotCar_Elementor_*` classes.
  *
- * @package MDotCar\Mentoring
+ * @package MDotCar\Elementor
  */
 
 defined( 'ABSPATH' ) || exit;
 
 /**
  * Maps class names to WordPress-style file names under includes/ and widgets/.
+ *
+ * MDotCar_Elementor_Widget_Title -> widgets/class-widget-title.php
  */
-class MDotCar_Mentoring_Autoloader {
+class MDotCar_Elementor_Autoloader {
 
-	const PREFIX = 'MDotCar_Mentoring_';
+	const PREFIX = 'MDotCar_Elementor_';
 
 	/** @var string[] Directories searched, in order. */
 	private static $paths = array( 'includes/', 'widgets/' );
@@ -36,7 +38,7 @@ class MDotCar_Mentoring_Autoloader {
 		$file = 'class-' . $slug . '.php';
 
 		foreach ( self::$paths as $path ) {
-			$candidate = MDOTCAR_MENTORING_DIR . $path . $file;
+			$candidate = MDOTCAR_ELEMENTOR_DIR . $path . $file;
 
 			if ( is_readable( $candidate ) ) {
 				require_once $candidate;

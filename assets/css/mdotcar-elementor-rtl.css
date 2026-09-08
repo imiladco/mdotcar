@@ -1,0 +1,11 @@
+/**
+ * MDotCar Elementor Widgets — RTL overrides (loaded automatically for fa_IR
+ * and other RTL locales).
+ *
+ * Flexbox is direction-aware on its own, so only the text flow needs stating.
+ */
+
+.mdotcar-title {
+	direction: rtl;
+	text-align: right;
+}

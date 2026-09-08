@@ -11,13 +11,13 @@ if [[ ! "$new" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
 fi
 
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-main="$root/mdotcar-mentoring.php"
+main="$root/mdotcar-elementor.php"
 readme="$root/readme.txt"
 
-current="$(sed -n "s/^define( 'MDOTCAR_MENTORING_VERSION', '\(.*\)' );$/\1/p" "$main")"
+current="$(sed -n "s/^define( 'MDOTCAR_ELEMENTOR_VERSION', '\(.*\)' );$/\1/p" "$main")"
 
 sed -i.bak -E "s/^( \* Version: +)[0-9]+\.[0-9]+\.[0-9]+$/\1$new/" "$main"
-sed -i.bak -E "s/^define\( 'MDOTCAR_MENTORING_VERSION', '[0-9]+\.[0-9]+\.[0-9]+' \);$/define( 'MDOTCAR_MENTORING_VERSION', '$new' );/" "$main"
+sed -i.bak -E "s/^define\( 'MDOTCAR_ELEMENTOR_VERSION', '[0-9]+\.[0-9]+\.[0-9]+' \);$/define( 'MDOTCAR_ELEMENTOR_VERSION', '$new' );/" "$main"
 sed -i.bak -E "s/^Stable tag: [0-9]+\.[0-9]+\.[0-9]+$/Stable tag: $new/" "$readme"
 rm -f "$main.bak" "$readme.bak"
 

@@ -2,24 +2,30 @@
 /**
  * Main plugin controller.
  *
- * @package MDotCar\Mentoring
+ * @package MDotCar\Elementor
  */
 
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Wires the plugin's hooks. Widgets register themselves through `register_widgets()`.
+ * Wires the plugin into Elementor: widget category, widget registration and assets.
  */
-final class MDotCar_Mentoring_Plugin {
+final class MDotCar_Elementor_Plugin {
 
-	/** @var MDotCar_Mentoring_Plugin|null */
+	/** Elementor widget category slug used by every widget in this plugin. */
+	const CATEGORY = 'mdotcar';
+
+	/** Handle shared by the front-end stylesheet and script. */
+	const HANDLE = 'mdotcar-elementor';
+
+	/** @var MDotCar_Elementor_Plugin|null */
 	private static $instance = null;
 
 	/** @var bool */
 	private $booted = false;
 
 	/**
-	 * @return MDotCar_Mentoring_Plugin
+	 * @return MDotCar_Elementor_Plugin
 	 */
 	public static function instance() {
 		if ( null === self::$instance ) {
@@ -42,9 +48,11 @@ final class MDotCar_Mentoring_Plugin {
 		$this->booted = true;
 
 		add_action( 'init', array( $this, 'load_textdomain' ) );
-		add_action( 'widgets_init', array( $this, 'register_widgets' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'register_assets' ) );
-		add_action( 'admin_init', array( MDotCar_Mentoring_Installer::class, 'maybe_upgrade' ) );
+		add_action( 'elementor/elements/categories_registered', array( $this, 'register_category' ) );
+		add_action( 'elementor/widgets/register', array( $this, 'register_widgets' ) );
+		add_action( 'elementor/frontend/after_register_styles', array( $this, 'register_assets' ) );
+		add_action( 'elementor/editor/after_enqueue_styles', array( $this, 'enqueue_editor_assets' ) );
+		add_action( 'admin_init', array( 'MDotCar_Elementor_Installer', 'maybe_upgrade' ) );
 	}
 
 	/**
@@ -52,55 +60,75 @@ final class MDotCar_Mentoring_Plugin {
 	 */
 	public function load_textdomain() {
 		load_plugin_textdomain(
-			'mdotcar-mentoring',
+			'mdotcar-elementor',
 			false,
-			dirname( MDOTCAR_MENTORING_BASENAME ) . '/languages'
+			dirname( MDOTCAR_ELEMENTOR_BASENAME ) . '/languages'
 		);
 	}
 
 	/**
-	 * Registers the plugin's widgets.
+	 * Adds the "MDotCar" panel category.
 	 *
-	 * Widget classes are added here as they are implemented; each one must extend
-	 * WP_Widget and live in widgets/ so the autoloader can find it.
+	 * @param \Elementor\Elements_Manager $elements_manager Elementor elements manager.
 	 */
-	public function register_widgets() {
+	public function register_category( $elements_manager ) {
+		$elements_manager->add_category(
+			self::CATEGORY,
+			array(
+				'title' => __( 'MDotCar', 'mdotcar-elementor' ),
+				'icon'  => 'eicon-font',
+			)
+		);
+	}
+
+	/**
+	 * Registers the plugin's Elementor widgets.
+	 *
+	 * @param \Elementor\Widgets_Manager $widgets_manager Elementor widgets manager.
+	 */
+	public function register_widgets( $widgets_manager ) {
 		/**
 		 * Filters the widget classes registered by the plugin.
 		 *
-		 * @param string[] $widgets Class names extending WP_Widget.
+		 * @param string[] $widgets Class names extending \Elementor\Widget_Base.
 		 */
-		$widgets = apply_filters( 'mdotcar_mentoring_widgets', array() );
+		$widgets = apply_filters(
+			'mdotcar_elementor_widgets',
+			array( 'MDotCar_Elementor_Widget_Title' )
+		);
 
 		foreach ( $widgets as $widget ) {
 			if ( class_exists( $widget ) ) {
-				register_widget( $widget );
+				$widgets_manager->register( new $widget() );
 			}
 		}
 	}
 
 	/**
-	 * Registers front-end assets. They are enqueued on demand by each widget so
-	 * pages without the widget stay clean.
+	 * Registers the front-end stylesheet. Widgets depend on it through
+	 * get_style_depends(), so it only loads on pages that use them.
 	 */
 	public function register_assets() {
-		$version = MDOTCAR_MENTORING_VERSION;
-
 		wp_register_style(
-			'mdotcar-mentoring',
-			MDOTCAR_MENTORING_URL . 'assets/css/mentoring.css',
+			self::HANDLE,
+			MDOTCAR_ELEMENTOR_URL . 'assets/css/mdotcar-elementor.css',
 			array(),
-			$version
+			MDOTCAR_ELEMENTOR_VERSION
 		);
 
-		wp_style_add_data( 'mdotcar-mentoring', 'rtl', 'replace' );
+		wp_style_add_data( self::HANDLE, 'rtl', 'replace' );
+	}
 
-		wp_register_script(
-			'mdotcar-mentoring',
-			MDOTCAR_MENTORING_URL . 'assets/js/mentoring.js',
+	/**
+	 * Loads the same stylesheet inside the Elementor editor preview shell so
+	 * widget previews match the front end.
+	 */
+	public function enqueue_editor_assets() {
+		wp_enqueue_style(
+			self::HANDLE . '-editor',
+			MDOTCAR_ELEMENTOR_URL . 'assets/css/mdotcar-elementor.css',
 			array(),
-			$version,
-			true
+			MDOTCAR_ELEMENTOR_VERSION
 		);
 	}
 }

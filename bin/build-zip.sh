@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
-# Build an installable plugin ZIP: dist/mdotcar-mentoring-<version>.zip
+# Build an installable plugin ZIP: dist/mdotcar-elementor-<version>.zip
 #
-# The archive contains a single top-level `mdotcar-mentoring/` folder, which is
+# The archive contains a single top-level `mdotcar-elementor/` folder, which is
 # what "Plugins > Add New > Upload Plugin" expects.
 set -euo pipefail
 
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-slug="mdotcar-mentoring"
-version="$(sed -n "s/^define( 'MDOTCAR_MENTORING_VERSION', '\(.*\)' );$/\1/p" "$root/$slug.php")"
+slug="mdotcar-elementor"
+version="$(sed -n "s/^define( 'MDOTCAR_ELEMENTOR_VERSION', '\(.*\)' );$/\1/p" "$root/$slug.php")"
 
 dist="$root/dist"
 stage="$dist/$slug"

@@ -1,8 +1,8 @@
-# MDotCar Mentoring
+# MDotCar Elementor Widgets
 
-WordPress plugin providing the mentoring widget for [mdotcar.com](https://mdotcar.com).
+Elementor widgets for [mdotcar.com](https://mdotcar.com).
 
-**This repository *is* the plugin** — `mdotcar-mentoring.php` sits at the root, so
+**This repository *is* the plugin** — `mdotcar-elementor.php` sits at the root, so
 a downloaded archive installs straight into WordPress.
 
 ## Installation
@@ -10,42 +10,49 @@ a downloaded archive installs straight into WordPress.
 Either build a release ZIP:
 
 ```bash
-bin/build-zip.sh          # -> dist/mdotcar-mentoring-<version>.zip
+bin/build-zip.sh          # -> dist/mdotcar-elementor-<version>.zip
 ```
 
 and upload it via *Plugins → Add New → Upload Plugin*; or clone/copy the
-repository into `wp-content/plugins/mdotcar-mentoring/`.
+repository into `wp-content/plugins/mdotcar-elementor/`.
 
 ## Layout
 
 ```
-mdotcar-mentoring.php   # plugin header, constants, bootstrap
+mdotcar-elementor.php   # plugin header, constants, bootstrap
 uninstall.php           # option cleanup on delete
 includes/               # requirements, autoloader, plugin controller, installer
-widgets/                # WP_Widget subclasses (registered via the widgets filter)
+widgets/                # Elementor widget classes
 assets/css|js/          # front-end assets, versioned for cache busting
-languages/              # .pot / .po / .mo (text domain: mdotcar-mentoring)
+languages/              # .pot / .po / .mo (text domain: mdotcar-elementor)
 readme.txt              # WordPress.org-style readme (Stable tag)
 CHANGELOG.md            # Keep a Changelog / SemVer history
 bin/                    # dev tooling, excluded from the release ZIP
 ```
 
-## Adding a widget
+## Widgets
+
+| Widget | Class | Panel |
+| --- | --- | --- |
+| MDotCar Title | `MDotCar_Elementor_Widget_Title` | MDotCar → MDotCar Title |
+
+### Adding a widget
 
 1. Create `widgets/class-widget-<slug>.php` with class
-   `MDotCar_Mentoring_Widget_<Slug>` extending `WP_Widget` (the autoloader maps
-   underscores to dashes).
-2. Register it:
+   `MDotCar_Elementor_Widget_<Slug>` extending `\Elementor\Widget_Base` (the
+   autoloader maps underscores to dashes).
+2. Add it to the list in `MDotCar_Elementor_Plugin::register_widgets()`, or from
+   another plugin:
 
    ```php
-   add_filter( 'mdotcar_mentoring_widgets', function ( $widgets ) {
-       $widgets[] = 'MDotCar_Mentoring_Widget_Mentor';
+   add_filter( 'mdotcar_elementor_widgets', function ( $widgets ) {
+       $widgets[] = 'MDotCar_Elementor_Widget_Badge';
        return $widgets;
    } );
    ```
 
-3. Enqueue `mdotcar-mentoring` (style/script) inside the widget's `widget()`
-   method so only pages using it load the assets.
+3. Return `MDotCar_Elementor_Plugin::HANDLE` from `get_style_depends()` so the
+   stylesheet loads only on pages using the widget.
 
 ## Versioning
 
@@ -58,5 +65,5 @@ bin/bump-version.sh 0.2.0
 ```
 
 Then add the release section to `CHANGELOG.md` and `readme.txt`. Data
-migrations belong on the `mdotcar_mentoring_upgrade` action, which fires once
+migrations belong on the `mdotcar_elementor_upgrade` action, which fires once
 when the stored version differs from the shipped one.

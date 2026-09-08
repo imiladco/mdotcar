@@ -2,15 +2,15 @@
 /**
  * Environment checks.
  *
- * @package MDotCar\Mentoring
+ * @package MDotCar\Elementor
  */
 
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Verifies the PHP/WordPress versions the plugin needs.
+ * Verifies the PHP, WordPress and Elementor versions the plugin needs.
  */
-class MDotCar_Mentoring_Requirements {
+class MDotCar_Elementor_Requirements {
 
 	/** @var string */
 	private $min_php;
@@ -18,16 +18,21 @@ class MDotCar_Mentoring_Requirements {
 	/** @var string */
 	private $min_wp;
 
+	/** @var string */
+	private $min_elementor;
+
 	/** @var string[] */
 	private $errors = array();
 
 	/**
-	 * @param string $min_php Minimum PHP version.
-	 * @param string $min_wp  Minimum WordPress version.
+	 * @param string $min_php       Minimum PHP version.
+	 * @param string $min_wp        Minimum WordPress version.
+	 * @param string $min_elementor Minimum Elementor version.
 	 */
-	public function __construct( $min_php, $min_wp ) {
-		$this->min_php = $min_php;
-		$this->min_wp  = $min_wp;
+	public function __construct( $min_php, $min_wp, $min_elementor ) {
+		$this->min_php       = $min_php;
+		$this->min_wp        = $min_wp;
+		$this->min_elementor = $min_elementor;
 	}
 
 	/**
@@ -39,7 +44,7 @@ class MDotCar_Mentoring_Requirements {
 		if ( version_compare( PHP_VERSION, $this->min_php, '<' ) ) {
 			$this->errors[] = sprintf(
 				/* translators: 1: required PHP version, 2: current PHP version. */
-				__( 'MDotCar Mentoring requires PHP %1$s or newer. You are running %2$s.', 'mdotcar-mentoring' ),
+				__( 'MDotCar Elementor Widgets requires PHP %1$s or newer. You are running %2$s.', 'mdotcar-elementor' ),
 				$this->min_php,
 				PHP_VERSION
 			);
@@ -48,9 +53,20 @@ class MDotCar_Mentoring_Requirements {
 		if ( version_compare( get_bloginfo( 'version' ), $this->min_wp, '<' ) ) {
 			$this->errors[] = sprintf(
 				/* translators: 1: required WordPress version, 2: current WordPress version. */
-				__( 'MDotCar Mentoring requires WordPress %1$s or newer. You are running %2$s.', 'mdotcar-mentoring' ),
+				__( 'MDotCar Elementor Widgets requires WordPress %1$s or newer. You are running %2$s.', 'mdotcar-elementor' ),
 				$this->min_wp,
 				get_bloginfo( 'version' )
+			);
+		}
+
+		if ( ! did_action( 'elementor/loaded' ) ) {
+			$this->errors[] = __( 'MDotCar Elementor Widgets requires the Elementor plugin to be installed and active.', 'mdotcar-elementor' );
+		} elseif ( defined( 'ELEMENTOR_VERSION' ) && version_compare( ELEMENTOR_VERSION, $this->min_elementor, '<' ) ) {
+			$this->errors[] = sprintf(
+				/* translators: 1: required Elementor version, 2: current Elementor version. */
+				__( 'MDotCar Elementor Widgets requires Elementor %1$s or newer. You are running %2$s.', 'mdotcar-elementor' ),
+				$this->min_elementor,
+				ELEMENTOR_VERSION
 			);
 		}
 
@@ -61,11 +77,11 @@ class MDotCar_Mentoring_Requirements {
 	 * Prints the admin notice describing why the plugin stayed inactive.
 	 */
 	public function render_notice() {
-		if ( empty( $this->errors ) ) {
+		if ( empty( $this->errors ) || ! current_user_can( 'activate_plugins' ) ) {
 			return;
 		}
 
-		echo '<div class="notice notice-error"><p>' .
+		echo '<div class="notice notice-warning"><p>' .
 			esc_html( implode( ' ', $this->errors ) ) .
 			'</p></div>';
 	}

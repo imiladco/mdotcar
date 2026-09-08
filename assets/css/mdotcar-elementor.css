@@ -1,0 +1,72 @@
+/**
+ * MDotCar Elementor Widgets — front-end styles.
+ *
+ * Only defaults live here; everything a control touches is emitted by Elementor
+ * with higher specificity, so setting a control always wins over these rules.
+ */
+
+/* -----------------------------------------------------------------------------
+ * Title widget — Style 1
+ * -------------------------------------------------------------------------- */
+
+.mdotcar-title {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	max-width: 100%;
+	background: linear-gradient( 103deg, rgba( 239, 239, 239, 0.60 ) 17.45%, rgba( 255, 255, 255, 0.20 ) 79.67% );
+}
+
+.mdotcar-title *,
+.mdotcar-title *::before,
+.mdotcar-title *::after {
+	box-sizing: inherit;
+}
+
+/* Width / height modes. Custom values come from the panel. */
+
+.mdotcar-title--width-fit {
+	width: -moz-fit-content;
+	width: fit-content;
+}
+
+.mdotcar-title--width-full {
+	width: 100%;
+}
+
+.mdotcar-title--height-fit {
+	height: auto;
+}
+
+.mdotcar-title__text {
+	margin: 0;
+	min-width: 0;
+	/* Long words and URLs break instead of overflowing the box. */
+	overflow-wrap: anywhere;
+}
+
+.mdotcar-title__icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	line-height: 1;
+	font-size: 24px;
+}
+
+.mdotcar-title__icon svg {
+	width: 1em;
+	height: 1em;
+	display: block;
+	fill: currentColor;
+}
+
+.mdotcar-title__icon i {
+	width: auto;
+	line-height: 1;
+}
