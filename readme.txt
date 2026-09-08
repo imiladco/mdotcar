@@ -4,7 +4,7 @@ Tags: mentoring, widget, mdotcar
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.1.0
+Stable tag: 0.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,6 +22,10 @@ i18n/RTL-ready assets and the widget registration pipeline.
 2. Activate the plugin through the *Plugins* screen in WordPress.
 
 == Changelog ==
+
+= 0.1.1 =
+* Plugin files moved to the archive root so the ZIP installs directly in WordPress.
+* Added a build script that produces a correctly structured release ZIP.
 
 = 0.1.0 =
 * Initial plugin scaffold: requirements check, autoloader, installer with

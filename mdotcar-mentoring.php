@@ -3,7 +3,7 @@
  * Plugin Name:       MDotCar Mentoring
  * Plugin URI:        https://mdotcar.com/
  * Description:       Mentoring widget for mdotcar.com — classic widget, shortcode and block-editor friendly.
- * Version:           0.1.0
+ * Version:           0.1.1
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            claude
@@ -22,7 +22,7 @@ defined( 'ABSPATH' ) || exit;
  * Single source of truth for the plugin version (semver).
  * Bump this on every release and mirror it in readme.txt + CHANGELOG.md.
  */
-define( 'MDOTCAR_MENTORING_VERSION', '0.1.0' );
+define( 'MDOTCAR_MENTORING_VERSION', '0.1.1' );
 
 /** Minimum environment the plugin supports. */
 define( 'MDOTCAR_MENTORING_MIN_PHP', '7.4' );

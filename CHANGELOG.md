@@ -17,6 +17,19 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Mentoring widget implementation (pending specification).
 
+## [0.1.1] - 2026-09-08
+
+### Changed
+
+- Moved the plugin to the repository root so a downloaded archive installs
+  directly through *Plugins > Add New > Upload Plugin*; previously everything
+  sat one level down in `mdotcar-mentoring/` and WordPress rejected the ZIP.
+
+### Added
+
+- `bin/build-zip.sh`, producing `dist/mdotcar-mentoring-<version>.zip` with a
+  single correctly named top-level folder and without repository/dev files.
+
 ## [0.1.0] - 2026-09-08
 
 ### Added
