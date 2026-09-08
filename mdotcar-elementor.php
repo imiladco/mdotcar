@@ -3,7 +3,7 @@
  * Plugin Name:       MDotCar Elementor Widgets
  * Plugin URI:        https://mdotcar.com/
  * Description:       Custom Elementor widgets for mdotcar.com, starting with the Title widget.
- * Version:           0.5.0
+ * Version:           0.5.1
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Requires Plugins:  elementor
@@ -25,7 +25,7 @@ defined( 'ABSPATH' ) || exit;
  * Single source of truth for the plugin version (semver).
  * Bump with bin/bump-version.sh; never edit by hand.
  */
-define( 'MDOTCAR_ELEMENTOR_VERSION', '0.5.0' );
+define( 'MDOTCAR_ELEMENTOR_VERSION', '0.5.1' );
 
 /** Minimum environment the plugin supports. */
 define( 'MDOTCAR_ELEMENTOR_MIN_PHP', '7.4' );

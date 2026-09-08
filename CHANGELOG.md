@@ -17,6 +17,18 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.5.1] - 2026-09-08
+
+### Fixed
+
+- Fixed height had no effect. The value was emitted as a CSS custom property
+  and only turned into a real `height` by the mode class in the stylesheet, so
+  it silently did nothing whenever that class did not match — including on
+  every widget saved before 0.3.1, whose height mode is still called `custom`.
+  Height and Minimum Height are now separate controls that write `height` and
+  `min-height` directly, and `custom` is accepted as an alias of `fixed`, so
+  older widgets keep their height without being re-configured.
+
 ## [0.5.0] - 2026-09-08
 
 ### Changed

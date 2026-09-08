@@ -18,15 +18,15 @@ msgstr ""
 msgid "Align Items"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:727
+#: widgets/class-mdotcar-elementor-widget-title.php:741
 msgid "Aligns the text inside the title element. Where the title sits in the box is Justify Content's job."
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:680
+#: widgets/class-mdotcar-elementor-widget-title.php:694
 msgid "Border Color"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:587
+#: widgets/class-mdotcar-elementor-widget-title.php:601
 msgid "Border Radius"
 msgstr ""
 
@@ -34,35 +34,35 @@ msgstr ""
 msgid "Box"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:877
+#: widgets/class-mdotcar-elementor-widget-title.php:891
 msgid "Box Radius"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:844
+#: widgets/class-mdotcar-elementor-widget-title.php:858
 msgid "Box Size"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-title.php:287
 #: widgets/class-mdotcar-elementor-widget-title.php:308
 #: widgets/class-mdotcar-elementor-widget-title.php:326
-#: widgets/class-mdotcar-elementor-widget-title.php:735
+#: widgets/class-mdotcar-elementor-widget-title.php:749
 msgid "Center"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:895
+#: widgets/class-mdotcar-elementor-widget-title.php:909
 msgid "Clip"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:890
+#: widgets/class-mdotcar-elementor-widget-title.php:904
 msgid "Clip to Box"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:891
+#: widgets/class-mdotcar-elementor-widget-title.php:905
 msgid "Clipping keeps a background inside the radius; turn it off when a shadow or an oversized glyph should spill out."
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:757
-#: widgets/class-mdotcar-elementor-widget-title.php:918
+#: widgets/class-mdotcar-elementor-widget-title.php:771
+#: widgets/class-mdotcar-elementor-widget-title.php:932
 msgid "Color"
 msgstr ""
 
@@ -94,14 +94,14 @@ msgstr ""
 msgid "Display"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:896
+#: widgets/class-mdotcar-elementor-widget-title.php:910
 msgid "Do not clip"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-title.php:288
 #: widgets/class-mdotcar-elementor-widget-title.php:309
 #: widgets/class-mdotcar-elementor-widget-title.php:327
-#: widgets/class-mdotcar-elementor-widget-title.php:739
+#: widgets/class-mdotcar-elementor-widget-title.php:753
 msgid "End"
 msgstr ""
 
@@ -118,7 +118,7 @@ msgstr ""
 msgid "Fixed"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:830
+#: widgets/class-mdotcar-elementor-widget-title.php:844
 msgid "Fixed Box"
 msgstr ""
 
@@ -134,7 +134,7 @@ msgstr ""
 msgid "Gap"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:831
+#: widgets/class-mdotcar-elementor-widget-title.php:845
 msgid "Gives the icon an explicit width and height instead of letting the glyph decide. A fixed box keeps every icon the same size, is immune to the extra leading font icons carry, and cannot be stretched by Align Items."
 msgstr ""
 
@@ -150,21 +150,21 @@ msgstr ""
 msgid "Height Value"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:665
+#: widgets/class-mdotcar-elementor-widget-title.php:679
 msgid "Hover"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:768
-#: widgets/class-mdotcar-elementor-widget-title.php:930
+#: widgets/class-mdotcar-elementor-widget-title.php:782
+#: widgets/class-mdotcar-elementor-widget-title.php:944
 msgid "Hover Color"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:607
+#: widgets/class-mdotcar-elementor-widget-title.php:621
 msgid "Hover Transition"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-title.php:154
-#: widgets/class-mdotcar-elementor-widget-title.php:786
+#: widgets/class-mdotcar-elementor-widget-title.php:800
 msgid "Icon"
 msgstr ""
 
@@ -172,7 +172,7 @@ msgstr ""
 msgid "Icon Label"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:795
+#: widgets/class-mdotcar-elementor-widget-title.php:809
 msgid "Icon Size"
 msgstr ""
 
@@ -184,7 +184,7 @@ msgstr ""
 msgid "Items stay on a single line unless wrapping is enabled."
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:743
+#: widgets/class-mdotcar-elementor-widget-title.php:757
 msgid "Justified"
 msgstr ""
 
@@ -231,23 +231,27 @@ msgstr ""
 msgid "Minimum (grows with content)"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-title.php:559
+msgid "Minimum Height"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-title.php:265
 msgid "No Wrap"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:631
+#: widgets/class-mdotcar-elementor-widget-title.php:645
 msgid "Normal"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:834
+#: widgets/class-mdotcar-elementor-widget-title.php:848
 msgid "Off"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:833
+#: widgets/class-mdotcar-elementor-widget-title.php:847
 msgid "On"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:566
+#: widgets/class-mdotcar-elementor-widget-title.php:580
 msgid "Padding"
 msgstr ""
 
@@ -263,7 +267,7 @@ msgstr ""
 msgid "Row - reversed"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:796
+#: widgets/class-mdotcar-elementor-widget-title.php:810
 msgid "Size of the glyph itself. The stylesheet scales both font icons and SVGs from it, so one value covers both."
 msgstr ""
 
@@ -284,7 +288,7 @@ msgstr ""
 #: widgets/class-mdotcar-elementor-widget-title.php:286
 #: widgets/class-mdotcar-elementor-widget-title.php:307
 #: widgets/class-mdotcar-elementor-widget-title.php:325
-#: widgets/class-mdotcar-elementor-widget-title.php:731
+#: widgets/class-mdotcar-elementor-widget-title.php:745
 msgid "Start"
 msgstr ""
 
@@ -301,13 +305,13 @@ msgstr ""
 msgid "Style 1"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:726
+#: widgets/class-mdotcar-elementor-widget-title.php:740
 msgid "Text Align"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-title.php:132
 #: widgets/class-mdotcar-elementor-widget-title.php:135
-#: widgets/class-mdotcar-elementor-widget-title.php:710
+#: widgets/class-mdotcar-elementor-widget-title.php:724
 msgid "Title"
 msgstr ""
 

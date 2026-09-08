@@ -46,17 +46,11 @@
 }
 
 /*
- * Minimum height: the box never goes below the value but still grows when the
- * title wraps, which is what a fixed `height` quietly prevented.
+ * The Minimum and Fixed modes get their `min-height` / `height` straight from
+ * the panel, so nothing is declared for them here. These classes only exist as
+ * styling hooks — a value that reached the box through the stylesheet instead
+ * would silently do nothing on a widget saved under an older mode name.
  */
-.mdotcar-title--height-min {
-	min-height: var( --mdotcar-title-height, 0 );
-}
-
-/* Fixed height: the box holds the value; overflowing content is the author's call. */
-.mdotcar-title--height-fixed {
-	height: var( --mdotcar-title-height, auto );
-}
 
 /* As a link the box keeps the theme's colours rather than the link palette. */
 a.mdotcar-title {

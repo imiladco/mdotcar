@@ -4,7 +4,7 @@ Tags: elementor, widget, title, heading, flexbox
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.5.0
+Stable tag: 0.5.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,10 @@ and height can each be left to fit the content or set to a custom value.
    *MDotCar*.
 
 == Changelog ==
+
+= 0.5.1 =
+* Fixed: the Fixed height mode did nothing, including on widgets saved before
+  0.3.1. Height and Minimum Height are now written directly by the panel.
 
 = 0.5.0 =
 * The icon is no longer wrapped in a span; the class and all styling now apply

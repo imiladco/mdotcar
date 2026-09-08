@@ -541,21 +541,35 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 					'size' => 56,
 				),
 				'range'      => array(
-					'px' => array(
-						'min' => 0,
-						'max' => 600,
-					),
-					'vh' => array(
-						'min' => 0,
-						'max' => 100,
-					),
+					'px' => array( 'min' => 0, 'max' => 600 ),
+					'vh' => array( 'min' => 0, 'max' => 100 ),
 				),
-				'condition'  => array( 'height_type' => array( 'min', 'fixed' ) ),
+				// 'custom' is the pre-0.3.1 name of this mode; widgets saved back
+				// then keep working without being re-configured.
+				'condition'  => array( 'height_type' => array( 'fixed', 'custom' ) ),
 				'selectors'  => array(
-					// The height mode class in the stylesheet decides whether this
-					// lands on `min-height` (grows with the content) or `height`
-					// (holds the box at exactly this size).
-					self::BOX => '--mdotcar-title-height: {{SIZE}}{{UNIT}};',
+					self::BOX => 'height: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'min_height',
+			array(
+				'label'      => __( 'Minimum Height', 'mdotcar-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', 'em', 'rem', 'vh' ),
+				'default'    => array(
+					'unit' => 'px',
+					'size' => 56,
+				),
+				'range'      => array(
+					'px' => array( 'min' => 0, 'max' => 600 ),
+					'vh' => array( 'min' => 0, 'max' => 100 ),
+				),
+				'condition'  => array( 'height_type' => 'min' ),
+				'selectors'  => array(
+					self::BOX => 'min-height: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
@@ -1017,7 +1031,7 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 				.concat( [
 					'mdotcar-title--' + ( settings.preset || 'style-1' ),
 					'mdotcar-title--width-' + ( settings.width_type || 'fit' ),
-					'mdotcar-title--height-' + ( settings.height_type || 'fit' )
+					'mdotcar-title--height-' + ( 'custom' === settings.height_type ? 'fixed' : ( settings.height_type || 'fit' ) )
 				] );
 			if ( settings.icon_box ) {
 				boxClasses.push( 'mdotcar-title--icon-box' );
@@ -1055,7 +1069,7 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 			'mdotcar-title',
 			'mdotcar-title--' . ( ! empty( $settings['preset'] ) ? $settings['preset'] : 'style-1' ),
 			'mdotcar-title--width-' . ( ! empty( $settings['width_type'] ) ? $settings['width_type'] : 'fit' ),
-			'mdotcar-title--height-' . ( ! empty( $settings['height_type'] ) ? $settings['height_type'] : 'fit' ),
+			'mdotcar-title--height-' . self::height_mode( $settings ),
 		);
 
 		if ( ! empty( $settings['icon_box'] ) ) {
@@ -1063,6 +1077,18 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 		}
 
 		return $classes;
+	}
+
+	/**
+	 * Height mode, normalising the pre-0.3.1 'custom' value to 'fixed'.
+	 *
+	 * @param array $settings Widget settings.
+	 * @return string
+	 */
+	private static function height_mode( $settings ) {
+		$mode = ! empty( $settings['height_type'] ) ? $settings['height_type'] : 'fit';
+
+		return 'custom' === $mode ? 'fixed' : $mode;
 	}
 
 	/**
