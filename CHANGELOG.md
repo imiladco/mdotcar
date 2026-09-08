@@ -17,6 +17,29 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.3.0] - 2026-09-08
+
+### Added
+
+- Title widget: **Fixed Box** mode for the icon. When on, the icon takes an
+  explicit width and height (Box Size, responsive) with the glyph centred
+  inside, plus its own radius and background. Because the cross size is then
+  explicit, `align-items: stretch` on the flex box can no longer distort the
+  icon, and every icon lines up on the same size regardless of glyph metrics.
+
+### Fixed
+
+- Title widget: the icon's vertical centring no longer depends on the leading
+  that font icons carry — the wrapper pins `line-height: 1` and centres its
+  child, and the icon is `flex: 0 0 auto` so the flex box cannot stretch or
+  shrink it.
+
+### Changed
+
+- Icon Size now sets only the wrapper's `font-size`; the stylesheet scales both
+  font icons and SVGs (`1em`) from it, so the two no longer risk drifting apart
+  from two separate CSS declarations of the same value.
+
 ## [0.2.0] - 2026-09-08
 
 ### Added

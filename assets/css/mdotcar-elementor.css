@@ -54,19 +54,36 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	flex-shrink: 0;
-	line-height: 1;
+	/* Never shrink or stretch: the icon keeps its size whatever Align Items says. */
+	flex: 0 0 auto;
 	font-size: 24px;
+	/* Font icons carry leading that would push the glyph off-centre. */
+	line-height: 1;
+	color: inherit;
+	overflow: hidden;
 }
 
-.mdotcar-title__icon svg {
+/* Both icon kinds scale from the wrapper's font-size, so one control covers both. */
+.mdotcar-title__icon > svg {
+	display: block;
 	width: 1em;
 	height: 1em;
-	display: block;
 	fill: currentColor;
 }
 
-.mdotcar-title__icon i {
-	width: auto;
+.mdotcar-title__icon > i,
+.mdotcar-title__icon > i::before {
+	display: block;
 	line-height: 1;
+	width: auto;
+	height: auto;
+}
+
+/*
+ * Fixed-box mode: width and height come from the panel, and because the cross
+ * size is then explicit, `align-items: stretch` on the box cannot distort it.
+ */
+.mdotcar-title__icon--box {
+	width: 40px;
+	height: 40px;
 }

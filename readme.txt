@@ -4,7 +4,7 @@ Tags: elementor, widget, title, heading, flexbox
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.2.0
+Stable tag: 0.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,12 @@ and height can each be left to fit the content or set to a custom value.
    *MDotCar*.
 
 == Changelog ==
+
+= 0.3.0 =
+* Title widget: icon can now use a fixed box (explicit width and height, with
+  radius and background), so icons keep one size and stay centred.
+* Title widget: icon centring no longer affected by font-icon leading, and the
+  icon can no longer be stretched by Align Items.
 
 = 0.2.0 =
 * Reworked the plugin as an Elementor widget pack (`mdotcar-elementor`); the

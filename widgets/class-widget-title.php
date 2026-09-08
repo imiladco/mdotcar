@@ -678,22 +678,82 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 		$this->add_responsive_control(
 			'icon_size',
 			array(
-				'label'      => __( 'Size', 'mdotcar-elementor' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px', 'em', 'rem' ),
-				'default'    => array(
+				'label'       => __( 'Icon Size', 'mdotcar-elementor' ),
+				'description' => __( 'Size of the glyph itself. The stylesheet scales both font icons and SVGs from it, so one value covers both.', 'mdotcar-elementor' ),
+				'type'        => Controls_Manager::SLIDER,
+				'size_units'  => array( 'px', 'em', 'rem' ),
+				'default'     => array(
 					'unit' => 'px',
 					'size' => 24,
 				),
-				'range'      => array(
+				'range'       => array(
 					'px'  => array( 'min' => 6, 'max' => 200 ),
 					'em'  => array( 'min' => 0.5, 'max' => 10, 'step' => 0.1 ),
 					'rem' => array( 'min' => 0.5, 'max' => 10, 'step' => 0.1 ),
 				),
-				'selectors'  => array(
-					'{{WRAPPER}} .mdotcar-title__icon'     => 'font-size: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .mdotcar-title__icon svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+				'selectors'   => array(
+					// font-size drives the glyph; the SVG is sized in `em` in CSS.
+					'{{WRAPPER}} .mdotcar-title__icon' => 'font-size: {{SIZE}}{{UNIT}};',
 				),
+			)
+		);
+
+		$this->add_control(
+			'icon_box',
+			array(
+				'label'        => __( 'Fixed Box', 'mdotcar-elementor' ),
+				'description'  => __( 'Gives the icon an explicit width and height instead of letting the glyph decide. A fixed box keeps every icon the same size, is immune to the extra leading font icons carry, and cannot be stretched by Align Items.', 'mdotcar-elementor' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'label_on'     => __( 'On', 'mdotcar-elementor' ),
+				'label_off'    => __( 'Off', 'mdotcar-elementor' ),
+				'return_value' => 'yes',
+				'default'      => '',
+				'separator'    => 'before',
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon_box_size',
+			array(
+				'label'      => __( 'Box Size', 'mdotcar-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', 'em', 'rem' ),
+				'default'    => array(
+					'unit' => 'px',
+					'size' => 40,
+				),
+				'range'      => array(
+					'px'  => array( 'min' => 8, 'max' => 300 ),
+					'em'  => array( 'min' => 0.5, 'max' => 16, 'step' => 0.1 ),
+					'rem' => array( 'min' => 0.5, 'max' => 16, 'step' => 0.1 ),
+				),
+				'condition'  => array( 'icon_box' => 'yes' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mdotcar-title__icon' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon_box_radius',
+			array(
+				'label'      => __( 'Box Radius', 'mdotcar-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem' ),
+				'condition'  => array( 'icon_box' => 'yes' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mdotcar-title__icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			array(
+				'name'      => 'icon_box_background',
+				'types'     => array( 'classic', 'gradient' ),
+				'selector'  => '{{WRAPPER}} .mdotcar-title__icon',
+				'condition' => array( 'icon_box' => 'yes' ),
 			)
 		);
 
@@ -744,6 +804,14 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 		$width_type  = ! empty( $settings['width_type'] ) ? $settings['width_type'] : 'fit';
 		$height_type = ! empty( $settings['height_type'] ) ? $settings['height_type'] : 'fit';
 
+		$icon_classes = array( 'mdotcar-title__icon' );
+
+		if ( ! empty( $settings['icon_box'] ) ) {
+			$icon_classes[] = 'mdotcar-title__icon--box';
+		}
+
+		$this->add_render_attribute( 'icon', 'class', $icon_classes );
+
 		$this->add_render_attribute(
 			'box',
 			'class',
@@ -765,7 +833,7 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 		?>
 		<div <?php $this->print_render_attribute_string( 'box' ); ?>>
 			<?php if ( $has_icon ) : ?>
-				<span class="mdotcar-title__icon" aria-hidden="true">
+				<span <?php $this->print_render_attribute_string( 'icon' ); ?> aria-hidden="true">
 					<?php Icons_Manager::render_icon( $icon, array( 'aria-hidden' => 'true' ) ); ?>
 				</span>
 			<?php endif; ?>
