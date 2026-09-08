@@ -85,46 +85,62 @@ a.mdotcar-title {
 	white-space: nowrap;
 }
 
-.mdotcar-title__icon {
+/*
+ * Icon. There is no wrapper element: a font icon is the `<i>` itself and an
+ * uploaded SVG is the `<svg>` itself, because Elementor prints raw SVG markup
+ * that no class can be attached to. Both are therefore styled as direct
+ * children of the box, and their size flows through custom properties the
+ * panel sets on the box.
+ */
+
+.mdotcar-title > .mdotcar-title__icon,
+.mdotcar-title > i,
+.mdotcar-title > svg {
+	/* Never shrink or stretch: the icon keeps its size whatever Align Items says. */
+	flex: 0 0 auto;
+	box-sizing: border-box;
+	color: inherit;
+}
+
+/* A font icon draws from its font-size, with the glyph centred in the element. */
+.mdotcar-title > .mdotcar-title__icon,
+.mdotcar-title > i {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	/* Never shrink or stretch: the icon keeps its size whatever Align Items says. */
-	flex: 0 0 auto;
-	font-size: 24px;
+	font-size: var( --mdotcar-title-icon-size, 24px );
 	/* Font icons carry leading that would push the glyph off-centre. */
 	line-height: 1;
-	color: inherit;
-	overflow: hidden;
 }
 
-/*
- * Both icon kinds scale from the wrapper's font-size. An inline SVG carries its
- * own width/height attributes, so it must be sized explicitly or it renders at
- * whatever the file happens to be.
- */
-.mdotcar-title__icon > svg {
+.mdotcar-title > .mdotcar-title__icon::before,
+.mdotcar-title > i::before {
 	display: block;
-	width: 1em;
-	height: 1em;
-	max-width: 100%;
-	max-height: 100%;
+	line-height: 1;
+}
+
+/* An SVG has no font-size, so the same value becomes its width and height. */
+.mdotcar-title > svg {
+	display: block;
+	width: var( --mdotcar-title-icon-size, 24px );
+	height: var( --mdotcar-title-icon-size, 24px );
 	fill: currentColor;
 }
 
-.mdotcar-title__icon > i,
-.mdotcar-title__icon > i::before {
-	display: block;
-	line-height: 1;
-	width: auto;
-	height: auto;
+/*
+ * Fixed-box mode. The icon element is the box: it takes the box size, and the
+ * padding — half the difference between the two sizes — leaves the glyph itself
+ * at the icon size. `border-box` keeps the outer size exactly as set, and an
+ * explicit cross size means `align-items: stretch` cannot distort it.
+ */
+.mdotcar-title--icon-box > .mdotcar-title__icon,
+.mdotcar-title--icon-box > i,
+.mdotcar-title--icon-box > svg {
+	width: var( --mdotcar-title-icon-box, 40px );
+	height: var( --mdotcar-title-icon-box, 40px );
+	overflow: hidden;
 }
 
-/*
- * Fixed-box mode: width and height come from the panel, and because the cross
- * size is then explicit, `align-items: stretch` on the box cannot distort it.
- */
-.mdotcar-title__icon--box {
-	width: 40px;
-	height: 40px;
+.mdotcar-title--icon-box > svg {
+	padding: calc( ( var( --mdotcar-title-icon-box, 40px ) - var( --mdotcar-title-icon-size, 24px ) ) / 2 );
 }

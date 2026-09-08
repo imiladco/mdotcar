@@ -26,6 +26,18 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 	const BOX = '{{WRAPPER}} .mdotcar-title';
 
 	/**
+	 * CSS selector for the icon.
+	 *
+	 * A font icon is an `<i>` and takes our class; an uploaded SVG is printed by
+	 * Elementor as raw `<svg>` markup that no class can be attached to, so both
+	 * shapes are addressed by element as well.
+	 */
+	const ICON = '{{WRAPPER}} .mdotcar-title > .mdotcar-title__icon, {{WRAPPER}} .mdotcar-title > i, {{WRAPPER}} .mdotcar-title > svg';
+
+	/** Shapes inside an SVG icon, which often carry their own `fill`. */
+	const ICON_SHAPES = '{{WRAPPER}} .mdotcar-title > svg *';
+
+	/**
 	 * Widget key used in templates and the panel.
 	 *
 	 * @return string
@@ -805,11 +817,9 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 					),
 				),
 				'selectors'   => array(
-					// font-size drives font icons; SVGs get the size spelled out
-					// as well, so they never fall back to their intrinsic size
-					// if the stylesheet is missing or overridden.
-					'{{WRAPPER}} .mdotcar-title__icon'       => 'font-size: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .mdotcar-title__icon > svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+					// The stylesheet turns this into font-size for a font icon
+					// and into width/height for an SVG, which has no font-size.
+					self::BOX => '--mdotcar-title-icon-size: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
@@ -856,7 +866,7 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 				),
 				'condition'  => array( 'icon_box' => 'yes' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .mdotcar-title__icon' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+					self::BOX => '--mdotcar-title-icon-box: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
@@ -869,7 +879,7 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 				'size_units' => array( 'px', '%', 'em', 'rem' ),
 				'condition'  => array( 'icon_box' => 'yes' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .mdotcar-title__icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					self::ICON => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -887,7 +897,7 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 				),
 				'condition'   => array( 'icon_box' => 'yes' ),
 				'selectors'   => array(
-					'{{WRAPPER}} .mdotcar-title__icon' => 'overflow: {{VALUE}};',
+					self::ICON => 'overflow: {{VALUE}};',
 				),
 			)
 		);
@@ -897,7 +907,7 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 			array(
 				'name'      => 'icon_box_background',
 				'types'     => array( 'classic', 'gradient' ),
-				'selector'  => '{{WRAPPER}} .mdotcar-title__icon',
+				'selector'  => self::ICON,
 				'condition' => array( 'icon_box' => 'yes' ),
 			)
 		);
@@ -908,8 +918,8 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 				'label'     => __( 'Color', 'mdotcar-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .mdotcar-title__icon' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .mdotcar-title__icon svg *' => 'fill: {{VALUE}};',
+					self::ICON        => 'color: {{VALUE}}; fill: {{VALUE}};',
+					self::ICON_SHAPES => 'fill: {{VALUE}};',
 				),
 			)
 		);
@@ -920,8 +930,8 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 				'label'     => __( 'Hover Color', 'mdotcar-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					self::BOX . ':hover .mdotcar-title__icon'       => 'color: {{VALUE}};',
-					self::BOX . ':hover .mdotcar-title__icon svg *' => 'fill: {{VALUE}};',
+					self::hover( self::ICON )        => 'color: {{VALUE}}; fill: {{VALUE}};',
+					self::hover( self::ICON_SHAPES ) => 'fill: {{VALUE}};',
 				),
 			)
 		);
@@ -956,14 +966,6 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 			$this->add_link_attributes( 'box', $settings['link'] );
 		}
 
-		$icon_classes = array( 'mdotcar-title__icon' );
-
-		if ( ! empty( $settings['icon_box'] ) ) {
-			$icon_classes[] = 'mdotcar-title__icon--box';
-		}
-
-		$this->add_render_attribute( 'icon', 'class', $icon_classes );
-
 		$tag = self::sanitize_tag( isset( $settings['title_tag'] ) ? $settings['title_tag'] : 'h2' );
 
 		$this->add_render_attribute( 'title', 'class', 'mdotcar-title__text' );
@@ -972,9 +974,15 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 		?>
 		<<?php echo esc_attr( $box_tag ); ?> <?php $this->print_render_attribute_string( 'box' ); ?>>
 			<?php if ( $has_icon ) : ?>
-				<span <?php $this->print_render_attribute_string( 'icon' ); ?> aria-hidden="true">
-					<?php Icons_Manager::render_icon( $icon, array( 'aria-hidden' => 'true' ) ); ?>
-				</span>
+				<?php
+				Icons_Manager::render_icon(
+					$icon,
+					array(
+						'class'       => 'mdotcar-title__icon',
+						'aria-hidden' => 'true',
+					)
+				);
+				?>
 				<?php if ( '' !== $label ) : ?>
 					<span class="mdotcar-title__sr-only"><?php echo esc_html( $label ); ?></span>
 				<?php endif; ?>
@@ -1011,10 +1019,8 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 					'mdotcar-title--width-' + ( settings.width_type || 'fit' ),
 					'mdotcar-title--height-' + ( settings.height_type || 'fit' )
 				] );
-			var iconClasses = [ 'mdotcar-title__icon' ];
-
 			if ( settings.icon_box ) {
-				iconClasses.push( 'mdotcar-title__icon--box' );
+				boxClasses.push( 'mdotcar-title--icon-box' );
 			}
 
 			view.addRenderAttribute( 'title', 'class', 'mdotcar-title__text' );
@@ -1022,9 +1028,9 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 		#>
 			<{{{ boxTag }}} class="{{{ boxClasses.join( ' ' ) }}}">
 				<# if ( hasIcon ) {
-					var iconHTML = elementor.helpers.renderIcon( view, settings.selected_icon, { 'aria-hidden': true }, 'i', 'object' );
+					var iconHTML = elementor.helpers.renderIcon( view, settings.selected_icon, { 'class': 'mdotcar-title__icon', 'aria-hidden': true }, 'i', 'object' );
 				#>
-					<span class="{{{ iconClasses.join( ' ' ) }}}" aria-hidden="true">{{{ iconHTML.value }}}</span>
+					{{{ iconHTML.value }}}
 					<# if ( '' !== label ) { #>
 						<span class="mdotcar-title__sr-only">{{ label }}</span>
 					<# } #>
@@ -1045,12 +1051,28 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 	 * @return string[]
 	 */
 	private function get_box_classes( $settings ) {
-		return array(
+		$classes = array(
 			'mdotcar-title',
 			'mdotcar-title--' . ( ! empty( $settings['preset'] ) ? $settings['preset'] : 'style-1' ),
 			'mdotcar-title--width-' . ( ! empty( $settings['width_type'] ) ? $settings['width_type'] : 'fit' ),
 			'mdotcar-title--height-' . ( ! empty( $settings['height_type'] ) ? $settings['height_type'] : 'fit' ),
 		);
+
+		if ( ! empty( $settings['icon_box'] ) ) {
+			$classes[] = 'mdotcar-title--icon-box';
+		}
+
+		return $classes;
+	}
+
+	/**
+	 * Rewrites an icon selector so it only applies while the box is hovered.
+	 *
+	 * @param string $selector One of the icon selectors.
+	 * @return string
+	 */
+	private static function hover( $selector ) {
+		return str_replace( '.mdotcar-title >', '.mdotcar-title:hover >', $selector );
 	}
 
 	/**

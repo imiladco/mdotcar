@@ -17,6 +17,32 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.5.0] - 2026-09-08
+
+### Changed
+
+- **The icon no longer sits in a wrapper `<span>`.** The `mdotcar-title__icon`
+  class now rides on the icon element itself, which is a direct child of the
+  box. The wrapper could not carry styling for uploaded SVGs anyway — Elementor
+  prints raw `<svg>` markup that takes no class — so it only added a layer
+  between the flex box and the icon.
+- Icon styling therefore addresses both shapes: `.mdotcar-title > i` for font
+  icons (which do take the class) and `.mdotcar-title > svg` for SVGs.
+- Icon Size and Box Size now write the custom properties
+  `--mdotcar-title-icon-size` and `--mdotcar-title-icon-box` on the box. The
+  stylesheet turns the first into `font-size` for a font icon and into
+  `width`/`height` for an SVG, which has no font-size of its own.
+- Fixed-box mode moved to a `mdotcar-title--icon-box` class on the box. The
+  icon element *is* the box: it takes the box size, and padding of half the
+  difference between the two sizes keeps the glyph itself at the icon size.
+
+### Migration
+
+- Custom CSS or JavaScript targeting `span.mdotcar-title__icon` or
+  `.mdotcar-title__icon--box` must be repointed at `.mdotcar-title > i`,
+  `.mdotcar-title > svg` or `.mdotcar-title--icon-box`. Nothing in the panel
+  changes: existing settings keep working.
+
 ## [0.4.1] - 2026-09-08
 
 ### Fixed

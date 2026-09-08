@@ -4,7 +4,7 @@ Tags: elementor, widget, title, heading, flexbox
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.4.1
+Stable tag: 0.5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,13 @@ and height can each be left to fit the content or set to a custom value.
    *MDotCar*.
 
 == Changelog ==
+
+= 0.5.0 =
+* The icon is no longer wrapped in a span; the class and all styling now apply
+  to the icon element itself, which also works for uploaded SVGs.
+* Icon and box sizes flow through CSS custom properties on the widget box.
+* Custom CSS targeting span.mdotcar-title__icon needs repointing at
+  .mdotcar-title > i / .mdotcar-title > svg.
 
 = 0.4.1 =
 * Fixed: the stylesheet did not load in the Elementor editor preview, so SVG

@@ -10,193 +10,193 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Domain: mdotcar-elementor\n"
 
-#: widgets/class-mdotcar-elementor-widget-title.php:310
+#: widgets/class-mdotcar-elementor-widget-title.php:322
 msgid "Align Content"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:292
+#: widgets/class-mdotcar-elementor-widget-title.php:304
 msgid "Align Items"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:715
+#: widgets/class-mdotcar-elementor-widget-title.php:727
 msgid "Aligns the text inside the title element. Where the title sits in the box is Justify Content's job."
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:668
+#: widgets/class-mdotcar-elementor-widget-title.php:680
 msgid "Border Color"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:575
+#: widgets/class-mdotcar-elementor-widget-title.php:587
 msgid "Border Radius"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:455
+#: widgets/class-mdotcar-elementor-widget-title.php:467
 msgid "Box"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:867
+#: widgets/class-mdotcar-elementor-widget-title.php:877
 msgid "Box Radius"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:834
+#: widgets/class-mdotcar-elementor-widget-title.php:844
 msgid "Box Size"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:275
-#: widgets/class-mdotcar-elementor-widget-title.php:296
-#: widgets/class-mdotcar-elementor-widget-title.php:314
-#: widgets/class-mdotcar-elementor-widget-title.php:723
+#: widgets/class-mdotcar-elementor-widget-title.php:287
+#: widgets/class-mdotcar-elementor-widget-title.php:308
+#: widgets/class-mdotcar-elementor-widget-title.php:326
+#: widgets/class-mdotcar-elementor-widget-title.php:735
 msgid "Center"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:885
+#: widgets/class-mdotcar-elementor-widget-title.php:895
 msgid "Clip"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:880
+#: widgets/class-mdotcar-elementor-widget-title.php:890
 msgid "Clip to Box"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:881
+#: widgets/class-mdotcar-elementor-widget-title.php:891
 msgid "Clipping keeps a background inside the radius; turn it off when a shadow or an oversized glyph should spill out."
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:745
-#: widgets/class-mdotcar-elementor-widget-title.php:908
+#: widgets/class-mdotcar-elementor-widget-title.php:757
+#: widgets/class-mdotcar-elementor-widget-title.php:918
 msgid "Color"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:234
+#: widgets/class-mdotcar-elementor-widget-title.php:246
 msgid "Column - reversed"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:226
+#: widgets/class-mdotcar-elementor-widget-title.php:238
 msgid "Column - vertical"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:100
+#: widgets/class-mdotcar-elementor-widget-title.php:112
 msgid "Content"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:469
+#: widgets/class-mdotcar-elementor-widget-title.php:481
 msgid "Custom"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:477
+#: widgets/class-mdotcar-elementor-widget-title.php:489
 msgid "Custom Width"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:216
+#: widgets/class-mdotcar-elementor-widget-title.php:228
 msgid "Direction"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:200
+#: widgets/class-mdotcar-elementor-widget-title.php:212
 msgid "Display"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:886
+#: widgets/class-mdotcar-elementor-widget-title.php:896
 msgid "Do not clip"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:276
-#: widgets/class-mdotcar-elementor-widget-title.php:297
-#: widgets/class-mdotcar-elementor-widget-title.php:315
-#: widgets/class-mdotcar-elementor-widget-title.php:727
+#: widgets/class-mdotcar-elementor-widget-title.php:288
+#: widgets/class-mdotcar-elementor-widget-title.php:309
+#: widgets/class-mdotcar-elementor-widget-title.php:327
+#: widgets/class-mdotcar-elementor-widget-title.php:739
 msgid "End"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:124
+#: widgets/class-mdotcar-elementor-widget-title.php:136
 msgid "Enter your title"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:467
-#: widgets/class-mdotcar-elementor-widget-title.php:513
+#: widgets/class-mdotcar-elementor-widget-title.php:479
+#: widgets/class-mdotcar-elementor-widget-title.php:525
 msgid "Fit to content"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:515
+#: widgets/class-mdotcar-elementor-widget-title.php:527
 msgid "Fixed"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:820
+#: widgets/class-mdotcar-elementor-widget-title.php:830
 msgid "Fixed Box"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:204
+#: widgets/class-mdotcar-elementor-widget-title.php:216
 msgid "Flex"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:468
+#: widgets/class-mdotcar-elementor-widget-title.php:480
 msgid "Full width (100%)"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:331
+#: widgets/class-mdotcar-elementor-widget-title.php:343
 msgid "Gap"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:821
+#: widgets/class-mdotcar-elementor-widget-title.php:831
 msgid "Gives the icon an explicit width and height instead of letting the glyph decide. A fixed box keeps every icon the same size, is immune to the extra leading font icons carry, and cannot be stretched by Align Items."
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:132
+#: widgets/class-mdotcar-elementor-widget-title.php:144
 msgid "HTML Tag"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:509
+#: widgets/class-mdotcar-elementor-widget-title.php:521
 msgid "Height"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:524
+#: widgets/class-mdotcar-elementor-widget-title.php:536
 msgid "Height Value"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:653
+#: widgets/class-mdotcar-elementor-widget-title.php:665
 msgid "Hover"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:756
-#: widgets/class-mdotcar-elementor-widget-title.php:920
+#: widgets/class-mdotcar-elementor-widget-title.php:768
+#: widgets/class-mdotcar-elementor-widget-title.php:930
 msgid "Hover Color"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:595
+#: widgets/class-mdotcar-elementor-widget-title.php:607
 msgid "Hover Transition"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:142
-#: widgets/class-mdotcar-elementor-widget-title.php:774
+#: widgets/class-mdotcar-elementor-widget-title.php:154
+#: widgets/class-mdotcar-elementor-widget-title.php:786
 msgid "Icon"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:153
+#: widgets/class-mdotcar-elementor-widget-title.php:165
 msgid "Icon Label"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:783
+#: widgets/class-mdotcar-elementor-widget-title.php:795
 msgid "Icon Size"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:205
+#: widgets/class-mdotcar-elementor-widget-title.php:217
 msgid "Inline Flex"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:261
+#: widgets/class-mdotcar-elementor-widget-title.php:273
 msgid "Items stay on a single line unless wrapping is enabled."
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:731
+#: widgets/class-mdotcar-elementor-widget-title.php:743
 msgid "Justified"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:271
+#: widgets/class-mdotcar-elementor-widget-title.php:283
 msgid "Justify Content"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:190
+#: widgets/class-mdotcar-elementor-widget-title.php:202
 msgid "Layout"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:165
+#: widgets/class-mdotcar-elementor-widget-title.php:177
 msgid "Link"
 msgstr ""
 
@@ -223,103 +223,103 @@ msgstr ""
 msgid "MDotCar Elementor Widgets requires the Elementor plugin to be installed and active."
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:43
+#: widgets/class-mdotcar-elementor-widget-title.php:55
 msgid "MDotCar Title"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:514
+#: widgets/class-mdotcar-elementor-widget-title.php:526
 msgid "Minimum (grows with content)"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:253
+#: widgets/class-mdotcar-elementor-widget-title.php:265
 msgid "No Wrap"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:619
+#: widgets/class-mdotcar-elementor-widget-title.php:631
 msgid "Normal"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:824
+#: widgets/class-mdotcar-elementor-widget-title.php:834
 msgid "Off"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:823
+#: widgets/class-mdotcar-elementor-widget-title.php:833
 msgid "On"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:554
+#: widgets/class-mdotcar-elementor-widget-title.php:566
 msgid "Padding"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:154
+#: widgets/class-mdotcar-elementor-widget-title.php:166
 msgid "Read out by screen readers. Worth filling in when the widget shows an icon and no title, which is otherwise invisible to them. Leave empty for a purely decorative icon."
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:222
+#: widgets/class-mdotcar-elementor-widget-title.php:234
 msgid "Row - horizontal"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:230
+#: widgets/class-mdotcar-elementor-widget-title.php:242
 msgid "Row - reversed"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:784
+#: widgets/class-mdotcar-elementor-widget-title.php:796
 msgid "Size of the glyph itself. The stylesheet scales both font icons and SVGs from it, so one value covers both."
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:278
-#: widgets/class-mdotcar-elementor-widget-title.php:317
+#: widgets/class-mdotcar-elementor-widget-title.php:290
+#: widgets/class-mdotcar-elementor-widget-title.php:329
 msgid "Space Around"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:277
-#: widgets/class-mdotcar-elementor-widget-title.php:316
+#: widgets/class-mdotcar-elementor-widget-title.php:289
+#: widgets/class-mdotcar-elementor-widget-title.php:328
 msgid "Space Between"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:279
+#: widgets/class-mdotcar-elementor-widget-title.php:291
 msgid "Space Evenly"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:274
-#: widgets/class-mdotcar-elementor-widget-title.php:295
-#: widgets/class-mdotcar-elementor-widget-title.php:313
-#: widgets/class-mdotcar-elementor-widget-title.php:719
+#: widgets/class-mdotcar-elementor-widget-title.php:286
+#: widgets/class-mdotcar-elementor-widget-title.php:307
+#: widgets/class-mdotcar-elementor-widget-title.php:325
+#: widgets/class-mdotcar-elementor-widget-title.php:731
 msgid "Start"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:298
-#: widgets/class-mdotcar-elementor-widget-title.php:318
+#: widgets/class-mdotcar-elementor-widget-title.php:310
+#: widgets/class-mdotcar-elementor-widget-title.php:330
 msgid "Stretch"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:108
+#: widgets/class-mdotcar-elementor-widget-title.php:120
 msgid "Style"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:112
+#: widgets/class-mdotcar-elementor-widget-title.php:124
 msgid "Style 1"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:714
+#: widgets/class-mdotcar-elementor-widget-title.php:726
 msgid "Text Align"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:120
-#: widgets/class-mdotcar-elementor-widget-title.php:123
-#: widgets/class-mdotcar-elementor-widget-title.php:698
+#: widgets/class-mdotcar-elementor-widget-title.php:132
+#: widgets/class-mdotcar-elementor-widget-title.php:135
+#: widgets/class-mdotcar-elementor-widget-title.php:710
 msgid "Title"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:166
+#: widgets/class-mdotcar-elementor-widget-title.php:178
 msgid "Turns the whole box into a link."
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:463
+#: widgets/class-mdotcar-elementor-widget-title.php:475
 msgid "Width"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-title.php:247
-#: widgets/class-mdotcar-elementor-widget-title.php:257
+#: widgets/class-mdotcar-elementor-widget-title.php:259
+#: widgets/class-mdotcar-elementor-widget-title.php:269
 msgid "Wrap"
 msgstr ""
