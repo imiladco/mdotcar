@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+
+jobs:
+  lint:
+    name: Lint and version check
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          coverage: none
+          tools: composer
+
+      - name: Syntax check every PHP file
+        run: |
+          find . -name '*.php' -not -path './vendor/*' -not -path './dist/*' \
+            -print0 | xargs -0 -n1 -P4 php -l
+
+      - name: Install dev dependencies
+        run: composer install --no-interaction --prefer-dist
+
+      - name: PHP_CodeSniffer (WordPress standards)
+        run: |
+          # The Composer installer normally registers these; register them by
+          # hand if it did not, so a missing standard fails loudly, not silently.
+          vendor/bin/phpcs -i | grep -q WordPress || vendor/bin/phpcs --config-set installed_paths \
+            vendor/wp-coding-standards/wpcs,vendor/phpcsstandards/phpcsutils,vendor/phpcsstandards/phpcsextra,vendor/phpcompatibility/php-compatibility,vendor/phpcompatibility/phpcompatibility-paragonie,vendor/phpcompatibility/phpcompatibility-wp
+          vendor/bin/phpcs
+
+      - name: Version consistency
+        run: bin/check-version.sh
+
+      - name: Translations are up to date
+        run: |
+          python3 bin/make-pot.py
+          python3 bin/compile-mo.py
+          git diff --exit-code -- languages/ \
+            || { echo 'languages/ is stale; run bin/make-pot.py and bin/compile-mo.py'; exit 1; }
+
+      - name: Release ZIP builds
+        run: bin/build-zip.sh

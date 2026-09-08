@@ -1,0 +1,325 @@
+# Persian translation for MDotCar Elementor Widgets.
+msgid ""
+msgstr ""
+"Project-Id-Version: MDotCar Elementor Widgets\n"
+"Report-Msgid-Bugs-To: https://mdotcar.com/\n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Domain: mdotcar-elementor\n"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:310
+msgid "Align Content"
+msgstr "هم‌ترازی خطوط"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:292
+msgid "Align Items"
+msgstr "هم‌ترازی آیتم‌ها"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:715
+msgid "Aligns the text inside the title element. Where the title sits in the box is Justify Content's job."
+msgstr "متن را داخل خودِ عنصر عنوان تراز می‌کند. جای گرفتن عنوان در باکس کارِ «چینش در محور اصلی» است."
+
+#: widgets/class-mdotcar-elementor-widget-title.php:668
+msgid "Border Color"
+msgstr "رنگ کادر"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:575
+msgid "Border Radius"
+msgstr "گردی گوشه"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:455
+msgid "Box"
+msgstr "باکس"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:864
+msgid "Box Radius"
+msgstr "گردی گوشهٔ جعبه"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:831
+msgid "Box Size"
+msgstr "اندازهٔ جعبه"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:275
+#: widgets/class-mdotcar-elementor-widget-title.php:296
+#: widgets/class-mdotcar-elementor-widget-title.php:314
+#: widgets/class-mdotcar-elementor-widget-title.php:723
+msgid "Center"
+msgstr "وسط"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:882
+msgid "Clip"
+msgstr "برش بخورد"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:877
+msgid "Clip to Box"
+msgstr "برش به اندازهٔ جعبه"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:878
+msgid "Clipping keeps a background inside the radius; turn it off when a shadow or an oversized glyph should spill out."
+msgstr "برش، پس‌زمینه را داخل گردی گوشه نگه می‌دارد؛ اگر سایه یا آیکون بزرگ‌تر باید بیرون بزند، خاموشش کنید."
+
+#: widgets/class-mdotcar-elementor-widget-title.php:745
+#: widgets/class-mdotcar-elementor-widget-title.php:905
+msgid "Color"
+msgstr "رنگ"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:234
+msgid "Column - reversed"
+msgstr "ستونی - معکوس"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:226
+msgid "Column - vertical"
+msgstr "ستونی - عمودی"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:100
+msgid "Content"
+msgstr "محتوا"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:469
+msgid "Custom"
+msgstr "دلخواه"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:477
+msgid "Custom Width"
+msgstr "عرض دلخواه"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:216
+msgid "Direction"
+msgstr "جهت"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:200
+msgid "Display"
+msgstr "نمایش"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:883
+msgid "Do not clip"
+msgstr "برش نخورد"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:276
+#: widgets/class-mdotcar-elementor-widget-title.php:297
+#: widgets/class-mdotcar-elementor-widget-title.php:315
+#: widgets/class-mdotcar-elementor-widget-title.php:727
+msgid "End"
+msgstr "انتها"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:124
+msgid "Enter your title"
+msgstr "عنوان را وارد کنید"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:467
+#: widgets/class-mdotcar-elementor-widget-title.php:513
+msgid "Fit to content"
+msgstr "اندازهٔ محتوا"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:515
+msgid "Fixed"
+msgstr "ثابت"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:817
+msgid "Fixed Box"
+msgstr "جعبهٔ ثابت"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:204
+msgid "Flex"
+msgstr "فلکس"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:468
+msgid "Full width (100%)"
+msgstr "تمام عرض (۱۰۰٪)"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:331
+msgid "Gap"
+msgstr "فاصله"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:818
+msgid "Gives the icon an explicit width and height instead of letting the glyph decide. A fixed box keeps every icon the same size, is immune to the extra leading font icons carry, and cannot be stretched by Align Items."
+msgstr "به‌جای این‌که اندازه را خودِ آیکون تعیین کند، عرض و ارتفاع صریح به آن می‌دهد. جعبهٔ ثابت همهٔ آیکون‌ها را هم‌اندازه نگه می‌دارد، از فاصلهٔ اضافی فونت‌آیکون‌ها در امان است و «هم‌ترازی آیتم‌ها» نمی‌تواند کشیده‌اش کند."
+
+#: widgets/class-mdotcar-elementor-widget-title.php:132
+msgid "HTML Tag"
+msgstr "تگ HTML"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:509
+msgid "Height"
+msgstr "ارتفاع"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:524
+msgid "Height Value"
+msgstr "مقدار ارتفاع"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:653
+msgid "Hover"
+msgstr "هاور"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:756
+#: widgets/class-mdotcar-elementor-widget-title.php:917
+msgid "Hover Color"
+msgstr "رنگ هاور"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:595
+msgid "Hover Transition"
+msgstr "مدت ترنزیشن هاور"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:142
+#: widgets/class-mdotcar-elementor-widget-title.php:774
+msgid "Icon"
+msgstr "آیکون"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:153
+msgid "Icon Label"
+msgstr "برچسب آیکون"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:783
+msgid "Icon Size"
+msgstr "اندازهٔ آیکون"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:205
+msgid "Inline Flex"
+msgstr "فلکس درون‌خطی"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:261
+msgid "Items stay on a single line unless wrapping is enabled."
+msgstr "تا وقتی شکستن خط فعال نشود، آیتم‌ها در یک خط می‌مانند."
+
+#: widgets/class-mdotcar-elementor-widget-title.php:731
+msgid "Justified"
+msgstr "هم‌تراز دو طرف"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:271
+msgid "Justify Content"
+msgstr "چینش در محور اصلی"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:190
+msgid "Layout"
+msgstr "چیدمان"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:165
+msgid "Link"
+msgstr "لینک"
+
+#: includes/class-mdotcar-elementor-plugin.php:91
+msgid "MDotCar"
+msgstr "ام‌دات‌کار"
+
+#. translators: 1: required Elementor version, 2: current Elementor version.
+#: includes/class-mdotcar-elementor-requirements.php:85
+msgid "MDotCar Elementor Widgets requires Elementor %1$s or newer. You are running %2$s."
+msgstr "افزونهٔ ویجت‌های المنتور ام‌دات‌کار به المنتور %1$s یا بالاتر نیاز دارد. نسخهٔ فعلی شما %2$s است."
+
+#. translators: 1: required PHP version, 2: current PHP version.
+#: includes/class-mdotcar-elementor-requirements.php:65
+msgid "MDotCar Elementor Widgets requires PHP %1$s or newer. You are running %2$s."
+msgstr "افزونهٔ ویجت‌های المنتور ام‌دات‌کار به PHP %1$s یا بالاتر نیاز دارد. نسخهٔ فعلی شما %2$s است."
+
+#. translators: 1: required WordPress version, 2: current WordPress version.
+#: includes/class-mdotcar-elementor-requirements.php:74
+msgid "MDotCar Elementor Widgets requires WordPress %1$s or newer. You are running %2$s."
+msgstr "افزونهٔ ویجت‌های المنتور ام‌دات‌کار به وردپرس %1$s یا بالاتر نیاز دارد. نسخهٔ فعلی شما %2$s است."
+
+#: includes/class-mdotcar-elementor-requirements.php:81
+msgid "MDotCar Elementor Widgets requires the Elementor plugin to be installed and active."
+msgstr "افزونهٔ ویجت‌های المنتور ام‌دات‌کار نیاز دارد افزونهٔ المنتور نصب و فعال باشد."
+
+#: widgets/class-mdotcar-elementor-widget-title.php:43
+msgid "MDotCar Title"
+msgstr "عنوان ام‌دات‌کار"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:514
+msgid "Minimum (grows with content)"
+msgstr "حداقل (با محتوا رشد می‌کند)"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:253
+msgid "No Wrap"
+msgstr "بدون شکستن خط"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:619
+msgid "Normal"
+msgstr "عادی"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:821
+msgid "Off"
+msgstr "خاموش"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:820
+msgid "On"
+msgstr "روشن"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:554
+msgid "Padding"
+msgstr "فاصلهٔ داخلی"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:154
+msgid "Read out by screen readers. Worth filling in when the widget shows an icon and no title, which is otherwise invisible to them. Leave empty for a purely decorative icon."
+msgstr "صفحه‌خوان‌ها آن را می‌خوانند. وقتی ویجت فقط آیکون دارد و عنوانی ندارد حتماً پرش کنید، چون در آن حالت برای صفحه‌خوان نامرئی است. برای آیکون صرفاً تزئینی خالی بگذارید."
+
+#: widgets/class-mdotcar-elementor-widget-title.php:222
+msgid "Row - horizontal"
+msgstr "ردیفی - افقی"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:230
+msgid "Row - reversed"
+msgstr "ردیفی - معکوس"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:784
+msgid "Size of the glyph itself. The stylesheet scales both font icons and SVGs from it, so one value covers both."
+msgstr "اندازهٔ خودِ آیکون. استایل افزونه هم فونت‌آیکون و هم SVG را با همین مقدار مقیاس می‌دهد، پس یک عدد برای هر دو کافی است."
+
+#: widgets/class-mdotcar-elementor-widget-title.php:278
+#: widgets/class-mdotcar-elementor-widget-title.php:317
+msgid "Space Around"
+msgstr "فاصلهٔ پیرامونی"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:277
+#: widgets/class-mdotcar-elementor-widget-title.php:316
+msgid "Space Between"
+msgstr "فاصلهٔ بین"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:279
+msgid "Space Evenly"
+msgstr "فاصلهٔ یکسان"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:274
+#: widgets/class-mdotcar-elementor-widget-title.php:295
+#: widgets/class-mdotcar-elementor-widget-title.php:313
+#: widgets/class-mdotcar-elementor-widget-title.php:719
+msgid "Start"
+msgstr "ابتدا"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:298
+#: widgets/class-mdotcar-elementor-widget-title.php:318
+msgid "Stretch"
+msgstr "کشیده"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:108
+msgid "Style"
+msgstr "سبک"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:112
+msgid "Style 1"
+msgstr "سبک ۱"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:714
+msgid "Text Align"
+msgstr "تراز متن"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:120
+#: widgets/class-mdotcar-elementor-widget-title.php:123
+#: widgets/class-mdotcar-elementor-widget-title.php:698
+msgid "Title"
+msgstr "عنوان"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:166
+msgid "Turns the whole box into a link."
+msgstr "کل باکس را به لینک تبدیل می‌کند."
+
+#: widgets/class-mdotcar-elementor-widget-title.php:463
+msgid "Width"
+msgstr "عرض"
+
+#: widgets/class-mdotcar-elementor-widget-title.php:247
+#: widgets/class-mdotcar-elementor-widget-title.php:257
+msgid "Wrap"
+msgstr "شکستن خط"

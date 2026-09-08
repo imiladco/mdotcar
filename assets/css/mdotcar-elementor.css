@@ -11,6 +11,8 @@
 
 .mdotcar-title {
 	box-sizing: border-box;
+	/* Anchors the visually hidden icon label. */
+	position: relative;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
@@ -56,11 +58,31 @@
 	height: var( --mdotcar-title-height, auto );
 }
 
+/* As a link the box keeps the theme's colours rather than the link palette. */
+a.mdotcar-title {
+	text-decoration: none;
+	color: inherit;
+}
+
 .mdotcar-title__text {
 	margin: 0;
 	min-width: 0;
 	/* Long words and URLs break instead of overflowing the box. */
 	overflow-wrap: anywhere;
+}
+
+/* Icon label: announced by screen readers, invisible on screen. */
+.mdotcar-title__sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0;
+	overflow: hidden;
+	clip: rect( 0 0 0 0 );
+	clip-path: inset( 50% );
+	white-space: nowrap;
 }
 
 .mdotcar-title__icon {

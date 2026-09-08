@@ -4,7 +4,7 @@ Tags: elementor, widget, title, heading, flexbox
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.3.1
+Stable tag: 0.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,14 @@ and height can each be left to fit the content or set to a custom value.
    *MDotCar*.
 
 == Changelog ==
+
+= 0.4.0 =
+* Added a Link control, a screen-reader Icon Label, responsive Text Align for
+  the title, and a Clip to Box option for the icon box.
+* The Elementor editor now renders the widget live in JavaScript.
+* Added a .pot file and a complete Persian (fa_IR) translation.
+* Added PHPCS, a version-consistency check and a GitHub Actions workflow; the
+  codebase passes the WordPress coding standards cleanly.
 
 = 0.3.1 =
 * Fixed: a custom height locked the box, so a wrapping title overflowed it.

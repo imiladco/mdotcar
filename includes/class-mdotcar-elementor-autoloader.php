@@ -10,13 +10,17 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Maps class names to WordPress-style file names under includes/ and widgets/.
  *
- * MDotCar_Elementor_Widget_Title -> widgets/class-widget-title.php
+ * MDotCar_Elementor_Widget_Title -> widgets/class-mdotcar-elementor-widget-title.php
  */
 class MDotCar_Elementor_Autoloader {
 
 	const PREFIX = 'MDotCar_Elementor_';
 
-	/** @var string[] Directories searched, in order. */
+	/**
+	 * Directories searched, in order.
+	 *
+	 * @var string[]
+	 */
 	private static $paths = array( 'includes/', 'widgets/' );
 
 	/**
@@ -27,15 +31,16 @@ class MDotCar_Elementor_Autoloader {
 	}
 
 	/**
-	 * @param string $class Fully qualified class name being loaded.
+	 * Requires the file holding the given class, if this plugin owns it.
+	 *
+	 * @param string $class_name Fully qualified class name being loaded.
 	 */
-	public static function load( $class ) {
-		if ( 0 !== strpos( $class, self::PREFIX ) ) {
+	public static function load( $class_name ) {
+		if ( 0 !== strpos( $class_name, self::PREFIX ) ) {
 			return;
 		}
 
-		$slug = strtolower( str_replace( '_', '-', substr( $class, strlen( self::PREFIX ) ) ) );
-		$file = 'class-' . $slug . '.php';
+		$file = 'class-' . strtolower( str_replace( '_', '-', $class_name ) ) . '.php';
 
 		foreach ( self::$paths as $path ) {
 			$candidate = MDOTCAR_ELEMENTOR_DIR . $path . $file;

@@ -18,7 +18,8 @@ mkdir -p "$stage"
 for entry in "$root"/* "$root"/.[!.]*; do
 	[ -e "$entry" ] || continue
 	case "$(basename "$entry")" in
-		.git|.github|.gitignore|bin|dist|README.md|CHANGELOG.md|*.bak) continue ;;
+		.git|.github|.gitignore|bin|dist|vendor|node_modules) continue ;;
+		README.md|CHANGELOG.md|composer.json|composer.lock|phpcs.xml.dist|*.bak) continue ;;
 	esac
 	cp -R "$entry" "$stage/"
 done

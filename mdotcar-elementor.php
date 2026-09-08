@@ -3,7 +3,7 @@
  * Plugin Name:       MDotCar Elementor Widgets
  * Plugin URI:        https://mdotcar.com/
  * Description:       Custom Elementor widgets for mdotcar.com, starting with the Title widget.
- * Version:           0.3.1
+ * Version:           0.4.0
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Requires Plugins:  elementor
@@ -25,7 +25,7 @@ defined( 'ABSPATH' ) || exit;
  * Single source of truth for the plugin version (semver).
  * Bump with bin/bump-version.sh; never edit by hand.
  */
-define( 'MDOTCAR_ELEMENTOR_VERSION', '0.3.1' );
+define( 'MDOTCAR_ELEMENTOR_VERSION', '0.4.0' );
 
 /** Minimum environment the plugin supports. */
 define( 'MDOTCAR_ELEMENTOR_MIN_PHP', '7.4' );
@@ -37,8 +37,8 @@ define( 'MDOTCAR_ELEMENTOR_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MDOTCAR_ELEMENTOR_URL', plugin_dir_url( __FILE__ ) );
 define( 'MDOTCAR_ELEMENTOR_BASENAME', plugin_basename( __FILE__ ) );
 
-require_once MDOTCAR_ELEMENTOR_DIR . 'includes/class-requirements.php';
-require_once MDOTCAR_ELEMENTOR_DIR . 'includes/class-installer.php';
+require_once MDOTCAR_ELEMENTOR_DIR . 'includes/class-mdotcar-elementor-requirements.php';
+require_once MDOTCAR_ELEMENTOR_DIR . 'includes/class-mdotcar-elementor-installer.php';
 
 /**
  * Boots the plugin once the environment has been validated.
@@ -55,7 +55,7 @@ function mdotcar_elementor_bootstrap() {
 		return;
 	}
 
-	require_once MDOTCAR_ELEMENTOR_DIR . 'includes/class-autoloader.php';
+	require_once MDOTCAR_ELEMENTOR_DIR . 'includes/class-mdotcar-elementor-autoloader.php';
 	MDotCar_Elementor_Autoloader::register();
 
 	MDotCar_Elementor_Plugin::instance()->run();

@@ -12,16 +12,32 @@ defined( 'ABSPATH' ) || exit;
  */
 class MDotCar_Elementor_Requirements {
 
-	/** @var string */
+	/**
+	 * Minimum PHP version.
+	 *
+	 * @var string
+	 */
 	private $min_php;
 
-	/** @var string */
+	/**
+	 * Minimum WordPress version.
+	 *
+	 * @var string
+	 */
 	private $min_wp;
 
-	/** @var string */
+	/**
+	 * Minimum Elementor version.
+	 *
+	 * @var string
+	 */
 	private $min_elementor;
 
-	/** @var string[] */
+	/**
+	 * Messages describing the unmet requirements.
+	 *
+	 * @var string[]
+	 */
 	private $errors = array();
 
 	/**
@@ -36,6 +52,8 @@ class MDotCar_Elementor_Requirements {
 	}
 
 	/**
+	 * Collects the unmet requirements, if any.
+	 *
 	 * @return bool True when the environment can run the plugin.
 	 */
 	public function is_satisfied() {

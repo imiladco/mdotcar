@@ -18,13 +18,23 @@ final class MDotCar_Elementor_Plugin {
 	/** Handle shared by the front-end stylesheet and script. */
 	const HANDLE = 'mdotcar-elementor';
 
-	/** @var MDotCar_Elementor_Plugin|null */
+	/**
+	 * Shared instance.
+	 *
+	 * @var MDotCar_Elementor_Plugin|null
+	 */
 	private static $instance = null;
 
-	/** @var bool */
+	/**
+	 * Whether run() has already registered the hooks.
+	 *
+	 * @var bool
+	 */
 	private $booted = false;
 
 	/**
+	 * Returns the shared instance.
+	 *
 	 * @return MDotCar_Elementor_Plugin
 	 */
 	public static function instance() {
@@ -35,6 +45,9 @@ final class MDotCar_Elementor_Plugin {
 		return self::$instance;
 	}
 
+	/**
+	 * Private: the plugin is reached through instance().
+	 */
 	private function __construct() {}
 
 	/**
