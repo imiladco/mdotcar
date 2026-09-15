@@ -17,6 +17,36 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.6.0] - 2026-09-15
+
+### Added
+
+- **MDotCar Vehicle Tariff widget** — the car-wash tariff cards. A repeater
+  holds any number of vehicles; each card carries an image, a badge, a title,
+  up to three tariff columns, a link and a value to remember.
+  - The whole card is the link, not just the button, and stays keyboard
+    reachable with a visible focus ring.
+  - Clicking a card writes its Stored Value to `localStorage`, a cookie or both
+    under a configurable key, before the link is followed — either the bare
+    value or a JSON payload that also carries the title and tariff amounts.
+    Storage failures (private mode, disabled storage) never block the link.
+  - Amounts are entered as plain digits and rendered grouped in thousands and
+    in Persian numerals, both switchable; anything that is not a plain number
+    passes through untouched.
+  - One tariff column per card can be marked *Featured* for the accent colour
+    VIP has in the design, and any column can be hidden.
+  - Defaults reproduce the design exactly: 16px radius, the blue accent on the
+    reading edge, the blue backdrop ellipse behind the vehicle, the round badge
+    with a built-in car outline, hairline-separated tariff columns, and the
+    text action with a built-in chevron. Everything is exposed as controls —
+    grid columns and gap, card background, radius, shadow and hover lift, image
+    and badge sizing, typography and colours for every text role, and the
+    divider colours.
+  - Sides use logical properties, so the accent edge and the badge sit on the
+    reading side in both RTL and LTR.
+- A front-end script, loaded only on pages with a widget that needs it, and in
+  the editor preview.
+
 ## [0.5.1] - 2026-09-08
 
 ### Fixed

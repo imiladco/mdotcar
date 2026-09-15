@@ -64,7 +64,9 @@ final class MDotCar_Elementor_Plugin {
 		add_action( 'elementor/elements/categories_registered', array( $this, 'register_category' ) );
 		add_action( 'elementor/widgets/register', array( $this, 'register_widgets' ) );
 		add_action( 'elementor/frontend/after_register_styles', array( $this, 'register_assets' ) );
+		add_action( 'elementor/frontend/after_register_scripts', array( $this, 'register_scripts' ) );
 		add_action( 'elementor/preview/enqueue_styles', array( $this, 'enqueue_preview_assets' ) );
+		add_action( 'elementor/preview/enqueue_scripts', array( $this, 'enqueue_preview_scripts' ) );
 		add_action( 'admin_init', array( 'MDotCar_Elementor_Installer', 'maybe_upgrade' ) );
 	}
 
@@ -107,7 +109,10 @@ final class MDotCar_Elementor_Plugin {
 		 */
 		$widgets = apply_filters(
 			'mdotcar_elementor_widgets',
-			array( 'MDotCar_Elementor_Widget_Title' )
+			array(
+				'MDotCar_Elementor_Widget_Title',
+				'MDotCar_Elementor_Widget_Vehicle_Tariff',
+			)
 		);
 
 		foreach ( $widgets as $widget ) {
@@ -133,6 +138,20 @@ final class MDotCar_Elementor_Plugin {
 	}
 
 	/**
+	 * Registers the front-end script. Widgets that need it declare it through
+	 * get_script_depends(), so it only loads where it is used.
+	 */
+	public function register_scripts() {
+		wp_register_script(
+			self::HANDLE,
+			MDOTCAR_ELEMENTOR_URL . 'assets/js/mdotcar-elementor.js',
+			array(),
+			MDOTCAR_ELEMENTOR_VERSION,
+			true
+		);
+	}
+
+	/**
 	 * Loads the stylesheet inside the editor's preview iframe, where the widgets
 	 * are actually rendered.
 	 *
@@ -143,5 +162,12 @@ final class MDotCar_Elementor_Plugin {
 	 */
 	public function enqueue_preview_assets() {
 		wp_enqueue_style( self::HANDLE );
+	}
+
+	/**
+	 * Loads the front-end script into the editor preview, where widgets render.
+	 */
+	public function enqueue_preview_scripts() {
+		wp_enqueue_script( self::HANDLE );
 	}
 }

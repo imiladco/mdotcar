@@ -541,8 +541,14 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 					'size' => 56,
 				),
 				'range'      => array(
-					'px' => array( 'min' => 0, 'max' => 600 ),
-					'vh' => array( 'min' => 0, 'max' => 100 ),
+					'px' => array(
+						'min' => 0,
+						'max' => 600,
+					),
+					'vh' => array(
+						'min' => 0,
+						'max' => 100,
+					),
 				),
 				// 'custom' is the pre-0.3.1 name of this mode; widgets saved back
 				// then keep working without being re-configured.
@@ -564,8 +570,14 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 					'size' => 56,
 				),
 				'range'      => array(
-					'px' => array( 'min' => 0, 'max' => 600 ),
-					'vh' => array( 'min' => 0, 'max' => 100 ),
+					'px' => array(
+						'min' => 0,
+						'max' => 600,
+					),
+					'vh' => array(
+						'min' => 0,
+						'max' => 100,
+					),
 				),
 				'condition'  => array( 'height_type' => 'min' ),
 				'selectors'  => array(

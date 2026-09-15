@@ -4,7 +4,7 @@ Tags: elementor, widget, title, heading, flexbox
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.5.1
+Stable tag: 0.6.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,6 +13,11 @@ Custom Elementor widgets for mdotcar.com, starting with the Title widget.
 == Description ==
 
 Adds an **MDotCar** category to the Elementor panel.
+
+**MDotCar Vehicle Tariff (Style 1)** — car-wash tariff cards. Define any number
+of vehicles, each with an image, badge, title, up to three tariff columns, a
+link the whole card follows, and a value saved to localStorage or a cookie when
+the card is clicked so the booking flow can read it back.
 
 **MDotCar Title (Style 1)** — a title with an icon, laid out with the complete
 set of flexbox controls: display, direction, wrap, align content, justify
@@ -33,6 +38,11 @@ and height can each be left to fit the content or set to a custom value.
    *MDotCar*.
 
 == Changelog ==
+
+= 0.6.0 =
+* Added the MDotCar Vehicle Tariff widget: car-wash tariff cards with a
+  repeater of vehicles, image, badge, title, up to three tariff columns, a
+  card-wide link, and the selection remembered in localStorage or a cookie.
 
 = 0.5.1 =
 * Fixed: the Fixed height mode did nothing, including on widgets saved before

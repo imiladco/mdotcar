@@ -9,3 +9,18 @@
 	direction: rtl;
 	text-align: right;
 }
+
+/*
+ * Vehicle Tariff: the design lists the columns with VIP on the left, so in RTL
+ * the row runs the other way and the hairline moves to the other edge of each
+ * column that follows one.
+ */
+
+.mdotcar-vehicle__tariffs {
+	flex-direction: row-reverse;
+}
+
+.mdotcar-vehicle__tariff + .mdotcar-vehicle__tariff {
+	border-inline-start: 0;
+	border-inline-end: 1px solid #E2E8F0;
+}

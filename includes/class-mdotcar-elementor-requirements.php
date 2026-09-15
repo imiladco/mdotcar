@@ -41,6 +41,8 @@ class MDotCar_Elementor_Requirements {
 	private $errors = array();
 
 	/**
+	 * Records the versions the plugin needs.
+	 *
 	 * @param string $min_php       Minimum PHP version.
 	 * @param string $min_wp        Minimum WordPress version.
 	 * @param string $min_elementor Minimum Elementor version.
