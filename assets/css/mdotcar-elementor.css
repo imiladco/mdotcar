@@ -347,7 +347,6 @@ a.mdotcar-title {
 .mdotcar-vehicle__foot {
 	align-self: stretch;
 	margin: 16px 16px 0;
-	padding-top: 12px;
 	border-top: 1px dashed #DCDFE4;
 }
 
@@ -357,7 +356,8 @@ a.mdotcar-title {
 	align-items: center;
 	justify-content: center;
 	gap: 8px;
-	padding-bottom: 8px;
+	margin: 0;
+	padding: 12px 0 8px;
 	color: #3F51B5;
 	font-family: 'Dana-FaNum', 'Dana', 'IRANSansX', 'IRANSans', sans-serif;
 	font-size: 16px;

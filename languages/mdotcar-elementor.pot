@@ -71,7 +71,7 @@ msgid "Backdrop Layer"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:958
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1573
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1569
 msgid "Background"
 msgstr ""
 
@@ -160,8 +160,8 @@ msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:666
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1125
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1541
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1561
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1537
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1557
 msgid "Colour"
 msgstr ""
 
@@ -339,7 +339,7 @@ msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-title.php:691
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:706
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1555
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1551
 msgid "Hover"
 msgstr ""
 
@@ -361,7 +361,7 @@ msgstr ""
 msgid "Icon Colour"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1461
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1457
 msgid "Icon Gap"
 msgstr ""
 
@@ -371,7 +371,7 @@ msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-title.php:821
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:935
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1512
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1508
 msgid "Icon Size"
 msgstr ""
 
@@ -492,6 +492,10 @@ msgstr ""
 msgid "MDotCar Vehicle Tariff"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1417
+msgid "Margin"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-title.php:526
 msgid "Minimum (grows with content)"
 msgstr ""
@@ -515,7 +519,7 @@ msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-title.php:657
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:679
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1535
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1531
 msgid "Normal"
 msgstr ""
 
@@ -537,6 +541,7 @@ msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-title.php:592
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:870
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1437
 msgid "Padding"
 msgstr ""
 
@@ -629,17 +634,9 @@ msgstr ""
 msgid "Solid"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1417
-msgid "Space Above Action"
-msgstr ""
-
 #: widgets/class-mdotcar-elementor-widget-title.php:290
 #: widgets/class-mdotcar-elementor-widget-title.php:329
 msgid "Space Around"
-msgstr ""
-
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1439
-msgid "Space Below Action"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-title.php:289

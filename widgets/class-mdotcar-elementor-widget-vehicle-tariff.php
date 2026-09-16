@@ -1412,45 +1412,41 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 		);
 
 		$this->add_responsive_control(
-			'action_spacing',
+			'action_margin',
 			array(
-				'label'      => __( 'Space Above Action', 'mdotcar-elementor' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px', 'em' ),
+				'label'      => __( 'Margin', 'mdotcar-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', 'rem', '%' ),
 				'default'    => array(
-					'unit' => 'px',
-					'size' => 12,
-				),
-				'range'      => array(
-					'px' => array(
-						'min' => 0,
-						'max' => 80,
-					),
+					'top'      => 0,
+					'right'    => 0,
+					'bottom'   => 0,
+					'left'     => 0,
+					'unit'     => 'px',
+					'isLinked' => false,
 				),
 				'selectors'  => array(
-					'{{WRAPPER}} .mdotcar-vehicle__foot' => 'padding-top: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .mdotcar-vehicle__action' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
 
 		$this->add_responsive_control(
-			'action_padding_bottom',
+			'action_padding',
 			array(
-				'label'      => __( 'Space Below Action', 'mdotcar-elementor' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px', 'em' ),
+				'label'      => __( 'Padding', 'mdotcar-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', 'rem', '%' ),
 				'default'    => array(
-					'unit' => 'px',
-					'size' => 8,
-				),
-				'range'      => array(
-					'px' => array(
-						'min' => 0,
-						'max' => 80,
-					),
+					'top'      => 12,
+					'right'    => 0,
+					'bottom'   => 8,
+					'left'     => 0,
+					'unit'     => 'px',
+					'isLinked' => false,
 				),
 				'selectors'  => array(
-					'{{WRAPPER}} .mdotcar-vehicle__action' => 'padding-bottom: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .mdotcar-vehicle__action' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -1678,11 +1674,11 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 			<?php if ( ! empty( $settings['action_text'] ) ) : ?>
 				<div class="mdotcar-vehicle__foot">
 					<span class="mdotcar-vehicle__action">
-						<span class="mdotcar-vehicle__action-icon" aria-hidden="true">
-							<?php $this->render_action_icon( $settings ); ?>
-						</span>
 						<span class="mdotcar-vehicle__action-text">
 							<?php echo esc_html( $settings['action_text'] ); ?>
+						</span>
+						<span class="mdotcar-vehicle__action-icon" aria-hidden="true">
+							<?php $this->render_action_icon( $settings ); ?>
 						</span>
 					</span>
 				</div>

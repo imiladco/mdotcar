@@ -4,7 +4,7 @@ Tags: elementor, widget, title, heading, flexbox
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.7.3
+Stable tag: 0.7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,12 @@ and height can each be left to fit the content or set to a custom value.
    *MDotCar*.
 
 == Changelog ==
+
+= 0.7.4 =
+* Fixed: the action icon rendered on the wrong side (right instead of left of
+  "ثبت درخواست" in RTL). Swapped icon/text order to match the design.
+* Action button Margin and Padding are now full 4-side responsive controls,
+  replacing the two single-direction spacing sliders.
 
 = 0.7.3 =
 * Gap between cards now defaults per device (24/20/16px desktop/tablet/mobile)

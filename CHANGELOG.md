@@ -17,6 +17,28 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.7.4] - 2026-09-16
+
+### Fixed
+
+- **Action icon was on the wrong side.** The icon rendered before the text in
+  the DOM, which a `flex-direction: row` row places at the main-start edge —
+  the right, in RTL — putting the chevron to the right of "ثبت درخواست"
+  instead of to its left as the design shows. Swapped the render order so the
+  text comes first (right) and the icon second (left), confirmed by measuring
+  both elements' on-page position before and after.
+
+### Changed
+
+- **Action button margin and padding are now full, independent controls.**
+  The two single-direction sliders (Space Above Action, Space Below Action)
+  are replaced by a **Margin** and a **Padding** control, each a responsive
+  4-side dimensions field (top/right/bottom/left, independently unlinkable) on
+  the action button itself, matching the pattern Elementor's own Button widget
+  uses. Padding defaults to 12/0/8/0, reproducing the previous spacing;
+  Margin defaults to 0 and is new — room to pull the button off full width
+  once it gets its own background or border.
+
 ## [0.7.3] - 2026-09-16
 
 ### Added
