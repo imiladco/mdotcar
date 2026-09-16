@@ -17,6 +17,18 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.7.5] - 2026-09-16
+
+### Added
+
+- Style controls for the **Wrapper** — the layer the action button sits
+  inside, carrying the divider above it (`.mdotcar-vehicle__foot`), previously
+  only reachable through its Divider Style/Colour. New: responsive Margin
+  (defaults 16/16/0/16, matching the previous fixed value) and Padding
+  (defaults 0), a Background group (classic or gradient), and a responsive
+  Radius. The divider controls are now under their own "Divider" heading, kept
+  separate from the wrapper's own box styling.
+
 ## [0.7.4] - 2026-09-16
 
 ### Fixed

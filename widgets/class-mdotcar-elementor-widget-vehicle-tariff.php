@@ -1382,6 +1382,85 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 		);
 
 		$this->add_control(
+			'foot_heading',
+			array(
+				'label'       => __( 'Wrapper', 'mdotcar-elementor' ),
+				'description' => __( 'The layer the action button sits inside — it carries the divider above the button.', 'mdotcar-elementor' ),
+				'type'        => Controls_Manager::HEADING,
+			)
+		);
+
+		$this->add_responsive_control(
+			'foot_margin',
+			array(
+				'label'      => __( 'Margin', 'mdotcar-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', 'rem', '%' ),
+				'default'    => array(
+					'top'      => 16,
+					'right'    => 16,
+					'bottom'   => 0,
+					'left'     => 16,
+					'unit'     => 'px',
+					'isLinked' => false,
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mdotcar-vehicle__foot' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'foot_padding',
+			array(
+				'label'      => __( 'Padding', 'mdotcar-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', 'rem', '%' ),
+				'default'    => array(
+					'top'      => 0,
+					'right'    => 0,
+					'bottom'   => 0,
+					'left'     => 0,
+					'unit'     => 'px',
+					'isLinked' => false,
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mdotcar-vehicle__foot' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			array(
+				'name'     => 'foot_background',
+				'types'    => array( 'classic', 'gradient' ),
+				'selector' => '{{WRAPPER}} .mdotcar-vehicle__foot',
+			)
+		);
+
+		$this->add_responsive_control(
+			'foot_radius',
+			array(
+				'label'      => __( 'Radius', 'mdotcar-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mdotcar-vehicle__foot' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}; overflow: hidden;',
+				),
+			)
+		);
+
+		$this->add_control(
+			'divider_heading',
+			array(
+				'label'     => __( 'Divider', 'mdotcar-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_control(
 			'foot_divider_style',
 			array(
 				'label'     => __( 'Divider Style', 'mdotcar-elementor' ),
