@@ -509,20 +509,28 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 		$this->add_responsive_control(
 			'grid_gap',
 			array(
-				'label'      => __( 'Gap', 'mdotcar-elementor' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px', 'em', 'rem' ),
-				'default'    => array(
+				'label'          => __( 'Gap', 'mdotcar-elementor' ),
+				'type'           => Controls_Manager::SLIDER,
+				'size_units'     => array( 'px', 'em', 'rem' ),
+				'default'        => array(
 					'unit' => 'px',
 					'size' => 24,
 				),
-				'range'      => array(
+				'tablet_default' => array(
+					'unit' => 'px',
+					'size' => 20,
+				),
+				'mobile_default' => array(
+					'unit' => 'px',
+					'size' => 16,
+				),
+				'range'          => array(
 					'px' => array(
 						'min' => 0,
 						'max' => 120,
 					),
 				),
-				'selectors'  => array(
+				'selectors'      => array(
 					self::GRID => 'gap: {{SIZE}}{{UNIT}};',
 				),
 			)

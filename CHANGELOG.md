@@ -17,6 +17,16 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.7.3] - 2026-09-16
+
+### Added
+
+- Items-per-row (Style → Layout → Columns) and the Gap between cards were
+  already responsive controls — Desktop/Tablet/Mobile default to 3/2/1
+  columns, switchable per device via the small icon next to each control's
+  label. Gap now also defaults per device (24/20/16px) instead of carrying the
+  desktop value to every breakpoint unless the admin overrode it.
+
 ## [0.7.2] - 2026-09-16
 
 ### Fixed

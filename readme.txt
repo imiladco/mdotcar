@@ -4,7 +4,7 @@ Tags: elementor, widget, title, heading, flexbox
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.7.2
+Stable tag: 0.7.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,13 @@ and height can each be left to fit the content or set to a custom value.
    *MDotCar*.
 
 == Changelog ==
+
+= 0.7.3 =
+* Gap between cards now defaults per device (24/20/16px desktop/tablet/mobile)
+  instead of carrying the desktop value everywhere. Columns per row was
+  already responsive (3/2/1 by default) — Style tab → Layout section, the
+  small device icon next to each control switches which breakpoint you're
+  editing.
 
 = 0.7.2 =
 * Fixed: a real uploaded vehicle photo could render far taller than the
