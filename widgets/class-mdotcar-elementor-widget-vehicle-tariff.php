@@ -525,9 +525,13 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Background::get_type(),
 			array(
-				'name'     => 'card_background',
-				'types'    => array( 'classic', 'gradient' ),
-				'selector' => self::CARD,
+				'name'           => 'card_background',
+				'types'          => array( 'classic', 'gradient' ),
+				'selector'       => self::CARD,
+				'fields_options' => array(
+					'background' => array( 'default' => 'classic' ),
+					'color'      => array( 'default' => '#FFFFFF' ),
+				),
 			)
 		);
 
@@ -536,6 +540,14 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 			array(
 				'label'      => __( 'Border Radius', 'mdotcar-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
+				'default'    => array(
+					'top'      => 16,
+					'right'    => 16,
+					'bottom'   => 16,
+					'left'     => 16,
+					'unit'     => 'px',
+					'isLinked' => true,
+				),
 				'size_units' => array( 'px', '%', 'rem' ),
 				'selectors'  => array(
 					self::CARD => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -548,6 +560,10 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 			array(
 				'label'      => __( 'Bottom Padding', 'mdotcar-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
+				'default'    => array(
+					'unit' => 'px',
+					'size' => 16,
+				),
 				'size_units' => array( 'px', 'em', 'rem' ),
 				'range'      => array(
 					'px' => array(
@@ -575,6 +591,10 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 			array(
 				'label'      => __( 'Width', 'mdotcar-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
+				'default'    => array(
+					'unit' => 'px',
+					'size' => 1,
+				),
 				'size_units' => array( 'px' ),
 				'range'      => array(
 					'px' => array(
@@ -594,6 +614,7 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 			array(
 				'label'     => __( 'Colour', 'mdotcar-elementor' ),
 				'type'      => Controls_Manager::COLOR,
+				'default'   => '#0095FF',
 				'selectors' => array(
 					self::CARD => 'border-inline-start-color: {{VALUE}};',
 				),
@@ -610,8 +631,20 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Box_Shadow::get_type(),
 			array(
-				'name'     => 'card_shadow',
-				'selector' => self::CARD,
+				'name'           => 'card_shadow',
+				'selector'       => self::CARD,
+				'fields_options' => array(
+					'box_shadow_type' => array( 'default' => 'yes' ),
+					'box_shadow'      => array(
+						'default' => array(
+							'horizontal' => 0,
+							'vertical'   => 2,
+							'blur'       => 10,
+							'spread'     => 0,
+							'color'      => 'rgba(24, 36, 101, 0.1)',
+						),
+					),
+				),
 			)
 		);
 
@@ -672,6 +705,10 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 			array(
 				'label'      => __( 'Image Height', 'mdotcar-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
+				'default'    => array(
+					'unit' => 'px',
+					'size' => 120,
+				),
 				'size_units' => array( 'px', 'vh' ),
 				'range'      => array(
 					'px' => array(
@@ -690,6 +727,10 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 			array(
 				'label'      => __( 'Space Above Image', 'mdotcar-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
+				'default'    => array(
+					'unit' => 'px',
+					'size' => 32,
+				),
 				'size_units' => array( 'px', 'rem' ),
 				'range'      => array(
 					'px' => array(
@@ -708,6 +749,7 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 			array(
 				'label'     => __( 'Backdrop Colour', 'mdotcar-elementor' ),
 				'type'      => Controls_Manager::COLOR,
+				'default'   => '#E6F4FF',
 				'selectors' => array(
 					'{{WRAPPER}} .mdotcar-vehicle__blob' => 'background-color: {{VALUE}};',
 				),
@@ -719,6 +761,10 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 			array(
 				'label'      => __( 'Backdrop Height', 'mdotcar-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
+				'default'    => array(
+					'unit' => 'px',
+					'size' => 154,
+				),
 				'size_units' => array( 'px', '%' ),
 				'range'      => array(
 					'px' => array(
@@ -746,6 +792,10 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 			array(
 				'label'      => __( 'Size', 'mdotcar-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
+				'default'    => array(
+					'unit' => 'px',
+					'size' => 48,
+				),
 				'size_units' => array( 'px' ),
 				'range'      => array(
 					'px' => array(
@@ -764,6 +814,10 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 			array(
 				'label'      => __( 'Icon Size', 'mdotcar-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
+				'default'    => array(
+					'unit' => 'px',
+					'size' => 34,
+				),
 				'size_units' => array( 'px' ),
 				'range'      => array(
 					'px' => array(
@@ -782,6 +836,7 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 			array(
 				'label'     => __( 'Background', 'mdotcar-elementor' ),
 				'type'      => Controls_Manager::COLOR,
+				'default'   => '#FCFDFD',
 				'selectors' => array(
 					'{{WRAPPER}} .mdotcar-vehicle__badge' => 'background-color: {{VALUE}};',
 				),
@@ -793,6 +848,7 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 			array(
 				'label'     => __( 'Icon Colour', 'mdotcar-elementor' ),
 				'type'      => Controls_Manager::COLOR,
+				'default'   => '#424242',
 				'selectors' => array(
 					'{{WRAPPER}} .mdotcar-vehicle__badge' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .mdotcar-vehicle__badge svg *' => 'stroke: {{VALUE}};',
@@ -818,8 +874,29 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
-				'name'     => 'title_typography',
-				'selector' => '{{WRAPPER}} .mdotcar-vehicle__title',
+				'name'           => 'title_typography',
+				'fields_options' => array(
+					'typography'  => array( 'default' => 'custom' ),
+					'font_family' => array(
+						'default' => 'Dana-FaNum',
+					),
+					'font_size'   => array(
+						'default' => array(
+							'unit' => 'px',
+							'size' => 24,
+						),
+					),
+					'font_weight' => array(
+						'default' => '700',
+					),
+					'line_height' => array(
+						'default' => array(
+							'unit' => 'px',
+							'size' => 32,
+						),
+					),
+				),
+				'selector'       => '{{WRAPPER}} .mdotcar-vehicle__title',
 			)
 		);
 
@@ -828,6 +905,7 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 			array(
 				'label'     => __( 'Colour', 'mdotcar-elementor' ),
 				'type'      => Controls_Manager::COLOR,
+				'default'   => '#212121',
 				'selectors' => array(
 					'{{WRAPPER}} .mdotcar-vehicle__title' => 'color: {{VALUE}};',
 				),
@@ -852,9 +930,30 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
-				'name'     => 'tariff_label_typography',
-				'label'    => __( 'Label Typography', 'mdotcar-elementor' ),
-				'selector' => '{{WRAPPER}} .mdotcar-vehicle__tariff-label',
+				'name'           => 'tariff_label_typography',
+				'fields_options' => array(
+					'typography'  => array( 'default' => 'custom' ),
+					'font_family' => array(
+						'default' => 'Dana-FaNum',
+					),
+					'font_size'   => array(
+						'default' => array(
+							'unit' => 'px',
+							'size' => 14,
+						),
+					),
+					'font_weight' => array(
+						'default' => '500',
+					),
+					'line_height' => array(
+						'default' => array(
+							'unit' => 'px',
+							'size' => 22,
+						),
+					),
+				),
+				'label'          => __( 'Label Typography', 'mdotcar-elementor' ),
+				'selector'       => '{{WRAPPER}} .mdotcar-vehicle__tariff-label',
 			)
 		);
 
@@ -863,6 +962,7 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 			array(
 				'label'     => __( 'Label Colour', 'mdotcar-elementor' ),
 				'type'      => Controls_Manager::COLOR,
+				'default'   => '#424242',
 				'selectors' => array(
 					'{{WRAPPER}} .mdotcar-vehicle__tariff-label' => 'color: {{VALUE}};',
 				),
@@ -874,6 +974,7 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 			array(
 				'label'     => __( 'Featured Label Colour', 'mdotcar-elementor' ),
 				'type'      => Controls_Manager::COLOR,
+				'default'   => '#0088E8',
 				'selectors' => array(
 					'{{WRAPPER}} .mdotcar-vehicle__tariff--featured .mdotcar-vehicle__tariff-label' => 'color: {{VALUE}};',
 				),
@@ -885,6 +986,7 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 			array(
 				'label'     => __( 'Featured Label Weight', 'mdotcar-elementor' ),
 				'type'      => Controls_Manager::SELECT,
+				'default'   => '700',
 				'options'   => array(
 					''    => __( 'Default', 'mdotcar-elementor' ),
 					'500' => '500',
@@ -901,10 +1003,31 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
-				'name'      => 'tariff_amount_typography',
-				'label'     => __( 'Amount Typography', 'mdotcar-elementor' ),
-				'selector'  => '{{WRAPPER}} .mdotcar-vehicle__tariff-amount',
-				'separator' => 'before',
+				'name'           => 'tariff_amount_typography',
+				'fields_options' => array(
+					'typography'  => array( 'default' => 'custom' ),
+					'font_family' => array(
+						'default' => 'Dana-FaNum',
+					),
+					'font_size'   => array(
+						'default' => array(
+							'unit' => 'px',
+							'size' => 18,
+						),
+					),
+					'font_weight' => array(
+						'default' => '500',
+					),
+					'line_height' => array(
+						'default' => array(
+							'unit' => 'px',
+							'size' => 26,
+						),
+					),
+				),
+				'label'          => __( 'Amount Typography', 'mdotcar-elementor' ),
+				'selector'       => '{{WRAPPER}} .mdotcar-vehicle__tariff-amount',
+				'separator'      => 'before',
 			)
 		);
 
@@ -913,6 +1036,7 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 			array(
 				'label'     => __( 'Amount Colour', 'mdotcar-elementor' ),
 				'type'      => Controls_Manager::COLOR,
+				'default'   => '#212121',
 				'selectors' => array(
 					'{{WRAPPER}} .mdotcar-vehicle__tariff-amount' => 'color: {{VALUE}};',
 				),
@@ -922,10 +1046,31 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
-				'name'      => 'tariff_currency_typography',
-				'label'     => __( 'Currency Typography', 'mdotcar-elementor' ),
-				'selector'  => '{{WRAPPER}} .mdotcar-vehicle__tariff-currency',
-				'separator' => 'before',
+				'name'           => 'tariff_currency_typography',
+				'fields_options' => array(
+					'typography'  => array( 'default' => 'custom' ),
+					'font_family' => array(
+						'default' => 'Dana-FaNum',
+					),
+					'font_size'   => array(
+						'default' => array(
+							'unit' => 'px',
+							'size' => 12,
+						),
+					),
+					'font_weight' => array(
+						'default' => '400',
+					),
+					'line_height' => array(
+						'default' => array(
+							'unit' => 'px',
+							'size' => 18,
+						),
+					),
+				),
+				'label'          => __( 'Currency Typography', 'mdotcar-elementor' ),
+				'selector'       => '{{WRAPPER}} .mdotcar-vehicle__tariff-currency',
+				'separator'      => 'before',
 			)
 		);
 
@@ -934,6 +1079,7 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 			array(
 				'label'     => __( 'Currency Colour', 'mdotcar-elementor' ),
 				'type'      => Controls_Manager::COLOR,
+				'default'   => '#9E9E9E',
 				'selectors' => array(
 					'{{WRAPPER}} .mdotcar-vehicle__tariff-currency' => 'color: {{VALUE}};',
 				),
@@ -945,6 +1091,7 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 			array(
 				'label'     => __( 'Divider Colour', 'mdotcar-elementor' ),
 				'type'      => Controls_Manager::COLOR,
+				'default'   => '#E2E8F0',
 				'separator' => 'before',
 				'selectors' => array(
 					// The hairline sits on the start edge in LTR and the end edge in
@@ -974,6 +1121,7 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 			array(
 				'label'     => __( 'Divider Colour', 'mdotcar-elementor' ),
 				'type'      => Controls_Manager::COLOR,
+				'default'   => '#DCDFE4',
 				'selectors' => array(
 					'{{WRAPPER}} .mdotcar-vehicle__foot' => 'border-top-color: {{VALUE}};',
 				),
@@ -983,8 +1131,29 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
-				'name'     => 'action_typography',
-				'selector' => '{{WRAPPER}} .mdotcar-vehicle__action',
+				'name'           => 'action_typography',
+				'fields_options' => array(
+					'typography'  => array( 'default' => 'custom' ),
+					'font_family' => array(
+						'default' => 'Dana-FaNum',
+					),
+					'font_size'   => array(
+						'default' => array(
+							'unit' => 'px',
+							'size' => 16,
+						),
+					),
+					'font_weight' => array(
+						'default' => '500',
+					),
+					'line_height' => array(
+						'default' => array(
+							'unit' => 'px',
+							'size' => 24,
+						),
+					),
+				),
+				'selector'       => '{{WRAPPER}} .mdotcar-vehicle__action',
 			)
 		);
 
@@ -993,6 +1162,10 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 			array(
 				'label'      => __( 'Icon Size', 'mdotcar-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
+				'default'    => array(
+					'unit' => 'px',
+					'size' => 20,
+				),
 				'size_units' => array( 'px', 'em' ),
 				'range'      => array(
 					'px' => array(
@@ -1018,6 +1191,7 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 			array(
 				'label'     => __( 'Colour', 'mdotcar-elementor' ),
 				'type'      => Controls_Manager::COLOR,
+				'default'   => '#3F51B5',
 				'selectors' => array(
 					'{{WRAPPER}} .mdotcar-vehicle__action' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .mdotcar-vehicle__action svg *' => 'fill: {{VALUE}};',
@@ -1067,6 +1241,8 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+
+		MDotCar_Elementor_Plugin::enqueue();
 
 		if ( empty( $settings['vehicles'] ) || ! is_array( $settings['vehicles'] ) ) {
 			return;

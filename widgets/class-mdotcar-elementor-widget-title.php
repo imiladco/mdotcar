@@ -971,6 +971,8 @@ class MDotCar_Elementor_Widget_Title extends Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 
+		MDotCar_Elementor_Plugin::enqueue();
+
 		$title = isset( $settings['title'] ) ? $settings['title'] : '';
 		$icon  = isset( $settings['selected_icon'] ) ? $settings['selected_icon'] : array();
 		$label = isset( $settings['icon_label'] ) ? trim( (string) $settings['icon_label'] ) : '';

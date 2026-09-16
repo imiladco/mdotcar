@@ -17,6 +17,24 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.6.1] - 2026-09-16
+
+### Fixed
+
+- The Vehicle Tariff widget came up unstyled. Two causes, both addressed:
+  - The design values lived only in the plugin stylesheet, so nothing showed
+    if that file did not reach the page, and the panel's style fields were all
+    empty. Every one of them now carries the design value as its control
+    default — radius 16, the `#0095FF` accent edge, the `0 2px 10px
+    rgba(24,36,101,.1)` shadow, the `#E6F4FF` backdrop, the 48px badge, and the
+    typography and colours of the title, tariff, currency and action text — so
+    the card matches the design out of the box and the values are visible and
+    editable in the panel.
+  - Assets are now registered on `wp_enqueue_scripts` as well as Elementor's
+    own hook, and each widget enqueues them while rendering, so the stylesheet
+    and script load whatever asset-loading mode Elementor is in.
+    `get_style_depends()` still declares the dependency for optimised loading.
+
 ## [0.6.0] - 2026-09-15
 
 ### Added

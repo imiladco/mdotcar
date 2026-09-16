@@ -4,7 +4,7 @@ Tags: elementor, widget, title, heading, flexbox
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.6.0
+Stable tag: 0.6.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,10 @@ and height can each be left to fit the content or set to a custom value.
    *MDotCar*.
 
 == Changelog ==
+
+= 0.6.1 =
+* Fixed: the Vehicle Tariff widget rendered unstyled. The design values are now
+  the control defaults, and the stylesheet is enqueued reliably.
 
 = 0.6.0 =
 * Added the MDotCar Vehicle Tariff widget: car-wash tariff cards with a

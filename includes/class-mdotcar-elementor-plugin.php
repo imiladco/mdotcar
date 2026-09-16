@@ -64,6 +64,10 @@ final class MDotCar_Elementor_Plugin {
 		add_action( 'elementor/elements/categories_registered', array( $this, 'register_category' ) );
 		add_action( 'elementor/widgets/register', array( $this, 'register_widgets' ) );
 		add_action( 'elementor/frontend/after_register_styles', array( $this, 'register_assets' ) );
+		// Also on the WordPress hook, so the handles exist even when a widget
+		// renders outside Elementor's own asset pass.
+		add_action( 'wp_enqueue_scripts', array( $this, 'register_assets' ), 5 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ), 5 );
 		add_action( 'elementor/frontend/after_register_scripts', array( $this, 'register_scripts' ) );
 		add_action( 'elementor/preview/enqueue_styles', array( $this, 'enqueue_preview_assets' ) );
 		add_action( 'elementor/preview/enqueue_scripts', array( $this, 'enqueue_preview_scripts' ) );
@@ -127,6 +131,10 @@ final class MDotCar_Elementor_Plugin {
 	 * get_style_depends(), so it only loads on pages that use them.
 	 */
 	public function register_assets() {
+		if ( wp_style_is( self::HANDLE, 'registered' ) ) {
+			return;
+		}
+
 		wp_register_style(
 			self::HANDLE,
 			MDOTCAR_ELEMENTOR_URL . 'assets/css/mdotcar-elementor.css',
@@ -142,6 +150,10 @@ final class MDotCar_Elementor_Plugin {
 	 * get_script_depends(), so it only loads where it is used.
 	 */
 	public function register_scripts() {
+		if ( wp_script_is( self::HANDLE, 'registered' ) ) {
+			return;
+		}
+
 		wp_register_script(
 			self::HANDLE,
 			MDOTCAR_ELEMENTOR_URL . 'assets/js/mdotcar-elementor.js',
@@ -162,6 +174,22 @@ final class MDotCar_Elementor_Plugin {
 	 */
 	public function enqueue_preview_assets() {
 		wp_enqueue_style( self::HANDLE );
+	}
+
+	/**
+	 * Registers the assets if needed and enqueues them.
+	 *
+	 * Widgets call this while rendering so the plugin's own styling is never
+	 * missing, whatever asset-loading mode Elementor is in. `get_style_depends()`
+	 * still declares the dependency for Elementor's optimised loading.
+	 */
+	public static function enqueue() {
+		$plugin = self::instance();
+		$plugin->register_assets();
+		$plugin->register_scripts();
+
+		wp_enqueue_style( self::HANDLE );
+		wp_enqueue_script( self::HANDLE );
 	}
 
 	/**

@@ -10,11 +10,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Domain: mdotcar-elementor\n"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:567
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:583
 msgid "Accent Edge"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:965
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1114
 msgid "Action"
 msgstr ""
 
@@ -42,28 +42,28 @@ msgstr ""
 msgid "Amount"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:914
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1037
 msgid "Amount Colour"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:905
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1028
 msgid "Amount Typography"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:709
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:750
 msgid "Backdrop Colour"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:720
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:762
 msgid "Backdrop Height"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:783
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1048
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:837
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1224
 msgid "Background"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:738
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:784
 msgid "Badge"
 msgstr ""
 
@@ -80,7 +80,7 @@ msgid "Border Color"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-title.php:613
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:537
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:541
 msgid "Border Radius"
 msgstr ""
 
@@ -88,7 +88,7 @@ msgstr ""
 msgid "Both"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:549
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:561
 msgid "Bottom Padding"
 msgstr ""
 
@@ -133,10 +133,10 @@ msgstr ""
 msgid "Color"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:595
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:829
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1017
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1036
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:615
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:906
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1192
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1212
 msgid "Colour"
 msgstr ""
 
@@ -168,7 +168,7 @@ msgstr ""
 msgid "Corporate"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:935
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1080
 msgid "Currency Colour"
 msgstr ""
 
@@ -176,7 +176,7 @@ msgstr ""
 msgid "Currency Label"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:926
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1071
 msgid "Currency Typography"
 msgstr ""
 
@@ -188,7 +188,7 @@ msgstr ""
 msgid "Custom Width"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:889
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:991
 msgid "Default"
 msgstr ""
 
@@ -204,8 +204,8 @@ msgstr ""
 msgid "Display"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:946
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:973
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1092
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1122
 msgid "Divider Colour"
 msgstr ""
 
@@ -228,11 +228,11 @@ msgstr ""
 msgid "Featured"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:875
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:975
 msgid "Featured Label Colour"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:886
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:987
 msgid "Featured Label Weight"
 msgstr ""
 
@@ -283,8 +283,8 @@ msgid "Height Value"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-title.php:691
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:622
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1030
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:655
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1206
 msgid "Hover"
 msgstr ""
 
@@ -302,7 +302,7 @@ msgstr ""
 msgid "Icon"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:794
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:849
 msgid "Icon Colour"
 msgstr ""
 
@@ -311,16 +311,16 @@ msgid "Icon Label"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-title.php:821
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:765
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:992
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:815
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1163
 msgid "Icon Size"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:665
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:698
 msgid "Image"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:673
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:706
 msgid "Image Height"
 msgstr ""
 
@@ -356,11 +356,11 @@ msgstr ""
 msgid "Label"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:864
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:963
 msgid "Label Colour"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:856
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:955
 msgid "Label Typography"
 msgstr ""
 
@@ -377,7 +377,7 @@ msgstr ""
 msgid "Leave empty for the built-in chevron."
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:636
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:669
 msgid "Lift"
 msgstr ""
 
@@ -386,7 +386,7 @@ msgstr ""
 msgid "Link"
 msgstr ""
 
-#: includes/class-mdotcar-elementor-plugin.php:93
+#: includes/class-mdotcar-elementor-plugin.php:97
 msgid "MDotCar"
 msgstr ""
 
@@ -430,8 +430,8 @@ msgid "No Wrap"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-title.php:657
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:607
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1011
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:628
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1186
 msgid "Normal"
 msgstr ""
 
@@ -487,7 +487,7 @@ msgstr ""
 msgid "Shown in the round badge over the image. Leave empty for the built-in car outline."
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:747
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:793
 msgid "Size"
 msgstr ""
 
@@ -495,7 +495,7 @@ msgstr ""
 msgid "Size of the glyph itself. The stylesheet scales both font icons and SVGs from it, so one value covers both."
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:691
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:728
 msgid "Space Above Image"
 msgstr ""
 
@@ -554,7 +554,7 @@ msgstr ""
 msgid "Tariff %d"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:847
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:925
 msgid "Tariffs"
 msgstr ""
 
@@ -573,7 +573,7 @@ msgstr ""
 #: widgets/class-mdotcar-elementor-widget-title.php:132
 #: widgets/class-mdotcar-elementor-widget-title.php:135
 #: widgets/class-mdotcar-elementor-widget-title.php:736
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:813
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:869
 msgid "Title"
 msgstr ""
 
@@ -615,7 +615,7 @@ msgid "What to Store"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-title.php:475
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:576
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:592
 msgid "Width"
 msgstr ""
 
