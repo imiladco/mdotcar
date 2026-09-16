@@ -4,7 +4,7 @@ Tags: elementor, widget, title, heading, flexbox
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.6.1
+Stable tag: 0.7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,13 @@ and height can each be left to fit the content or set to a custom value.
    *MDotCar*.
 
 == Changelog ==
+
+= 0.7.0 =
+* Vehicle Tariff rebuilt to the full design spec: card padding, exact shadow,
+  16px tariff gap with the divider centred in it, dashed rule above the action,
+  and image fit controls.
+* Added badge padding/radius/offset and a per-vehicle badge image.
+* Added a backdrop image or SVG layer behind the card content.
 
 = 0.6.1 =
 * Fixed: the Vehicle Tariff widget rendered unstyled. The design values are now

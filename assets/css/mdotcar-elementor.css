@@ -142,9 +142,8 @@ a.mdotcar-title {
 /* -----------------------------------------------------------------------------
  * Vehicle Tariff widget
  *
- * Defaults reproduce the design: white card, 16px radius, a blue accent on the
- * reading edge, a blue backdrop behind the vehicle image, a round badge, three
- * tariff columns split by hairlines, and a text action at the foot.
+ * The panel carries the design values as control defaults; these rules are the
+ * structure they hang on, plus the same values as a fallback.
  * -------------------------------------------------------------------------- */
 
 .mdotcar-vehicles {
@@ -154,17 +153,18 @@ a.mdotcar-title {
 }
 
 .mdotcar-vehicle {
+	position: relative;
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 16px;
+	padding-top: 32px;
 	padding-bottom: 16px;
 	overflow: hidden;
 	border-radius: 16px;
 	border-inline-start: 1px solid #0095FF;
-	background: #FFFFFF;
-	box-shadow: 0 2px 10px rgba( 24, 36, 101, 0.10 );
+	background-color: #FFFFFF;
+	box-shadow: 0 2px 10px 0 rgba( 24, 36, 101, 0.10 );
 	/* The whole card is the link. */
 	color: inherit;
 	text-decoration: none;
@@ -182,37 +182,56 @@ a.mdotcar-title {
 	outline-offset: 2px;
 }
 
-/* Image area: the backdrop is a wide ellipse bleeding past the card edges. */
-
-.mdotcar-vehicle__media {
-	position: relative;
-	align-self: stretch;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	padding-top: 32px;
-}
+/* Layer order: background colour, blue ellipse, backdrop image, content. */
 
 .mdotcar-vehicle__blob {
 	position: absolute;
 	inset-inline: -10%;
 	top: -45px;
-	height: 154px;
+	z-index: 0;
 	width: 120%;
+	height: 154px;
 	border-radius: 9999px;
 	background-color: #E6F4FF;
 }
 
-.mdotcar-vehicle__image {
+.mdotcar-vehicle__backdrop {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	pointer-events: none;
+}
+
+.mdotcar-vehicle > .mdotcar-vehicle__media,
+.mdotcar-vehicle > .mdotcar-vehicle__title,
+.mdotcar-vehicle > .mdotcar-vehicle__tariffs,
+.mdotcar-vehicle > .mdotcar-vehicle__foot,
+.mdotcar-vehicle__badge {
 	position: relative;
+	z-index: 1;
+}
+
+/* Image */
+
+.mdotcar-vehicle__media {
+	align-self: stretch;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.mdotcar-vehicle__image {
 	display: block;
 	width: auto;
 	max-width: 85%;
 	height: 120px;
 	object-fit: contain;
-	border-radius: 6px;
 }
+
+/* Badge: sized by its icon plus padding, floating over the top corner. */
 
 .mdotcar-vehicle__badge {
 	position: absolute;
@@ -222,18 +241,21 @@ a.mdotcar-title {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	width: 48px;
-	height: 48px;
-	overflow: hidden;
+	padding: 7px;
 	border-radius: 50%;
 	background-color: #FCFDFD;
 	color: #424242;
+	line-height: 0;
 }
 
 .mdotcar-vehicle__badge svg,
-.mdotcar-vehicle__badge i {
+.mdotcar-vehicle__badge-image {
+	display: block;
 	width: var( --mdotcar-badge-icon, 34px );
 	height: auto;
+}
+
+.mdotcar-vehicle__badge i {
 	font-size: var( --mdotcar-badge-icon, 34px );
 	line-height: 1;
 }
@@ -243,7 +265,7 @@ a.mdotcar-title {
 .mdotcar-vehicle__title {
 	align-self: stretch;
 	margin: 0;
-	padding: 0 16px 8px;
+	padding: 24px 16px 0;
 	text-align: center;
 	color: #212121;
 	font-family: 'Dana-FaNum', 'Dana', 'IRANSansX', 'IRANSans', sans-serif;
@@ -253,29 +275,36 @@ a.mdotcar-title {
 	overflow-wrap: anywhere;
 }
 
-/* Tariff columns */
+/* Tariff columns: three equal columns with the divider centred in the gap. */
 
 .mdotcar-vehicle__tariffs {
 	align-self: stretch;
 	display: flex;
 	align-items: stretch;
-	padding: 0 8px;
+	gap: 16px;
+	padding: 16px 16px 0;
 }
 
 .mdotcar-vehicle__tariff {
+	position: relative;
 	flex: 1 1 0;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 4px;
-	padding: 0 8px;
 	text-align: center;
 	font-family: 'Dana-FaNum', 'Dana', 'IRANSansX', 'IRANSans', sans-serif;
 }
 
-/* The hairline between columns, drawn on the column rather than as an element. */
-.mdotcar-vehicle__tariff + .mdotcar-vehicle__tariff {
-	border-inline-start: 1px solid #E2E8F0;
+/* The divider is drawn in the middle of the gap, not on a column edge. */
+.mdotcar-vehicle__tariff + .mdotcar-vehicle__tariff::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	inset-inline-start: var( --mdotcar-tariff-divider-offset, -8px );
+	width: 1px;
+	background-color: #E2E8F0;
 }
 
 .mdotcar-vehicle__tariff-label {
@@ -304,23 +333,22 @@ a.mdotcar-title {
 	line-height: 18px;
 }
 
-/* Foot: hairline plus the text action. */
+/* Foot: a dashed rule, then the action row. */
 
 .mdotcar-vehicle__foot {
 	align-self: stretch;
-	margin: 0 16px;
+	margin: 16px 16px 0;
 	padding-top: 12px;
-	border-top: 1px solid #DCDFE4;
+	border-top: 1px dashed #DCDFE4;
 }
 
 .mdotcar-vehicle__action {
 	display: flex;
+	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 	gap: 8px;
-	height: 40px;
-	padding: 0 10px;
-	border-radius: 8px;
+	padding-bottom: 8px;
 	color: #3F51B5;
 	font-family: 'Dana-FaNum', 'Dana', 'IRANSansX', 'IRANSans', sans-serif;
 	font-size: 16px;

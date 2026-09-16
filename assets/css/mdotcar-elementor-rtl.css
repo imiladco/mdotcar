@@ -12,7 +12,7 @@
 
 /*
  * Vehicle Tariff: the design lists the columns with VIP on the left, so in RTL
- * the row runs the other way and the hairline moves to the other edge of each
+ * the row runs the other way and the divider moves to the other side of each
  * column that follows one.
  */
 
@@ -20,7 +20,7 @@
 	flex-direction: row-reverse;
 }
 
-.mdotcar-vehicle__tariff + .mdotcar-vehicle__tariff {
-	border-inline-start: 0;
-	border-inline-end: 1px solid #E2E8F0;
+.mdotcar-vehicle__tariff + .mdotcar-vehicle__tariff::before {
+	inset-inline-start: auto;
+	inset-inline-end: var( --mdotcar-tariff-divider-offset, -8px );
 }

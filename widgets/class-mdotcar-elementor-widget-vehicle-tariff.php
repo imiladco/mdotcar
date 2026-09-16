@@ -105,6 +105,7 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 		$this->register_layout_style_controls();
 		$this->register_card_style_controls();
 		$this->register_media_style_controls();
+		$this->register_backdrop_style_controls();
 		$this->register_title_style_controls();
 		$this->register_tariff_style_controls();
 		$this->register_action_style_controls();
@@ -142,6 +143,26 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 				'type'    => Controls_Manager::MEDIA,
 				'dynamic' => array( 'active' => true ),
 				'default' => array( 'url' => Utils::get_placeholder_image_src() ),
+			)
+		);
+
+		$repeater->add_control(
+			'badge_image',
+			array(
+				'label'       => __( 'Badge Image', 'mdotcar-elementor' ),
+				'description' => __( 'Takes precedence over the badge icon. Useful for a vehicle-class illustration.', 'mdotcar-elementor' ),
+				'type'        => Controls_Manager::MEDIA,
+				'dynamic'     => array( 'active' => true ),
+			)
+		);
+
+		$repeater->add_control(
+			'backdrop_image',
+			array(
+				'label'       => __( 'Card Backdrop', 'mdotcar-elementor' ),
+				'description' => __( 'An image or SVG layered over the card background and behind its content.', 'mdotcar-elementor' ),
+				'type'        => Controls_Manager::MEDIA,
+				'dynamic'     => array( 'active' => true ),
 			)
 		);
 
@@ -556,6 +577,28 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 		);
 
 		$this->add_responsive_control(
+			'card_padding_top',
+			array(
+				'label'      => __( 'Top Padding', 'mdotcar-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', 'em', 'rem' ),
+				'default'    => array(
+					'unit' => 'px',
+					'size' => 32,
+				),
+				'range'      => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 120,
+					),
+				),
+				'selectors'  => array(
+					self::CARD => 'padding-top: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
 			'card_padding_bottom',
 			array(
 				'label'      => __( 'Bottom Padding', 'mdotcar-elementor' ),
@@ -722,24 +765,48 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 			)
 		);
 
-		$this->add_responsive_control(
-			'media_padding_top',
+		$this->add_control(
+			'image_fit',
 			array(
-				'label'      => __( 'Space Above Image', 'mdotcar-elementor' ),
-				'type'       => Controls_Manager::SLIDER,
-				'default'    => array(
-					'unit' => 'px',
-					'size' => 32,
+				'label'     => __( 'Image Fit', 'mdotcar-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'contain',
+				'options'   => array(
+					'contain'    => __( 'Contain', 'mdotcar-elementor' ),
+					'cover'      => __( 'Cover', 'mdotcar-elementor' ),
+					'fill'       => __( 'Fill', 'mdotcar-elementor' ),
+					'scale-down' => __( 'Scale down', 'mdotcar-elementor' ),
+					'none'       => __( 'None', 'mdotcar-elementor' ),
 				),
-				'size_units' => array( 'px', 'rem' ),
-				'range'      => array(
+				'selectors' => array(
+					'{{WRAPPER}} .mdotcar-vehicle__image' => 'object-fit: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'image_max_width',
+			array(
+				'label'       => __( 'Image Max Width', 'mdotcar-elementor' ),
+				'description' => __( 'The width stays automatic; this only caps it so a wide photo cannot reach the card edges.', 'mdotcar-elementor' ),
+				'type'        => Controls_Manager::SLIDER,
+				'size_units'  => array( '%', 'px' ),
+				'default'     => array(
+					'unit' => '%',
+					'size' => 85,
+				),
+				'range'       => array(
+					'%'  => array(
+						'min' => 20,
+						'max' => 100,
+					),
 					'px' => array(
-						'min' => 0,
-						'max' => 160,
+						'min' => 40,
+						'max' => 800,
 					),
 				),
-				'selectors'  => array(
-					'{{WRAPPER}} .mdotcar-vehicle__media' => 'padding-top: {{SIZE}}{{UNIT}};',
+				'selectors'   => array(
+					'{{WRAPPER}} .mdotcar-vehicle__image' => 'max-width: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
@@ -788,15 +855,58 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 		);
 
 		$this->add_responsive_control(
-			'badge_size',
+			'badge_padding',
 			array(
-				'label'      => __( 'Size', 'mdotcar-elementor' ),
+				'label'       => __( 'Padding', 'mdotcar-elementor' ),
+				'description' => __( 'The badge sizes itself from its icon plus this padding.', 'mdotcar-elementor' ),
+				'type'        => Controls_Manager::SLIDER,
+				'size_units'  => array( 'px', 'em' ),
+				'default'     => array(
+					'unit' => 'px',
+					'size' => 7,
+				),
+				'range'       => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 60,
+					),
+				),
+				'selectors'   => array(
+					'{{WRAPPER}} .mdotcar-vehicle__badge' => 'padding: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'badge_radius',
+			array(
+				'label'      => __( 'Radius', 'mdotcar-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'default'    => array(
+					'top'      => 50,
+					'right'    => 50,
+					'bottom'   => 50,
+					'left'     => 50,
+					'unit'     => '%',
+					'isLinked' => true,
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mdotcar-vehicle__badge' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'badge_offset',
+			array(
+				'label'      => __( 'Offset', 'mdotcar-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px' ),
 				'default'    => array(
 					'unit' => 'px',
-					'size' => 48,
+					'size' => 16,
 				),
-				'size_units' => array( 'px' ),
 				'range'      => array(
 					'px' => array(
 						'min' => 0,
@@ -804,7 +914,7 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 					),
 				),
 				'selectors'  => array(
-					'{{WRAPPER}} .mdotcar-vehicle__badge' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .mdotcar-vehicle__badge' => 'top: {{SIZE}}{{UNIT}}; inset-inline-start: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
@@ -827,6 +937,7 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 				),
 				'selectors'  => array(
 					'{{WRAPPER}} .mdotcar-vehicle__badge' => '--mdotcar-badge-icon: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .mdotcar-vehicle__badge-image' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
@@ -852,6 +963,104 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 				'selectors' => array(
 					'{{WRAPPER}} .mdotcar-vehicle__badge' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .mdotcar-vehicle__badge svg *' => 'stroke: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->end_controls_section();
+	}
+
+	/**
+	 * Style tab: the image layered over the card background, behind the content.
+	 */
+	private function register_backdrop_style_controls() {
+		$this->start_controls_section(
+			'section_backdrop_style',
+			array(
+				'label' => __( 'Backdrop Layer', 'mdotcar-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_control(
+			'backdrop_image',
+			array(
+				'label'       => __( 'Image or SVG', 'mdotcar-elementor' ),
+				'description' => __( 'Shared by every card; a vehicle can override it in its own settings. It sits above the card background and below the content.', 'mdotcar-elementor' ),
+				'type'        => Controls_Manager::MEDIA,
+				'dynamic'     => array( 'active' => true ),
+			)
+		);
+
+		$this->add_control(
+			'backdrop_size',
+			array(
+				'label'     => __( 'Size', 'mdotcar-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'cover',
+				'options'   => array(
+					'cover'   => __( 'Cover', 'mdotcar-elementor' ),
+					'contain' => __( 'Contain', 'mdotcar-elementor' ),
+					'auto'    => __( 'Auto', 'mdotcar-elementor' ),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .mdotcar-vehicle__backdrop' => 'background-size: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'backdrop_position',
+			array(
+				'label'     => __( 'Position', 'mdotcar-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'center center',
+				'options'   => array(
+					'center center' => __( 'Center', 'mdotcar-elementor' ),
+					'center top'    => __( 'Top', 'mdotcar-elementor' ),
+					'center bottom' => __( 'Bottom', 'mdotcar-elementor' ),
+					'left center'   => __( 'Left', 'mdotcar-elementor' ),
+					'right center'  => __( 'Right', 'mdotcar-elementor' ),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .mdotcar-vehicle__backdrop' => 'background-position: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'backdrop_repeat',
+			array(
+				'label'     => __( 'Repeat', 'mdotcar-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'no-repeat',
+				'options'   => array(
+					'no-repeat' => __( 'No Repeat', 'mdotcar-elementor' ),
+					'repeat'    => __( 'Repeat', 'mdotcar-elementor' ),
+					'repeat-x'  => __( 'Repeat X', 'mdotcar-elementor' ),
+					'repeat-y'  => __( 'Repeat Y', 'mdotcar-elementor' ),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .mdotcar-vehicle__backdrop' => 'background-repeat: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'backdrop_opacity',
+			array(
+				'label'     => __( 'Opacity', 'mdotcar-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => array(
+					'px' => array(
+						'min'  => 0,
+						'max'  => 1,
+						'step' => 0.05,
+					),
+				),
+				'default'   => array( 'size' => 1 ),
+				'selectors' => array(
+					'{{WRAPPER}} .mdotcar-vehicle__backdrop' => 'opacity: {{SIZE}};',
 				),
 			)
 		);
@@ -924,6 +1133,54 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 			array(
 				'label' => __( 'Tariffs', 'mdotcar-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_responsive_control(
+			'tariff_gap',
+			array(
+				'label'       => __( 'Column Gap', 'mdotcar-elementor' ),
+				'description' => __( 'The divider sits in the middle of this gap.', 'mdotcar-elementor' ),
+				'type'        => Controls_Manager::SLIDER,
+				'size_units'  => array( 'px', 'em' ),
+				'default'     => array(
+					'unit' => 'px',
+					'size' => 16,
+				),
+				'range'       => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 80,
+					),
+				),
+				'selectors'   => array(
+					'{{WRAPPER}} .mdotcar-vehicle__tariffs' => 'gap: {{SIZE}}{{UNIT}};',
+					// Half the gap, on whichever side the divider sits: the RTL
+					// stylesheet flips which of the two offsets is in play.
+					'{{WRAPPER}} .mdotcar-vehicle__tariff + .mdotcar-vehicle__tariff::before' => '--mdotcar-tariff-divider-offset: calc({{SIZE}}{{UNIT}} / -2);',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'tariff_row_gap',
+			array(
+				'label'      => __( 'Row Gap', 'mdotcar-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', 'em' ),
+				'default'    => array(
+					'unit' => 'px',
+					'size' => 4,
+				),
+				'range'      => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 40,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mdotcar-vehicle__tariff' => 'gap: {{SIZE}}{{UNIT}};',
+				),
 			)
 		);
 
@@ -1094,9 +1351,7 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 				'default'   => '#E2E8F0',
 				'separator' => 'before',
 				'selectors' => array(
-					// The hairline sits on the start edge in LTR and the end edge in
-					// RTL, where the row is reversed to match the design.
-					'{{WRAPPER}} .mdotcar-vehicle__tariff + .mdotcar-vehicle__tariff' => 'border-inline-start-color: {{VALUE}}; border-inline-end-color: {{VALUE}};',
+					'{{WRAPPER}} .mdotcar-vehicle__tariff + .mdotcar-vehicle__tariff::before' => 'background-color: {{VALUE}};',
 				),
 			)
 		);
@@ -1117,6 +1372,24 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 		);
 
 		$this->add_control(
+			'foot_divider_style',
+			array(
+				'label'     => __( 'Divider Style', 'mdotcar-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'dashed',
+				'options'   => array(
+					'dashed' => __( 'Dashed', 'mdotcar-elementor' ),
+					'solid'  => __( 'Solid', 'mdotcar-elementor' ),
+					'dotted' => __( 'Dotted', 'mdotcar-elementor' ),
+					'none'   => __( 'None', 'mdotcar-elementor' ),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .mdotcar-vehicle__foot' => 'border-top-style: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
 			'foot_divider_color',
 			array(
 				'label'     => __( 'Divider Colour', 'mdotcar-elementor' ),
@@ -1124,6 +1397,72 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 				'default'   => '#DCDFE4',
 				'selectors' => array(
 					'{{WRAPPER}} .mdotcar-vehicle__foot' => 'border-top-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'action_spacing',
+			array(
+				'label'      => __( 'Space Above Action', 'mdotcar-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', 'em' ),
+				'default'    => array(
+					'unit' => 'px',
+					'size' => 12,
+				),
+				'range'      => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 80,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mdotcar-vehicle__foot' => 'padding-top: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'action_padding_bottom',
+			array(
+				'label'      => __( 'Space Below Action', 'mdotcar-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', 'em' ),
+				'default'    => array(
+					'unit' => 'px',
+					'size' => 8,
+				),
+				'range'      => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 80,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mdotcar-vehicle__action' => 'padding-bottom: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'action_gap',
+			array(
+				'label'      => __( 'Icon Gap', 'mdotcar-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', 'em' ),
+				'default'    => array(
+					'unit' => 'px',
+					'size' => 8,
+				),
+				'range'      => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 40,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mdotcar-vehicle__action' => 'gap: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
@@ -1287,9 +1626,27 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 		$title_tag = $this->sanitize_title_tag( $settings );
 		?>
 		<<?php echo esc_attr( $tag ); ?> <?php $this->print_render_attribute_string( $key ); ?>>
-			<div class="mdotcar-vehicle__media">
-				<span class="mdotcar-vehicle__blob" aria-hidden="true"></span>
+			<?php
+			$backdrop = ! empty( $vehicle['backdrop_image']['url'] )
+				? $vehicle['backdrop_image']['url']
+				: ( ! empty( $settings['backdrop_image']['url'] ) ? $settings['backdrop_image']['url'] : '' );
+			?>
 
+			<?php if ( '' !== $backdrop ) : ?>
+				<span
+					class="mdotcar-vehicle__backdrop"
+					style="background-image: url( <?php echo esc_url( $backdrop ); ?> );"
+					aria-hidden="true"
+				></span>
+			<?php endif; ?>
+
+			<span class="mdotcar-vehicle__blob" aria-hidden="true"></span>
+
+			<span class="mdotcar-vehicle__badge" aria-hidden="true">
+				<?php $this->render_badge( $vehicle ); ?>
+			</span>
+
+			<div class="mdotcar-vehicle__media">
 				<?php if ( ! empty( $vehicle['image']['url'] ) ) : ?>
 					<img
 						class="mdotcar-vehicle__image"
@@ -1298,10 +1655,6 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 						loading="lazy"
 					/>
 				<?php endif; ?>
-
-				<span class="mdotcar-vehicle__badge" aria-hidden="true">
-					<?php $this->render_badge_icon( $vehicle ); ?>
-				</span>
 			</div>
 
 			<?php if ( ! empty( $vehicle['title'] ) ) : ?>
@@ -1483,11 +1836,20 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 	}
 
 	/**
-	 * Prints the badge icon, falling back to the built-in car outline.
+	 * Prints what the badge holds: an image if one was chosen, otherwise the
+	 * chosen icon, otherwise the built-in car outline.
 	 *
 	 * @param array $vehicle One repeater item.
 	 */
-	private function render_badge_icon( $vehicle ) {
+	private function render_badge( $vehicle ) {
+		if ( ! empty( $vehicle['badge_image']['url'] ) ) {
+			printf(
+				'<img class="mdotcar-vehicle__badge-image" src="%s" alt="" loading="lazy" />',
+				esc_url( $vehicle['badge_image']['url'] )
+			);
+			return;
+		}
+
 		if ( ! empty( $vehicle['badge_icon']['value'] ) ) {
 			Icons_Manager::render_icon( $vehicle['badge_icon'], array( 'aria-hidden' => 'true' ) );
 			return;

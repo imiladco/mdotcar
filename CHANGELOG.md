@@ -17,6 +17,34 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.7.0] - 2026-09-16
+
+### Changed
+
+Vehicle Tariff rebuilt against the full design spec:
+
+- The 32px top padding and 16px bottom padding now belong to the card itself,
+  and the blue ellipse and the badge are positioned against the card rather
+  than the image row, which is what the design's coordinates describe.
+- Shadow stated exactly as `0 2px 10px 0 #1824651A`.
+- Tariff columns are spaced by a 16px gap with the divider drawn as a
+  pseudo-element **in the middle of that gap**, instead of a border on the
+  column edge; the offset follows the gap control automatically, on whichever
+  side RTL puts it. Each column is a flex column with a 4px gap.
+- The rule above the action is **dashed** by default, with style, colour,
+  space above (12px), space below (8px) and icon gap (8px) as controls.
+- The vehicle image keeps `height: 120px` with automatic width, and gains an
+  Image Fit control plus a max-width cap.
+
+### Added
+
+- Badge: padding, radius and offset controls — the badge sizes itself from its
+  icon plus its padding — and a per-vehicle **Badge Image** that takes
+  precedence over the icon.
+- **Backdrop Layer**: an image or SVG laid over the card background and behind
+  the content, with size, position, repeat and opacity; set once for the widget
+  and overridable per vehicle.
+
 ## [0.6.1] - 2026-09-16
 
 ### Fixed

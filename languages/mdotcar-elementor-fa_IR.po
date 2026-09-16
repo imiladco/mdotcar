@@ -10,19 +10,19 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Domain: mdotcar-elementor\n"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:567
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:626
 msgid "Accent Edge"
 msgstr "لبهٔ تأکیدی"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:965
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1369
 msgid "Action"
 msgstr "دکمهٔ اقدام"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:345
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:366
 msgid "Action Icon"
 msgstr "آیکون اقدام"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:334
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:355
 msgid "Action Text"
 msgstr "متن اقدام"
 
@@ -38,40 +38,56 @@ msgstr "هم‌ترازی آیتم‌ها"
 msgid "Aligns the text inside the title element. Where the title sits in the box is Justify Content's job."
 msgstr "متن را داخل خودِ عنصر عنوان تراز می‌کند. جای گرفتن عنوان در باکس کارِ «چینش در محور اصلی» است."
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:217
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:238
 msgid "Amount"
 msgstr "مبلغ"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:914
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1294
 msgid "Amount Colour"
 msgstr "رنگ مبلغ"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:905
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1285
 msgid "Amount Typography"
 msgstr "تایپوگرافی مبلغ"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:709
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:163
+msgid "An image or SVG layered over the card background and behind its content."
+msgstr "تصویر یا SVGای که روی پس‌زمینهٔ کارت و پشت محتوای آن قرار می‌گیرد."
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1004
+msgid "Auto"
+msgstr "خودکار"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:817
 msgid "Backdrop Colour"
 msgstr "رنگ پس‌زمینهٔ تصویر"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:720
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:829
 msgid "Backdrop Height"
 msgstr "ارتفاع پس‌زمینهٔ تصویر"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:783
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1048
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:980
+msgid "Backdrop Layer"
+msgstr "لایهٔ پس‌زمینه"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:948
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1563
 msgid "Background"
 msgstr "پس‌زمینه"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:738
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:851
 msgid "Badge"
 msgstr "نشان"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:151
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:172
 msgid "Badge Icon"
 msgstr "آیکون نشان"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:336
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:152
+msgid "Badge Image"
+msgstr "تصویر نشان"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:357
 msgid "Book now"
 msgstr "ثبت درخواست"
 
@@ -80,15 +96,19 @@ msgid "Border Color"
 msgstr "رنگ کادر"
 
 #: widgets/class-mdotcar-elementor-widget-title.php:613
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:537
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:562
 msgid "Border Radius"
 msgstr "گردی گوشه"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:405
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:426
 msgid "Both"
 msgstr "هر دو"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:549
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1021
+msgid "Bottom"
+msgstr "پایین"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:604
 msgid "Bottom Padding"
 msgstr "فاصلهٔ داخلی پایین"
 
@@ -104,15 +124,20 @@ msgstr "گردی گوشهٔ جعبه"
 msgid "Box Size"
 msgstr "اندازهٔ جعبه"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:295
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:520
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:316
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:541
 msgid "Card"
 msgstr "کارت"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:162
+msgid "Card Backdrop"
+msgstr "لایهٔ پس‌زمینهٔ کارت"
 
 #: widgets/class-mdotcar-elementor-widget-title.php:287
 #: widgets/class-mdotcar-elementor-widget-title.php:308
 #: widgets/class-mdotcar-elementor-widget-title.php:326
 #: widgets/class-mdotcar-elementor-widget-title.php:761
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1019
 msgid "Center"
 msgstr "وسط"
 
@@ -133,10 +158,10 @@ msgstr "برش، پس‌زمینه را داخل گردی گوشه نگه می�
 msgid "Color"
 msgstr "رنگ"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:595
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:829
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1017
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1036
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:658
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1115
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1531
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1551
 msgid "Colour"
 msgstr "رنگ"
 
@@ -148,35 +173,49 @@ msgstr "ستونی - معکوس"
 msgid "Column - vertical"
 msgstr "ستونی - عمودی"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:470
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1142
+msgid "Column Gap"
+msgstr "فاصلهٔ ستون‌ها"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:491
 msgid "Columns"
 msgstr "ستون‌ها"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:775
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1003
+msgid "Contain"
+msgstr "جا شدن کامل"
 
 #: widgets/class-mdotcar-elementor-widget-title.php:112
 msgid "Content"
 msgstr "محتوا"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:404
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:425
 msgid "Cookie"
 msgstr "کوکی"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:425
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:446
 msgid "Cookie Lifetime (days)"
 msgstr "طول عمر کوکی (روز)"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:276
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:297
 msgid "Corporate"
 msgstr "سازمانی"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:935
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:776
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1002
+msgid "Cover"
+msgstr "پوشش کامل"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1337
 msgid "Currency Colour"
 msgstr "رنگ واحد پول"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:303
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:324
 msgid "Currency Label"
 msgstr "برچسب واحد پول"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:926
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1328
 msgid "Currency Typography"
 msgstr "تایپوگرافی واحد پول"
 
@@ -188,11 +227,15 @@ msgstr "دلخواه"
 msgid "Custom Width"
 msgstr "عرض دلخواه"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:889
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1381
+msgid "Dashed"
+msgstr "خط‌چین"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1248
 msgid "Default"
 msgstr "پیش‌فرض"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:218
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:239
 msgid "Digits only; separators and Persian numerals are applied on output."
 msgstr "فقط رقم؛ جداکننده و ارقام فارسی هنگام نمایش اعمال می‌شود."
 
@@ -204,14 +247,22 @@ msgstr "جهت"
 msgid "Display"
 msgstr "نمایش"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:946
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:973
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1349
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1395
 msgid "Divider Colour"
 msgstr "رنگ جداکننده"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1377
+msgid "Divider Style"
+msgstr "سبک جداکننده"
 
 #: widgets/class-mdotcar-elementor-widget-title.php:922
 msgid "Do not clip"
 msgstr "برش نخورد"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1383
+msgid "Dotted"
+msgstr "نقطه‌چین"
 
 #: widgets/class-mdotcar-elementor-widget-title.php:288
 #: widgets/class-mdotcar-elementor-widget-title.php:309
@@ -224,17 +275,21 @@ msgstr "انتها"
 msgid "Enter your title"
 msgstr "عنوان را وارد کنید"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:229
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:250
 msgid "Featured"
 msgstr "شاخص"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:875
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1232
 msgid "Featured Label Colour"
 msgstr "رنگ برچسب شاخص"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:886
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1244
 msgid "Featured Label Weight"
 msgstr "ضخامت برچسب شاخص"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:777
+msgid "Fill"
+msgstr "کشیده"
 
 #: widgets/class-mdotcar-elementor-widget-title.php:479
 #: widgets/class-mdotcar-elementor-widget-title.php:525
@@ -258,7 +313,7 @@ msgid "Full width (100%)"
 msgstr "تمام عرض (۱۰۰٪)"
 
 #: widgets/class-mdotcar-elementor-widget-title.php:343
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:491
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:512
 msgid "Gap"
 msgstr "فاصله"
 
@@ -266,7 +321,7 @@ msgstr "فاصله"
 msgid "Gives the icon an explicit width and height instead of letting the glyph decide. A fixed box keeps every icon the same size, is immune to the extra leading font icons carry, and cannot be stretched by Align Items."
 msgstr "به‌جای این‌که اندازه را خودِ آیکون تعیین کند، عرض و ارتفاع صریح به آن می‌دهد. جعبهٔ ثابت همهٔ آیکون‌ها را هم‌اندازه نگه می‌دارد، از فاصلهٔ اضافی فونت‌آیکون‌ها در امان است و «هم‌ترازی آیتم‌ها» نمی‌تواند کشیده‌اش کند."
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:230
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:251
 msgid "Gives the label the accent colour, as VIP has in the design."
 msgstr "برچسب را به رنگ تأکیدی درمی‌آورد، همان‌طور که VIP در طرح دارد."
 
@@ -283,8 +338,8 @@ msgid "Height Value"
 msgstr "مقدار ارتفاع"
 
 #: widgets/class-mdotcar-elementor-widget-title.php:691
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:622
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1030
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:698
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1545
 msgid "Hover"
 msgstr "هاور"
 
@@ -302,27 +357,43 @@ msgstr "مدت ترنزیشن هاور"
 msgid "Icon"
 msgstr "آیکون"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:794
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:960
 msgid "Icon Colour"
 msgstr "رنگ آیکون"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1451
+msgid "Icon Gap"
+msgstr "فاصلهٔ آیکون"
 
 #: widgets/class-mdotcar-elementor-widget-title.php:165
 msgid "Icon Label"
 msgstr "برچسب آیکون"
 
 #: widgets/class-mdotcar-elementor-widget-title.php:821
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:765
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:992
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:925
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1502
 msgid "Icon Size"
 msgstr "اندازهٔ آیکون"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:665
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:741
 msgid "Image"
 msgstr "تصویر"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:673
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:771
+msgid "Image Fit"
+msgstr "نحوهٔ جا شدن تصویر"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:749
 msgid "Image Height"
 msgstr "ارتفاع تصویر"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:790
+msgid "Image Max Width"
+msgstr "حداکثر عرض تصویر"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:988
+msgid "Image or SVG"
+msgstr "تصویر یا SVG"
 
 #: widgets/class-mdotcar-elementor-widget-title.php:217
 msgid "Inline Flex"
@@ -332,11 +403,11 @@ msgstr "فلکس درون‌خطی"
 msgid "Items stay on a single line unless wrapping is enabled."
 msgstr "تا وقتی شکستن خط فعال نشود، آیتم‌ها در یک خط می‌مانند."
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:447
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:468
 msgid "JSON also carries the card title and its tariff amounts, so a booking page can show them without another lookup."
 msgstr "خروجی JSON عنوان کارت و مبالغ تعرفه‌ها را هم دارد، تا صفحهٔ ثبت درخواست بدون درخواست دوباره آن‌ها را نشان دهد."
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:445
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:466
 msgid "JSON: value, title and tariffs"
 msgstr "JSON: مقدار، عنوان و تعرفه‌ها"
 
@@ -348,45 +419,49 @@ msgstr "هم‌تراز دو طرف"
 msgid "Justify Content"
 msgstr "چینش در محور اصلی"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:414
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:435
 msgid "Key Name"
 msgstr "نام کلید"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:206
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:227
 msgid "Label"
 msgstr "برچسب"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:864
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1220
 msgid "Label Colour"
 msgstr "رنگ برچسب"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:856
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1212
 msgid "Label Typography"
 msgstr "تایپوگرافی برچسب"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:248
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:269
 msgid "Large Iranian sedan"
 msgstr "سواری ایرانی بزرگ"
 
 #: widgets/class-mdotcar-elementor-widget-title.php:202
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:462
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:483
 msgid "Layout"
 msgstr "چیدمان"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:346
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:367
 msgid "Leave empty for the built-in chevron."
 msgstr "برای فلش پیش‌فرض خالی بگذارید."
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:636
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1022
+msgid "Left"
+msgstr "چپ"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:712
 msgid "Lift"
 msgstr "بالا آمدن"
 
 #: widgets/class-mdotcar-elementor-widget-title.php:177
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:161
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:182
 msgid "Link"
 msgstr "لینک"
 
-#: includes/class-mdotcar-elementor-plugin.php:93
+#: includes/class-mdotcar-elementor-plugin.php:97
 msgid "MDotCar"
 msgstr "ام‌دات‌کار"
 
@@ -425,13 +500,22 @@ msgstr "حداقل (با محتوا رشد می‌کند)"
 msgid "Minimum Height"
 msgstr "حداقل ارتفاع"
 
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1038
+msgid "No Repeat"
+msgstr "بدون تکرار"
+
 #: widgets/class-mdotcar-elementor-widget-title.php:265
 msgid "No Wrap"
 msgstr "بدون شکستن خط"
 
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:779
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1384
+msgid "None"
+msgstr "هیچ‌کدام"
+
 #: widgets/class-mdotcar-elementor-widget-title.php:657
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:607
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1011
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:671
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1525
 msgid "Normal"
 msgstr "عادی"
 
@@ -439,33 +523,67 @@ msgstr "عادی"
 msgid "Off"
 msgstr "خاموش"
 
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:903
+msgid "Offset"
+msgstr "فاصله از گوشه"
+
 #: widgets/class-mdotcar-elementor-widget-title.php:859
 msgid "On"
 msgstr "روشن"
 
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1052
+msgid "Opacity"
+msgstr "شفافیت"
+
 #: widgets/class-mdotcar-elementor-widget-title.php:592
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:860
 msgid "Padding"
 msgstr "فاصلهٔ داخلی"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:323
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:344
 msgid "Persian Digits"
 msgstr "ارقام فارسی"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:281
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:302
 msgid "Personal"
 msgstr "شخصی"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1015
+msgid "Position"
+msgstr "موقعیت"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:883
+msgid "Radius"
+msgstr "گردی گوشه"
 
 #: widgets/class-mdotcar-elementor-widget-title.php:166
 msgid "Read out by screen readers. Worth filling in when the widget shows an icon and no title, which is otherwise invisible to them. Leave empty for a purely decorative icon."
 msgstr "صفحه‌خوان‌ها آن را می‌خوانند. وقتی ویجت فقط آیکون دارد و عنوانی ندارد حتماً پرش کنید، چون در آن حالت برای صفحه‌خوان نامرئی است. برای آیکون صرفاً تزئینی خالی بگذارید."
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:388
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:409
 msgid "Remember Selection"
 msgstr "به‌خاطر سپردن انتخاب"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:324
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:345
 msgid "Renders amounts with ۰-۹ instead of 0-9."
 msgstr "مبالغ را با ارقام ۰-۹ فارسی نمایش می‌دهد."
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1034
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1039
+msgid "Repeat"
+msgstr "تکرار"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1040
+msgid "Repeat X"
+msgstr "تکرار افقی"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1041
+msgid "Repeat Y"
+msgstr "تکرار عمودی"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1023
+msgid "Right"
+msgstr "راست"
 
 #: widgets/class-mdotcar-elementor-widget-title.php:234
 msgid "Row - horizontal"
@@ -475,19 +593,31 @@ msgstr "ردیفی - افقی"
 msgid "Row - reversed"
 msgstr "ردیفی - معکوس"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:389
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1168
+msgid "Row Gap"
+msgstr "فاصلهٔ سطرها"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:410
 msgid "Saves the clicked vehicle in the browser before the link is followed."
 msgstr "پیش از باز شدن لینک، خودروی کلیک‌شده را در مرورگر ذخیره می‌کند."
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:196
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:778
+msgid "Scale down"
+msgstr "کوچک‌شونده"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:989
+msgid "Shared by every card; a vehicle can override it in its own settings. It sits above the card background and below the content."
+msgstr "برای همهٔ کارت‌ها مشترک است؛ هر خودرو می‌تواند در تنظیمات خودش آن را جایگزین کند. روی پس‌زمینهٔ کارت و زیر محتوا می‌نشیند."
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:217
 msgid "Show"
 msgstr "نمایش"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:152
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:173
 msgid "Shown in the round badge over the image. Leave empty for the built-in car outline."
 msgstr "در نشان گرد روی تصویر دیده می‌شود. برای آیکون خودروی پیش‌فرض خالی بگذارید."
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:747
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:998
 msgid "Size"
 msgstr "اندازه"
 
@@ -495,14 +625,22 @@ msgstr "اندازه"
 msgid "Size of the glyph itself. The stylesheet scales both font icons and SVGs from it, so one value covers both."
 msgstr "اندازهٔ خودِ آیکون. استایل افزونه هم فونت‌آیکون و هم SVG را با همین مقدار مقیاس می‌دهد، پس یک عدد برای هر دو کافی است."
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:691
-msgid "Space Above Image"
-msgstr "فاصلهٔ بالای تصویر"
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1382
+msgid "Solid"
+msgstr "ممتد"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1407
+msgid "Space Above Action"
+msgstr "فاصلهٔ بالای دکمه"
 
 #: widgets/class-mdotcar-elementor-widget-title.php:290
 #: widgets/class-mdotcar-elementor-widget-title.php:329
 msgid "Space Around"
 msgstr "فاصلهٔ پیرامونی"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1429
+msgid "Space Below Action"
+msgstr "فاصلهٔ پایین دکمه"
 
 #: widgets/class-mdotcar-elementor-widget-title.php:289
 #: widgets/class-mdotcar-elementor-widget-title.php:328
@@ -520,19 +658,19 @@ msgstr "فاصلهٔ یکسان"
 msgid "Start"
 msgstr "ابتدا"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:399
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:420
 msgid "Store In"
 msgstr "ذخیره در"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:380
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:401
 msgid "Stored Selection"
 msgstr "انتخاب ذخیره‌شده"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:172
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:193
 msgid "Stored Value"
 msgstr "مقدار ذخیره‌شونده"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:444
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:465
 msgid "Stored Value only"
 msgstr "فقط مقدار ذخیره‌شونده"
 
@@ -549,12 +687,16 @@ msgstr "سبک"
 msgid "Style 1"
 msgstr "سبک ۱"
 
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:153
+msgid "Takes precedence over the badge icon. Useful for a vehicle-class illustration."
+msgstr "بر آیکون نشان اولویت دارد. برای تصویر کلاس خودرو مناسب است."
+
 #. translators: %d: tariff column number.
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:187
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:208
 msgid "Tariff %d"
 msgstr "تعرفهٔ %d"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:847
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1134
 msgid "Tariffs"
 msgstr "تعرفه‌ها"
 
@@ -562,60 +704,80 @@ msgstr "تعرفه‌ها"
 msgid "Text Align"
 msgstr "تراز متن"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:162
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:861
+msgid "The badge sizes itself from its icon plus this padding."
+msgstr "اندازهٔ نشان از آیکونش به‌علاوهٔ همین فاصله به دست می‌آید."
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1143
+msgid "The divider sits in the middle of this gap."
+msgstr "خط جداکننده دقیقاً وسط همین فاصله می‌نشیند."
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:183
 msgid "The whole card follows this link, not only the button."
 msgstr "کل کارت این لینک را باز می‌کند، نه فقط دکمه."
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:313
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:791
+msgid "The width stays automatic; this only caps it so a wide photo cannot reach the card edges."
+msgstr "عرض خودکار می‌ماند؛ این فقط سقف می‌گذارد تا تصویر پهن به لبه‌های کارت نرسد."
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:334
 msgid "Thousand Separator"
 msgstr "جداکنندهٔ هزارگان"
 
 #: widgets/class-mdotcar-elementor-widget-title.php:132
 #: widgets/class-mdotcar-elementor-widget-title.php:135
 #: widgets/class-mdotcar-elementor-widget-title.php:736
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:813
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1078
 msgid "Title"
 msgstr "عنوان"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:355
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:376
 msgid "Title HTML Tag"
 msgstr "تگ HTML عنوان"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:305
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:326
 msgid "Toman"
 msgstr "تومان"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1020
+msgid "Top"
+msgstr "بالا"
+
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:582
+msgid "Top Padding"
+msgstr "فاصلهٔ داخلی بالا"
 
 #: widgets/class-mdotcar-elementor-widget-title.php:178
 msgid "Turns the whole box into a link."
 msgstr "کل باکس را به لینک تبدیل می‌کند."
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:271
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:292
 msgid "VIP"
 msgstr "VIP"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:133
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:134
 msgid "Vehicle"
 msgstr "خودرو"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:141
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:142
 msgid "Vehicle Image"
 msgstr "تصویر خودرو"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:130
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:131
 msgid "Vehicle Title"
 msgstr "عنوان خودرو"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:120
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:242
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:121
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:263
 msgid "Vehicles"
 msgstr "خودروها"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:440
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:461
 msgid "What to Store"
 msgstr "چه چیزی ذخیره شود"
 
 #: widgets/class-mdotcar-elementor-widget-title.php:475
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:576
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:635
 msgid "Width"
 msgstr "عرض"
 
@@ -624,10 +786,10 @@ msgstr "عرض"
 msgid "Wrap"
 msgstr "شکستن خط"
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:173
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:194
 msgid "Written to localStorage or a cookie when the card is clicked, for the booking flow to read back. Typically the vehicle slug or id."
 msgstr "هنگام کلیک روی کارت در localStorage یا کوکی نوشته می‌شود تا فرایند ثبت درخواست آن را بخواند. معمولاً شناسه یا اسلاگ خودرو."
 
-#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:403
+#: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:424
 msgid "localStorage"
 msgstr "localStorage"
