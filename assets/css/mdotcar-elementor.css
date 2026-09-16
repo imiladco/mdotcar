@@ -223,11 +223,20 @@ a.mdotcar-title {
 	justify-content: center;
 }
 
+/*
+ * !important on the box-determining properties: many themes and even Elementor
+ * itself ship a global reset such as `.elementor-widget-container img {
+ * max-width: 100%; height: auto; }`, whose specificity (0,1,1) beats a plain
+ * class selector (0,1,0). Losing `height` there falls back to the image's own
+ * intrinsic aspect ratio — invisible on WordPress's small built-in placeholder,
+ * but a real uploaded photo then renders far taller than intended. These three
+ * properties are the ones such resets touch; nothing else here needs it.
+ */
 .mdotcar-vehicle__image {
 	display: block;
-	width: auto;
-	max-width: 85%;
-	height: 120px;
+	width: auto !important;
+	max-width: 85% !important;
+	height: 120px !important;
 	object-fit: contain;
 }
 
@@ -251,8 +260,8 @@ a.mdotcar-title {
 .mdotcar-vehicle__badge svg,
 .mdotcar-vehicle__badge-image {
 	display: block;
-	width: var( --mdotcar-badge-icon, 34px );
-	height: auto;
+	width: var( --mdotcar-badge-icon, 34px ) !important;
+	height: var( --mdotcar-badge-icon, 34px ) !important;
 }
 
 .mdotcar-vehicle__badge i {

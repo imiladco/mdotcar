@@ -4,7 +4,7 @@ Tags: elementor, widget, title, heading, flexbox
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.7.1
+Stable tag: 0.7.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,12 @@ and height can each be left to fit the content or set to a custom value.
    *MDotCar*.
 
 == Changelog ==
+
+= 0.7.2 =
+* Fixed: a real uploaded vehicle photo could render far taller than the
+  configured Image Height, because a common theme/Elementor image reset
+  (height: auto on all images) had higher CSS specificity than the plugin's
+  rule. Image and badge-image sizing now carry !important where needed.
 
 = 0.7.1 =
 * Fixed a critical bug present since 0.2.0: on an RTL site, WordPress loaded

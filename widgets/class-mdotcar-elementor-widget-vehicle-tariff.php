@@ -760,7 +760,9 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 					),
 				),
 				'selectors'  => array(
-					'{{WRAPPER}} .mdotcar-vehicle__image' => 'height: {{SIZE}}{{UNIT}};',
+					// !important: see the note on .mdotcar-vehicle__image in the
+					// stylesheet — a theme or Elementor image reset otherwise wins.
+					'{{WRAPPER}} .mdotcar-vehicle__image' => 'height: {{SIZE}}{{UNIT}} !important;',
 				),
 			)
 		);
@@ -806,7 +808,7 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 					),
 				),
 				'selectors'   => array(
-					'{{WRAPPER}} .mdotcar-vehicle__image' => 'max-width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .mdotcar-vehicle__image' => 'max-width: {{SIZE}}{{UNIT}} !important;',
 				),
 			)
 		);
@@ -937,7 +939,7 @@ class MDotCar_Elementor_Widget_Vehicle_Tariff extends Widget_Base {
 				),
 				'selectors'  => array(
 					'{{WRAPPER}} .mdotcar-vehicle__badge' => '--mdotcar-badge-icon: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .mdotcar-vehicle__badge-image' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .mdotcar-vehicle__badge-image' => 'width: {{SIZE}}{{UNIT}} !important; height: {{SIZE}}{{UNIT}} !important;',
 				),
 			)
 		);

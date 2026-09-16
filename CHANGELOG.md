@@ -17,6 +17,27 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.7.2] - 2026-09-16
+
+### Fixed
+
+- A real uploaded vehicle photo could render far taller than the configured
+  Image Height (a photo would balloon well past its card, matching the small
+  WordPress placeholder image while a real photo did not). Cause: themes and
+  even Elementor itself commonly ship a global image reset such as
+  `.elementor-widget-container img { max-width: 100%; height: auto; }`, whose
+  specificity (0,1,1) beats a plain class selector like
+  `.mdotcar-vehicle__image { height: 120px }` (0,1,0). Losing `height` falls
+  back to the image's own aspect ratio — invisible on the built-in placeholder,
+  which is small on its own, but very visible on a real high-resolution photo.
+  Reproduced with that exact reset rule and confirmed fixed: computed height
+  went from 517px back to the intended 120px.
+  `.mdotcar-vehicle__image` (width, max-width, height) and
+  `.mdotcar-vehicle__badge-image` (width, height) — both the stylesheet
+  defaults and the Image Height / Image Max Width / Badge Icon Size panel
+  controls — now carry `!important` on those dimensions, the ones such resets
+  touch.
+
 ## [0.7.1] - 2026-09-16
 
 ### Fixed
