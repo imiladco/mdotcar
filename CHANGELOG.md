@@ -17,6 +17,29 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.7.1] - 2026-09-16
+
+### Fixed
+
+- **The plugin stylesheet never loaded on an RTL site — which mdotcar.com is.**
+  `register_assets()` called `wp_style_add_data( HANDLE, 'rtl', 'replace' )`.
+  WordPress's `'replace'` value means: on an RTL site, load the `-rtl.css`
+  file **instead of** the main stylesheet, not in addition to it. The plugin's
+  `-rtl.css` was written as a handful of small overrides layered on top of the
+  main file (text direction, a reversed tariff row), never as a full
+  stylesheet — so on every RTL visitor, WordPress served only those dozen
+  lines and silently dropped the other ~370 lines: every flex/grid rule, icon
+  sizing, spacing and the backdrop layer. This is why every fix attempted
+  since 0.2.0 for "the widget looks unstyled" only ever addressed a secondary
+  symptom — colours, typography, border, radius and shadow kept working
+  throughout, because those are emitted by Elementor's own per-widget
+  generated CSS, a separate mechanism the RTL bug never touched; only the
+  rules that exist solely in the plugin's static stylesheet were missing,
+  which is exactly the layout-broken, colour-correct pattern reported.
+  Changed to `wp_style_add_data( HANDLE, 'rtl', true )`, which loads the main
+  stylesheet and appends `-rtl.css` after it, matching how that file is
+  actually written.
+
 ## [0.7.0] - 2026-09-16
 
 ### Changed

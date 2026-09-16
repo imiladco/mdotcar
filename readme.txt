@@ -4,7 +4,7 @@ Tags: elementor, widget, title, heading, flexbox
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.7.0
+Stable tag: 0.7.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,14 @@ and height can each be left to fit the content or set to a custom value.
    *MDotCar*.
 
 == Changelog ==
+
+= 0.7.1 =
+* Fixed a critical bug present since 0.2.0: on an RTL site, WordPress loaded
+  ONLY the small mdotcar-elementor-rtl.css override file instead of the full
+  plugin stylesheet, because assets were registered with rtl => 'replace'
+  instead of rtl => true. Every layout rule (flex, grid, icon and spacing
+  sizing) was silently missing on every RTL visitor; colours and typography
+  kept working because those come from Elementor's own generated CSS.
 
 = 0.7.0 =
 * Vehicle Tariff rebuilt to the full design spec: card padding, exact shadow,

@@ -142,7 +142,12 @@ final class MDotCar_Elementor_Plugin {
 			MDOTCAR_ELEMENTOR_VERSION
 		);
 
-		wp_style_add_data( self::HANDLE, 'rtl', 'replace' );
+		// 'true' (not 'replace') so WordPress loads this file AND appends
+		// -rtl.css after it on an RTL site. 'replace' would load the RTL file
+		// INSTEAD of this one, and mdotcar-elementor-rtl.css is written as a
+		// handful of overrides on top of this file, not a full stylesheet, so
+		// 'replace' silently dropped every rule here on every RTL site.
+		wp_style_add_data( self::HANDLE, 'rtl', true );
 	}
 
 	/**
