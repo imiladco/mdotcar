@@ -118,6 +118,7 @@ final class MDotCar_Elementor_Plugin {
 				'MDotCar_Elementor_Widget_Vehicle_Tariff',
 				'MDotCar_Elementor_Widget_Header_Menu',
 				'MDotCar_Elementor_Widget_Mobile_Menu',
+				'MDotCar_Elementor_Widget_Header_Buttons',
 			)
 		);
 

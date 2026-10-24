@@ -4,7 +4,7 @@ Tags: elementor, widget, title, heading, flexbox
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.9.1
+Stable tag: 0.10.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,10 @@ of your choice. Opens by hover, click, touch or keyboard; marks the current page
 
 **MDotCar Mobile Menu** — the menu for that drawer template: rows with icons,
 an accordion for sub items along a guide line with dots, and buttons below.
+
+**MDotCar Header Buttons** — the header's buttons (call, sign in) as a
+repeater: shown on chosen pages only, cookies or storage written on click, any
+attributes, and the site's looks with every value adjustable per device.
 
 **MDotCar Vehicle Tariff (Style 1)** — car-wash tariff cards. Define any number
 of vehicles, each with an image, badge, title, up to three tariff columns, a
@@ -46,6 +50,12 @@ and height can each be left to fit the content or set to a custom value.
    *MDotCar*.
 
 == Changelog ==
+
+= 0.10.0 =
+* New: MDotCar Header Buttons widget. Buttons as a repeater: per-page
+  conditions, any number of cookies or storage entries written on click, any
+  HTML attributes, per-device visibility and icon-only mode, and the site's
+  call and sign-in looks with every value adjustable.
 
 = 0.9.1 =
 * Added: the ID of the template's close button closes the drawer; the

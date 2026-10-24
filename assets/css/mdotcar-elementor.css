@@ -1181,3 +1181,188 @@ html.mdotcar-hmenu-locked body {
 		transition-duration: 0.01ms !important;
 	}
 }
+
+/* -----------------------------------------------------------------------------
+ * Header Buttons — the header's call and sign-in buttons (and any others)
+ *
+ * The looks are mdotcar.com's: Accent is the yellow call button (filled on
+ * wide screens; white with a yellow edge and glow on phones), Outline the grey
+ * sign-in one. A button's own Style tab is emitted with a higher specificity,
+ * so any value set there wins over these.
+ * -------------------------------------------------------------------------- */
+
+.mdotcar-hbtns {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+}
+
+.mdotcar-hbtns .mdotcar-hbtn {
+	--mdotcar-hbtn-icon: 20px;
+	box-sizing: border-box;
+	display: inline-flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	margin: 0;
+	padding: 8px 16px;
+	border: 1px solid transparent;
+	border-radius: 8px;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 26px;
+	white-space: nowrap;
+	text-decoration: none;
+	cursor: pointer;
+	transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.mdotcar-hbtn__icon {
+	display: block;
+	flex: 0 0 auto;
+	width: var( --mdotcar-hbtn-icon );
+	height: var( --mdotcar-hbtn-icon );
+	object-fit: contain;
+}
+
+.mdotcar-hbtns .mdotcar-hbtn:focus-visible {
+	outline: 2px solid #7986CB;
+	outline-offset: 2px;
+}
+
+/* Accent: the call button. */
+.mdotcar-hbtns .mdotcar-hbtn--accent {
+	padding: 4px 12px;
+	border-width: 0;
+	background-color: #FFB300;
+	color: #FFFFFF;
+}
+
+.mdotcar-hbtns .mdotcar-hbtn--accent:hover {
+	color: #FFFFFF;
+	filter: brightness( 1.05 );
+}
+
+.mdotcar-hbtn--accent .mdotcar-hbtn__icon {
+	filter: brightness( 0 ) invert( 1 );
+}
+
+/* Outline: the sign-in button. */
+.mdotcar-hbtns .mdotcar-hbtn--outline {
+	border-color: #E0E0E0;
+	background-color: transparent;
+	color: #424242;
+}
+
+.mdotcar-hbtns .mdotcar-hbtn--outline:hover {
+	border-color: #BDBDBD;
+	color: #424242;
+}
+
+/* Filled: the site's indigo. */
+.mdotcar-hbtns .mdotcar-hbtn--solid {
+	border-color: #3F51B5;
+	background-color: #3F51B5;
+	color: #FFFFFF;
+}
+
+.mdotcar-hbtns .mdotcar-hbtn--solid:hover {
+	border-color: #3949AB;
+	background-color: #3949AB;
+	color: #FFFFFF;
+}
+
+.mdotcar-hbtn--solid .mdotcar-hbtn__icon {
+	filter: brightness( 0 ) invert( 1 );
+}
+
+/* None: a bare link with the layout, for styling from scratch. */
+.mdotcar-hbtns .mdotcar-hbtn--plain {
+	padding: 0;
+	border-width: 0;
+	background: none;
+	color: inherit;
+}
+
+@media ( max-width: 767px ) {
+	.mdotcar-hbtns .mdotcar-hbtn {
+		--mdotcar-hbtn-icon: 16px;
+		font-size: 14px;
+		line-height: 22px;
+	}
+
+	.mdotcar-hbtns .mdotcar-hbtn--accent {
+		border: 1px solid #FFB300;
+		background-color: #FFFFFF;
+		color: #FFB300;
+		box-shadow: 0 0 12px -8px #FFB300;
+	}
+
+	.mdotcar-hbtns .mdotcar-hbtn--accent:hover {
+		color: #FFB300;
+	}
+
+	.mdotcar-hbtn--accent .mdotcar-hbtn__icon {
+		filter: none;
+	}
+
+	.mdotcar-hbtns .mdotcar-hbtn--outline {
+		padding: 10px;
+		box-shadow: 1px 0 10px 0 rgba( 16, 24, 70, 0.08 );
+	}
+}
+
+/* Hidden on a device, or only the icon there (the text stays for screen readers). */
+@media ( min-width: 1025px ) {
+	.mdotcar-hbtns .mdotcar-hbtn--hide-desktop {
+		display: none;
+	}
+
+	.mdotcar-hbtn--icon-only-desktop .mdotcar-hbtn__text {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset( 50% );
+		white-space: nowrap;
+	}
+}
+
+@media ( min-width: 768px ) and ( max-width: 1024px ) {
+	.mdotcar-hbtns .mdotcar-hbtn--hide-tablet {
+		display: none;
+	}
+
+	.mdotcar-hbtn--icon-only-tablet .mdotcar-hbtn__text {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset( 50% );
+		white-space: nowrap;
+	}
+}
+
+@media ( max-width: 767px ) {
+	.mdotcar-hbtns .mdotcar-hbtn--hide-mobile {
+		display: none;
+	}
+
+	.mdotcar-hbtn--icon-only-mobile .mdotcar-hbtn__text {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset( 50% );
+		white-space: nowrap;
+	}
+}
+
+/* In the editor: a button this page's conditions hide is still there to edit, faded. */
+.mdotcar-hbtns .mdotcar-hbtn.is-elsewhere {
+	opacity: 0.35;
+	outline: 1px dashed #9E9E9E;
+}

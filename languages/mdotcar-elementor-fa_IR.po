@@ -10,9 +10,17 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Domain: mdotcar-elementor\n"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:206
+msgid "A page, or tel:, mailto:, https://wa.me/… and the like."
+msgstr "یک صفحه، یا tel:‎، mailto:‎، https://wa.me/… و مانند آن."
+
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:389
 msgid "A saved template (Templates → Saved Templates) with everything the drawer shows: the logo, the search, the MDotCar Mobile Menu widget, buttons."
 msgstr "یک قالب ذخیره‌شده (قالب‌ها ← قالب‌های ذخیره‌شده) با همهٔ محتوای منوی کشویی: لوگو، جستجو، ویجت منوی موبایل امداتکار و دکمه‌ها."
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:375
+msgid "A starting point; the settings below change it."
+msgstr "نقطهٔ شروع؛ تنظیمات زیر آن را تغییر می‌دهند."
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:148
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:125
@@ -22,6 +30,10 @@ msgstr "هر زیرآیتم به نزدیک‌ترین آیتم اصلی بال�
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:150
 msgid "A top item with sub items opens them instead."
 msgstr "آیتم اصلیِ دارای زیرآیتم، به‌جای لینک، زیرآیتم‌ها را باز می‌کند."
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:379
+msgid "Accent (the yellow call button)"
+msgstr "تأکیدی (دکمهٔ زرد تماس)"
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:634
 msgid "Accent Edge"
@@ -39,6 +51,14 @@ msgstr "آیکون اقدام"
 msgid "Action Text"
 msgstr "متن اقدام"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:330
+msgid "Addresses"
+msgstr "آدرس‌ها"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:230
+msgid "After the text"
+msgstr "بعد از متن"
+
 #: widgets/class-mdotcar-elementor-widget-title.php:322
 msgid "Align Content"
 msgstr "هم‌ترازی خطوط"
@@ -47,6 +67,7 @@ msgstr "هم‌ترازی خطوط"
 msgid "Align Items"
 msgstr "هم‌ترازی آیتم‌ها"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:533
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:500
 msgid "Alignment"
 msgstr "چینش"
@@ -54,6 +75,10 @@ msgstr "چینش"
 #: widgets/class-mdotcar-elementor-widget-title.php:753
 msgid "Aligns the text inside the title element. Where the title sits in the box is Justify Content's job."
 msgstr "متن را داخل خودِ عنصر عنوان تراز می‌کند. جای گرفتن عنوان در باکس کارِ «چینش در محور اصلی» است."
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:586
+msgid "All Buttons"
+msgstr "همهٔ دکمه‌ها"
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:343
 msgid "Always"
@@ -84,6 +109,14 @@ msgstr "هر چیزی در قالب با کلاس mdotcar-menu-close منوی ک
 msgid "Arrow Color"
 msgstr "رنگ فلش"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:480
+msgid "As the look has it"
+msgstr "مطابق ظاهر انتخاب‌شده"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:287
+msgid "Attributes"
+msgstr "ویژگی‌ها (Attributes)"
+
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1014
 msgid "Auto"
 msgstr "خودکار"
@@ -100,6 +133,7 @@ msgstr "ارتفاع پس‌زمینهٔ تصویر"
 msgid "Backdrop Layer"
 msgstr "لایهٔ پس‌زمینه"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:397
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:625
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:917
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:958
@@ -119,10 +153,19 @@ msgstr "آیکون نشان"
 msgid "Badge Image"
 msgstr "تصویر نشان"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:229
+msgid "Before the text"
+msgstr "قبل از متن"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:133
+msgid "Behaviour"
+msgstr "رفتار"
+
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:357
 msgid "Book now"
 msgstr "ثبت درخواست"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:398
 #: widgets/class-mdotcar-elementor-widget-title.php:706
 msgid "Border Color"
 msgstr "رنگ کادر"
@@ -131,6 +174,10 @@ msgstr "رنگ کادر"
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:570
 msgid "Border Radius"
 msgstr "گردی گوشه"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:428
+msgid "Border Width"
+msgstr "ضخامت حاشیه"
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:426
 msgid "Both"
@@ -160,10 +207,13 @@ msgstr "اندازهٔ جعبه"
 msgid "Built-in Close Button"
 msgstr "دکمهٔ بستن داخلی"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:197
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:251
 msgid "Button"
 msgstr "دکمه"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:118
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:147
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:238
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:290
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:503
@@ -179,6 +229,7 @@ msgstr "کارت"
 msgid "Card Backdrop"
 msgstr "لایهٔ پس‌زمینهٔ کارت"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:541
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:508
 #: widgets/class-mdotcar-elementor-widget-title.php:287
 #: widgets/class-mdotcar-elementor-widget-title.php:308
@@ -195,6 +246,10 @@ msgstr "حاشیهٔ دایره"
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:798
 msgid "Circle Size"
 msgstr "اندازهٔ دایره"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:270
+msgid "Classes"
+msgstr "کلاس‌ها"
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:264
 msgid "Click"
@@ -270,6 +325,7 @@ msgstr "متن «به‌زودی»"
 msgid "Contain"
 msgstr "جا شدن کامل"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:128
 #: widgets/class-mdotcar-elementor-widget-title.php:112
 msgid "Content"
 msgstr "محتوا"
@@ -335,6 +391,10 @@ msgstr "پیش‌فرض"
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:763
 msgid "Description"
 msgstr "توضیح"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:651
+msgid "Desktop"
+msgstr "دسکتاپ"
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:239
 msgid "Digits only; separators and Persian numerals are applied on output."
@@ -405,6 +465,7 @@ msgstr "سمت منوی کشویی"
 msgid "Drawer Toggle"
 msgstr "دکمهٔ منوی کشویی"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:545
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:512
 #: widgets/class-mdotcar-elementor-widget-title.php:288
 #: widgets/class-mdotcar-elementor-widget-title.php:309
@@ -416,6 +477,14 @@ msgstr "انتها"
 #: widgets/class-mdotcar-elementor-widget-title.php:136
 msgid "Enter your title"
 msgstr "عنوان را وارد کنید"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:308
+msgid "Every page"
+msgstr "همهٔ صفحه‌ها"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:310
+msgid "Every page except these"
+msgstr "همهٔ صفحه‌ها به‌جز این‌ها"
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:250
 msgid "Featured"
@@ -436,6 +505,10 @@ msgstr "کشیده"
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:281
 msgid "Filled"
 msgstr "توپُر"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:381
+msgid "Filled (indigo)"
+msgstr "توپُر (نیلی)"
 
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:546
 msgid "Filled: Background"
@@ -475,9 +548,17 @@ msgstr "تمام عرض (۱۰۰٪)"
 msgid "Gap"
 msgstr "فاصله"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:522
+msgid "Gap Between Buttons"
+msgstr "فاصلهٔ دکمه‌ها"
+
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:662
 msgid "Gap Between Cards"
 msgstr "فاصلهٔ کارت‌ها"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:602
+msgid "Gap Between Icon and Text"
+msgstr "فاصلهٔ آیکون و متن"
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:472
 msgid "Gap Between Items"
@@ -491,6 +572,10 @@ msgstr "به‌جای این‌که اندازه را خودِ آیکون تعی
 msgid "Gives the label the accent colour, as VIP has in the design."
 msgstr "برچسب را به رنگ تأکیدی درمی‌آورد، همان‌طور که VIP در طرح دارد."
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:483
+msgid "Gray"
+msgstr "خاکستری"
+
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:834
 msgid "Gray Until Hovered"
 msgstr "خاکستری تا هاور"
@@ -498,6 +583,10 @@ msgstr "خاکستری تا هاور"
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:478
 msgid "Guide Line Color"
 msgstr "رنگ خط راهنما"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:251
+msgid "HTML"
+msgstr "HTML"
 
 #: widgets/class-mdotcar-elementor-widget-title.php:144
 msgid "HTML Tag"
@@ -511,6 +600,10 @@ msgstr "ارتفاع"
 #: widgets/class-mdotcar-elementor-widget-title.php:536
 msgid "Height Value"
 msgstr "مقدار ارتفاع"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:342
+msgid "Hide On"
+msgstr "پنهان در"
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:263
 #: widgets/class-mdotcar-elementor-widget-title.php:691
@@ -537,10 +630,31 @@ msgstr "رنگ هاور"
 msgid "Hover Transition"
 msgstr "مدت ترنزیشن هاور"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:629
+msgid "Hover Transition (ms)"
+msgstr "مدت انتقال هاور (میلی‌ثانیه)"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:412
+msgid "Hover: Background"
+msgstr "هاور: پس‌زمینه"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:413
+msgid "Hover: Border Color"
+msgstr "هاور: رنگ حاشیه"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:411
+msgid "Hover: Text Color"
+msgstr "هاور: رنگ متن"
+
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:259
 msgid "Hover: the label stays a link. Click: the label opens the menu. A touch screen always opens on the first tap."
 msgstr "هاور: عنوان همچنان لینک است. کلیک: عنوان منو را باز می‌کند. صفحهٔ لمسی همیشه با اولین لمس باز می‌کند."
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:260
+msgid "ID"
+msgstr "شناسه (ID)"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:216
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:182
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:789
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:160
@@ -549,6 +663,10 @@ msgstr "هاور: عنوان همچنان لینک است. کلیک: عنوان 
 #: widgets/class-mdotcar-elementor-widget-title.php:812
 msgid "Icon"
 msgstr "آیکون"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:476
+msgid "Icon Color"
+msgstr "رنگ آیکون"
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:970
 msgid "Icon Colour"
@@ -562,6 +680,11 @@ msgstr "فاصلهٔ آیکون"
 msgid "Icon Label"
 msgstr "برچسب آیکون"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:225
+msgid "Icon Position"
+msgstr "جای آیکون"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:460
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:387
 #: widgets/class-mdotcar-elementor-widget-title.php:821
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:935
@@ -593,6 +716,10 @@ msgstr "حداکثر عرض تصویر"
 msgid "Image or SVG"
 msgstr "تصویر یا SVG"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:177
+msgid "In the editor every button shows; one that this page's conditions would hide is drawn faded."
+msgstr "در ویرایشگر همهٔ دکمه‌ها نمایش داده می‌شوند؛ دکمه‌ای که شرط‌هایش آن را در این صفحه پنهان می‌کند، کم‌رنگ است."
+
 #: widgets/class-mdotcar-elementor-widget-title.php:217
 msgid "Inline Flex"
 msgstr "فلکس درون‌خطی"
@@ -614,6 +741,10 @@ msgstr "آیتم‌ها"
 #: widgets/class-mdotcar-elementor-widget-title.php:273
 msgid "Items stay on a single line unless wrapping is enabled."
 msgstr "تا وقتی شکستن خط فعال نشود، آیتم‌ها در یک خط می‌مانند."
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:481
+msgid "Its own colours"
+msgstr "رنگ‌های خودش"
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:468
 msgid "JSON also carries the card title and its tariff amounts, so a booking page can show them without another lookup."
@@ -657,6 +788,7 @@ msgstr "تایپوگرافی برچسب"
 msgid "Large Iranian sedan"
 msgstr "سواری ایرانی بزرگ"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:514
 #: widgets/class-mdotcar-elementor-widget-title.php:202
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:483
 msgid "Layout"
@@ -684,6 +816,7 @@ msgstr "سطح"
 msgid "Lift"
 msgstr "بالا آمدن"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:205
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:172
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:149
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:259
@@ -691,6 +824,10 @@ msgstr "بالا آمدن"
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:182
 msgid "Link"
 msgstr "لینک"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:374
+msgid "Look"
+msgstr "ظاهر"
 
 #: includes/class-mdotcar-elementor-plugin.php:97
 msgid "MDotCar"
@@ -700,11 +837,13 @@ msgstr "ام‌دات‌کار"
 #: includes/class-mdotcar-elementor-requirements.php:87
 #. translators: 1: required Elementor version, 2: current Elementor version.
 #. translators: 1: required Elementor version, 2: current Elementor version.
+#. translators: 1: required Elementor version, 2: current Elementor version.
 msgid "MDotCar Elementor Widgets requires Elementor %1$s or newer. You are running %2$s."
 msgstr "افزونهٔ ویجت‌های المنتور ام‌دات‌کار به المنتور %1$s یا بالاتر نیاز دارد. نسخهٔ فعلی شما %2$s است."
 
 #. translators: 1: required PHP version, 2: current PHP version.
 #: includes/class-mdotcar-elementor-requirements.php:67
+#. translators: 1: required PHP version, 2: current PHP version.
 #. translators: 1: required PHP version, 2: current PHP version.
 #. translators: 1: required PHP version, 2: current PHP version.
 msgid "MDotCar Elementor Widgets requires PHP %1$s or newer. You are running %2$s."
@@ -714,12 +853,17 @@ msgstr "افزونهٔ ویجت‌های المنتور ام‌دات‌کار �
 #: includes/class-mdotcar-elementor-requirements.php:76
 #. translators: 1: required WordPress version, 2: current WordPress version.
 #. translators: 1: required WordPress version, 2: current WordPress version.
+#. translators: 1: required WordPress version, 2: current WordPress version.
 msgid "MDotCar Elementor Widgets requires WordPress %1$s or newer. You are running %2$s."
 msgstr "افزونهٔ ویجت‌های المنتور ام‌دات‌کار به وردپرس %1$s یا بالاتر نیاز دارد. نسخهٔ فعلی شما %2$s است."
 
 #: includes/class-mdotcar-elementor-requirements.php:83
 msgid "MDotCar Elementor Widgets requires the Elementor plugin to be installed and active."
 msgstr "افزونهٔ ویجت‌های المنتور ام‌دات‌کار نیاز دارد افزونهٔ المنتور نصب و فعال باشد."
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:50
+msgid "MDotCar Header Buttons"
+msgstr "دکمه‌های هدر امداتکار"
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:64
 msgid "MDotCar Header Menu"
@@ -768,13 +912,22 @@ msgstr "آیتم‌های منو"
 msgid "Menu Name for Screen Readers"
 msgstr "نام منو برای صفحه‌خوان"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:564
+msgid "Middle"
+msgstr "وسط"
+
 #: widgets/class-mdotcar-elementor-widget-title.php:526
 msgid "Minimum (grows with content)"
 msgstr "حداقل (با محتوا رشد می‌کند)"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:613
 #: widgets/class-mdotcar-elementor-widget-title.php:565
 msgid "Minimum Height"
 msgstr "حداقل ارتفاع"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:653
+msgid "Mobile"
+msgstr "موبایل"
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:329
 msgid "Mobile Drawer"
@@ -784,6 +937,10 @@ msgstr "منوی کشویی موبایل"
 msgid "Mobile only (767px)"
 msgstr "فقط موبایل (۷۶۷ پیکسل)"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:279
+msgid "Name for Screen Readers (aria-label)"
+msgstr "نام برای صفحه‌خوان (aria-label)"
+
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1048
 msgid "No Repeat"
 msgstr "بدون تکرار"
@@ -792,6 +949,7 @@ msgstr "بدون تکرار"
 msgid "No Wrap"
 msgstr "بدون شکستن خط"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:382
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:789
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1473
 msgid "None"
@@ -819,6 +977,26 @@ msgstr "روشن"
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:183
 msgid "On its mega menu card. An SVG works best."
 msgstr "روی کارت مگامنو. SVG بهترین نتیجه را می‌دهد."
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:288
+msgid "One per line: name|value (name alone for an empty one), e.g. data-mdc-header-request|. Event handlers (on…) are not allowed."
+msgstr "هر خط یکی: نام|مقدار (برای ویژگی بدون مقدار فقط نام)، مثلاً data-mdc-header-request|. رویدادها (on…) مجاز نیستند."
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:356
+msgid "One per line: where | name | value | days. Where: cookie, local (localStorage) or session (sessionStorage); days for a cookie only (30 if left out; 0 for until the browser closes). The value may use {url}, {path}, {title}, {referrer}, {time} (now, in ms) and {text} (the button's)."
+msgstr "هر خط یکی: محل | نام | مقدار | روز. محل: cookie، local (لوکال‌استوریج) یا session (سشن‌استوریج)؛ روز فقط برای کوکی (اگر نیاید ۳۰؛ ۰ یعنی تا بسته شدن مرورگر). در مقدار می‌توانید از {url}، {path}، {title}، {referrer}، {time} (زمان فعلی به میلی‌ثانیه) و {text} (متن دکمه) استفاده کنید."
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:331
+msgid "One per line; * matches anything, e.g. /client/* or /blog/*. Compared with the address's path."
+msgstr "هر خط یکی؛ * با هر چیزی منطبق می‌شود، مثلاً ‎/client/*‎ یا ‎/blog/*‎. با مسیر آدرس مقایسه می‌شود."
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:238
+msgid "Only the Icon On"
+msgstr "فقط آیکون در"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:309
+msgid "Only these pages"
+msgstr "فقط این صفحه‌ها"
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:443
 msgid "Only while editing, to style it."
@@ -864,6 +1042,10 @@ msgstr "اختیاری: نسخهٔ رنگی، وقتی زیرآیتم‌ها ب�
 msgid "Outline"
 msgstr "دورخط"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:380
+msgid "Outline (the grey sign-in button)"
+msgstr "دورخط (دکمهٔ خاکستری ورود)"
+
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:565
 msgid "Outline: Border"
 msgstr "دورخط: حاشیه"
@@ -872,6 +1054,7 @@ msgstr "دورخط: حاشیه"
 msgid "Outline: Text"
 msgstr "دورخط: متن"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:450
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:634
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:698
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:926
@@ -891,6 +1074,10 @@ msgstr "محوی صفحه"
 msgid "Page Dim Color"
 msgstr "رنگ تیرگی صفحه"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:318
+msgid "Pages"
+msgstr "صفحه‌ها"
+
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:344
 msgid "Persian Digits"
 msgstr "ارقام فارسی"
@@ -903,6 +1090,7 @@ msgstr "شخصی"
 msgid "Position"
 msgstr "موقعیت"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:439
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:644
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:708
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:979
@@ -963,6 +1151,10 @@ msgstr "ارتفاع ردیف"
 msgid "Rows"
 msgstr "ردیف‌ها"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:568
+msgid "Same Height"
+msgstr "هم‌ارتفاع"
+
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:410
 msgid "Saves the clicked vehicle in the browser before the link is followed."
 msgstr "پیش از باز شدن لینک، خودروی کلیک‌شده را در مرورگر ذخیره می‌کند."
@@ -975,6 +1167,10 @@ msgstr "کوچک‌شونده"
 msgid "Scrollbar"
 msgstr "نوار اسکرول"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:271
+msgid "Separated by spaces, e.g. kalameh-font for the site's heading font."
+msgstr "با فاصله جدا کنید، مثلاً kalameh-font برای فونت تیترهای سایت."
+
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:421
 msgid "Separator Color"
 msgstr "رنگ جداکننده"
@@ -986,6 +1182,10 @@ msgstr "برای همهٔ کارت‌ها مشترک است؛ هر خودرو م
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:217
 msgid "Show"
 msgstr "نمایش"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:304
+msgid "Show On"
+msgstr "نمایش در"
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:442
 msgid "Show the Drawer in the Editor"
@@ -1031,6 +1231,7 @@ msgstr "فاصلهٔ بین"
 msgid "Space Evenly"
 msgstr "فاصلهٔ یکسان"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:537
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:504
 #: widgets/class-mdotcar-elementor-widget-title.php:286
 #: widgets/class-mdotcar-elementor-widget-title.php:307
@@ -1042,6 +1243,10 @@ msgstr "ابتدا"
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:420
 msgid "Store In"
 msgstr "ذخیره در"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:355
+msgid "Store on Click"
+msgstr "ذخیره با کلیک"
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:401
 msgid "Stored Selection"
@@ -1060,6 +1265,7 @@ msgstr "فقط مقدار ذخیره‌شونده"
 msgid "Stretch"
 msgstr "کشیده"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:138
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:277
 #: widgets/class-mdotcar-elementor-widget-title.php:120
 msgid "Style"
@@ -1082,6 +1288,10 @@ msgstr "زیرآیتم"
 msgid "Sub items start open when one of them is the page being viewed."
 msgstr "وقتی یکی از زیرآیتم‌ها صفحهٔ فعلی باشد، از ابتدا باز هستند."
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:652
+msgid "Tablet"
+msgstr "تبلت"
+
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:341
 msgid "Tablet and below (1024px)"
 msgstr "تبلت و کوچک‌تر (۱۰۲۴ پیکسل)"
@@ -1094,6 +1304,7 @@ msgstr "بر آیکون نشان اولویت دارد. برای تصویر کل
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:208
 #. translators: %d: tariff column number.
 #. translators: %d: tariff column number.
+#. translators: %d: tariff column number.
 msgid "Tariff %d"
 msgstr "تعرفهٔ %d"
 
@@ -1101,6 +1312,7 @@ msgstr "تعرفهٔ %d"
 msgid "Tariffs"
 msgstr "تعرفه‌ها"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:194
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:248
 msgid "Text"
 msgstr "متن"
@@ -1108,6 +1320,10 @@ msgstr "متن"
 #: widgets/class-mdotcar-elementor-widget-title.php:752
 msgid "Text Align"
 msgstr "تراز متن"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:396
+msgid "Text Color"
+msgstr "رنگ متن"
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:410
 msgid "The ID of the close button in the template, e.g. #close-menu (Advanced → CSS ID). Several, separated by commas; a class works too."
@@ -1144,6 +1360,10 @@ msgstr "نوار منو"
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:288
 msgid "The panel's top edge. \"Header\" is the header template, or the outermost container the widget is in."
 msgstr "لبهٔ بالای پنل. «هدر» یعنی قالب هدر، یا بیرونی‌ترین کانتینری که ویجت داخل آن است."
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:239
+msgid "The text is hidden there (still read out to screen readers)."
+msgstr "متن آنجا پنهان می‌شود (برای صفحه‌خوان همچنان خوانده می‌شود)."
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:183
 msgid "The whole card follows this link, not only the button."
@@ -1185,6 +1405,7 @@ msgstr "نام دکمهٔ منو برای صفحه‌خوان"
 msgid "Toman"
 msgstr "تومان"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:560
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1030
 msgid "Top"
 msgstr "بالا"
@@ -1210,6 +1431,10 @@ msgstr "اگر قالب دکمهٔ بستن خودش را دارد، خاموش 
 msgid "Turns the whole box into a link."
 msgstr "کل باکس را به لینک تبدیل می‌کند."
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:261
+msgid "Unique on the page: with the same widget in a desktop and a mobile header, give each its own."
+msgstr "در صفحه یکتا باشد: اگر همین ویجت در هدر دسکتاپ و موبایل هست، به هرکدام شناسهٔ جدا بدهید."
+
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:292
 msgid "VIP"
 msgstr "VIP"
@@ -1231,9 +1456,21 @@ msgstr "عنوان خودرو"
 msgid "Vehicles"
 msgstr "خودروها"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:556
+msgid "Vertical Alignment"
+msgstr "چینش عمودی"
+
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:461
 msgid "What to Store"
 msgstr "چه چیزی ذخیره شود"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:482
+msgid "White"
+msgstr "سفید"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:477
+msgid "White turns any icon white (for a filled button)."
+msgstr "«سفید» هر آیکونی را سفید می‌کند (برای دکمهٔ توپُر)."
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:901
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:945
@@ -1259,6 +1496,30 @@ msgstr "هنگام کلیک روی کارت در localStorage یا کوکی نو
 msgid "localStorage"
 msgstr "localStorage"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:666
+msgid "— Any post"
+msgstr "— هر نوشته"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:667
+msgid "— Archives (categories, tags…)"
+msgstr "— بایگانی‌ها (دسته‌ها، برچسب‌ها…)"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:664
+msgid "— Home page"
+msgstr "— صفحهٔ اصلی"
+
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:1057
 msgid "— None —"
 msgstr "— هیچ —"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:669
+msgid "— Not found (404)"
+msgstr "— پیدا نشد (۴۰۴)"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:665
+msgid "— Posts page (blog)"
+msgstr "— صفحهٔ نوشته‌ها (وبلاگ)"
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:668
+msgid "— Search results"
+msgstr "— نتایج جستجو"

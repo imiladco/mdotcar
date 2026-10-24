@@ -10,8 +10,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Domain: mdotcar-elementor\n"
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:206
+msgid "A page, or tel:, mailto:, https://wa.me/… and the like."
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:389
 msgid "A saved template (Templates → Saved Templates) with everything the drawer shows: the logo, the search, the MDotCar Mobile Menu widget, buttons."
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:375
+msgid "A starting point; the settings below change it."
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:148
@@ -21,6 +29,10 @@ msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:150
 msgid "A top item with sub items opens them instead."
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:379
+msgid "Accent (the yellow call button)"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:634
@@ -39,6 +51,14 @@ msgstr ""
 msgid "Action Text"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:330
+msgid "Addresses"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:230
+msgid "After the text"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-title.php:322
 msgid "Align Content"
 msgstr ""
@@ -47,12 +67,17 @@ msgstr ""
 msgid "Align Items"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:533
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:500
 msgid "Alignment"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-title.php:753
 msgid "Aligns the text inside the title element. Where the title sits in the box is Justify Content's job."
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:586
+msgid "All Buttons"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:343
@@ -84,6 +109,14 @@ msgstr ""
 msgid "Arrow Color"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:480
+msgid "As the look has it"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:287
+msgid "Attributes"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1014
 msgid "Auto"
 msgstr ""
@@ -100,6 +133,7 @@ msgstr ""
 msgid "Backdrop Layer"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:397
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:625
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:917
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:958
@@ -119,10 +153,19 @@ msgstr ""
 msgid "Badge Image"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:229
+msgid "Before the text"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:133
+msgid "Behaviour"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:357
 msgid "Book now"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:398
 #: widgets/class-mdotcar-elementor-widget-title.php:706
 msgid "Border Color"
 msgstr ""
@@ -130,6 +173,10 @@ msgstr ""
 #: widgets/class-mdotcar-elementor-widget-title.php:613
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:570
 msgid "Border Radius"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:428
+msgid "Border Width"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:426
@@ -160,10 +207,13 @@ msgstr ""
 msgid "Built-in Close Button"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:197
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:251
 msgid "Button"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:118
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:147
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:238
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:290
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:503
@@ -179,6 +229,7 @@ msgstr ""
 msgid "Card Backdrop"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:541
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:508
 #: widgets/class-mdotcar-elementor-widget-title.php:287
 #: widgets/class-mdotcar-elementor-widget-title.php:308
@@ -194,6 +245,10 @@ msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:798
 msgid "Circle Size"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:270
+msgid "Classes"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:264
@@ -270,6 +325,7 @@ msgstr ""
 msgid "Contain"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:128
 #: widgets/class-mdotcar-elementor-widget-title.php:112
 msgid "Content"
 msgstr ""
@@ -334,6 +390,10 @@ msgstr ""
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:193
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:763
 msgid "Description"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:651
+msgid "Desktop"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:239
@@ -405,6 +465,7 @@ msgstr ""
 msgid "Drawer Toggle"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:545
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:512
 #: widgets/class-mdotcar-elementor-widget-title.php:288
 #: widgets/class-mdotcar-elementor-widget-title.php:309
@@ -415,6 +476,14 @@ msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-title.php:136
 msgid "Enter your title"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:308
+msgid "Every page"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:310
+msgid "Every page except these"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:250
@@ -435,6 +504,10 @@ msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:281
 msgid "Filled"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:381
+msgid "Filled (indigo)"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:546
@@ -475,8 +548,16 @@ msgstr ""
 msgid "Gap"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:522
+msgid "Gap Between Buttons"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:662
 msgid "Gap Between Cards"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:602
+msgid "Gap Between Icon and Text"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:472
@@ -491,12 +572,20 @@ msgstr ""
 msgid "Gives the label the accent colour, as VIP has in the design."
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:483
+msgid "Gray"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:834
 msgid "Gray Until Hovered"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:478
 msgid "Guide Line Color"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:251
+msgid "HTML"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-title.php:144
@@ -510,6 +599,10 @@ msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-title.php:536
 msgid "Height Value"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:342
+msgid "Hide On"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:263
@@ -537,10 +630,31 @@ msgstr ""
 msgid "Hover Transition"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:629
+msgid "Hover Transition (ms)"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:412
+msgid "Hover: Background"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:413
+msgid "Hover: Border Color"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:411
+msgid "Hover: Text Color"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:259
 msgid "Hover: the label stays a link. Click: the label opens the menu. A touch screen always opens on the first tap."
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:260
+msgid "ID"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:216
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:182
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:789
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:160
@@ -548,6 +662,10 @@ msgstr ""
 #: widgets/class-mdotcar-elementor-widget-title.php:154
 #: widgets/class-mdotcar-elementor-widget-title.php:812
 msgid "Icon"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:476
+msgid "Icon Color"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:970
@@ -562,6 +680,11 @@ msgstr ""
 msgid "Icon Label"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:225
+msgid "Icon Position"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:460
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:387
 #: widgets/class-mdotcar-elementor-widget-title.php:821
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:935
@@ -593,6 +716,10 @@ msgstr ""
 msgid "Image or SVG"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:177
+msgid "In the editor every button shows; one that this page's conditions would hide is drawn faded."
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-title.php:217
 msgid "Inline Flex"
 msgstr ""
@@ -613,6 +740,10 @@ msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-title.php:273
 msgid "Items stay on a single line unless wrapping is enabled."
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:481
+msgid "Its own colours"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:468
@@ -657,6 +788,7 @@ msgstr ""
 msgid "Large Iranian sedan"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:514
 #: widgets/class-mdotcar-elementor-widget-title.php:202
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:483
 msgid "Layout"
@@ -684,12 +816,17 @@ msgstr ""
 msgid "Lift"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:205
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:172
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:149
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:259
 #: widgets/class-mdotcar-elementor-widget-title.php:177
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:182
 msgid "Link"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:374
+msgid "Look"
 msgstr ""
 
 #: includes/class-mdotcar-elementor-plugin.php:97
@@ -713,6 +850,10 @@ msgstr ""
 
 #: includes/class-mdotcar-elementor-requirements.php:83
 msgid "MDotCar Elementor Widgets requires the Elementor plugin to be installed and active."
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:50
+msgid "MDotCar Header Buttons"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:64
@@ -762,12 +903,21 @@ msgstr ""
 msgid "Menu Name for Screen Readers"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:564
+msgid "Middle"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-title.php:526
 msgid "Minimum (grows with content)"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:613
 #: widgets/class-mdotcar-elementor-widget-title.php:565
 msgid "Minimum Height"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:653
+msgid "Mobile"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:329
@@ -778,6 +928,10 @@ msgstr ""
 msgid "Mobile only (767px)"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:279
+msgid "Name for Screen Readers (aria-label)"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1048
 msgid "No Repeat"
 msgstr ""
@@ -786,6 +940,7 @@ msgstr ""
 msgid "No Wrap"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:382
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:789
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1473
 msgid "None"
@@ -812,6 +967,26 @@ msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:183
 msgid "On its mega menu card. An SVG works best."
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:288
+msgid "One per line: name|value (name alone for an empty one), e.g. data-mdc-header-request|. Event handlers (on…) are not allowed."
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:356
+msgid "One per line: where | name | value | days. Where: cookie, local (localStorage) or session (sessionStorage); days for a cookie only (30 if left out; 0 for until the browser closes). The value may use {url}, {path}, {title}, {referrer}, {time} (now, in ms) and {text} (the button's)."
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:331
+msgid "One per line; * matches anything, e.g. /client/* or /blog/*. Compared with the address's path."
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:238
+msgid "Only the Icon On"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:309
+msgid "Only these pages"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:443
@@ -858,6 +1033,10 @@ msgstr ""
 msgid "Outline"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:380
+msgid "Outline (the grey sign-in button)"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:565
 msgid "Outline: Border"
 msgstr ""
@@ -866,6 +1045,7 @@ msgstr ""
 msgid "Outline: Text"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:450
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:634
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:698
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:926
@@ -885,6 +1065,10 @@ msgstr ""
 msgid "Page Dim Color"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:318
+msgid "Pages"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:344
 msgid "Persian Digits"
 msgstr ""
@@ -897,6 +1081,7 @@ msgstr ""
 msgid "Position"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:439
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:644
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:708
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:979
@@ -957,6 +1142,10 @@ msgstr ""
 msgid "Rows"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:568
+msgid "Same Height"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:410
 msgid "Saves the clicked vehicle in the browser before the link is followed."
 msgstr ""
@@ -969,6 +1158,10 @@ msgstr ""
 msgid "Scrollbar"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:271
+msgid "Separated by spaces, e.g. kalameh-font for the site's heading font."
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:421
 msgid "Separator Color"
 msgstr ""
@@ -979,6 +1172,10 @@ msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:217
 msgid "Show"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:304
+msgid "Show On"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:442
@@ -1025,6 +1222,7 @@ msgstr ""
 msgid "Space Evenly"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:537
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:504
 #: widgets/class-mdotcar-elementor-widget-title.php:286
 #: widgets/class-mdotcar-elementor-widget-title.php:307
@@ -1035,6 +1233,10 @@ msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:420
 msgid "Store In"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:355
+msgid "Store on Click"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:401
@@ -1054,6 +1256,7 @@ msgstr ""
 msgid "Stretch"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:138
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:277
 #: widgets/class-mdotcar-elementor-widget-title.php:120
 msgid "Style"
@@ -1076,6 +1279,10 @@ msgstr ""
 msgid "Sub items start open when one of them is the page being viewed."
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:652
+msgid "Tablet"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:341
 msgid "Tablet and below (1024px)"
 msgstr ""
@@ -1093,12 +1300,17 @@ msgstr ""
 msgid "Tariffs"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:194
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:248
 msgid "Text"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-title.php:752
 msgid "Text Align"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:396
+msgid "Text Color"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:410
@@ -1135,6 +1347,10 @@ msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:288
 msgid "The panel's top edge. \"Header\" is the header template, or the outermost container the widget is in."
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:239
+msgid "The text is hidden there (still read out to screen readers)."
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:183
@@ -1177,6 +1393,7 @@ msgstr ""
 msgid "Toman"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:560
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1030
 msgid "Top"
 msgstr ""
@@ -1202,6 +1419,10 @@ msgstr ""
 msgid "Turns the whole box into a link."
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:261
+msgid "Unique on the page: with the same widget in a desktop and a mobile header, give each its own."
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:292
 msgid "VIP"
 msgstr ""
@@ -1223,8 +1444,20 @@ msgstr ""
 msgid "Vehicles"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:556
+msgid "Vertical Alignment"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:461
 msgid "What to Store"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:482
+msgid "White"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:477
+msgid "White turns any icon white (for a filled button)."
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:901
@@ -1251,6 +1484,30 @@ msgstr ""
 msgid "localStorage"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:666
+msgid "— Any post"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:667
+msgid "— Archives (categories, tags…)"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:664
+msgid "— Home page"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:1057
 msgid "— None —"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:669
+msgid "— Not found (404)"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:665
+msgid "— Posts page (blog)"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:668
+msgid "— Search results"
 msgstr ""

@@ -17,7 +17,34 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
-## [0.9.1] - 2026-10-24
+## [0.10.0] - 2026-10-24
+
+### Added
+
+- **MDotCar Header Buttons** widget: the header's buttons (call, sign in, …)
+  as a repeater, each with Content, Behaviour and Style tabs.
+  - **Content**: text, link (a page or `tel:`, `mailto:`, `https://wa.me/…`),
+    icon and its side, "only the icon on" some devices (the text stays for
+    screen readers), and its HTML: ID, classes (e.g. `kalameh-font`),
+    aria-label and any attributes (`name|value` per line, e.g.
+    `data-mdc-header-request|`; event handlers are refused).
+  - **Behaviour**: shown on every page, only on some, or on all but some —
+    chosen pages, kinds of page (home, blog, any post, archives, search, 404)
+    and addresses with `*` (e.g. `/client/*`), decided on the server; hidden
+    per device; and **stored on click**: any number of cookies, localStorage
+    and sessionStorage entries, one per line (`where | name | value | days`),
+    with `{url}`, `{path}`, `{title}`, `{referrer}`, `{time}` and `{text}` in
+    values. In the editor every button shows, one the page's conditions hide
+    drawn faded.
+  - **Style**: a look to start from — Accent (mdotcar.com's yellow call
+    button: filled on wide screens; white with a yellow edge and glow on
+    phones), Outline (the grey sign-in button; icon-sized with a soft shadow
+    on phones), Filled (indigo) or None — then typography, text, background
+    and border colours (per device, and on hover), border width, radius,
+    padding, icon size and colour, and shadow. The widget's Style tab sets the
+    layout and what all buttons share.
+
+ - 2026-10-24
 
 ### Added
 

@@ -512,3 +512,78 @@
 		start( document );
 	}
 }() );
+
+/**
+ * Header Buttons: what a button stores when it is clicked (markup:
+ * MDotCar_Elementor_Widget_Header_Buttons, data-mdotcar-sets). Any number of
+ * cookies, localStorage and sessionStorage entries, written before the
+ * browser follows the link. A value may use {url}, {path}, {title},
+ * {referrer}, {time} and {text}.
+ */
+( function () {
+	'use strict';
+
+	/**
+	 * The value with its placeholders filled.
+	 *
+	 * @param {string}  value  As written in the panel.
+	 * @param {Element} button The clicked button.
+	 * @return {string}
+	 */
+	function fill( value, button ) {
+		var text = button.querySelector( '.mdotcar-hbtn__text' );
+		var map = {
+			url: window.location.href,
+			path: window.location.pathname,
+			title: document.title,
+			referrer: document.referrer,
+			time: String( Date.now() ),
+			text: text ? text.textContent.trim() : ''
+		};
+		return String( value ).replace( /\{(url|path|title|referrer|time|text)\}/g, function ( all, key ) {
+			return map[ key ];
+		} );
+	}
+
+	/**
+	 * Writes one entry.
+	 *
+	 * @param {Object}  entry  { t: cookie|local|session, k: name, v: value, d: days }.
+	 * @param {Element} button The clicked button.
+	 */
+	function write( entry, button ) {
+		var value = fill( entry.v, button );
+		if ( 'cookie' === entry.t ) {
+			var cookie = encodeURIComponent( entry.k ) + '=' + encodeURIComponent( value ) + '; path=/; SameSite=Lax';
+			if ( entry.d > 0 ) {
+				cookie += '; expires=' + new Date( Date.now() + entry.d * 864e5 ).toUTCString();
+			}
+			if ( 'https:' === window.location.protocol ) {
+				cookie += '; Secure';
+			}
+			document.cookie = cookie;
+			return;
+		}
+		try {
+			( 'session' === entry.t ? window.sessionStorage : window.localStorage ).setItem( entry.k, value );
+		} catch ( error ) {
+			// Private mode or storage disabled: the link still works.
+		}
+	}
+
+	document.addEventListener( 'click', function ( event ) {
+		var button = event.target.closest ? event.target.closest( '[data-mdotcar-sets]' ) : null;
+		if ( ! button ) {
+			return;
+		}
+		var entries;
+		try {
+			entries = JSON.parse( button.getAttribute( 'data-mdotcar-sets' ) ) || [];
+		} catch ( error ) {
+			return;
+		}
+		entries.forEach( function ( entry ) {
+			write( entry, button );
+		} );
+	} );
+}() );
