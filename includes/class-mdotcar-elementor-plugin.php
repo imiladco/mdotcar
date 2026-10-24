@@ -117,6 +117,7 @@ final class MDotCar_Elementor_Plugin {
 				'MDotCar_Elementor_Widget_Title',
 				'MDotCar_Elementor_Widget_Vehicle_Tariff',
 				'MDotCar_Elementor_Widget_Header_Menu',
+				'MDotCar_Elementor_Widget_Mobile_Menu',
 			)
 		);
 
@@ -203,5 +204,29 @@ final class MDotCar_Elementor_Plugin {
 	 */
 	public function enqueue_preview_scripts() {
 		wp_enqueue_script( self::HANDLE );
+	}
+
+	/**
+	 * Whether a link points at the page being viewed (path only; a trailing
+	 * slash does not matter). For the menus' current-page marking.
+	 *
+	 * @param array $link URL control value.
+	 * @return bool
+	 */
+	public static function is_current_url( $link ) {
+		$url = isset( $link['url'] ) ? trim( $link['url'] ) : '';
+		if ( '' === $url || '#' === $url[0] ) {
+			return false;
+		}
+
+		$path = wp_parse_url( $url, PHP_URL_PATH );
+		$host = wp_parse_url( $url, PHP_URL_HOST );
+		if ( $host && wp_parse_url( home_url(), PHP_URL_HOST ) !== $host ) {
+			return false;
+		}
+
+		$request = isset( $_SERVER['REQUEST_URI'] ) ? wp_parse_url( esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ), PHP_URL_PATH ) : '/';
+
+		return untrailingslashit( rawurldecode( (string) $path ) ) === untrailingslashit( rawurldecode( (string) $request ) );
 	}
 }

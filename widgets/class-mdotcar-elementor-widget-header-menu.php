@@ -8,7 +8,6 @@
 defined( 'ABSPATH' ) || exit;
 
 use Elementor\Controls_Manager;
-use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
 use Elementor\Plugin as Elementor;
@@ -16,14 +15,14 @@ use Elementor\Repeater;
 use Elementor\Widget_Base;
 
 /**
- * The site's main menu, from one list of items: a bar with a mega menu on wide
- * screens, and a toggle with an off-canvas drawer on narrow ones.
+ * The site's main menu: a bar with a full-width mega menu on wide screens, and
+ * a toggle that opens an off-canvas drawer on narrow ones.
  *
- * Items are one repeater: a row is a top item, or a sub item of the top item
- * above it. A top item with sub items opens a mega menu (cards with an icon
- * and a description) on desktop and an accordion in the drawer. The drawer's
- * own content around the list (logo, close, search, app buttons) comes from
- * two Elementor templates, so anything Elementor can build fits there.
+ * The bar's items are one repeater: a row is a top item, or a sub item of the
+ * top item above it; a top item with sub items opens a mega menu (cards with
+ * an icon and a description). The drawer's whole content is a saved Elementor
+ * template, chosen here: the logo, the search and the menu itself (the MDotCar
+ * Mobile Menu widget) are laid out in it like on any page.
  *
  * Behaviour (assets/js/mdotcar-elementor.js): the mega menu opens on hover with
  * a grace delay, or on click, and from the keyboard (its caret is a button);
@@ -122,7 +121,6 @@ class MDotCar_Elementor_Widget_Header_Menu extends Widget_Base {
 		$this->register_card_style_controls();
 		$this->register_toggle_style_controls();
 		$this->register_drawer_style_controls();
-		$this->register_list_style_controls();
 	}
 
 	/*
@@ -169,17 +167,6 @@ class MDotCar_Elementor_Widget_Header_Menu extends Widget_Base {
 		);
 
 		$repeater->add_control(
-			'mobile_label',
-			array(
-				'label'       => __( 'Label in the Drawer', 'mdotcar-elementor' ),
-				'description' => __( 'Optional. Leave empty to use the same label.', 'mdotcar-elementor' ),
-				'type'        => Controls_Manager::TEXT,
-				'dynamic'     => array( 'active' => true ),
-				'label_block' => true,
-			)
-		);
-
-		$repeater->add_control(
 			'link',
 			array(
 				'label'       => __( 'Link', 'mdotcar-elementor' ),
@@ -193,9 +180,10 @@ class MDotCar_Elementor_Widget_Header_Menu extends Widget_Base {
 			'icon',
 			array(
 				'label'       => __( 'Icon', 'mdotcar-elementor' ),
-				'description' => __( 'A sub item: on its mega menu card. A top item: beside it in the drawer. An SVG works best.', 'mdotcar-elementor' ),
+				'description' => __( 'On its mega menu card. An SVG works best.', 'mdotcar-elementor' ),
 				'type'        => Controls_Manager::MEDIA,
 				'dynamic'     => array( 'active' => true ),
+				'condition'   => array( 'level' => 'sub' ),
 			)
 		);
 
@@ -217,20 +205,6 @@ class MDotCar_Elementor_Widget_Header_Menu extends Widget_Base {
 				'description'  => __( 'Shown faded with the "coming soon" note, and not a link.', 'mdotcar-elementor' ),
 				'type'         => Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
-			)
-		);
-
-		$repeater->add_control(
-			'show_on',
-			array(
-				'label'   => __( 'Show On', 'mdotcar-elementor' ),
-				'type'    => Controls_Manager::SELECT,
-				'default' => 'both',
-				'options' => array(
-					'both'    => __( 'Bar and drawer', 'mdotcar-elementor' ),
-					'desktop' => __( 'Bar only', 'mdotcar-elementor' ),
-					'mobile'  => __( 'Drawer only', 'mdotcar-elementor' ),
-				),
 			)
 		);
 
@@ -408,28 +382,15 @@ class MDotCar_Elementor_Widget_Header_Menu extends Widget_Base {
 			)
 		);
 
-		$templates = self::templates();
-
 		$this->add_control(
-			'template_top',
+			'drawer_template',
 			array(
-				'label'       => __( 'Template Above the Menu', 'mdotcar-elementor' ),
-				'description' => __( 'For the logo, a close button and the search. Saved in Templates → Saved Templates.', 'mdotcar-elementor' ),
+				'label'       => __( 'Drawer Content', 'mdotcar-elementor' ),
+				'description' => __( 'A saved template (Templates → Saved Templates) with everything the drawer shows: the logo, the search, the MDotCar Mobile Menu widget, buttons.', 'mdotcar-elementor' ),
 				'type'        => Controls_Manager::SELECT,
 				'default'     => '',
-				'options'     => $templates,
+				'options'     => self::templates(),
 				'separator'   => 'before',
-			)
-		);
-
-		$this->add_control(
-			'template_bottom',
-			array(
-				'label'       => __( 'Template Below the Menu', 'mdotcar-elementor' ),
-				'description' => __( 'For the app download and sign-in buttons.', 'mdotcar-elementor' ),
-				'type'        => Controls_Manager::SELECT,
-				'default'     => '',
-				'options'     => $templates,
 			)
 		);
 
@@ -437,7 +398,7 @@ class MDotCar_Elementor_Widget_Header_Menu extends Widget_Base {
 			'templates_note',
 			array(
 				'type'            => Controls_Manager::RAW_HTML,
-				'raw'             => esc_html__( 'Anything in the templates with the class mdotcar-menu-close closes the drawer (Advanced → CSS Classes).', 'mdotcar-elementor' ),
+				'raw'             => esc_html__( 'Anything in the template with the class mdotcar-menu-close closes the drawer (Advanced → CSS Classes); so does following a link in it.', 'mdotcar-elementor' ),
 				'content_classes' => 'elementor-descriptor',
 			)
 		);
@@ -446,7 +407,7 @@ class MDotCar_Elementor_Widget_Header_Menu extends Widget_Base {
 			'close_button',
 			array(
 				'label'        => __( 'Built-in Close Button', 'mdotcar-elementor' ),
-				'description'  => __( 'Turn off when a template brings its own.', 'mdotcar-elementor' ),
+				'description'  => __( 'Turn off when the template brings its own.', 'mdotcar-elementor' ),
 				'type'         => Controls_Manager::SWITCHER,
 				'default'      => '',
 				'return_value' => 'yes',
@@ -957,18 +918,6 @@ class MDotCar_Elementor_Widget_Header_Menu extends Widget_Base {
 			)
 		);
 
-		$this->add_responsive_control(
-			'drawer_gap',
-			array(
-				'label'       => __( 'Gap Between Parts', 'mdotcar-elementor' ),
-				'description' => __( 'Between the templates and the menu.', 'mdotcar-elementor' ),
-				'type'        => Controls_Manager::SLIDER,
-				'size_units'  => array( 'px' ),
-				'range'       => array( 'px' => array( 'max' => 64 ) ),
-				'selectors'   => array( self::DRAWER . ' .mdotcar-hmenu-drawer__panel' => 'gap: {{SIZE}}{{UNIT}};' ),
-			)
-		);
-
 		$this->add_control(
 			'drawer_scrim',
 			array(
@@ -986,136 +935,6 @@ class MDotCar_Elementor_Widget_Header_Menu extends Widget_Base {
 				'size_units' => array( 'px' ),
 				'range'      => array( 'px' => array( 'max' => 24 ) ),
 				'selectors'  => array( self::DRAWER => '--mdotcar-drawer-blur: {{SIZE}}{{UNIT}};' ),
-			)
-		);
-
-		$this->end_controls_section();
-	}
-
-	/**
-	 * Style tab: the menu list in the drawer.
-	 */
-	private function register_list_style_controls() {
-		$this->start_controls_section(
-			'section_style_list',
-			array(
-				'label' => __( 'Drawer Menu', 'mdotcar-elementor' ),
-				'tab'   => Controls_Manager::TAB_STYLE,
-			)
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			array(
-				'name'     => 'list_typography',
-				'selector' => self::DRAWER . ' .mdotcar-hmenu-list__link',
-			)
-		);
-
-		$this->add_control(
-			'list_color',
-			array(
-				'label'     => __( 'Color', 'mdotcar-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array( self::DRAWER => '--mdotcar-list-color: {{VALUE}};' ),
-			)
-		);
-
-		$this->add_control(
-			'list_active_color',
-			array(
-				'label'     => __( 'Current Page / Open Color', 'mdotcar-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array( self::DRAWER => '--mdotcar-list-active: {{VALUE}};' ),
-			)
-		);
-
-		$this->add_control(
-			'list_open_bg',
-			array(
-				'label'     => __( 'Open Item Background', 'mdotcar-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array( self::DRAWER => '--mdotcar-list-open-bg: {{VALUE}};' ),
-			)
-		);
-
-		$this->add_responsive_control(
-			'list_row_padding',
-			array(
-				'label'      => __( 'Row Height (Padding)', 'mdotcar-elementor' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px' ),
-				'range'      => array( 'px' => array( 'max' => 32 ) ),
-				'selectors'  => array( self::DRAWER => '--mdotcar-list-pad: {{SIZE}}{{UNIT}};' ),
-			)
-		);
-
-		$this->add_responsive_control(
-			'list_icon_size',
-			array(
-				'label'      => __( 'Icon Size', 'mdotcar-elementor' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px' ),
-				'range'      => array(
-					'px' => array(
-						'min' => 10,
-						'max' => 40,
-					),
-				),
-				'selectors'  => array( self::DRAWER => '--mdotcar-list-icon: {{SIZE}}{{UNIT}};' ),
-			)
-		);
-
-		$this->add_control(
-			'list_separator',
-			array(
-				'label'     => __( 'Separator Color', 'mdotcar-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array( self::DRAWER => '--mdotcar-list-sep: {{VALUE}};' ),
-			)
-		);
-
-		$this->add_control(
-			'list_arrow',
-			array(
-				'label'     => __( 'Arrow Color', 'mdotcar-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array( self::DRAWER => '--mdotcar-list-arrow: {{VALUE}};' ),
-			)
-		);
-
-		$this->add_control(
-			'sub_heading',
-			array(
-				'label'     => __( 'Sub Items', 'mdotcar-elementor' ),
-				'type'      => Controls_Manager::HEADING,
-				'separator' => 'before',
-			)
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			array(
-				'name'     => 'sub_typography',
-				'selector' => self::DRAWER . ' .mdotcar-hmenu-list__sub a, ' . self::DRAWER . ' .mdotcar-hmenu-list__sub span',
-			)
-		);
-
-		$this->add_control(
-			'sub_color',
-			array(
-				'label'     => __( 'Color', 'mdotcar-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array( self::DRAWER => '--mdotcar-sub-color: {{VALUE}};' ),
-			)
-		);
-
-		$this->add_control(
-			'sub_line',
-			array(
-				'label'     => __( 'Guide Line Color', 'mdotcar-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array( self::DRAWER => '--mdotcar-sub-line: {{VALUE}};' ),
 			)
 		);
 
@@ -1146,8 +965,8 @@ class MDotCar_Elementor_Widget_Header_Menu extends Widget_Base {
 		};
 
 		return array(
-			$item( 'top', 'خانه', '/', '2024/07/home-2.svg', array( 'mobile_label' => 'صفحه اصلی' ) ),
-			$item( 'top', 'خدمات', '/service/', '2024/07/reserve.svg' ),
+			$item( 'top', 'خانه', '/' ),
+			$item( 'top', 'خدمات', '/service/' ),
 			$item( 'sub', 'امداد خودرو', '/car-assistance/', '2026/04/smart-car.svg', array( 'description' => 'امداد خودرو، شبانه‌روزی و با اعزام سریع کارشناس به محل شما' ) ),
 			$item( 'sub', 'شبکه تعمیرگاهی', '/repair-shops/', '2026/04/setting-2.svg', array( 'description' => 'تعمیر خودرو در تعمیرگاه‌های معتبر توسط کارشناسان مجرب' ) ),
 			$item( 'sub', 'عیب‌یابی خودرو', '/check-light/', '2026/04/1213297-200-1.svg', array( 'description' => 'عیب‌یابی و آگاهی از معانی چراغ‌های هشدار خودرو' ) ),
@@ -1156,15 +975,15 @@ class MDotCar_Elementor_Widget_Header_Menu extends Widget_Base {
 			$item( 'sub', 'کارواش سیار', '/carwash/', '2026/04/bucket.svg', array( 'description' => 'سرویس کارواش با شستشوی نانو در محل شما' ) ),
 			$item( 'sub', 'چک قبل از سفر', '/service-check-before-trip/', '2026/04/task.svg', array( 'description' => 'بررسی کامل وضعیت خودرو پیش از سفر برای اطمینان از ایمنی و کارکرد صحیح' ) ),
 			$item( 'sub', 'استعلام و پرداخت خودرویی', '/vehicle-services/', '2026/10/Frame-2147225186-1.svg', array( 'description' => 'استعلام و پرداخت یکپارچه خدمات خودرویی؛ از خلافی تا عوارض و طرح ترافیک' ) ),
-			$item( 'top', 'قیمت خدمات', '/pricing/', '2024/07/tag.svg', array( 'mobile_label' => 'تعرفه‌ها' ) ),
-			$item( 'top', 'دانستنی‌ها', '/blog/', '2024/07/document-copy-1.svg' ),
-			$item( 'top', 'درباره ما', '/aboutus/', '2024/07/bubble.svg' ),
-			$item( 'top', 'ثبت‌نام امدادگر', '/attracting-rescuers/', '2024/07/emoji-normal.svg', array( 'mobile_label' => 'همکاری با امداتکار' ) ),
+			$item( 'top', 'قیمت خدمات', '/pricing/' ),
+			$item( 'top', 'دانستنی‌ها', '/blog/' ),
+			$item( 'top', 'درباره ما', '/aboutus/' ),
+			$item( 'top', 'ثبت‌نام امدادگر', '/attracting-rescuers/' ),
 		);
 	}
 
 	/**
-	 * Saved Elementor templates, for the drawer's two slots.
+	 * Saved Elementor templates, for the drawer.
 	 *
 	 * @return string[] id => title
 	 */
@@ -1188,20 +1007,15 @@ class MDotCar_Elementor_Widget_Header_Menu extends Widget_Base {
 	}
 
 	/**
-	 * Rows grouped as top items with their sub items, as one place shows them.
+	 * Rows grouped as top items with their sub items.
 	 *
-	 * @param array  $rows  Repeater rows.
-	 * @param string $where 'desktop' or 'mobile'.
+	 * @param array $rows Repeater rows.
 	 * @return array[] Each: the top row plus 'children'.
 	 */
-	private static function tree( array $rows, $where ) {
+	private static function tree( array $rows ) {
 		$tree = array();
 
 		foreach ( $rows as $row ) {
-			$show = isset( $row['show_on'] ) ? $row['show_on'] : 'both';
-			if ( 'both' !== $show && $where !== $show ) {
-				continue;
-			}
 			if ( 'sub' === ( isset( $row['level'] ) ? $row['level'] : 'top' ) ) {
 				if ( $tree ) {
 					$tree[ count( $tree ) - 1 ]['children'][] = $row;
@@ -1213,29 +1027,6 @@ class MDotCar_Elementor_Widget_Header_Menu extends Widget_Base {
 		}
 
 		return $tree;
-	}
-
-	/**
-	 * Whether a link points at the page being viewed (path only; a trailing slash does not matter).
-	 *
-	 * @param array $link URL control value.
-	 * @return bool
-	 */
-	private static function is_current( $link ) {
-		$url = isset( $link['url'] ) ? trim( $link['url'] ) : '';
-		if ( '' === $url || '#' === $url[0] ) {
-			return false;
-		}
-
-		$path = wp_parse_url( $url, PHP_URL_PATH );
-		$host = wp_parse_url( $url, PHP_URL_HOST );
-		if ( $host && wp_parse_url( home_url(), PHP_URL_HOST ) !== $host ) {
-			return false;
-		}
-
-		$request = isset( $_SERVER['REQUEST_URI'] ) ? wp_parse_url( esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ), PHP_URL_PATH ) : '/';
-
-		return untrailingslashit( rawurldecode( (string) $path ) ) === untrailingslashit( rawurldecode( (string) $request ) );
 	}
 
 	/*
@@ -1276,7 +1067,7 @@ class MDotCar_Elementor_Widget_Header_Menu extends Widget_Base {
 		<div <?php $this->print_render_attribute_string( 'root' ); ?>>
 			<nav class="mdotcar-hmenu__nav" aria-label="<?php echo esc_attr( $s['nav_label'] ); ?>">
 				<ul class="mdotcar-hmenu__bar">
-					<?php $this->render_bar( self::tree( $rows, 'desktop' ), $s, $id ); ?>
+					<?php $this->render_bar( self::tree( $rows ), $s, $id ); ?>
 				</ul>
 			</nav>
 			<button type="button" class="mdotcar-hmenu__toggle" aria-expanded="false" aria-controls="mdotcar-drawer-<?php echo esc_attr( $id ); ?>" aria-label="<?php echo esc_attr( $s['toggle_label'] ); ?>">
@@ -1289,7 +1080,7 @@ class MDotCar_Elementor_Widget_Header_Menu extends Widget_Base {
 				?>
 			</button>
 			<div class="mdotcar-hmenu__dim" aria-hidden="true"></div>
-			<?php $this->render_drawer( self::tree( $rows, 'mobile' ), $s, $id ); ?>
+			<?php $this->render_drawer( $s, $id ); ?>
 		</div>
 		<?php
 	}
@@ -1304,9 +1095,9 @@ class MDotCar_Elementor_Widget_Header_Menu extends Widget_Base {
 	private function render_bar( array $tree, array $s, $id ) {
 		foreach ( $tree as $n => $top ) {
 			$kids    = $top['children'];
-			$current = self::is_current( $top['link'] );
+			$current = MDotCar_Elementor_Plugin::is_current_url( $top['link'] );
 			foreach ( $kids as $kid ) {
-				$current = $current || self::is_current( $kid['link'] );
+				$current = $current || MDotCar_Elementor_Plugin::is_current_url( $kid['link'] );
 			}
 			$classes = array( 'mdotcar-hmenu__item' );
 			if ( $kids ) {
@@ -1349,7 +1140,7 @@ class MDotCar_Elementor_Widget_Header_Menu extends Widget_Base {
 	 */
 	private function render_card( array $row, array $s ) {
 		$soon    = 'yes' === $row['soon'];
-		$current = self::is_current( $row['link'] );
+		$current = MDotCar_Elementor_Plugin::is_current_url( $row['link'] );
 		$tag     = $soon || empty( $row['link']['url'] ) ? 'span' : 'a';
 		$attrs   = 'class="mdotcar-hmenu__card' . ( $soon ? ' is-soon' : '' ) . ( $current ? ' is-current' : '' ) . '"';
 		if ( 'a' === $tag ) {
@@ -1380,16 +1171,15 @@ class MDotCar_Elementor_Widget_Header_Menu extends Widget_Base {
 	}
 
 	/**
-	 * The drawer: the top template, the menu list, the bottom template.
+	 * The drawer: its template, and the built-in close button if wanted.
 	 *
-	 * @param array[] $tree Top items with children.
-	 * @param array   $s    Settings.
-	 * @param string  $id   Widget id.
+	 * @param array  $s  Settings.
+	 * @param string $id Widget id.
 	 */
-	private function render_drawer( array $tree, array $s, $id ) {
+	private function render_drawer( array $s, $id ) {
 		$side = 'left' === $s['drawer_side'] ? 'left' : 'right';
 		?>
-		<div class="mdotcar-hmenu-drawer mdotcar-hmenu-drawer--<?php echo esc_attr( $side ); ?> elementor-element-<?php echo esc_attr( $id ); ?>" data-for="<?php echo esc_attr( $id ); ?>" id="mdotcar-drawer-<?php echo esc_attr( $id ); ?>" hidden>
+		<div class="mdotcar-hmenu-drawer mdotcar-hmenu-drawer--<?php echo esc_attr( $side ); ?>" data-for="<?php echo esc_attr( $id ); ?>" id="mdotcar-drawer-<?php echo esc_attr( $id ); ?>" hidden>
 			<div class="mdotcar-hmenu-drawer__scrim" data-mdotcar-close></div>
 			<div class="mdotcar-hmenu-drawer__panel" role="dialog" aria-modal="true" aria-label="<?php echo esc_attr( $s['nav_label'] ); ?>" tabindex="-1">
 				<?php if ( 'yes' === $s['close_button'] ) : ?>
@@ -1397,79 +1187,9 @@ class MDotCar_Elementor_Widget_Header_Menu extends Widget_Base {
 						<?php echo self::svg_close(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static markup. ?>
 					</button>
 				<?php endif; ?>
-				<?php $this->render_template( $s['template_top'], 'top' ); ?>
-				<nav class="mdotcar-hmenu-list__nav" aria-label="<?php echo esc_attr( $s['nav_label'] ); ?>">
-					<ul class="mdotcar-hmenu-list">
-						<?php
-						foreach ( $tree as $n => $top ) {
-							$this->render_row( $top, $s, $id . '-' . $n );
-						}
-						?>
-					</ul>
-				</nav>
-				<?php $this->render_template( $s['template_bottom'], 'bottom' ); ?>
+				<?php $this->render_template( $s['drawer_template'] ); ?>
 			</div>
 		</div>
-		<?php
-	}
-
-	/**
-	 * A row of the drawer's list; with sub items, an accordion.
-	 *
-	 * @param array  $top Top item with children.
-	 * @param array  $s   Settings.
-	 * @param string $key Unique key for ids.
-	 */
-	private function render_row( array $top, array $s, $key ) {
-		$kids    = $top['children'];
-		$label   = ! empty( $top['mobile_label'] ) ? $top['mobile_label'] : $top['label'];
-		$current = self::is_current( $top['link'] );
-		$inside  = false;
-		foreach ( $kids as $kid ) {
-			$inside = $inside || self::is_current( $kid['link'] );
-		}
-		$classes = array( 'mdotcar-hmenu-list__row' );
-		if ( $kids ) {
-			$classes[] = 'has-sub';
-		}
-		if ( $current || $inside ) {
-			$classes[] = 'is-current';
-		}
-		if ( 'yes' === $top['soon'] ) {
-			$classes[] = 'is-soon';
-		}
-		$icon = ! empty( $top['icon']['url'] ) ? '<img class="mdotcar-hmenu-list__icon" src="' . esc_url( $top['icon']['url'] ) . '" alt="" aria-hidden="true">' : '<span class="mdotcar-hmenu-list__icon" aria-hidden="true"></span>';
-		?>
-		<li class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>">
-			<?php if ( $kids ) : ?>
-				<button type="button" class="mdotcar-hmenu-list__link" aria-expanded="false" aria-controls="mdotcar-sub-<?php echo esc_attr( $key ); ?>">
-					<?php echo $icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped above. ?>
-					<span class="mdotcar-hmenu-list__label"><?php echo esc_html( $label ); ?></span>
-					<?php echo self::svg_arrow(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static markup. ?>
-				</button>
-				<div class="mdotcar-hmenu-list__sub" id="mdotcar-sub-<?php echo esc_attr( $key ); ?>">
-					<div class="mdotcar-hmenu-list__sub-inner">
-						<?php
-						foreach ( $kids as $kid ) {
-							$kid_label = ! empty( $kid['mobile_label'] ) ? $kid['mobile_label'] : $kid['label'];
-							$this->render_link( $kid, 'mdotcar-hmenu-list__sublink', $kid_label, $s, self::is_current( $kid['link'] ) );
-						}
-						?>
-					</div>
-				</div>
-			<?php else : ?>
-				<?php
-				$this->render_link(
-					$top,
-					'mdotcar-hmenu-list__link',
-					$icon . '<span class="mdotcar-hmenu-list__label">' . esc_html( $label ) . '</span>' . self::svg_arrow(),
-					$s,
-					$current,
-					true
-				);
-				?>
-			<?php endif; ?>
-		</li>
 		<?php
 	}
 
@@ -1523,10 +1243,9 @@ class MDotCar_Elementor_Widget_Header_Menu extends Widget_Base {
 	/**
 	 * Prints a saved template into the drawer (never itself, never nested in itself).
 	 *
-	 * @param string $id   Template id.
-	 * @param string $slot 'top' or 'bottom'.
+	 * @param string $id Template id.
 	 */
-	private function render_template( $id, $slot ) {
+	private function render_template( $id ) {
 		$id = absint( $id );
 		if ( ! $id || in_array( $id, self::$rendering, true ) || 'publish' !== get_post_status( $id ) ) {
 			return;
@@ -1535,7 +1254,7 @@ class MDotCar_Elementor_Widget_Header_Menu extends Widget_Base {
 		$html              = Elementor::$instance->frontend->get_builder_content_for_display( $id, true );
 		array_pop( self::$rendering );
 		if ( $html ) {
-			echo '<div class="mdotcar-hmenu-drawer__slot mdotcar-hmenu-drawer__slot--' . esc_attr( $slot ) . '">' . $html . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor's rendered template.
+			echo '<div class="mdotcar-hmenu-drawer__content">' . $html . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor's rendered template.
 		}
 	}
 
@@ -1550,15 +1269,6 @@ class MDotCar_Elementor_Widget_Header_Menu extends Widget_Base {
 	 */
 	private static function svg_chevron() {
 		return '<svg width="24" height="25" viewBox="0 0 24 25" fill="none" aria-hidden="true" focusable="false"><path d="M19.92 9.45 13.4 15.97a2 2 0 0 1-2.8 0L4.08 9.45" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-	}
-
-	/**
-	 * The drawer list's arrow (points to the reading end; flipped for LTR in CSS).
-	 *
-	 * @return string
-	 */
-	private static function svg_arrow() {
-		return '<svg class="mdotcar-hmenu-list__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M10 13.28 5.65 8.93a1.32 1.32 0 0 1 0-1.86L10 2.72" stroke="currentColor" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 	}
 
 	/**

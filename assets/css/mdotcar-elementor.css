@@ -422,19 +422,19 @@ a.mdotcar-title {
 }
 
 .mdotcar-hmenu *,
-.mdotcar-hmenu-drawer * {
+.mdotcar-hmenu-drawer__panel {
 	box-sizing: border-box;
 }
 
-.mdotcar-hmenu ul,
-.mdotcar-hmenu-drawer ul {
+/* Only the widget's own parts: the drawer's template keeps its widgets' styles. */
+.mdotcar-hmenu ul {
 	margin: 0;
 	padding: 0;
 	list-style: none;
 }
 
 .mdotcar-hmenu button,
-.mdotcar-hmenu-drawer button {
+.mdotcar-hmenu-drawer__close {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -451,8 +451,7 @@ a.mdotcar-title {
 
 .mdotcar-hmenu button:focus-visible,
 .mdotcar-hmenu a:focus-visible,
-.mdotcar-hmenu-drawer button:focus-visible,
-.mdotcar-hmenu-drawer a:focus-visible {
+.mdotcar-hmenu-drawer__close:focus-visible {
 	outline: 2px solid #7986CB !important;
 	outline-offset: 2px;
 	border-radius: 6px;
@@ -550,21 +549,20 @@ a.mdotcar-hmenu__link:hover,
 	background: var( --mdotcar-hmenu-divider );
 }
 
-/* The mega menu --------------------------------------------------------------- */
+/* The mega menu: the window's full width; its cards in a centred column. */
 
 .mdotcar-hmenu__mega {
 	position: fixed;
 	z-index: 1000;
 	top: var( --mdotcar-mega-top, var( --mdotcar-hmenu-height ) );
-	left: 50%;
-	width: min( 100vw, calc( var( --mdotcar-mega-width ) + 64px ) );
+	right: 0;
+	left: 0;
 	max-height: calc( 100vh - var( --mdotcar-mega-top, var( --mdotcar-hmenu-height ) ) );
 	overflow-y: auto;
-	padding: 40px 32px 69px;
+	padding: 40px 16px 69px;
 	border-radius: 0 0 24px 24px;
 	background: var( --mdotcar-mega-bg );
 	box-shadow: 0 10px 20px rgba( 0, 0, 0, 0.15 );
-	transform: translateX( -50% );
 	visibility: hidden;
 	opacity: 0;
 	transition: opacity 0.2s ease, visibility 0s linear 0.2s;
@@ -755,16 +753,6 @@ a.mdotcar-hmenu__card:focus-visible .mdotcar-hmenu__card-title,
 	--mdotcar-drawer-bg: #FFFFFF;
 	--mdotcar-drawer-scrim: rgba( 0, 0, 0, 0.4 );
 	--mdotcar-drawer-blur: 8px;
-	--mdotcar-list-color: #424242;
-	--mdotcar-list-active: #3949AB;
-	--mdotcar-list-open-bg: #E8EAF6;
-	--mdotcar-list-pad: 12px;
-	--mdotcar-list-icon: 16px;
-	--mdotcar-list-sep: #FAFAFA;
-	--mdotcar-list-arrow: #9E9E9E;
-	--mdotcar-sub-color: #616161;
-	--mdotcar-sub-line: #C5CAE9;
-	--mdotcar-arrow-flip: -1;
 	position: fixed;
 	z-index: 99999;
 	inset: 0;
@@ -790,7 +778,6 @@ a.mdotcar-hmenu__card:focus-visible .mdotcar-hmenu__card-title,
 	bottom: 0;
 	display: flex;
 	flex-direction: column;
-	gap: 16px;
 	width: min( var( --mdotcar-drawer-width ), 88vw );
 	padding: 28px 16px;
 	overflow-y: auto;
@@ -841,134 +828,307 @@ html.mdotcar-hmenu-locked body {
 	overflow: hidden !important;
 }
 
-/* The drawer's menu ----------------------------------------------------------- */
-
-.mdotcar-hmenu-list__row {
-	position: relative;
-	border-radius: 8px;
-	transition: background-color 0.25s ease;
+/* The template fills the drawer; Elementor's own wrapper takes its width. */
+.mdotcar-hmenu-drawer__content {
+	flex: 1 0 auto;
 }
 
-.mdotcar-hmenu-list__row + .mdotcar-hmenu-list__row::before {
+/* -----------------------------------------------------------------------------
+ * Mobile Menu — the drawer's menu: rows with an icon and an arrow, sub items in
+ * an accordion along a guide line with a dot each, buttons below. The defaults
+ * are mdotcar.com's drawer.
+ * -------------------------------------------------------------------------- */
+
+.mdotcar-mmenu {
+	--mdotcar-mm-row: 44px;
+	--mdotcar-mm-color: #424242;
+	--mdotcar-mm-active: #3949AB;
+	--mdotcar-mm-open-bg: #E8EAF6;
+	--mdotcar-mm-icon: 16px;
+	--mdotcar-mm-arrow: #616161;
+	--mdotcar-mm-arrow-open: #9E9E9E;
+	--mdotcar-mm-sep: #FAFAFA;
+	--mdotcar-mm-sub-row: 42px;
+	--mdotcar-mm-sub-color: #616161;
+	--mdotcar-mm-line: #EEEFF8;
+	--mdotcar-mm-dot: #D9DCF0;
+	--mdotcar-mm-btn-h: 48px;
+	--mdotcar-mm-btn-r: 8px;
+	--mdotcar-mm-btn-solid: #3F51B5;
+	--mdotcar-mm-btn-solid-text: #FFFFFF;
+	--mdotcar-mm-btn-line: #C5CAE9;
+	--mdotcar-mm-btn-line-text: #3F51B5;
+	--mdotcar-mm-flip: -1;
+	/* Where the icon column's middle is: the guide line and its dots sit under it. */
+	--mdotcar-mm-axis: calc( 12px + var( --mdotcar-mm-icon ) / 2 );
+	--mdotcar-mm-text: calc( 20px + var( --mdotcar-mm-icon ) );
+}
+
+.mdotcar-mmenu *,
+.mdotcar-mmenu *::before,
+.mdotcar-mmenu *::after {
+	box-sizing: border-box;
+}
+
+.mdotcar-mmenu ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.mdotcar-mmenu li::marker {
+	content: none;
+}
+
+.mdotcar-mmenu__row {
+	position: relative;
+}
+
+/* A hairline between rows, from the text's start (none around the open one). */
+.mdotcar-mmenu__row + .mdotcar-mmenu__row::before {
 	content: "";
 	position: absolute;
 	top: 0;
-	inset-inline-start: 36px;
+	inset-inline-start: var( --mdotcar-mm-text );
 	inset-inline-end: 0;
 	height: 1px;
-	background: var( --mdotcar-list-sep );
+	background: var( --mdotcar-mm-sep );
 }
 
-.mdotcar-hmenu-list__row.is-open {
-	background: var( --mdotcar-list-open-bg );
+.mdotcar-mmenu__row.is-open::before,
+.mdotcar-mmenu__row.is-open + .mdotcar-mmenu__row::before {
+	display: none;
 }
 
-.mdotcar-hmenu-list__row.is-open::before,
-.mdotcar-hmenu-list__row.is-open + .mdotcar-hmenu-list__row::before {
-	opacity: 0;
-}
-
-/* Through the drawer, so it outranks the button reset above (the accordion row is a button). */
-.mdotcar-hmenu-drawer .mdotcar-hmenu-list__link {
-	display: flex !important;
+/* Through the root, so it outranks the theme's button and link styles. */
+.mdotcar-mmenu .mdotcar-mmenu__link {
+	display: flex;
 	align-items: center;
 	gap: 8px;
 	width: 100%;
-	padding: var( --mdotcar-list-pad ) 0 !important;
-	padding-inline: 12px 16px !important;
-	color: var( --mdotcar-list-color ) !important;
+	min-height: var( --mdotcar-mm-row );
+	margin: 0;
+	padding: 0 12px 0 16px;
+	padding-inline: 12px 16px;
+	border: 0;
+	border-radius: 8px;
+	background: transparent;
+	box-shadow: none;
+	color: var( --mdotcar-mm-color );
+	font-family: inherit;
 	font-size: 14px;
 	font-weight: 400;
 	line-height: 20px;
+	text-align: start;
 	text-decoration: none;
+	text-transform: none;
+	cursor: pointer;
+	transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-.mdotcar-hmenu-list__row.is-current > .mdotcar-hmenu-list__link,
-.mdotcar-hmenu-list__row.is-open > .mdotcar-hmenu-list__link {
-	color: var( --mdotcar-list-active ) !important;
+.mdotcar-mmenu .mdotcar-mmenu__link:hover,
+.mdotcar-mmenu .mdotcar-mmenu__link:focus {
+	background: transparent;
+	color: var( --mdotcar-mm-color );
 }
 
-.mdotcar-hmenu-list__link.is-soon {
+.mdotcar-mmenu .mdotcar-mmenu__row.is-current > .mdotcar-mmenu__link,
+.mdotcar-mmenu .mdotcar-mmenu__row.is-open > .mdotcar-mmenu__link {
+	color: var( --mdotcar-mm-active );
+}
+
+.mdotcar-mmenu .mdotcar-mmenu__row.is-open > .mdotcar-mmenu__link {
+	background: var( --mdotcar-mm-open-bg );
+}
+
+.mdotcar-mmenu .mdotcar-mmenu__link:focus-visible,
+.mdotcar-mmenu .mdotcar-mmenu__sublink:focus-visible,
+.mdotcar-mmenu .mdotcar-mmenu__btn:focus-visible {
+	outline: 2px solid #7986CB;
+	outline-offset: 1px;
+}
+
+.mdotcar-mmenu__link.is-soon,
+.mdotcar-mmenu__sublink.is-soon {
 	opacity: 0.3;
 	cursor: default;
 }
 
-.mdotcar-hmenu-list__icon {
+.mdotcar-mmenu__icon {
+	position: relative;
 	flex: 0 0 auto;
+	width: var( --mdotcar-mm-icon );
+	height: var( --mdotcar-mm-icon );
+}
+
+.mdotcar-mmenu__img {
+	position: absolute;
+	inset: 0;
 	display: block;
-	width: var( --mdotcar-list-icon );
-	height: var( --mdotcar-list-icon );
+	width: 100%;
+	height: 100%;
 	object-fit: contain;
 }
 
-.mdotcar-hmenu-list__label {
+/* A coloured icon, when there is one, while open or current. */
+.mdotcar-mmenu__img--active,
+.mdotcar-mmenu__row.has-active-icon.is-open .mdotcar-mmenu__img:not( .mdotcar-mmenu__img--active ),
+.mdotcar-mmenu__row.has-active-icon.is-current .mdotcar-mmenu__img:not( .mdotcar-mmenu__img--active ) {
+	visibility: hidden;
+}
+
+.mdotcar-mmenu__row.is-open .mdotcar-mmenu__img--active,
+.mdotcar-mmenu__row.is-current .mdotcar-mmenu__img--active {
+	visibility: visible;
+}
+
+.mdotcar-mmenu__label {
 	flex: 1 1 auto;
 	min-width: 0;
 }
 
-.mdotcar-hmenu-list__arrow {
+.mdotcar-mmenu__arrow {
 	flex: 0 0 auto;
-	color: var( --mdotcar-list-arrow );
-	transform: scaleX( var( --mdotcar-arrow-flip ) );
-	transition: transform 0.3s ease;
+	color: var( --mdotcar-mm-arrow );
+	transform: scaleX( var( --mdotcar-mm-flip ) );
+	transition: transform 0.3s ease, color 0.3s ease;
 }
 
-.mdotcar-hmenu-list__row.is-open .mdotcar-hmenu-list__arrow {
-	transform: scaleX( var( --mdotcar-arrow-flip ) ) rotate( -90deg );
+.mdotcar-mmenu__row.is-open .mdotcar-mmenu__arrow {
+	color: var( --mdotcar-mm-arrow-open );
+	transform: scaleX( var( --mdotcar-mm-flip ) ) rotate( -90deg );
+}
+
+.mdotcar-mmenu__soon {
+	margin-inline-start: 5px;
+	color: #F44336;
+	font-size: 12px;
+	line-height: 19.2px;
 }
 
 /* The accordion: its height animates from nothing to its content's. */
-.mdotcar-hmenu-list__sub {
+.mdotcar-mmenu__sub {
 	display: grid;
 	grid-template-rows: 0fr;
 	transition: grid-template-rows 0.3s cubic-bezier( 0.2, 0.7, 0.2, 1 );
 }
 
-.mdotcar-hmenu-list__row.is-open > .mdotcar-hmenu-list__sub {
+.mdotcar-mmenu__row.is-open > .mdotcar-mmenu__sub {
 	grid-template-rows: 1fr;
 }
 
-.mdotcar-hmenu-list__sub-inner {
-	display: flex;
-	flex-direction: column;
+.mdotcar-mmenu__sublist {
+	position: relative;
 	min-height: 0;
 	overflow: hidden;
-	margin-inline-start: 19px;
-	padding-inline-start: 16px;
-	border-inline-start: 1px solid var( --mdotcar-sub-line );
 	visibility: hidden;
 	transition: visibility 0s linear 0.3s;
 }
 
-.mdotcar-hmenu-list__row.is-open .mdotcar-hmenu-list__sub-inner {
-	margin-bottom: 10px;
+.mdotcar-mmenu__row.is-open .mdotcar-mmenu__sublist {
+	padding-bottom: 10px !important;
 	visibility: visible;
 	transition: none;
 }
 
-.mdotcar-hmenu-list__sublink {
+/* The guide line, from the first dot to the last. */
+.mdotcar-mmenu__sublist::before {
+	content: "";
+	position: absolute;
+	top: calc( var( --mdotcar-mm-sub-row ) / 2 );
+	bottom: calc( var( --mdotcar-mm-sub-row ) / 2 + 10px );
+	inset-inline-start: calc( var( --mdotcar-mm-axis ) - 0.5px );
+	width: 1px;
+	background: var( --mdotcar-mm-line );
+}
+
+.mdotcar-mmenu__sublist > li {
+	position: relative;
+}
+
+/* A dot on the line beside each sub item. */
+.mdotcar-mmenu__sublist > li::before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	inset-inline-start: calc( var( --mdotcar-mm-axis ) - 2.5px );
+	width: 5px;
+	height: 5px;
+	margin-top: -2.5px;
+	border-radius: 50%;
+	background: var( --mdotcar-mm-dot );
+}
+
+.mdotcar-mmenu .mdotcar-mmenu__sublink {
 	display: flex;
 	align-items: center;
-	min-height: 42px;
-	color: var( --mdotcar-sub-color ) !important;
+	min-height: var( --mdotcar-mm-sub-row );
+	padding-inline-start: var( --mdotcar-mm-text );
+	color: var( --mdotcar-mm-sub-color );
 	font-size: 12px;
+	font-weight: 400;
 	line-height: 19.2px;
 	text-decoration: none;
+	transition: color 0.2s ease;
 }
 
-a.mdotcar-hmenu-list__sublink:hover,
-.mdotcar-hmenu-list__sublink.is-current {
-	color: var( --mdotcar-list-active ) !important;
+.mdotcar-mmenu a.mdotcar-mmenu__sublink:hover,
+.mdotcar-mmenu .mdotcar-mmenu__sublink.is-current {
+	color: var( --mdotcar-mm-active );
 }
 
-.mdotcar-hmenu-list__sublink.is-soon {
-	opacity: 0.3;
-	cursor: default;
+/* The buttons. */
+.mdotcar-mmenu__buttons {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin-top: 12px;
+	padding-top: 12px;
+	border-top: 1px solid var( --mdotcar-mm-sep );
+}
+
+.mdotcar-mmenu .mdotcar-mmenu__btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	height: var( --mdotcar-mm-btn-h );
+	border-radius: var( --mdotcar-mm-btn-r );
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 20px;
+	text-decoration: none;
+	transition: filter 0.2s ease;
+}
+
+.mdotcar-mmenu .mdotcar-mmenu__btn--solid {
+	border: 1px solid var( --mdotcar-mm-btn-solid );
+	background: var( --mdotcar-mm-btn-solid );
+	color: var( --mdotcar-mm-btn-solid-text );
+}
+
+.mdotcar-mmenu .mdotcar-mmenu__btn--outline {
+	border: 1px solid var( --mdotcar-mm-btn-line );
+	background: #FFFFFF;
+	color: var( --mdotcar-mm-btn-line-text );
+}
+
+.mdotcar-mmenu a.mdotcar-mmenu__btn:hover {
+	filter: brightness( 0.96 );
+}
+
+.mdotcar-mmenu__btn img {
+	display: block;
+	width: 20px;
+	height: 20px;
+	object-fit: contain;
 }
 
 @media ( prefers-reduced-motion: reduce ) {
 	.mdotcar-hmenu *,
-	.mdotcar-hmenu-drawer * {
+	.mdotcar-hmenu-drawer__scrim,
+	.mdotcar-hmenu-drawer__panel,
+	.mdotcar-mmenu * {
 		transition-duration: 0.01ms !important;
 	}
 }

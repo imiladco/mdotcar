@@ -26,10 +26,10 @@
 }
 
 /*
- * Header Menu: the drawer's arrows point to the reading end, which is the left
- * in RTL; the stylesheet flips them for LTR.
+ * Mobile Menu: the arrows point to the reading end, which is the left in RTL;
+ * the stylesheet flips them for LTR.
  */
 
-.mdotcar-hmenu-drawer {
-	--mdotcar-arrow-flip: 1;
+.mdotcar-mmenu {
+	--mdotcar-mm-flip: 1;
 }

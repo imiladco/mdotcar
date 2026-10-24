@@ -85,7 +85,10 @@
  * Drawer: moved to <body> (no parent's transform or overflow can trap it), a
  * modal dialog: focus goes in and stays, the page does not scroll behind it,
  * and Esc, the scrim, the close button, a link in it, or anything with the
- * class mdotcar-menu-close closes it. Sub items open as an accordion.
+ * class mdotcar-menu-close closes it. Its content is a saved template.
+ *
+ * Mobile Menu (MDotCar_Elementor_Widget_Mobile_Menu): a row with sub items
+ * opens and closes them, wherever the menu is.
  */
 ( function () {
 	'use strict';
@@ -360,11 +363,6 @@
 			if ( ! target.closest ) {
 				return;
 			}
-			var acc = target.closest( '.mdotcar-hmenu-list__row.has-sub > .mdotcar-hmenu-list__link' );
-			if ( acc ) {
-				self.fold( acc );
-				return;
-			}
 			if ( target.closest( '[data-mdotcar-close], .mdotcar-menu-close' ) ) {
 				event.preventDefault();
 				self.close();
@@ -438,18 +436,6 @@
 	};
 
 	/**
-	 * Opens or closes an accordion row.
-	 *
-	 * @param {Element} button The row's button.
-	 */
-	Drawer.prototype.fold = function ( button ) {
-		var row = button.parentNode;
-		var open = ! row.classList.contains( 'is-open' );
-		row.classList.toggle( 'is-open', open );
-		button.setAttribute( 'aria-expanded', open ? 'true' : 'false' );
-	};
-
-	/**
 	 * Keeps Tab inside the open drawer.
 	 *
 	 * @param {KeyboardEvent} event The Tab press.
@@ -485,6 +471,18 @@
 			}
 		} );
 	}
+
+	// Mobile Menu: a row with sub items is an accordion.
+	document.addEventListener( 'click', function ( event ) {
+		var button = event.target.closest ? event.target.closest( '.mdotcar-mmenu__row.has-sub > .mdotcar-mmenu__link' ) : null;
+		if ( ! button ) {
+			return;
+		}
+		var row = button.parentNode;
+		var open = ! row.classList.contains( 'is-open' );
+		row.classList.toggle( 'is-open', open );
+		button.setAttribute( 'aria-expanded', open ? 'true' : 'false' );
+	} );
 
 	window.addEventListener( 'elementor/frontend/init', function () {
 		if ( window.elementorFrontend && window.elementorFrontend.hooks ) {

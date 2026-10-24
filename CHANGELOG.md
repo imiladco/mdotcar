@@ -17,6 +17,31 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.9.0] - 2026-10-24
+
+### Added
+
+- **MDotCar Mobile Menu** widget: the drawer's menu as mdotcar.com has it —
+  rows with an icon and an arrow, a top item with sub items opening them as an
+  accordion (its row tinted, a coloured icon if one is set, the arrow turning
+  down), the sub items along a guide line with a dot beside each, and the
+  app-download and sign-in buttons below (filled or outline). Its own
+  repeater; a new widget starts as the site's current drawer menu. Sub items
+  start open when one is the current page; the current page is marked.
+
+### Changed
+
+- **Header Menu: the drawer's whole content is one saved template**, chosen in
+  the widget ("Drawer Content"), instead of a template above and one below a
+  built-in list. The logo, the search and the MDotCar Mobile Menu widget are
+  laid out in it like on any page. The Header Menu's items are now the bar's
+  only, so their drawer-only fields ("Label in the Drawer", "Show On", the
+  top items' icons) and the drawer list's style section are gone.
+- **The mega menu spans the window's full width**; its cards stay in the
+  centred column (Content Width) where they were.
+- The widget's button and list resets no longer reach into the drawer's
+  template, so its widgets (the search's button, say) keep their own styles.
+
 ## [0.8.0] - 2026-10-24
 
 ### Added

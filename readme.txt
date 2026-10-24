@@ -4,7 +4,7 @@ Tags: elementor, widget, title, heading, flexbox
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.8.0
+Stable tag: 0.9.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,11 +14,13 @@ Custom Elementor widgets for mdotcar.com, starting with the Title widget.
 
 Adds an **MDotCar** category to the Elementor panel.
 
-**MDotCar Header Menu** — the main menu from one list of items: a bar with a
-mega menu (cards with an icon and a description) on wide screens, and a toggle
-with an off-canvas drawer on narrow ones. The drawer's content around the menu
-comes from two saved Elementor templates, so a logo, a search or app buttons fit
-there. Opens by hover, click, touch or keyboard; marks the current page.
+**MDotCar Header Menu** — the main menu: a bar with a full-width mega menu
+(cards with an icon and a description) on wide screens, and a toggle with an
+off-canvas drawer on narrow ones. The drawer shows a saved Elementor template
+of your choice. Opens by hover, click, touch or keyboard; marks the current page.
+
+**MDotCar Mobile Menu** — the menu for that drawer template: rows with icons,
+an accordion for sub items along a guide line with dots, and buttons below.
 
 **MDotCar Vehicle Tariff (Style 1)** — car-wash tariff cards. Define any number
 of vehicles, each with an image, badge, title, up to three tariff columns, a
@@ -44,6 +46,12 @@ and height can each be left to fit the content or set to a custom value.
    *MDotCar*.
 
 == Changelog ==
+
+= 0.9.0 =
+* New: MDotCar Mobile Menu widget, the drawer's menu with an accordion, a
+  guide line with dots, and buttons.
+* Changed: the Header Menu's drawer is one saved template you choose; the
+  mega menu spans the full width.
 
 = 0.8.0 =
 * New: MDotCar Header Menu widget. One list of items for a desktop bar with a
