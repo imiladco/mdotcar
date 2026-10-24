@@ -76,7 +76,7 @@ msgstr ""
 msgid "Aligns the text inside the title element. Where the title sits in the box is Justify Content's job."
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-header-buttons.php:586
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:587
 msgid "All Buttons"
 msgstr ""
 
@@ -392,7 +392,7 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-header-buttons.php:651
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:652
 msgid "Desktop"
 msgstr ""
 
@@ -556,7 +556,7 @@ msgstr ""
 msgid "Gap Between Cards"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-header-buttons.php:602
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:603
 msgid "Gap Between Icon and Text"
 msgstr ""
 
@@ -630,7 +630,7 @@ msgstr ""
 msgid "Hover Transition"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-header-buttons.php:629
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:630
 msgid "Hover Transition (ms)"
 msgstr ""
 
@@ -903,7 +903,7 @@ msgstr ""
 msgid "Menu Name for Screen Readers"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-header-buttons.php:564
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:565
 msgid "Middle"
 msgstr ""
 
@@ -911,12 +911,12 @@ msgstr ""
 msgid "Minimum (grows with content)"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-header-buttons.php:613
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:614
 #: widgets/class-mdotcar-elementor-widget-title.php:565
 msgid "Minimum Height"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-header-buttons.php:653
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:654
 msgid "Mobile"
 msgstr ""
 
@@ -1142,7 +1142,7 @@ msgstr ""
 msgid "Rows"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-header-buttons.php:568
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:569
 msgid "Same Height"
 msgstr ""
 
@@ -1279,7 +1279,7 @@ msgstr ""
 msgid "Sub items start open when one of them is the page being viewed."
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-header-buttons.php:652
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:653
 msgid "Tablet"
 msgstr ""
 
@@ -1393,7 +1393,7 @@ msgstr ""
 msgid "Toman"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-header-buttons.php:560
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:561
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1030
 msgid "Top"
 msgstr ""
@@ -1484,15 +1484,15 @@ msgstr ""
 msgid "localStorage"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-header-buttons.php:666
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:667
 msgid "— Any post"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-header-buttons.php:667
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:668
 msgid "— Archives (categories, tags…)"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-header-buttons.php:664
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:665
 msgid "— Home page"
 msgstr ""
 
@@ -1500,14 +1500,14 @@ msgstr ""
 msgid "— None —"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-header-buttons.php:669
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:670
 msgid "— Not found (404)"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-header-buttons.php:665
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:666
 msgid "— Posts page (blog)"
 msgstr ""
 
-#: widgets/class-mdotcar-elementor-widget-header-buttons.php:668
+#: widgets/class-mdotcar-elementor-widget-header-buttons.php:669
 msgid "— Search results"
 msgstr ""

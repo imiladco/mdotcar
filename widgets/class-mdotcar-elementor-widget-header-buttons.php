@@ -555,6 +555,7 @@ class MDotCar_Elementor_Widget_Header_Buttons extends Widget_Base {
 			array(
 				'label'     => __( 'Vertical Alignment', 'mdotcar-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
+				'default'   => 'stretch',
 				'options'   => array(
 					'flex-start' => array(
 						'title' => __( 'Top', 'mdotcar-elementor' ),

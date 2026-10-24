@@ -17,6 +17,16 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.10.1] - 2026-10-24
+
+### Fixed
+
+- **Header Buttons were not the same height**: the row centred them, so the
+  call button (less padding, no border) stood shorter than the sign-in one
+  (34px against 44px; 32px against 38px on phones). The row now stretches
+  every button to the tallest, as the site's own header did; Vertical
+  Alignment defaults to Same Height and can still centre them.
+
 ## [0.10.0] - 2026-10-24
 
 ### Added

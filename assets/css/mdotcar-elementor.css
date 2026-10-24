@@ -1191,11 +1191,12 @@ html.mdotcar-hmenu-locked body {
  * so any value set there wins over these.
  * -------------------------------------------------------------------------- */
 
+/* Stretched: every button as tall as the tallest, as the site's header has them. */
 .mdotcar-hbtns {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	align-items: center;
+	align-items: stretch;
 	gap: 8px;
 }
 
