@@ -384,3 +384,591 @@ a.mdotcar-title {
 	font-size: var( --mdotcar-action-icon, 20px );
 	line-height: 1;
 }
+
+/* -----------------------------------------------------------------------------
+ * Header Menu — a bar with a mega menu on wide screens, a drawer on narrow ones
+ *
+ * The defaults are mdotcar.com's header design; the panel's controls set the
+ * custom properties below. The mega menu and the drawer are position: fixed
+ * (the script places the panel under the header and moves the drawer to
+ * <body>, so no parent's overflow or stacking can cut them).
+ * -------------------------------------------------------------------------- */
+
+.mdotcar-hmenu {
+	--mdotcar-hmenu-gap: 48px;
+	--mdotcar-hmenu-height: 88px;
+	--mdotcar-hmenu-color-normal: #424242;
+	--mdotcar-hmenu-color-hover: #3F51B5;
+	--mdotcar-hmenu-color-active: #3F51B5;
+	--mdotcar-hmenu-caret-normal: #BDBDBD;
+	--mdotcar-hmenu-caret-hover: #7986CB;
+	--mdotcar-hmenu-indicator: #3F51B5;
+	--mdotcar-hmenu-divider: #E8EAF6;
+	--mdotcar-mega-width: 1170px;
+	--mdotcar-mega-bg: #FFFFFF;
+	--mdotcar-mega-dim: rgba( 117, 117, 117, 0.5 );
+	--mdotcar-card-hover-bg: #F4F5F7;
+	--mdotcar-card-title: #424242;
+	--mdotcar-card-title-hover: #3F51B5;
+	--mdotcar-card-desc: #616161;
+	--mdotcar-card-icon: 40px;
+	--mdotcar-card-icon-pad: 8px;
+	--mdotcar-card-icon-border: #F5F5F5;
+	--mdotcar-toggle-size: 24px;
+	--mdotcar-toggle-color: #424242;
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.mdotcar-hmenu *,
+.mdotcar-hmenu-drawer * {
+	box-sizing: border-box;
+}
+
+.mdotcar-hmenu ul,
+.mdotcar-hmenu-drawer ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.mdotcar-hmenu button,
+.mdotcar-hmenu-drawer button {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 0;
+	background: none;
+	box-shadow: none;
+	color: inherit;
+	font: inherit;
+	line-height: inherit;
+	text-align: inherit;
+	text-transform: none;
+	cursor: pointer;
+}
+
+.mdotcar-hmenu button:focus-visible,
+.mdotcar-hmenu a:focus-visible,
+.mdotcar-hmenu-drawer button:focus-visible,
+.mdotcar-hmenu-drawer a:focus-visible {
+	outline: 2px solid #7986CB !important;
+	outline-offset: 2px;
+	border-radius: 6px;
+}
+
+/* The bar --------------------------------------------------------------------- */
+
+.mdotcar-hmenu__nav {
+	flex: 1 1 auto;
+}
+
+.mdotcar-hmenu__bar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: var( --mdotcar-hmenu-gap );
+}
+
+.mdotcar-hmenu__item {
+	position: relative;
+	display: flex;
+	align-items: center;
+	height: var( --mdotcar-hmenu-height );
+}
+
+.mdotcar-hmenu__link {
+	display: inline-flex;
+	align-items: center;
+	color: var( --mdotcar-hmenu-color-normal );
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 27.2px;
+	white-space: nowrap;
+	text-decoration: none;
+	transition: color 0.25s ease;
+}
+
+a.mdotcar-hmenu__link:hover,
+.mdotcar-hmenu__item.is-open > .mdotcar-hmenu__link {
+	color: var( --mdotcar-hmenu-color-hover );
+}
+
+.mdotcar-hmenu__item.is-current > .mdotcar-hmenu__link {
+	color: var( --mdotcar-hmenu-color-active );
+}
+
+.mdotcar-hmenu__caret {
+	display: inline-flex;
+	align-items: center;
+	margin-inline-start: 8px !important;
+	color: var( --mdotcar-hmenu-caret-normal ) !important;
+	transition: color 0.25s ease, transform 0.3s ease;
+}
+
+.mdotcar-hmenu__caret svg {
+	display: block;
+	width: 24px;
+	height: 24px;
+}
+
+.mdotcar-hmenu__item.is-open > .mdotcar-hmenu__caret {
+	color: var( --mdotcar-hmenu-caret-hover ) !important;
+	transform: rotate( 180deg );
+}
+
+/* The line under the open item, on the header's bottom edge. */
+.mdotcar-hmenu__item.has-mega::after {
+	content: "";
+	position: absolute;
+	inset-inline: -18px;
+	bottom: 0;
+	height: 1px;
+	background: var( --mdotcar-hmenu-indicator );
+	opacity: 0;
+	transition: opacity 0.2s ease;
+}
+
+.mdotcar-hmenu__item.is-open::after {
+	opacity: 1;
+}
+
+/* A thin divider before the last item (the "join as a rescuer" link). */
+.mdotcar-hmenu-divider-yes .mdotcar-hmenu__item:last-child {
+	margin-inline-start: 16px;
+}
+
+.mdotcar-hmenu-divider-yes .mdotcar-hmenu__item:last-child::before {
+	content: "";
+	position: absolute;
+	inset-inline-start: -32px;
+	top: 50%;
+	width: 1px;
+	height: 32px;
+	margin-top: -16px;
+	background: var( --mdotcar-hmenu-divider );
+}
+
+/* The mega menu --------------------------------------------------------------- */
+
+.mdotcar-hmenu__mega {
+	position: fixed;
+	z-index: 1000;
+	top: var( --mdotcar-mega-top, var( --mdotcar-hmenu-height ) );
+	left: 50%;
+	width: min( 100vw, calc( var( --mdotcar-mega-width ) + 64px ) );
+	max-height: calc( 100vh - var( --mdotcar-mega-top, var( --mdotcar-hmenu-height ) ) );
+	overflow-y: auto;
+	padding: 40px 32px 69px;
+	border-radius: 0 0 24px 24px;
+	background: var( --mdotcar-mega-bg );
+	box-shadow: 0 10px 20px rgba( 0, 0, 0, 0.15 );
+	transform: translateX( -50% );
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+}
+
+.mdotcar-hmenu__item.is-open > .mdotcar-hmenu__mega,
+.mdotcar-hmenu.is-editor-mega .mdotcar-hmenu__mega {
+	visibility: visible;
+	opacity: 1;
+	transition: opacity 0.2s ease;
+}
+
+.mdotcar-hmenu__mega-grid {
+	display: grid;
+	grid-template-columns: repeat( 3, minmax( 0, 1fr ) );
+	gap: 24px;
+	max-width: var( --mdotcar-mega-width );
+	margin: 0 auto !important;
+	transform: translateY( -6px );
+	transition: transform 0.3s cubic-bezier( 0.2, 0.7, 0.2, 1 );
+}
+
+.mdotcar-hmenu__item.is-open .mdotcar-hmenu__mega-grid {
+	transform: none;
+}
+
+.mdotcar-hmenu__dim {
+	position: fixed;
+	z-index: 999;
+	top: var( --mdotcar-mega-top, var( --mdotcar-hmenu-height ) );
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: var( --mdotcar-mega-dim );
+	visibility: hidden;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+}
+
+.mdotcar-hmenu.is-mega-open[data-dim="1"] .mdotcar-hmenu__dim {
+	visibility: visible;
+	opacity: 1;
+	pointer-events: auto;
+	transition: opacity 0.2s ease;
+}
+
+.mdotcar-hmenu__card {
+	display: flex;
+	gap: 12px;
+	height: 100%;
+	padding: 16px;
+	border-radius: 16px;
+	color: inherit;
+	text-decoration: none;
+	transition: background-color 0.3s ease;
+}
+
+a.mdotcar-hmenu__card:hover,
+a.mdotcar-hmenu__card:focus-visible {
+	background-color: var( --mdotcar-card-hover-bg );
+}
+
+.mdotcar-hmenu__card.is-soon {
+	opacity: 0.3;
+	cursor: default;
+}
+
+.mdotcar-hmenu__card-icon {
+	flex: 0 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: var( --mdotcar-card-icon );
+	height: var( --mdotcar-card-icon );
+	padding: var( --mdotcar-card-icon-pad );
+	border: 1px solid var( --mdotcar-card-icon-border );
+	border-radius: 50%;
+	background: #FFFFFF;
+}
+
+.mdotcar-hmenu__card-icon img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	transition: filter 0.4s ease;
+}
+
+.mdotcar-hmenu-gray-yes .mdotcar-hmenu__card-icon img {
+	filter: grayscale( 1 );
+}
+
+.mdotcar-hmenu-gray-yes a.mdotcar-hmenu__card:hover .mdotcar-hmenu__card-icon img,
+.mdotcar-hmenu-gray-yes a.mdotcar-hmenu__card:focus-visible .mdotcar-hmenu__card-icon img {
+	filter: none;
+}
+
+.mdotcar-hmenu__card-text {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding-top: 6px;
+	min-width: 0;
+}
+
+.mdotcar-hmenu__card-title {
+	color: var( --mdotcar-card-title );
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 28.6px;
+	transition: color 0.4s ease;
+}
+
+a.mdotcar-hmenu__card:hover .mdotcar-hmenu__card-title,
+a.mdotcar-hmenu__card:focus-visible .mdotcar-hmenu__card-title,
+.mdotcar-hmenu__card.is-current .mdotcar-hmenu__card-title {
+	color: var( --mdotcar-card-title-hover );
+}
+
+.mdotcar-hmenu__card-desc {
+	color: var( --mdotcar-card-desc );
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 20.02px;
+}
+
+.mdotcar-hmenu__soon {
+	margin-inline-start: 4px;
+	color: #F44336;
+	font-size: 0.8em;
+	font-weight: 400;
+}
+
+/* The toggle ------------------------------------------------------------------ */
+
+.mdotcar-hmenu__toggle {
+	display: none !important;
+	align-items: center;
+	justify-content: center;
+	width: var( --mdotcar-toggle-size );
+	height: var( --mdotcar-toggle-size );
+	color: var( --mdotcar-toggle-color ) !important;
+}
+
+.mdotcar-hmenu__toggle svg,
+.mdotcar-hmenu__toggle img {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+/* Which one shows: the bar, or the toggle (the drawer goes with the toggle). */
+.mdotcar-hmenu--bp-always .mdotcar-hmenu__nav {
+	display: none;
+}
+
+.mdotcar-hmenu--bp-always .mdotcar-hmenu__toggle {
+	display: inline-flex !important;
+}
+
+@media ( max-width: 1024px ) {
+	.mdotcar-hmenu--bp-tablet .mdotcar-hmenu__nav,
+	.mdotcar-hmenu--bp-tablet .mdotcar-hmenu__dim {
+		display: none;
+	}
+
+	.mdotcar-hmenu--bp-tablet .mdotcar-hmenu__toggle {
+		display: inline-flex !important;
+	}
+}
+
+@media ( max-width: 767px ) {
+	.mdotcar-hmenu--bp-mobile .mdotcar-hmenu__nav,
+	.mdotcar-hmenu--bp-mobile .mdotcar-hmenu__dim {
+		display: none;
+	}
+
+	.mdotcar-hmenu--bp-mobile .mdotcar-hmenu__toggle {
+		display: inline-flex !important;
+	}
+}
+
+/* The drawer ------------------------------------------------------------------ */
+
+.mdotcar-hmenu-drawer {
+	--mdotcar-drawer-width: 292px;
+	--mdotcar-drawer-bg: #FFFFFF;
+	--mdotcar-drawer-scrim: rgba( 0, 0, 0, 0.4 );
+	--mdotcar-drawer-blur: 8px;
+	--mdotcar-list-color: #424242;
+	--mdotcar-list-active: #3949AB;
+	--mdotcar-list-open-bg: #E8EAF6;
+	--mdotcar-list-pad: 12px;
+	--mdotcar-list-icon: 16px;
+	--mdotcar-list-sep: #FAFAFA;
+	--mdotcar-list-arrow: #9E9E9E;
+	--mdotcar-sub-color: #616161;
+	--mdotcar-sub-line: #C5CAE9;
+	--mdotcar-arrow-flip: -1;
+	position: fixed;
+	z-index: 99999;
+	inset: 0;
+}
+
+.mdotcar-hmenu-drawer[hidden] {
+	display: none;
+}
+
+.mdotcar-hmenu-drawer__scrim {
+	position: absolute;
+	inset: 0;
+	background: var( --mdotcar-drawer-scrim );
+	-webkit-backdrop-filter: blur( var( --mdotcar-drawer-blur ) );
+	backdrop-filter: blur( var( --mdotcar-drawer-blur ) );
+	opacity: 0;
+	transition: opacity 0.2s ease;
+}
+
+.mdotcar-hmenu-drawer__panel {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	width: min( var( --mdotcar-drawer-width ), 88vw );
+	padding: 28px 16px;
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	background: var( --mdotcar-drawer-bg );
+	outline: none;
+	transition: transform 0.3s cubic-bezier( 0.2, 0.7, 0.2, 1 );
+}
+
+.mdotcar-hmenu-drawer--right .mdotcar-hmenu-drawer__panel {
+	right: 0;
+	transform: translateX( 100% );
+}
+
+.mdotcar-hmenu-drawer--left .mdotcar-hmenu-drawer__panel {
+	left: 0;
+	transform: translateX( -100% );
+}
+
+.mdotcar-hmenu-drawer.is-open .mdotcar-hmenu-drawer__scrim {
+	opacity: 1;
+}
+
+.mdotcar-hmenu-drawer.is-open .mdotcar-hmenu-drawer__panel {
+	transform: none;
+}
+
+/* While editing, it can be shown open, without hiding the page from clicks. */
+.mdotcar-hmenu-drawer.is-preview .mdotcar-hmenu-drawer__scrim {
+	pointer-events: none;
+}
+
+.mdotcar-hmenu-drawer__close {
+	align-self: flex-end;
+	display: inline-flex;
+	color: #616161 !important;
+}
+
+.mdotcar-hmenu-drawer__close svg {
+	display: block;
+	width: 24px;
+	height: 24px;
+}
+
+/* The page behind does not scroll while it is open. */
+html.mdotcar-hmenu-locked,
+html.mdotcar-hmenu-locked body {
+	overflow: hidden !important;
+}
+
+/* The drawer's menu ----------------------------------------------------------- */
+
+.mdotcar-hmenu-list__row {
+	position: relative;
+	border-radius: 8px;
+	transition: background-color 0.25s ease;
+}
+
+.mdotcar-hmenu-list__row + .mdotcar-hmenu-list__row::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	inset-inline-start: 36px;
+	inset-inline-end: 0;
+	height: 1px;
+	background: var( --mdotcar-list-sep );
+}
+
+.mdotcar-hmenu-list__row.is-open {
+	background: var( --mdotcar-list-open-bg );
+}
+
+.mdotcar-hmenu-list__row.is-open::before,
+.mdotcar-hmenu-list__row.is-open + .mdotcar-hmenu-list__row::before {
+	opacity: 0;
+}
+
+/* Through the drawer, so it outranks the button reset above (the accordion row is a button). */
+.mdotcar-hmenu-drawer .mdotcar-hmenu-list__link {
+	display: flex !important;
+	align-items: center;
+	gap: 8px;
+	width: 100%;
+	padding: var( --mdotcar-list-pad ) 0 !important;
+	padding-inline: 12px 16px !important;
+	color: var( --mdotcar-list-color ) !important;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 20px;
+	text-decoration: none;
+}
+
+.mdotcar-hmenu-list__row.is-current > .mdotcar-hmenu-list__link,
+.mdotcar-hmenu-list__row.is-open > .mdotcar-hmenu-list__link {
+	color: var( --mdotcar-list-active ) !important;
+}
+
+.mdotcar-hmenu-list__link.is-soon {
+	opacity: 0.3;
+	cursor: default;
+}
+
+.mdotcar-hmenu-list__icon {
+	flex: 0 0 auto;
+	display: block;
+	width: var( --mdotcar-list-icon );
+	height: var( --mdotcar-list-icon );
+	object-fit: contain;
+}
+
+.mdotcar-hmenu-list__label {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.mdotcar-hmenu-list__arrow {
+	flex: 0 0 auto;
+	color: var( --mdotcar-list-arrow );
+	transform: scaleX( var( --mdotcar-arrow-flip ) );
+	transition: transform 0.3s ease;
+}
+
+.mdotcar-hmenu-list__row.is-open .mdotcar-hmenu-list__arrow {
+	transform: scaleX( var( --mdotcar-arrow-flip ) ) rotate( -90deg );
+}
+
+/* The accordion: its height animates from nothing to its content's. */
+.mdotcar-hmenu-list__sub {
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows 0.3s cubic-bezier( 0.2, 0.7, 0.2, 1 );
+}
+
+.mdotcar-hmenu-list__row.is-open > .mdotcar-hmenu-list__sub {
+	grid-template-rows: 1fr;
+}
+
+.mdotcar-hmenu-list__sub-inner {
+	display: flex;
+	flex-direction: column;
+	min-height: 0;
+	overflow: hidden;
+	margin-inline-start: 19px;
+	padding-inline-start: 16px;
+	border-inline-start: 1px solid var( --mdotcar-sub-line );
+	visibility: hidden;
+	transition: visibility 0s linear 0.3s;
+}
+
+.mdotcar-hmenu-list__row.is-open .mdotcar-hmenu-list__sub-inner {
+	margin-bottom: 10px;
+	visibility: visible;
+	transition: none;
+}
+
+.mdotcar-hmenu-list__sublink {
+	display: flex;
+	align-items: center;
+	min-height: 42px;
+	color: var( --mdotcar-sub-color ) !important;
+	font-size: 12px;
+	line-height: 19.2px;
+	text-decoration: none;
+}
+
+a.mdotcar-hmenu-list__sublink:hover,
+.mdotcar-hmenu-list__sublink.is-current {
+	color: var( --mdotcar-list-active ) !important;
+}
+
+.mdotcar-hmenu-list__sublink.is-soon {
+	opacity: 0.3;
+	cursor: default;
+}
+
+@media ( prefers-reduced-motion: reduce ) {
+	.mdotcar-hmenu *,
+	.mdotcar-hmenu-drawer * {
+		transition-duration: 0.01ms !important;
+	}
+}

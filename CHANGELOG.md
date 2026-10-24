@@ -17,6 +17,39 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.8.0] - 2026-10-24
+
+### Added
+
+- **MDotCar Header Menu** widget: the site's main menu from one list, a bar
+  with a mega menu on wide screens and a toggle with an off-canvas drawer on
+  narrow ones. It replaces the two hand-written menus (the desktop HTML and the
+  drawer's HTML with its inline script), which had drifted apart.
+  - **One repeater** for both: a row is a top item, or a sub item of the top
+    item above it. Each has a label (optionally another one in the drawer), a
+    link, an icon, a description (sub items), "coming soon" and where it shows
+    (bar, drawer or both). A top item with sub items opens a mega menu on
+    desktop and an accordion in the drawer. A new widget starts as
+    mdotcar.com's current menu.
+  - **Mega menu**: cards with an icon (grey until hovered), title and
+    description, in columns; opens on hover (with a grace delay, so a hand
+    that slips does not close it) or on click, and always on the first tap of
+    a touch screen. Its caret is a button, so the keyboard opens it; Esc, a
+    click outside, focus leaving and the dimmed page close it. It is placed
+    under the header (or the bar) by measuring, instead of fixed numbers.
+  - **Drawer**: a modal dialog moved to `<body>` (no parent's overflow or
+    transform can trap it); focus goes in and stays, the page does not scroll
+    behind it, and Esc, the scrim, a link, the optional close button or
+    anything with the class `mdotcar-menu-close` closes it. Its content around
+    the menu comes from **two saved Elementor templates** (above the menu: logo,
+    close, search; below: app and sign-in buttons), so the Jet search and any
+    other widget fit there unchanged.
+  - The current page is marked in both (`aria-current`), and a top item whose
+    sub item is the current page too.
+  - Style controls for the bar, the panel, the cards, the toggle, the drawer
+    and its menu; the defaults are mdotcar.com's header design.
+- Persian translations for every new panel label.
+
 ## [0.7.5] - 2026-09-16
 
 ### Added

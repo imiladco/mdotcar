@@ -24,3 +24,12 @@
 	inset-inline-start: auto;
 	inset-inline-end: var( --mdotcar-tariff-divider-offset, -8px );
 }
+
+/*
+ * Header Menu: the drawer's arrows point to the reading end, which is the left
+ * in RTL; the stylesheet flips them for LTR.
+ */
+
+.mdotcar-hmenu-drawer {
+	--mdotcar-arrow-flip: 1;
+}

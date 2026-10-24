@@ -4,7 +4,7 @@ Tags: elementor, widget, title, heading, flexbox
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.7.5
+Stable tag: 0.8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,6 +13,12 @@ Custom Elementor widgets for mdotcar.com, starting with the Title widget.
 == Description ==
 
 Adds an **MDotCar** category to the Elementor panel.
+
+**MDotCar Header Menu** — the main menu from one list of items: a bar with a
+mega menu (cards with an icon and a description) on wide screens, and a toggle
+with an off-canvas drawer on narrow ones. The drawer's content around the menu
+comes from two saved Elementor templates, so a logo, a search or app buttons fit
+there. Opens by hover, click, touch or keyboard; marks the current page.
 
 **MDotCar Vehicle Tariff (Style 1)** — car-wash tariff cards. Define any number
 of vehicles, each with an image, badge, title, up to three tariff columns, a
@@ -38,6 +44,12 @@ and height can each be left to fit the content or set to a custom value.
    *MDotCar*.
 
 == Changelog ==
+
+= 0.8.0 =
+* New: MDotCar Header Menu widget. One list of items for a desktop bar with a
+  mega menu and a mobile drawer whose content around the menu comes from two
+  saved Elementor templates. Keyboard, touch and screen-reader friendly; the
+  current page is marked.
 
 = 0.7.5 =
 * Added style controls for the Action section's Wrapper layer (the element

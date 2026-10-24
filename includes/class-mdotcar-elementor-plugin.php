@@ -116,6 +116,7 @@ final class MDotCar_Elementor_Plugin {
 			array(
 				'MDotCar_Elementor_Widget_Title',
 				'MDotCar_Elementor_Widget_Vehicle_Tariff',
+				'MDotCar_Elementor_Widget_Header_Menu',
 			)
 		);
 
