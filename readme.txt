@@ -4,7 +4,7 @@ Tags: elementor, widget, title, heading, flexbox
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.9.0
+Stable tag: 0.9.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,6 +46,12 @@ and height can each be left to fit the content or set to a custom value.
    *MDotCar*.
 
 == Changelog ==
+
+= 0.9.1 =
+* Added: the ID of the template's close button closes the drawer; the
+  drawer's scrollbar styled like the site's.
+* Changed: no padding of the drawer's own; the template sets it.
+* Fixed: theme bullets beside the Mobile Menu's items.
 
 = 0.9.0 =
 * New: MDotCar Mobile Menu widget, the drawer's menu with an accordion, a

@@ -17,6 +17,29 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.9.1] - 2026-10-24
+
+### Added
+
+- Header Menu → Mobile Drawer → **Closes the Drawer**: the ID (or class) of
+  the close button in the drawer's template, e.g. `#close-menu`; several,
+  separated by commas.
+- Header Menu → Style → Drawer → **Scrollbar**: the site's scrollbar for the
+  drawer — 5px wide, a #F1F1F1 track and a #AAAAAA thumb with a 10px radius by
+  default; the thumb is at least 48px tall and the track stops 12px short of
+  the ends. Firefox gets the standard thin scrollbar in the same colours.
+
+### Changed
+
+- The drawer has no padding of its own any more (it was 28px 16px): the
+  template's container sets it.
+
+### Fixed
+
+- Bullets beside the Mobile Menu's rows and buttons, from a theme's list or
+  link styles: list markers and pseudo-element content are switched off on
+  the widget's own items.
+
 ## [0.9.0] - 2026-10-24
 
 ### Added

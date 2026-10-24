@@ -753,6 +753,10 @@ a.mdotcar-hmenu__card:focus-visible .mdotcar-hmenu__card-title,
 	--mdotcar-drawer-bg: #FFFFFF;
 	--mdotcar-drawer-scrim: rgba( 0, 0, 0, 0.4 );
 	--mdotcar-drawer-blur: 8px;
+	--mdotcar-scroll-w: 5px;
+	--mdotcar-scroll-track: #F1F1F1;
+	--mdotcar-scroll-thumb: #AAAAAA;
+	--mdotcar-scroll-r: 10px;
 	position: fixed;
 	z-index: 99999;
 	inset: 0;
@@ -779,7 +783,7 @@ a.mdotcar-hmenu__card:focus-visible .mdotcar-hmenu__card-title,
 	display: flex;
 	flex-direction: column;
 	width: min( var( --mdotcar-drawer-width ), 88vw );
-	padding: 28px 16px;
+	padding: 0;
 	overflow-y: auto;
 	overscroll-behavior: contain;
 	background: var( --mdotcar-drawer-bg );
@@ -803,6 +807,36 @@ a.mdotcar-hmenu__card:focus-visible .mdotcar-hmenu__card-title,
 
 .mdotcar-hmenu-drawer.is-open .mdotcar-hmenu-drawer__panel {
 	transform: none;
+}
+
+/* The site's scrollbar: thin, rounded, a short way in from the ends. */
+.mdotcar-hmenu-drawer__panel::-webkit-scrollbar {
+	width: var( --mdotcar-scroll-w );
+}
+
+.mdotcar-hmenu-drawer__panel::-webkit-scrollbar-track {
+	margin-block: 12px;
+	border-radius: var( --mdotcar-scroll-r );
+	background: var( --mdotcar-scroll-track );
+}
+
+.mdotcar-hmenu-drawer__panel::-webkit-scrollbar-thumb {
+	min-height: 48px;
+	border-radius: var( --mdotcar-scroll-r );
+	background: var( --mdotcar-scroll-thumb );
+}
+
+.mdotcar-hmenu-drawer__panel::-webkit-scrollbar-thumb:hover {
+	background: color-mix( in srgb, var( --mdotcar-scroll-thumb ) 80%, #000000 );
+}
+
+/* Browsers without the -webkit- scrollbar (Firefox): the standard properties.
+   Not for the others, which would then ignore the rules above. */
+@supports not selector( ::-webkit-scrollbar ) {
+	.mdotcar-hmenu-drawer__panel {
+		scrollbar-width: thin;
+		scrollbar-color: var( --mdotcar-scroll-thumb ) var( --mdotcar-scroll-track );
+	}
 }
 
 /* While editing, it can be shown open, without hiding the page from clicks. */
@@ -876,8 +910,23 @@ html.mdotcar-hmenu-locked body {
 	list-style: none;
 }
 
+/* No bullets, whatever a theme gives lists and links. */
+.mdotcar-mmenu li {
+	list-style: none !important;
+}
+
 .mdotcar-mmenu li::marker {
-	content: none;
+	content: none !important;
+	font-size: 0;
+}
+
+.mdotcar-mmenu a::before,
+.mdotcar-mmenu a::after,
+.mdotcar-mmenu button::before,
+.mdotcar-mmenu button::after,
+.mdotcar-mmenu__row:first-child::before,
+.mdotcar-mmenu__row::after {
+	content: none !important;
 }
 
 .mdotcar-mmenu__row {

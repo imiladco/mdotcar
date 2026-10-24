@@ -404,6 +404,18 @@ class MDotCar_Elementor_Widget_Header_Menu extends Widget_Base {
 		);
 
 		$this->add_control(
+			'close_selector',
+			array(
+				'label'       => __( 'Closes the Drawer', 'mdotcar-elementor' ),
+				'description' => __( 'The ID of the close button in the template, e.g. #close-menu (Advanced → CSS ID). Several, separated by commas; a class works too.', 'mdotcar-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'placeholder' => '#close-menu',
+				'label_block' => true,
+				'separator'   => 'before',
+			)
+		);
+
+		$this->add_control(
 			'close_button',
 			array(
 				'label'        => __( 'Built-in Close Button', 'mdotcar-elementor' ),
@@ -919,6 +931,60 @@ class MDotCar_Elementor_Widget_Header_Menu extends Widget_Base {
 		);
 
 		$this->add_control(
+			'scrollbar_heading',
+			array(
+				'label'     => __( 'Scrollbar', 'mdotcar-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_control(
+			'scrollbar_width',
+			array(
+				'label'      => __( 'Width', 'mdotcar-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px' ),
+				'range'      => array(
+					'px' => array(
+						'min' => 2,
+						'max' => 16,
+					),
+				),
+				'selectors'  => array( self::DRAWER => '--mdotcar-scroll-w: {{SIZE}}{{UNIT}};' ),
+			)
+		);
+
+		$this->add_control(
+			'scrollbar_track',
+			array(
+				'label'     => __( 'Track', 'mdotcar-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array( self::DRAWER => '--mdotcar-scroll-track: {{VALUE}};' ),
+			)
+		);
+
+		$this->add_control(
+			'scrollbar_thumb',
+			array(
+				'label'     => __( 'Thumb', 'mdotcar-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array( self::DRAWER => '--mdotcar-scroll-thumb: {{VALUE}};' ),
+			)
+		);
+
+		$this->add_control(
+			'scrollbar_radius',
+			array(
+				'label'      => __( 'Radius', 'mdotcar-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px' ),
+				'range'      => array( 'px' => array( 'max' => 16 ) ),
+				'selectors'  => array( self::DRAWER => '--mdotcar-scroll-r: {{SIZE}}{{UNIT}};' ),
+			)
+		);
+
+		$this->add_control(
 			'drawer_scrim',
 			array(
 				'label'     => __( 'Page Dim Color', 'mdotcar-elementor' ),
@@ -1179,7 +1245,7 @@ class MDotCar_Elementor_Widget_Header_Menu extends Widget_Base {
 	private function render_drawer( array $s, $id ) {
 		$side = 'left' === $s['drawer_side'] ? 'left' : 'right';
 		?>
-		<div class="mdotcar-hmenu-drawer mdotcar-hmenu-drawer--<?php echo esc_attr( $side ); ?>" data-for="<?php echo esc_attr( $id ); ?>" id="mdotcar-drawer-<?php echo esc_attr( $id ); ?>" hidden>
+		<div class="mdotcar-hmenu-drawer mdotcar-hmenu-drawer--<?php echo esc_attr( $side ); ?>" data-for="<?php echo esc_attr( $id ); ?>" data-close="<?php echo esc_attr( trim( (string) $s['close_selector'] ) ); ?>" id="mdotcar-drawer-<?php echo esc_attr( $id ); ?>" hidden>
 			<div class="mdotcar-hmenu-drawer__scrim" data-mdotcar-close></div>
 			<div class="mdotcar-hmenu-drawer__panel" role="dialog" aria-modal="true" aria-label="<?php echo esc_attr( $s['nav_label'] ); ?>" tabindex="-1">
 				<?php if ( 'yes' === $s['close_button'] ) : ?>

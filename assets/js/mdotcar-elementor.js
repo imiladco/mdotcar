@@ -350,6 +350,18 @@
 
 		this.panel = this.el.querySelector( '.mdotcar-hmenu-drawer__panel' );
 
+		// What closes it: the scrim, the built-in button, .mdotcar-menu-close, and the panel's own list (an ID or a class).
+		this.closers = '[data-mdotcar-close], .mdotcar-menu-close';
+		var extra = ( this.el.getAttribute( 'data-close' ) || '' ).trim();
+		if ( extra ) {
+			try {
+				document.querySelector( extra );
+				this.closers += ', ' + extra;
+			} catch ( error ) {
+				// Not a valid selector: only the built-in ways close it.
+			}
+		}
+
 		this.toggle.addEventListener( 'click', function () {
 			if ( self.isOpen ) {
 				self.close();
@@ -363,7 +375,7 @@
 			if ( ! target.closest ) {
 				return;
 			}
-			if ( target.closest( '[data-mdotcar-close], .mdotcar-menu-close' ) ) {
+			if ( target.closest( self.closers ) ) {
 				event.preventDefault();
 				self.close();
 				return;
