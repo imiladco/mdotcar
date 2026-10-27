@@ -666,20 +666,75 @@
 	}
 
 	/**
+	 * Where each video was left, in this browser: { t: seconds, d: length }.
+	 */
+	var Store = {
+		key: function ( src ) {
+			return 'mdotcar-vgal:' + src;
+		},
+		get: function ( src ) {
+			try {
+				return JSON.parse( window.localStorage.getItem( this.key( src ) ) ) || null;
+			} catch ( error ) {
+				return null;
+			}
+		},
+		set: function ( src, time, duration ) {
+			try {
+				window.localStorage.setItem( this.key( src ), JSON.stringify( { t: Math.round( time * 10 ) / 10, d: Math.round( duration * 10 ) / 10 } ) );
+			} catch ( error ) {
+				// Private mode or storage disabled: nothing is remembered.
+			}
+		}
+	};
+
+	/**
+	 * A label with its number filled in (%s), the number in Persian digits.
+	 *
+	 * @param {string} text  The label.
+	 * @param {*}      value The number or text.
+	 * @return {string}
+	 */
+	function say( text, value ) {
+		return String( text || '' ).replace( '%s', 'number' === typeof value ? fa( value ) : value );
+	}
+
+	/**
+	 * Escapes text for markup.
+	 *
+	 * @param {string} text Text.
+	 * @return {string}
+	 */
+	function esc( text ) {
+		var div = document.createElement( 'div' );
+		div.textContent = text || '';
+		return div.innerHTML;
+	}
+
+	/**
 	 * The player of one video file.
 	 *
-	 * @param {Element}  stage  Where it goes.
-	 * @param {Object}   item   { src, image, title }.
-	 * @param {Object}   labels Its words.
-	 * @param {Function} onNext Plays the next video; null when this is the last.
+	 * @param {Element} stage  Where it goes.
+	 * @param {Object}  item   { src, image, title }.
+	 * @param {Object}  labels Its words.
+	 * @param {Object}  next   { item, go } for the video after it; null when this is the last.
+	 * @param {Object}  hooks  { state( playing ), progress( time, duration ) } for the window.
 	 */
-	function Player( stage, item, labels, onNext ) {
+	function Player( stage, item, labels, next, hooks ) {
 		var self = this;
 
 		this.stage = stage;
+		this.item = item;
 		this.labels = labels;
+		this.next = next;
+		this.hooks = hooks || {};
 		this.idleTimer = 0;
 		this.flashTimer = 0;
+		this.countTimer = 0;
+		this.tapTimer = 0;
+		this.lastTap = 0;
+		this.saved = 0;
+		this.resumed = false;
 
 		var el = document.createElement( 'div' );
 		el.className = 'mdotcar-player';
@@ -688,9 +743,25 @@
 			'<button type="button" class="mdotcar-player__big" aria-label="' + labels.play + '">' + icon( 'play' ) + '</button>' +
 			'<span class="mdotcar-player__spinner" aria-hidden="true"></span>' +
 			'<span class="mdotcar-player__flash" aria-hidden="true"></span>' +
+			'<span class="mdotcar-player__ripple mdotcar-player__ripple--back" aria-hidden="true"><span>' + icon( 'replay' ) + '<b></b></span></span>' +
+			'<span class="mdotcar-player__ripple mdotcar-player__ripple--fwd" aria-hidden="true"><span>' + icon( 'replay' ) + '<b></b></span></span>' +
+			'<div class="mdotcar-player__resume" role="status"><span></span><button type="button" data-act="restart">' + icon( 'replay' ) + labels.restart + '</button></div>' +
 			'<div class="mdotcar-player__end">' +
-				'<button type="button" class="mdotcar-player__again" data-act="replay">' + icon( 'replay' ) + '<span>' + labels.replay + '</span></button>' +
-				( onNext ? '<button type="button" class="mdotcar-player__again mdotcar-player__again--next" data-act="next">' + icon( 'next' ) + '<span>' + labels.next + '</span></button>' : '' ) +
+				( next ?
+					'<div class="mdotcar-player__upnext">' +
+						'<span class="mdotcar-player__upnext-label">' + labels.upNext + '</span>' +
+						'<button type="button" class="mdotcar-player__upnext-card" data-act="next">' +
+							'<span class="mdotcar-player__upnext-thumb">' + ( next.item.image ? '<img src="' + esc( next.item.image ) + '" alt="">' : '' ) +
+								'<span class="mdotcar-player__ring"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="29"/><circle class="mdotcar-player__ring-run" cx="32" cy="32" r="29" pathLength="100"/></svg>' + icon( 'play' ) + '</span>' +
+							'</span>' +
+							'<span class="mdotcar-player__upnext-title">' + esc( next.item.title ) + '</span>' +
+						'</button>' +
+						'<span class="mdotcar-player__upnext-actions">' +
+							'<button type="button" class="mdotcar-player__chip" data-act="replay">' + icon( 'replay' ) + labels.replay + '</button>' +
+							'<button type="button" class="mdotcar-player__chip mdotcar-player__chip--cancel" data-act="cancel">' + labels.cancel + '</button>' +
+						'</span>' +
+					'</div>' :
+					'<button type="button" class="mdotcar-player__again" data-act="replay">' + icon( 'replay' ) + '<span>' + labels.replay + '</span></button>' ) +
 			'</div>' +
 			'<div class="mdotcar-player__error" role="alert">' + icon( 'error' ) + '<span>' + labels.error + '</span></div>' +
 			'<div class="mdotcar-player__bar">' +
@@ -734,7 +805,7 @@
 		this.menu = el.querySelector( '.mdotcar-player__menu' );
 		this.range = el.querySelector( '.mdotcar-player__range' );
 		this.flashEl = el.querySelector( '.mdotcar-player__flash' );
-		this.onNext = onNext;
+		this.resumeEl = el.querySelector( '.mdotcar-player__resume' );
 
 		var video = this.video;
 		if ( item.image ) {
@@ -750,10 +821,12 @@
 		on( 'play', function () {
 			self.setState( 'playing', true );
 			self.setState( 'ended', false );
+			self.countdown( false );
 			self.wake();
 		} );
 		on( 'pause', function () {
 			self.setState( 'playing', false );
+			self.save( true );
 			self.wake();
 		} );
 		on( 'waiting', function () {
@@ -774,19 +847,28 @@
 		} );
 		on( 'timeupdate', function () {
 			self.paint();
+			self.save( false );
 		} );
 		on( 'durationchange', function () {
 			self.paint();
+			if ( ! self.probing ) {
+				self.resume();
+			}
 		} );
 		// A file recorded in a browser often says nothing of its length: a seek far ahead makes it count.
 		on( 'loadedmetadata', function () {
 			if ( Infinity === video.duration ) {
+				self.probing = true;
 				var back = function () {
 					video.removeEventListener( 'durationchange', back );
+					self.probing = false;
 					video.currentTime = 0;
+					self.resume();
 				};
 				video.addEventListener( 'durationchange', back );
 				video.currentTime = 1e7;
+			} else {
+				self.resume();
 			}
 		} );
 		on( 'progress', function () {
@@ -795,10 +877,16 @@
 		on( 'ended', function () {
 			self.setState( 'ended', true );
 			self.setState( 'idle', false );
-			var again = el.querySelector( self.onNext ? '[data-act="next"]' : '[data-act="replay"]' );
+			self.openMenu( false );
+			if ( video.duration > 0 && isFinite( video.duration ) ) {
+				Store.set( item.src, video.duration, video.duration );
+				self.report();
+			}
+			var again = el.querySelector( self.next ? '[data-act="next"]' : '[data-act="replay"]' );
 			if ( again && el.contains( document.activeElement ) ) {
 				again.focus( { preventScroll: true } );
 			}
+			self.countdown( !! self.next );
 		} );
 		on( 'error', function () {
 			self.setState( 'error', true );
@@ -815,9 +903,9 @@
 			var button = event.target.closest( 'button' );
 			if ( ! button ) {
 				// A click on the picture itself.
-				if ( ! event.target.closest( '.mdotcar-player__bar' ) ) {
-					if ( 'touch' === self.pointer && self.el.classList.contains( 'is-idle' ) && ! video.paused ) {
-						self.wake();
+				if ( ! event.target.closest( '.mdotcar-player__bar, .mdotcar-player__end, .mdotcar-player__resume' ) ) {
+					if ( 'touch' === self.pointer ) {
+						self.tap( event );
 					} else {
 						self.toggle();
 					}
@@ -835,11 +923,17 @@
 					self.toggle();
 					break;
 				case 'replay':
+				case 'restart':
 					video.currentTime = 0;
+					self.resumeEl.classList.remove( 'is-on' );
 					self.play();
 					break;
 				case 'next':
-					self.onNext();
+					self.countdown( false );
+					self.next.go();
+					break;
+				case 'cancel':
+					self.countdown( false );
 					break;
 				case 'mute':
 					self.mute();
@@ -857,7 +951,7 @@
 		} );
 
 		el.addEventListener( 'dblclick', function ( event ) {
-			if ( ! event.target.closest( '.mdotcar-player__bar, button' ) ) {
+			if ( 'touch' !== self.pointer && ! event.target.closest( '.mdotcar-player__bar, .mdotcar-player__end, button' ) ) {
 				self.fullscreen();
 			}
 		} );
@@ -899,6 +993,139 @@
 	}
 
 	/**
+	 * Remembers where the video is (at most once a second, unless asked now).
+	 *
+	 * @param {boolean} now Save even if it was saved a moment ago.
+	 */
+	Player.prototype.save = function ( now ) {
+		var video = this.video;
+		var duration = video.duration;
+		if ( ! this.resumed || ! ( duration > 0 ) || ! isFinite( duration ) || video.ended ) {
+			return;
+		}
+		if ( now || Math.abs( video.currentTime - this.saved ) >= 1 ) {
+			this.saved = video.currentTime;
+			Store.set( this.item.src, video.currentTime, duration );
+			this.report();
+		}
+	};
+
+	/**
+	 * Tells the window how far this video is.
+	 */
+	Player.prototype.report = function () {
+		if ( this.hooks.progress ) {
+			this.hooks.progress( this.video.currentTime, this.video.duration );
+		}
+	};
+
+	/**
+	 * Picks up where the video was left last time, and says so with a way back to the start.
+	 */
+	Player.prototype.resume = function () {
+		var video = this.video;
+		var duration = video.duration;
+		if ( this.resumed || ! ( duration > 0 ) || ! isFinite( duration ) ) {
+			return;
+		}
+		this.resumed = true;
+		var last = Store.get( this.item.src );
+		if ( ! last || last.t < 5 || last.t > duration - 5 ) {
+			return;
+		}
+		video.currentTime = last.t;
+		this.saved = last.t;
+		this.paint( last.t );
+		var note = this.resumeEl;
+		note.firstChild.textContent = say( this.labels.resume, clock( last.t ) );
+		note.classList.add( 'is-on' );
+		setTimeout( function () {
+			note.classList.remove( 'is-on' );
+		}, 6000 );
+	};
+
+	/**
+	 * At the end: counts down to the next video, or stops counting.
+	 *
+	 * @param {boolean} on Start counting.
+	 */
+	Player.prototype.countdown = function ( on ) {
+		var self = this;
+		clearTimeout( this.countTimer );
+		this.el.classList.toggle( 'is-counting', on );
+		var label = this.el.querySelector( '.mdotcar-player__upnext-label' );
+		if ( ! on ) {
+			if ( label ) {
+				label.textContent = this.labels.upNext;
+			}
+			return;
+		}
+		var left = 5;
+		var tick = function () {
+			if ( label ) {
+				label.textContent = say( self.labels.upIn, left );
+			}
+			if ( left <= 0 ) {
+				self.el.classList.remove( 'is-counting' );
+				self.next.go();
+				return;
+			}
+			left--;
+			self.countTimer = setTimeout( tick, 1000 );
+		};
+		tick();
+	};
+
+	/**
+	 * A tap on a phone: shows or hides the controls; two quick taps on a side jump 10 seconds.
+	 *
+	 * @param {MouseEvent} event The tap.
+	 */
+	Player.prototype.tap = function ( event ) {
+		var self = this;
+		var box = this.el.getBoundingClientRect();
+		var x = ( event.clientX - box.left ) / box.width;
+		var side = x < 0.35 ? -1 : ( x > 0.65 ? 1 : 0 );
+		var now = Date.now();
+		clearTimeout( this.tapTimer );
+		if ( side && side === this.lastSide && now - this.lastTap < 320 ) {
+			this.lastTap = now;
+			this.skip( side * 10, true );
+			this.ripple( side );
+			return;
+		}
+		this.lastTap = now;
+		this.lastSide = side;
+		this.tapTimer = setTimeout( function () {
+			if ( self.el.classList.contains( 'is-idle' ) || self.video.paused ) {
+				self.wake();
+			} else {
+				clearTimeout( self.idleTimer );
+				self.setState( 'idle', true );
+				self.openMenu( false );
+			}
+		}, 260 );
+	};
+
+	/**
+	 * The circle that answers a double tap, with how far it jumped.
+	 *
+	 * @param {number} side -1 back, 1 forward.
+	 */
+	Player.prototype.ripple = function ( side ) {
+		var ripple = this.el.querySelector( side < 0 ? '.mdotcar-player__ripple--back' : '.mdotcar-player__ripple--fwd' );
+		var count = ( ripple.mdotcarCount = ( ripple.classList.contains( 'is-on' ) ? ripple.mdotcarCount || 0 : 0 ) + 10 );
+		ripple.querySelector( 'b' ).textContent = say( this.labels.seconds, count );
+		ripple.classList.remove( 'is-on' );
+		void ripple.offsetWidth;
+		ripple.classList.add( 'is-on' );
+		clearTimeout( ripple.mdotcarTimer );
+		ripple.mdotcarTimer = setTimeout( function () {
+			ripple.classList.remove( 'is-on' );
+		}, 700 );
+	};
+
+	/**
 	 * Turns a state class on or off.
 	 *
 	 * @param {string}  name playing, waiting, ended, error or idle.
@@ -907,6 +1134,9 @@
 	Player.prototype.setState = function ( name, on ) {
 		this.el.classList.toggle( 'is-' + name, on );
 		if ( 'playing' === name ) {
+			if ( this.hooks.state ) {
+				this.hooks.state( on );
+			}
 			var label = on ? this.labels.pause : this.labels.play;
 			this.toggleBtn.innerHTML = icon( on ? 'pause' : 'play' );
 			this.toggleBtn.setAttribute( 'aria-label', label );
@@ -1142,14 +1372,16 @@
 	 *
 	 * @param {number} seconds Forward when positive.
 	 */
-	Player.prototype.skip = function ( seconds ) {
+	Player.prototype.skip = function ( seconds, quiet ) {
 		var video = this.video;
 		if ( ! ( video.duration > 0 ) ) {
 			return;
 		}
 		video.currentTime = Math.max( 0, Math.min( video.duration, video.currentTime + seconds ) );
 		this.paint();
-		this.flash( ( seconds > 0 ? '+' : '−' ) + fa( Math.round( Math.abs( seconds ) ) ) + ' ثانیه' );
+		if ( ! quiet ) {
+			this.flash( ( seconds > 0 ? '+' : '−' ) + say( this.labels.seconds, Math.round( Math.abs( seconds ) ) ) );
+		}
 	};
 
 	/**
@@ -1276,8 +1508,11 @@
 	 */
 	Player.prototype.destroy = function () {
 		var video = this.video;
+		this.save( true );
 		clearTimeout( this.idleTimer );
 		clearTimeout( this.flashTimer );
+		clearTimeout( this.countTimer );
+		clearTimeout( this.tapTimer );
 		document.removeEventListener( 'fullscreenchange', this.onFull );
 		document.removeEventListener( 'webkitfullscreenchange', this.onFull );
 		if ( fullscreenElement() === this.stage ) {
@@ -1295,7 +1530,17 @@
 	};
 
 	/**
-	 * The video window of one gallery.
+	 * Whether motion should be kept to a minimum.
+	 *
+	 * @return {boolean}
+	 */
+	function calm() {
+		return !! ( window.matchMedia && window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches );
+	}
+
+	/**
+	 * The video window of one gallery: a header (badge, close), the video with
+	 * its title, and beside it (under it on phones) every video of the gallery.
 	 *
 	 * @param {Element} el      The window (moved to <body>).
 	 * @param {Gallery} gallery Its gallery.
@@ -1306,16 +1551,20 @@
 		this.el = el;
 		this.gallery = gallery;
 		this.dialog = el.querySelector( '.mdotcar-vmodal__dialog' );
+		this.body = el.querySelector( '.mdotcar-vmodal__body' );
 		this.stage = el.querySelector( '.mdotcar-vmodal__stage' );
 		this.badge = el.querySelector( '.mdotcar-vmodal__badge' );
 		this.title = el.querySelector( '.mdotcar-vmodal__title' );
 		this.desc = el.querySelector( '.mdotcar-vmodal__desc' );
 		this.count = el.querySelector( '.mdotcar-vmodal__count' );
-		this.nav = el.querySelector( '.mdotcar-vmodal__nav' );
+		this.side = el.querySelector( '.mdotcar-vmodal__side' );
+		this.list = el.querySelector( '.mdotcar-vmodal__list' );
 		this.steps = el.querySelectorAll( '.mdotcar-vmodal__step' );
+		this.ambient = el.querySelector( '.mdotcar-vmodal__ambient' );
 		this.isOpen = false;
 		this.timer = 0;
 		this.player = null;
+		this.frame = 0;
 
 		try {
 			this.labels = JSON.parse( el.getAttribute( 'data-labels' ) ) || {};
@@ -1323,7 +1572,7 @@
 			this.labels = {};
 		}
 
-		this.list = el.querySelector( '.mdotcar-vmodal__list' );
+		this.el.classList.toggle( 'is-single', gallery.items.length < 2 );
 		this.buildList();
 
 		el.addEventListener( 'click', function ( event ) {
@@ -1338,11 +1587,14 @@
 			var step = target.closest( '.mdotcar-vmodal__step' );
 			if ( step ) {
 				self.go( self.index + +step.getAttribute( 'data-step' ) );
+				return;
 			}
 			var pick = target.closest( '.mdotcar-vmodal__pick' );
 			if ( pick && +pick.getAttribute( 'data-index' ) !== self.index ) {
 				self.go( +pick.getAttribute( 'data-index' ) );
-				self.stage.scrollIntoView( { block: 'nearest' } );
+				if ( self.body.scrollTop > 0 && window.matchMedia( '(max-width: 767px)' ).matches ) {
+					self.body.scrollTo( { top: 0, behavior: calm() ? 'auto' : 'smooth' } );
+				}
 			}
 		} );
 
@@ -1361,60 +1613,107 @@
 	}
 
 	/**
-	 * The list of every video under the text (shown on phones, where the
-	 * window is the whole screen and the room is there).
+	 * Every video as a row: its picture (with how much of it was watched and
+	 * how long it is), its title and description.
 	 */
 	Modal.prototype.buildList = function () {
 		var self = this;
 		var items = this.gallery.items;
-		if ( ! this.list || items.length < 2 ) {
+		if ( items.length < 2 ) {
 			return;
 		}
-		var head = document.createElement( 'p' );
-		head.className = 'mdotcar-vmodal__list-head';
-		head.textContent = this.labels.list || '';
-		this.list.appendChild( head );
 		items.forEach( function ( item, index ) {
 			var pick = document.createElement( 'button' );
 			pick.type = 'button';
 			pick.className = 'mdotcar-vmodal__pick';
 			pick.setAttribute( 'data-index', index );
-			var thumb = document.createElement( 'span' );
-			thumb.className = 'mdotcar-vmodal__thumb';
-			if ( item.image ) {
-				var img = document.createElement( 'img' );
-				img.src = item.image;
-				img.alt = '';
-				img.loading = 'lazy';
-				thumb.appendChild( img );
-			}
-			thumb.insertAdjacentHTML( 'beforeend', icon( 'play' ) );
-			var text = document.createElement( 'span' );
-			text.className = 'mdotcar-vmodal__pick-text';
-			var title = document.createElement( 'span' );
-			title.className = 'mdotcar-vmodal__pick-title';
-			title.textContent = item.title || '';
-			var meta = document.createElement( 'span' );
-			meta.className = 'mdotcar-vmodal__pick-meta';
-			meta.textContent = item.desc || '';
-			var now = document.createElement( 'span' );
-			now.className = 'mdotcar-vmodal__now';
-			now.textContent = self.labels.now || '';
-			text.appendChild( now );
-			text.appendChild( title );
-			text.appendChild( meta );
-			pick.appendChild( thumb );
-			pick.appendChild( text );
+			pick.innerHTML =
+				'<span class="mdotcar-vmodal__thumb">' +
+					( item.image ? '<img src="' + esc( item.image ) + '" alt="" loading="lazy" decoding="async">' : '' ) +
+					'<span class="mdotcar-vmodal__eq" aria-hidden="true"><i></i><i></i><i></i></span>' +
+					'<span class="mdotcar-vmodal__len"></span>' +
+					'<span class="mdotcar-vmodal__seen"><i></i></span>' +
+				'</span>' +
+				'<span class="mdotcar-vmodal__pick-text">' +
+					'<span class="mdotcar-vmodal__pick-state"></span>' +
+					'<span class="mdotcar-vmodal__pick-title">' + esc( item.title ) + '</span>' +
+					( item.desc ? '<span class="mdotcar-vmodal__pick-meta">' + esc( item.desc ) + '</span>' : '' ) +
+				'</span>';
 			self.list.appendChild( pick );
+			item.pick = pick;
+			self.paintPick( item );
 		} );
 	};
 
 	/**
-	 * Opens on a video.
+	 * Draws a row's watched bar and its state.
 	 *
-	 * @param {number} index Its place among the gallery's videos.
+	 * @param {Object} item The video.
 	 */
-	Modal.prototype.open = function ( index ) {
+	Modal.prototype.paintPick = function ( item ) {
+		if ( ! item.pick ) {
+			return;
+		}
+		var last = 'file' === item.type ? Store.get( item.src ) : null;
+		var ratio = last && last.d > 0 ? Math.min( 1, last.t / last.d ) : 0;
+		var seen = ratio > 0.97;
+		item.pick.querySelector( '.mdotcar-vmodal__seen i' ).style.width = ( ratio * 100 ) + '%';
+		item.pick.classList.toggle( 'is-seen', seen );
+		item.pick.classList.toggle( 'has-progress', ratio > 0 );
+		if ( last && last.d > 0 && ! item.duration ) {
+			item.duration = last.d;
+		}
+		if ( item.duration ) {
+			item.pick.querySelector( '.mdotcar-vmodal__len' ).textContent = clock( item.duration );
+		}
+		var current = item.pick.classList.contains( 'is-current' );
+		item.pick.querySelector( '.mdotcar-vmodal__pick-state' ).textContent = current ? this.labels.now : ( seen ? '✓ ' + this.labels.watched : '' );
+	};
+
+	/**
+	 * Asks each file for its length, one after another, so the rows can show it.
+	 */
+	Modal.prototype.measure = function () {
+		var self = this;
+		if ( this.measured ) {
+			return;
+		}
+		this.measured = true;
+		var queue = this.gallery.items.filter( function ( item ) {
+			return item.pick && 'file' === item.type && ! item.duration;
+		} );
+		var nextOne = function () {
+			var item = queue.shift();
+			if ( ! item || ! self.isOpen ) {
+				self.measured = !! item ? false : self.measured;
+				return;
+			}
+			var probe = document.createElement( 'video' );
+			var done = function () {
+				if ( isFinite( probe.duration ) && probe.duration > 0 ) {
+					item.duration = probe.duration;
+					self.paintPick( item );
+				}
+				probe.removeAttribute( 'src' );
+				probe.load();
+				nextOne();
+			};
+			probe.preload = 'metadata';
+			probe.muted = true;
+			probe.addEventListener( 'loadedmetadata', done, { once: true } );
+			probe.addEventListener( 'error', done, { once: true } );
+			probe.src = item.src;
+		};
+		nextOne();
+	};
+
+	/**
+	 * Opens on a video; the card's picture flies into place.
+	 *
+	 * @param {number}  index Its place among the gallery's videos.
+	 * @param {Element} from  The card's picture, if any.
+	 */
+	Modal.prototype.open = function ( index, from ) {
 		var self = this;
 		clearTimeout( this.timer );
 		if ( ! this.isOpen ) {
@@ -1427,12 +1726,62 @@
 		}
 		this.isOpen = true;
 		this.el.hidden = false;
+		this.body.scrollTop = 0;
+		this.go( index );
 		void this.el.offsetWidth; // let the closed state paint, so it fades in
 		this.el.classList.add( 'is-open' );
-		this.go( index );
+		this.fly( from, true );
+		this.startAmbient();
+		this.measure();
 		window.requestAnimationFrame( function () {
 			self.dialog.focus( { preventScroll: true } );
+			var current = self.list.querySelector( '.is-current' );
+			if ( current ) {
+				self.list.scrollTop = Math.max( 0, current.offsetTop - self.list.clientHeight / 2 + current.offsetHeight / 2 );
+			}
 		} );
+	};
+
+	/**
+	 * The picture's flight between the card and the stage.
+	 *
+	 * @param {Element} card The card's picture.
+	 * @param {boolean} into Card to stage (opening), or back.
+	 * @return {boolean} Whether it flew.
+	 */
+	Modal.prototype.fly = function ( card, into ) {
+		var self = this;
+		var item = this.gallery.items[ this.index ];
+		if ( ! card || ! item || ! item.image || calm() || ! document.body.animate ) {
+			return false;
+		}
+		var a = card.getBoundingClientRect();
+		var b = this.stage.getBoundingClientRect();
+		if ( ! a.width || a.bottom < 0 || a.top > window.innerHeight ) {
+			return false;
+		}
+		var radiusA = window.getComputedStyle( card.closest( '.mdotcar-vgal__media' ) || card ).borderTopLeftRadius;
+		var radiusB = window.getComputedStyle( this.stage ).borderTopLeftRadius;
+		var flyer = document.createElement( 'div' );
+		flyer.className = 'mdotcar-vmodal__flyer';
+		flyer.style.backgroundImage = 'url("' + item.image.replace( /"/g, '%22' ) + '")';
+		document.body.appendChild( flyer );
+		var box = function ( r, radius ) {
+			return { top: r.top + 'px', left: r.left + 'px', width: r.width + 'px', height: r.height + 'px', borderRadius: radius };
+		};
+		var frames = into ? [ box( a, radiusA ), box( b, radiusB ) ] : [ box( b, radiusB ), box( a, radiusA ) ];
+		var media = card.closest( '.mdotcar-vgal__media' ) || card;
+		media.style.visibility = 'hidden';
+		this.el.classList.add( into ? 'is-flying-in' : 'is-flying-out' );
+		var flight = flyer.animate( frames, { duration: into ? 520 : 420, easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)', fill: 'forwards' } );
+		flight.onfinish = function () {
+			media.style.visibility = '';
+			self.el.classList.remove( 'is-flying-in', 'is-flying-out' );
+			flyer.animate( [ { opacity: 1 }, { opacity: 0 } ], { duration: 220, fill: 'forwards' } ).onfinish = function () {
+				flyer.parentNode.removeChild( flyer );
+			};
+		};
+		return true;
 	};
 
 	/**
@@ -1454,19 +1803,29 @@
 		this.badge.textContent = item.badge || '';
 		this.title.textContent = item.title || '';
 		this.desc.textContent = item.desc || '';
-		this.count.textContent = fa( index + 1 ) + ' از ' + fa( items.length );
-		this.nav.hidden = items.length < 2;
+		this.count.textContent = fa( index + 1 ) + ' / ' + fa( items.length );
 		this.steps[ 0 ].disabled = 0 === index;
 		this.steps[ 1 ].disabled = items.length - 1 === index;
-		Array.prototype.forEach.call( this.el.querySelectorAll( '.mdotcar-vmodal__pick' ), function ( pick ) {
-			var current = +pick.getAttribute( 'data-index' ) === index;
-			pick.classList.toggle( 'is-current', current );
-			if ( current ) {
-				pick.setAttribute( 'aria-current', 'true' );
-			} else {
-				pick.removeAttribute( 'aria-current' );
+		this.el.classList.remove( 'is-playing' );
+
+		items.forEach( function ( other, at ) {
+			if ( other.pick ) {
+				other.pick.classList.toggle( 'is-current', at === index );
+				if ( at === index ) {
+					other.pick.setAttribute( 'aria-current', 'true' );
+				} else {
+					other.pick.removeAttribute( 'aria-current' );
+				}
+				self.paintPick( other );
 			}
 		} );
+		if ( item.pick && this.isOpen ) {
+			var list = this.list;
+			var top = item.pick.offsetTop - list.offsetTop;
+			if ( top < list.scrollTop || top + item.pick.offsetHeight > list.scrollTop + list.clientHeight ) {
+				list.scrollTo( { top: Math.max( 0, top - 8 ), behavior: calm() ? 'auto' : 'smooth' } );
+			}
+		}
 
 		if ( item.image ) {
 			var poster = document.createElement( 'img' );
@@ -1474,6 +1833,9 @@
 			poster.src = item.image;
 			poster.alt = '';
 			this.stage.appendChild( poster );
+			this.cover = poster;
+		} else {
+			this.cover = null;
 		}
 
 		if ( 'embed' === item.type ) {
@@ -1484,12 +1846,84 @@
 			frame.setAttribute( 'allowfullscreen', '' );
 			this.stage.appendChild( frame );
 		} else {
-			this.player = new Player( this.stage, item, this.labels, index < items.length - 1 ? function () {
-				self.go( self.index + 1 );
-			} : null );
+			var after = items[ index + 1 ];
+			this.player = new Player( this.stage, item, this.labels, after ? {
+				item: after,
+				go: function () {
+					self.go( self.index + 1 );
+				}
+			} : null, {
+				state: function ( playing ) {
+					self.el.classList.toggle( 'is-playing', playing );
+				},
+				progress: function () {
+					self.paintPick( item );
+				}
+			} );
 			if ( keepFocus ) {
 				this.dialog.focus( { preventScroll: true } );
 			}
+		}
+		this.paintAmbient( true );
+	};
+
+	/**
+	 * Ambient light: the page behind the window takes the video's colours,
+	 * from a tiny copy of the picture, blurred far beyond recognition.
+	 */
+	Modal.prototype.startAmbient = function () {
+		var self = this;
+		var last = 0;
+		if ( ! this.ambient || ! this.ambient.getContext ) {
+			return;
+		}
+		var loop = function ( now ) {
+			if ( ! self.isOpen ) {
+				self.frame = 0;
+				return;
+			}
+			if ( now - last > 180 ) {
+				last = now;
+				self.paintAmbient( false );
+			}
+			self.frame = window.requestAnimationFrame( loop );
+		};
+		if ( ! this.frame ) {
+			this.frame = window.requestAnimationFrame( loop );
+		}
+	};
+
+	/**
+	 * Draws one ambient frame: the playing picture, else the cover.
+	 *
+	 * @param {boolean} cover Draw the cover even if the video could be drawn.
+	 */
+	Modal.prototype.paintAmbient = function ( cover ) {
+		var context = this.ambient && this.ambient.getContext && this.ambient.offsetWidth ? this.ambient.getContext( '2d' ) : null;
+		if ( ! context || ( ! this.isOpen && ! cover ) ) {
+			return;
+		}
+		var video = this.player ? this.player.video : null;
+		try {
+			if ( ! cover && video && video.readyState >= 2 && ! video.paused ) {
+				context.drawImage( video, 0, 0, 32, 18 );
+			} else if ( cover && this.cover ) {
+				var image = this.cover;
+				var draw = function () {
+					try {
+						context.drawImage( image, 0, 0, 32, 18 );
+					} catch ( error ) {
+						// Not drawable: the glow keeps its last colours.
+					}
+				};
+				if ( image.complete ) {
+					draw();
+				} else {
+					image.addEventListener( 'load', draw, { once: true } );
+				}
+			}
+		} catch ( error ) {
+			// Not drawable: the glow keeps its last colours.
 		}
 	};
 
@@ -1507,27 +1941,30 @@
 	};
 
 	/**
-	 * Closes: the video stops, the page scrolls again, the focus goes back to the card last watched.
+	 * Closes: the picture flies back to its card, the video stops, the page
+	 * scrolls again, the focus goes back to the card last watched.
 	 */
 	Modal.prototype.close = function () {
 		var self = this;
 		if ( ! this.isOpen ) {
 			return;
 		}
-		this.isOpen = false;
-		this.unload();
-		this.el.classList.remove( 'is-open' );
-		document.documentElement.classList.remove( 'mdotcar-vmodal-locked' );
-		document.body.style.paddingRight = '';
-		this.timer = setTimeout( function () {
-			self.el.hidden = true;
-		}, 320 );
-
 		var opener = this.gallery.openers[ this.index ];
 		var back = this.returnTo && this.gallery.root.contains( this.returnTo ) && opener ? opener : this.returnTo;
 		if ( opener && back === opener ) {
 			this.gallery.reveal( opener );
 		}
+		var media = opener ? opener.closest( '.mdotcar-vgal__card' ).querySelector( '.mdotcar-vgal__media img' ) : null;
+		this.fly( media, false );
+
+		this.isOpen = false;
+		this.unload();
+		this.el.classList.remove( 'is-open', 'is-playing' );
+		document.documentElement.classList.remove( 'mdotcar-vmodal-locked' );
+		document.body.style.paddingRight = '';
+		this.timer = setTimeout( function () {
+			self.el.hidden = true;
+		}, 360 );
 		if ( back && back.focus ) {
 			back.focus( { preventScroll: true } );
 		}
@@ -1596,7 +2033,7 @@
 		this.openers.forEach( function ( button, index ) {
 			button.addEventListener( 'click', function () {
 				if ( self.modal ) {
-					self.modal.open( index );
+					self.modal.open( index, button.closest( '.mdotcar-vgal__card' ).querySelector( '.mdotcar-vgal__media img' ) );
 				}
 			} );
 		} );

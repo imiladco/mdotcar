@@ -1875,18 +1875,21 @@ html.mdotcar-hmenu-locked body {
 /* -----------------------------------------------------------------------------
  * Video Gallery — the video window and its player
  *
- * A white panel on a dimmed, blurred page: the video on top in a dark stage,
- * the title and the way to the other videos below. The player's controls are
- * glass on a soft shade, indigo where something is filled or focused.
+ * A cinema, not a pop-up: the card's picture flies into the stage, the dark
+ * page behind glows with the video's own colours (ambient light), and the
+ * white panel holds the video with its title on one side and every video of
+ * the gallery on the other. On phones it is the whole screen, the video
+ * staying on top while the list scrolls under it.
  * -------------------------------------------------------------------------- */
 
 .mdotcar-vmodal {
 	--mdotcar-vm-accent: #3F51B5;
-	--mdotcar-vm-scrim: rgba( 17, 20, 39, 0.78 );
+	--mdotcar-vm-scrim: rgba( 12, 14, 32, 0.86 );
 	--mdotcar-vm-bg: #FFFFFF;
-	--mdotcar-vm-width: 960px;
+	--mdotcar-vm-width: 1200px;
 	--mdotcar-vm-radius: 20px;
 	--mdotcar-vm-line: #EEEEEE;
+	--mdotcar-vm-side: 360px;
 	--mdotcar-vm-ease: cubic-bezier( 0.2, 0.8, 0.2, 1 );
 	position: fixed;
 	z-index: 100000;
@@ -1914,10 +1917,35 @@ html.mdotcar-hmenu-locked body {
 	position: absolute;
 	inset: 0;
 	background-color: var( --mdotcar-vm-scrim );
-	-webkit-backdrop-filter: blur( 8px );
-	backdrop-filter: blur( 8px );
+	-webkit-backdrop-filter: blur( 10px );
+	backdrop-filter: blur( 10px );
 	opacity: 0;
-	transition: opacity 0.3s ease;
+	transition: opacity 0.35s ease;
+}
+
+/*
+ * Ambient light: a 32×18 copy of the picture, shown small and blurred, then
+ * scaled up (the blur scales with it, so it costs little to paint).
+ */
+.mdotcar-vmodal__ambient {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 320px;
+	height: 180px;
+	filter: blur( 16px ) saturate( 1.6 );
+	opacity: 0;
+	pointer-events: none;
+	transform: translate( -50%, -50% ) scale( 5.5 );
+	transition: opacity 1s ease;
+}
+
+.mdotcar-vmodal.is-open .mdotcar-vmodal__ambient {
+	opacity: 0.42;
+}
+
+.mdotcar-vmodal.is-open.is-playing .mdotcar-vmodal__ambient {
+	opacity: 0.55;
 }
 
 .mdotcar-vmodal__dialog {
@@ -1926,18 +1954,17 @@ html.mdotcar-hmenu-locked body {
 	flex-direction: column;
 	width: 100%;
 	/* As wide as asked, but never so wide that the panel is taller than the screen. */
-	max-width: min( var( --mdotcar-vm-width ), calc( ( 100vh - 230px ) * 16 / 9 + 24px ) );
-	max-width: min( var( --mdotcar-vm-width ), calc( ( 100dvh - 230px ) * 16 / 9 + 24px ) );
+	max-width: min( var( --mdotcar-vm-width ), calc( ( 100vh - 250px ) * 16 / 9 + 32px + var( --mdotcar-vm-side ) ) );
+	max-width: min( var( --mdotcar-vm-width ), calc( ( 100dvh - 250px ) * 16 / 9 + 32px + var( --mdotcar-vm-side ) ) );
 	max-height: 100%;
 	overflow: hidden;
 	padding: 0;
 	border-radius: var( --mdotcar-vm-radius );
 	background-color: var( --mdotcar-vm-bg );
-	box-shadow: 0 32px 80px -24px rgba( 0, 0, 0, 0.5 );
+	box-shadow: 0 40px 100px -30px rgba( 0, 0, 0, 0.6 ), 0 0 0 1px rgba( 255, 255, 255, 0.06 );
 	outline: none;
 	opacity: 0;
-	transform: translateY( 16px ) scale( 0.97 );
-	transition: opacity 0.3s ease, transform 0.4s var( --mdotcar-vm-ease );
+	transition: opacity 0.3s ease;
 }
 
 .mdotcar-vmodal.is-open .mdotcar-vmodal__scrim,
@@ -1945,8 +1972,21 @@ html.mdotcar-hmenu-locked body {
 	opacity: 1;
 }
 
-.mdotcar-vmodal.is-open .mdotcar-vmodal__dialog {
-	transform: none;
+/* The picture on its way between the card and the stage. */
+.mdotcar-vmodal__flyer {
+	position: fixed;
+	z-index: 100001;
+	overflow: hidden;
+	background-color: #0E1024;
+	background-position: center;
+	background-size: cover;
+	box-shadow: 0 30px 80px -30px rgba( 0, 0, 0, 0.6 );
+	pointer-events: none;
+	will-change: top, left, width, height;
+}
+
+.mdotcar-vmodal.is-flying-in .mdotcar-vmodal__stage > * {
+	animation-delay: 0.45s;
 }
 
 /* Buttons in the window: nothing from the theme. */
@@ -1969,7 +2009,7 @@ html.mdotcar-hmenu-locked body {
 	letter-spacing: normal;
 	cursor: pointer;
 	-webkit-tap-highlight-color: transparent;
-	transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+	transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .mdotcar-vmodal button:focus {
@@ -1981,6 +2021,10 @@ html.mdotcar-hmenu-locked body {
 	outline-offset: 2px;
 }
 
+.mdotcar-vmodal button:disabled {
+	cursor: default;
+}
+
 .mdotcar-vmodal svg {
 	display: block;
 	flex: none;
@@ -1990,26 +2034,40 @@ html.mdotcar-hmenu-locked body {
 /* The header: what the video is for on the start side, the way out on the end side. */
 
 .mdotcar-vmodal__head {
+	position: relative;
+	z-index: 4;
 	display: flex;
+	flex: none;
 	align-items: center;
 	justify-content: space-between;
 	gap: 12px;
-	min-height: 56px;
-	padding: 10px 12px 10px 16px;
+	min-height: 60px;
+	padding-block: 12px;
+	padding-inline: 20px 12px;
 	border-bottom: 1px solid var( --mdotcar-vm-line );
+	background-color: var( --mdotcar-vm-bg );
 }
 
-[dir="rtl"] .mdotcar-vmodal__head,
-.rtl .mdotcar-vmodal__head {
-	padding: 10px 16px 10px 12px;
+.mdotcar-vmodal__badge {
+	padding: 6px;
+	border-radius: 6px;
+	background-color: #E6F4FF;
+	color: #0095FF;
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 18px;
+}
+
+.mdotcar-vmodal__badge:empty {
+	visibility: hidden;
 }
 
 .mdotcar-vmodal .mdotcar-vmodal__close {
-	gap: 6px;
-	height: 36px;
+	gap: 8px;
+	height: 38px;
 	margin-inline-start: auto;
-	padding: 0 10px 0 12px;
-	border-radius: 10px;
+	padding-inline: 12px 8px;
+	border-radius: 12px;
 	color: #616161;
 	font-size: 14px;
 	font-weight: 500;
@@ -2021,18 +2079,22 @@ html.mdotcar-hmenu-locked body {
 	color: #212121;
 }
 
+.mdotcar-vmodal .mdotcar-vmodal__close:hover svg {
+	transform: rotate( 90deg );
+}
+
 .mdotcar-vmodal__close svg {
 	width: 20px;
 	height: 20px;
+	transition: transform 0.3s var( --mdotcar-vm-ease );
 }
 
 .mdotcar-vmodal__close kbd {
-	margin-inline-start: 2px;
 	padding: 1px 6px;
 	border: 1px solid #E0E0E0;
 	border-bottom-width: 2px;
 	border-radius: 6px;
-	background: #FAFAFA;
+	background: #FFFFFF;
 	color: #9E9E9E;
 	font-family: inherit;
 	font-size: 11px;
@@ -2041,17 +2103,37 @@ html.mdotcar-hmenu-locked body {
 	box-shadow: none;
 }
 
+/* The body: the video and its title, and the list beside them. */
+
+.mdotcar-vmodal__body {
+	display: grid;
+	flex: 1 1 auto;
+	grid-template-columns: minmax( 0, 1fr ) var( --mdotcar-vm-side );
+	min-height: 0;
+}
+
+.mdotcar-vmodal.is-single .mdotcar-vmodal__body {
+	grid-template-columns: minmax( 0, 1fr );
+}
+
+.mdotcar-vmodal.is-single .mdotcar-vmodal__side {
+	display: none;
+}
+
+.mdotcar-vmodal__main {
+	min-width: 0;
+	padding: 16px 16px 20px;
+}
+
 /* The stage: the video, 16:9, and the player over it. */
 
 .mdotcar-vmodal__stage {
 	position: relative;
+	z-index: 3;
 	overflow: hidden;
 	width: 100%;
-	flex: none;
-	width: auto;
 	aspect-ratio: 16 / 9;
-	margin: 12px 12px 0;
-	border-radius: calc( var( --mdotcar-vm-radius ) - 8px );
+	border-radius: calc( var( --mdotcar-vm-radius ) - 6px );
 	background-color: #0E1024;
 	color: #FFFFFF;
 	isolation: isolate;
@@ -2251,13 +2333,6 @@ html.mdotcar-hmenu-locked body {
 	background-color: rgba( 255, 255, 255, 0.2 );
 }
 
-.mdotcar-vmodal .mdotcar-player__again--next {
-	background-color: var( --mdotcar-vm-accent );
-}
-
-.mdotcar-vmodal .mdotcar-player__again--next:hover {
-	background-color: #3949AB;
-}
 
 .mdotcar-player__again svg {
 	width: 28px;
@@ -2599,45 +2674,22 @@ html.mdotcar-hmenu-locked body {
 	transform: translate( -50%, -50% );
 }
 
-/* Below the video: what it is, and the way to the others. */
+/* Under the video: what it is. */
 
 .mdotcar-vmodal__info {
 	display: flex;
-	align-items: center;
-	gap: 16px;
-	padding: 14px 16px 16px;
-}
-
-.mdotcar-vmodal__text {
-	display: flex;
-	flex: 1 1 auto;
 	flex-direction: column;
-	align-items: flex-start;
-	gap: 4px;
-	min-width: 0;
-}
-
-.mdotcar-vmodal__badge {
-	padding: 6px;
-	border-radius: 6px;
-	background-color: #E6F4FF;
-	color: #0095FF;
-	font-size: 12px;
-	font-weight: 500;
-	line-height: 18px;
-}
-
-.mdotcar-vmodal__badge:empty {
-	visibility: hidden;
+	gap: 6px;
+	padding: 18px 4px 0;
 }
 
 .mdotcar-vmodal .mdotcar-vmodal__title {
 	margin: 0;
 	padding: 0;
 	color: #212121;
-	font-size: 18px;
+	font-size: 20px;
 	font-weight: 700;
-	line-height: 28px;
+	line-height: 32px;
 }
 
 .mdotcar-vmodal .mdotcar-vmodal__desc {
@@ -2646,29 +2698,68 @@ html.mdotcar-hmenu-locked body {
 	color: #616161;
 	font-size: 14px;
 	font-weight: 400;
-	line-height: 22px;
+	line-height: 24px;
 }
 
 .mdotcar-vmodal__desc:empty {
 	display: none;
 }
 
-.mdotcar-vmodal__nav {
-	display: flex;
-	align-items: center;
-	flex: none;
-	gap: 8px;
+/* Beside the video: every video of the gallery. */
+
+.mdotcar-vmodal__side {
+	position: relative;
+	min-width: 0;
+	border-inline-start: 1px solid var( --mdotcar-vm-line );
+	background-color: #FAFAFA;
 }
 
-.mdotcar-vmodal__nav[hidden] {
-	display: none;
+/* Out of the flow, so the list never makes the panel taller than the video does. */
+.mdotcar-vmodal__side-in {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+}
+
+.mdotcar-vmodal__side-head {
+	display: flex;
+	flex: none;
+	align-items: center;
+	gap: 8px;
+	padding: 16px 16px 12px;
+}
+
+.mdotcar-vmodal__side-title {
+	color: #212121;
+	font-size: 15px;
+	font-weight: 700;
+	line-height: 24px;
+}
+
+.mdotcar-vmodal__count {
+	padding: 2px 8px;
+	border-radius: 999px;
+	background-color: #E8EAF6;
+	color: var( --mdotcar-vm-accent );
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 18px;
+	font-variant-numeric: tabular-nums;
+	direction: ltr;
+}
+
+.mdotcar-vmodal__nav {
+	display: flex;
+	gap: 4px;
+	margin-inline-start: auto;
 }
 
 .mdotcar-vmodal .mdotcar-vmodal__step {
-	width: 40px;
-	height: 40px;
-	background-color: #F5F5F5;
-	color: #212121;
+	width: 34px;
+	height: 34px;
+	border-radius: 10px;
+	color: #424242;
 }
 
 .mdotcar-vmodal .mdotcar-vmodal__step:not( :disabled ):hover {
@@ -2677,9 +2768,7 @@ html.mdotcar-hmenu-locked body {
 }
 
 .mdotcar-vmodal .mdotcar-vmodal__step:disabled {
-	background-color: #FAFAFA;
 	color: #BDBDBD;
-	cursor: default;
 }
 
 .mdotcar-vmodal__step svg {
@@ -2687,19 +2776,209 @@ html.mdotcar-hmenu-locked body {
 	height: 20px;
 }
 
-.mdotcar-vmodal__count {
-	min-width: 44px;
-	color: #616161;
-	font-size: 13px;
-	line-height: 20px;
-	text-align: center;
+.mdotcar-vmodal__list {
+	display: flex;
+	flex: 1 1 auto;
+	flex-direction: column;
+	gap: 4px;
+	min-height: 0;
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	padding: 0 8px 12px;
+	scrollbar-width: thin;
+	scrollbar-color: #D6D6D6 transparent;
+}
+
+.mdotcar-vmodal__list::-webkit-scrollbar {
+	width: 6px;
+}
+
+.mdotcar-vmodal__list::-webkit-scrollbar-thumb {
+	border-radius: 6px;
+	background: #D6D6D6;
+}
+
+.mdotcar-vmodal .mdotcar-vmodal__pick {
+	display: grid;
+	grid-template-columns: 128px minmax( 0, 1fr );
+	align-items: center;
+	gap: 12px;
+	width: 100%;
+	padding: 8px;
+	border-radius: 14px;
+	text-align: start;
+}
+
+.mdotcar-vmodal .mdotcar-vmodal__pick:hover {
+	background-color: #F0F0F0;
+}
+
+.mdotcar-vmodal .mdotcar-vmodal__pick.is-current {
+	background-color: #FFFFFF;
+	box-shadow: 0 0 0 1px #C5CAE9, 0 8px 20px -12px rgba( 63, 81, 181, 0.45 );
+	cursor: default;
+}
+
+.mdotcar-vmodal__thumb {
+	position: relative;
+	display: block;
+	overflow: hidden;
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	border-radius: 10px;
+	background: linear-gradient( 135deg, #E8EAF6, #C5CAE9 );
+}
+
+.mdotcar-vmodal__thumb img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	max-width: none;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 0.4s var( --mdotcar-vm-ease );
+}
+
+.mdotcar-vmodal__pick:hover .mdotcar-vmodal__thumb img {
+	transform: scale( 1.06 );
+}
+
+.mdotcar-vmodal__len {
+	position: absolute;
+	bottom: 6px;
+	left: 6px;
+	padding: 1px 6px;
+	border-radius: 6px;
+	background-color: rgba( 14, 16, 36, 0.72 );
+	color: #FFFFFF;
+	font-size: 11px;
+	font-weight: 500;
+	line-height: 16px;
+	direction: ltr;
 	font-variant-numeric: tabular-nums;
 }
 
-/* Every video, as a list: phones only (see below). */
-
-.mdotcar-vmodal__list {
+.mdotcar-vmodal__len:empty {
 	display: none;
+}
+
+/* How much was watched, along the bottom of the picture. */
+.mdotcar-vmodal__seen {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	display: none;
+	height: 3px;
+	background-color: rgba( 255, 255, 255, 0.4 );
+	direction: ltr;
+}
+
+.has-progress .mdotcar-vmodal__seen {
+	display: block;
+}
+
+.mdotcar-vmodal__seen i {
+	display: block;
+	height: 100%;
+	background-color: #FFB300;
+}
+
+/* The one playing: an equalizer over its picture, moving while it plays. */
+.mdotcar-vmodal__eq {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	gap: 3px;
+	padding-bottom: 22px;
+	background-color: rgba( 14, 16, 36, 0.5 );
+	opacity: 0;
+	transition: opacity 0.25s ease;
+}
+
+.is-current .mdotcar-vmodal__eq {
+	opacity: 1;
+}
+
+.mdotcar-vmodal__eq i {
+	width: 4px;
+	height: 6px;
+	border-radius: 2px;
+	background-color: #FFFFFF;
+	transform-origin: bottom;
+}
+
+.mdotcar-vmodal.is-playing .is-current .mdotcar-vmodal__eq i {
+	height: 18px;
+	animation: mdotcar-eq 0.9s ease-in-out infinite alternate;
+}
+
+.mdotcar-vmodal.is-playing .is-current .mdotcar-vmodal__eq i:nth-child( 2 ) {
+	animation-duration: 0.6s;
+	animation-delay: -0.3s;
+}
+
+.mdotcar-vmodal.is-playing .is-current .mdotcar-vmodal__eq i:nth-child( 3 ) {
+	animation-duration: 0.75s;
+	animation-delay: -0.5s;
+}
+
+@keyframes mdotcar-eq {
+	from {
+		transform: scaleY( 0.25 );
+	}
+
+	to {
+		transform: scaleY( 1 );
+	}
+}
+
+.mdotcar-vmodal__pick-text {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	min-width: 0;
+}
+
+.mdotcar-vmodal__pick-state {
+	color: #757575;
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 16px;
+}
+
+.mdotcar-vmodal__pick-state:empty {
+	display: none;
+}
+
+.is-current .mdotcar-vmodal__pick-state {
+	color: var( --mdotcar-vm-accent );
+}
+
+.mdotcar-vmodal__pick-title {
+	display: -webkit-box;
+	overflow: hidden;
+	color: #212121;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 22px;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
+
+.is-current .mdotcar-vmodal__pick-title {
+	color: var( --mdotcar-vm-accent );
+}
+
+.mdotcar-vmodal__pick-meta {
+	overflow: hidden;
+	color: #757575;
+	font-size: 12px;
+	line-height: 18px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 /* Changing videos: the stage cross-fades. */
@@ -2719,10 +2998,346 @@ html.mdotcar-vmodal-locked body {
 	overflow: hidden;
 }
 
+/* -----------------------------------------------------------------------------
+ * The player's moments: picking up where it was left, the double tap, and
+ * what comes next.
+ * -------------------------------------------------------------------------- */
+
+.mdotcar-player {
+	container-type: size;
+}
+
+.mdotcar-player__resume {
+	position: absolute;
+	z-index: 5;
+	top: 14px;
+	right: 14px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 5px 5px 5px 14px;
+	border-radius: 999px;
+	background-color: rgba( 14, 16, 36, 0.72 );
+	-webkit-backdrop-filter: blur( 12px );
+	backdrop-filter: blur( 12px );
+	box-shadow: inset 0 0 0 1px rgba( 255, 255, 255, 0.1 );
+	color: #FFFFFF;
+	font-size: 13px;
+	line-height: 20px;
+	direction: rtl;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY( -8px );
+	transition: opacity 0.3s ease, transform 0.3s var( --mdotcar-vm-ease ), visibility 0s linear 0.3s;
+}
+
+.mdotcar-player__resume.is-on {
+	opacity: 1;
+	visibility: visible;
+	transform: none;
+	transition-delay: 0s;
+}
+
+.mdotcar-vmodal .mdotcar-player__resume button {
+	gap: 6px;
+	height: 30px;
+	padding: 0 12px;
+	border-radius: 999px;
+	background-color: rgba( 255, 255, 255, 0.14 );
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: 700;
+}
+
+.mdotcar-vmodal .mdotcar-player__resume button:hover {
+	background-color: rgba( 255, 255, 255, 0.24 );
+}
+
+.mdotcar-player__resume svg {
+	width: 16px;
+	height: 16px;
+}
+
+/* Double tap on a side: a soft half circle with how far it went. */
+.mdotcar-player__ripple {
+	position: absolute;
+	z-index: 3;
+	top: -20%;
+	bottom: -20%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 42%;
+	background-color: rgba( 255, 255, 255, 0.1 );
+	opacity: 0;
+	pointer-events: none;
+}
+
+.mdotcar-player__ripple--back {
+	left: 0;
+	border-radius: 0 50% 50% 0;
+}
+
+.mdotcar-player__ripple--fwd {
+	right: 0;
+	border-radius: 50% 0 0 50%;
+}
+
+.mdotcar-player__ripple > span {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6px;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: 700;
+	direction: rtl;
+}
+
+.mdotcar-player__ripple svg {
+	width: 28px;
+	height: 28px;
+}
+
+.mdotcar-player__ripple--fwd svg {
+	transform: scaleX( -1 );
+}
+
+.mdotcar-player__ripple.is-on {
+	animation: mdotcar-ripple 0.7s ease-out;
+}
+
+@keyframes mdotcar-ripple {
+	0% {
+		opacity: 0;
+	}
+
+	15% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+/* The end: the next video, counting down on its own picture. */
+
+.mdotcar-player__end {
+	background: rgba( 10, 12, 28, 0.72 );
+	-webkit-backdrop-filter: blur( 14px );
+	backdrop-filter: blur( 14px );
+}
+
+.mdotcar-player__upnext {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 12px;
+	max-width: 100%;
+	direction: rtl;
+}
+
+.mdotcar-player__upnext-label {
+	color: rgba( 255, 255, 255, 0.72 );
+	font-size: 13px;
+	line-height: 20px;
+	font-variant-numeric: tabular-nums;
+}
+
+.mdotcar-vmodal .mdotcar-player__upnext-card {
+	flex-direction: column;
+	gap: 10px;
+	max-width: 100%;
+	border-radius: 16px;
+	color: #FFFFFF;
+}
+
+.mdotcar-player__upnext-thumb {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	width: 240px;
+	aspect-ratio: 16 / 9;
+	border-radius: 14px;
+	background: linear-gradient( 135deg, #3F51B5, #0E1024 );
+	box-shadow: 0 16px 40px -16px rgba( 0, 0, 0, 0.7 ), inset 0 0 0 1px rgba( 255, 255, 255, 0.12 );
+	transition: transform 0.3s var( --mdotcar-vm-ease );
+}
+
+.mdotcar-vmodal .mdotcar-player__upnext-card:hover .mdotcar-player__upnext-thumb {
+	transform: scale( 1.04 );
+}
+
+.mdotcar-player__upnext-thumb img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	max-width: none;
+	height: 100%;
+	object-fit: cover;
+	opacity: 0.85;
+}
+
+.mdotcar-player__ring {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 64px;
+	height: 64px;
+}
+
+.mdotcar-player__ring svg {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	transform: rotate( -90deg );
+}
+
+.mdotcar-player__ring circle {
+	fill: rgba( 14, 16, 36, 0.45 );
+	stroke: rgba( 255, 255, 255, 0.28 );
+	stroke-width: 3;
+}
+
+.mdotcar-player__ring .mdotcar-player__ring-run {
+	fill: none;
+	stroke: #FFFFFF;
+	stroke-linecap: round;
+	stroke-dasharray: 100;
+	stroke-dashoffset: 100;
+}
+
+.mdotcar-player.is-counting .mdotcar-player__ring-run {
+	animation: mdotcar-ring 5s linear forwards;
+}
+
+@keyframes mdotcar-ring {
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+
+.mdotcar-player__ring > svg + svg {
+	position: relative;
+	inset: auto;
+	width: 26px;
+	height: 26px;
+	margin-left: 3px;
+	transform: none;
+}
+
+.mdotcar-player__upnext-title {
+	display: block;
+	overflow: hidden;
+	max-width: 300px;
+	font-size: 15px;
+	font-weight: 700;
+	line-height: 24px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.mdotcar-player__upnext-actions {
+	display: flex;
+	gap: 8px;
+}
+
+.mdotcar-vmodal .mdotcar-player__chip {
+	gap: 6px;
+	height: 36px;
+	padding: 0 14px;
+	border-radius: 999px;
+	background-color: rgba( 255, 255, 255, 0.12 );
+	color: #FFFFFF;
+	font-size: 13px;
+	font-weight: 500;
+}
+
+.mdotcar-vmodal .mdotcar-player__chip:hover {
+	background-color: rgba( 255, 255, 255, 0.22 );
+}
+
+.mdotcar-player__chip svg {
+	width: 16px;
+	height: 16px;
+}
+
+.mdotcar-player:not( .is-counting ) .mdotcar-player__chip--cancel {
+	display: none;
+}
+
+/* A short stage (a phone): the next video is its ring and title only. */
+@container ( max-height: 300px ) {
+
+	.mdotcar-player__upnext {
+		gap: 8px;
+	}
+
+	.mdotcar-player__upnext-thumb {
+		width: auto;
+		overflow: visible;
+		background: none;
+		box-shadow: none;
+	}
+
+	.mdotcar-player__upnext-thumb img {
+		display: none;
+	}
+
+	.mdotcar-player__ring {
+		width: 56px;
+		height: 56px;
+	}
+
+	.mdotcar-player__upnext-title {
+		max-width: 240px;
+		font-size: 14px;
+	}
+
+	.mdotcar-vmodal .mdotcar-player__chip {
+		height: 32px;
+	}
+}
+
 /*
- * Phones: the window is the whole screen. The header stays on top, the video
- * runs edge to edge under it, the text follows, and the way to the other
- * videos sits at the bottom within the thumb's reach.
+ * Tablets: one column. The video and its title, then the list, the whole
+ * panel scrolling.
+ */
+
+@media ( max-width: 1024px ) {
+
+	.mdotcar-vmodal__dialog {
+		max-width: min( 760px, var( --mdotcar-vm-width ) );
+	}
+
+	.mdotcar-vmodal__body {
+		display: block;
+		overflow-y: auto;
+		overscroll-behavior: contain;
+	}
+
+	.mdotcar-vmodal__side {
+		border-inline-start: 0;
+		border-top: 1px solid var( --mdotcar-vm-line );
+	}
+
+	.mdotcar-vmodal__side-in {
+		position: static;
+	}
+
+	.mdotcar-vmodal__list {
+		overflow: visible;
+	}
+}
+
+/*
+ * Phones: the whole screen. The header on top, the video edge to edge and
+ * staying in view while the text and the list scroll under it.
  */
 
 @media ( max-width: 767px ) {
@@ -2737,6 +3352,10 @@ html.mdotcar-vmodal-locked body {
 		backdrop-filter: none;
 	}
 
+	.mdotcar-vmodal__ambient {
+		display: none;
+	}
+
 	.mdotcar-vmodal__dialog {
 		width: 100%;
 		max-width: none;
@@ -2744,13 +3363,12 @@ html.mdotcar-vmodal-locked body {
 		max-height: none;
 		border-radius: 0;
 		box-shadow: none;
-		transform: translateY( 32px );
 	}
 
-	.mdotcar-vmodal__head,
-	[dir="rtl"] .mdotcar-vmodal__head,
-	.rtl .mdotcar-vmodal__head {
+	.mdotcar-vmodal__head {
+		min-height: 56px;
 		padding-top: calc( 10px + env( safe-area-inset-top ) );
+		padding-bottom: 10px;
 		padding-inline: 16px 8px;
 	}
 
@@ -2758,159 +3376,49 @@ html.mdotcar-vmodal-locked body {
 		display: none;
 	}
 
+	.mdotcar-vmodal__body {
+		padding-bottom: env( safe-area-inset-bottom );
+	}
+
+	.mdotcar-vmodal__main {
+		padding: 0;
+	}
+
 	.mdotcar-vmodal__stage {
-		margin: 0;
+		position: sticky;
+		top: 0;
 		border-radius: 0;
 	}
 
 	.mdotcar-vmodal__info {
-		flex: 1 1 auto;
-		flex-direction: column;
-		align-items: stretch;
-		gap: 0;
-		min-height: 0;
-		padding: 0;
-	}
-
-	.mdotcar-vmodal__text {
-		flex: 1 1 auto;
-		align-items: stretch;
-		gap: 6px;
-		overflow-x: hidden;
-		overflow-y: auto;
-		overscroll-behavior: contain;
-		padding: 16px;
+		padding: 16px 16px 20px;
 	}
 
 	.mdotcar-vmodal .mdotcar-vmodal__title {
-		font-size: 16px;
-		line-height: 24px;
+		font-size: 17px;
+		line-height: 28px;
+	}
+
+	.mdotcar-vmodal__side {
+		border-top: 8px solid #F5F5F5;
+		background-color: var( --mdotcar-vm-bg );
+	}
+
+	.mdotcar-vmodal__side-head {
+		padding: 16px 16px 8px;
 	}
 
 	.mdotcar-vmodal__list {
-		display: flex;
-		flex-direction: column;
-		gap: 4px;
-		margin-top: 16px;
-		padding-top: 16px;
-		border-top: 1px solid var( --mdotcar-vm-line );
-	}
-
-	.mdotcar-vmodal .mdotcar-vmodal__list-head {
-		margin: 0 0 8px;
-		color: #212121;
-		font-size: 14px;
-		font-weight: 700;
-		line-height: 22px;
+		padding: 0 8px 16px;
 	}
 
 	.mdotcar-vmodal .mdotcar-vmodal__pick {
-		display: flex;
-		min-width: 0;
-		justify-content: flex-start;
-		gap: 12px;
-		width: 100%;
-		padding: 6px;
-		border-radius: 12px;
-		text-align: start;
-	}
-
-	.mdotcar-vmodal .mdotcar-vmodal__pick:hover {
-		background-color: #FAFAFA;
-	}
-
-	.mdotcar-vmodal .mdotcar-vmodal__pick.is-current {
-		background-color: #E8EAF6;
-		cursor: default;
-	}
-
-	.mdotcar-vmodal__thumb {
-		position: relative;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex: none;
-		width: 104px;
-		height: 60px;
-		overflow: hidden;
-		border-radius: 8px;
-		background: linear-gradient( 135deg, #E8EAF6, #C5CAE9 );
-		color: #FFFFFF;
-	}
-
-	.mdotcar-vmodal__thumb img {
-		position: absolute;
-		inset: 0;
-		width: 100%;
-		height: 100%;
-		max-width: none;
-		object-fit: cover;
-	}
-
-	.mdotcar-vmodal__thumb svg {
-		position: relative;
-		width: 28px;
-		height: 28px;
-		padding: 7px;
-		border-radius: 50%;
-		background-color: rgba( 255, 255, 255, 0.25 );
-		-webkit-backdrop-filter: blur( 6px );
-		backdrop-filter: blur( 6px );
-	}
-
-	.mdotcar-vmodal__pick-text {
-		display: flex;
-		flex: 1 1 auto;
-		flex-direction: column;
-		gap: 2px;
-		min-width: 0;
-	}
-
-	.mdotcar-vmodal__pick-title,
-	.mdotcar-vmodal__pick-meta {
-		overflow: hidden;
-		white-space: nowrap;
-		text-overflow: ellipsis;
-	}
-
-	.mdotcar-vmodal__pick-title {
-		color: #212121;
-		font-size: 14px;
-		font-weight: 700;
-		line-height: 22px;
-	}
-
-	.mdotcar-vmodal__pick-meta {
-		color: #757575;
-		font-size: 12px;
-		line-height: 18px;
-	}
-
-	.mdotcar-vmodal__now {
-		display: none;
-		color: var( --mdotcar-vm-accent );
-		font-size: 11px;
-		font-weight: 700;
-		line-height: 16px;
-	}
-
-	.is-current .mdotcar-vmodal__now {
-		display: block;
-	}
-
-	.is-current .mdotcar-vmodal__pick-title {
-		color: var( --mdotcar-vm-accent );
-	}
-
-	.mdotcar-vmodal__nav {
-		justify-content: space-between;
-		padding: 12px 16px calc( 12px + env( safe-area-inset-bottom ) );
-		border-top: 1px solid var( --mdotcar-vm-line );
+		grid-template-columns: 136px minmax( 0, 1fr );
 	}
 
 	.mdotcar-vmodal .mdotcar-vmodal__step {
-		width: 44px;
-		height: 44px;
+		width: 40px;
+		height: 40px;
 	}
 
 	.mdotcar-player__bar {
@@ -2936,6 +3444,12 @@ html.mdotcar-vmodal-locked body {
 	.mdotcar-vmodal .mdotcar-player__big {
 		width: 60px;
 		height: 60px;
+	}
+
+	.mdotcar-player__resume {
+		top: 10px;
+		right: 10px;
+		font-size: 12px;
 	}
 }
 

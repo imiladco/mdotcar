@@ -17,6 +17,28 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.14.0] - 2026-10-27
+
+### Changed
+
+- **MDotCar Video Gallery**, the video window redesigned as a cinema:
+  - The card's picture flies from the card into the stage when it opens, and
+    back to its card when it closes.
+  - Ambient light: the dark page behind the window glows with the colours of
+    the video as it plays (a tiny copy of the picture, blurred and scaled).
+  - Desktop: two columns. The video with its title and description, and
+    beside it the list of every video: picture, length, how much was
+    watched, «در حال پخش» with a moving equalizer on the one playing,
+    «دیده‌شده» on the ones finished, the count and previous / next.
+  - Picks up where each video was left (in this browser), with «از اول» to
+    start over.
+  - At the end, the next video's picture with a 5-second ring counting down
+    to it, «پخش دوباره» and «لغو».
+  - Phones: the whole screen, the video staying under the header while the
+    text and the list scroll; double tap a side to jump 10 seconds, a tap
+    shows or hides the controls. Tablets: one column.
+  - Panel width default 1200px; the page dim is darker so the glow shows.
+
 ## [0.13.0] - 2026-10-27
 
 ### Changed
