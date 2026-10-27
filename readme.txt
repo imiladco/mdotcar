@@ -4,7 +4,7 @@ Tags: elementor, widget, title, heading, flexbox
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.12.0
+Stable tag: 0.13.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,6 +59,10 @@ and height can each be left to fit the content or set to a custom value.
    *MDotCar*.
 
 == Changelog ==
+
+= 0.13.0 =
+* Changed: Video Gallery's window has a header (badge, close button with its
+  label) and fills the whole screen on phones, with a list of every video.
 
 = 0.12.0 =
 * New: MDotCar Video Gallery widget, video cards in a slider that open in a

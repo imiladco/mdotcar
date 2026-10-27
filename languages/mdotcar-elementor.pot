@@ -743,6 +743,10 @@ msgstr ""
 msgid "Header"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:892
+msgid "Header Divider"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:519
 #: widgets/class-mdotcar-elementor-widget-title.php:521
 #: widgets/class-mdotcar-elementor-widget-video-gallery.php:501
@@ -1368,7 +1372,7 @@ msgstr ""
 #: widgets/class-mdotcar-elementor-widget-video-gallery.php:453
 #: widgets/class-mdotcar-elementor-widget-video-gallery.php:502
 #: widgets/class-mdotcar-elementor-widget-video-gallery.php:607
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:890
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:900
 msgid "Radius"
 msgstr ""
 
@@ -1832,7 +1836,7 @@ msgstr ""
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:945
 #: widgets/class-mdotcar-elementor-widget-title.php:475
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:643
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:889
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:899
 msgid "Width"
 msgstr ""
 

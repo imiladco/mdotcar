@@ -17,6 +17,21 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.13.0] - 2026-10-27
+
+### Changed
+
+- **MDotCar Video Gallery**, video window: a header with the badge on the
+  start side and the close button (icon, «بستن» and an Esc hint on desktop)
+  on the end side, a divider under it (its colour is the new **Header
+  Divider** control). The close button is no longer floating outside the
+  panel. The video sits under the header, the title, description and
+  previous / next under the video.
+- On phones the window is the whole screen: the header on top, the video edge
+  to edge, then the text and a list of every video (the one playing marked)
+  to pick the next one from, with previous / next pinned at the bottom within
+  the thumb's reach; the safe areas of notched phones are respected.
+
 ## [0.12.0] - 2026-10-27
 
 ### Added

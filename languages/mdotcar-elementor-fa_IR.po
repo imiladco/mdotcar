@@ -743,6 +743,10 @@ msgstr "تگ HTML"
 msgid "Header"
 msgstr "سطر عنوان"
 
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:892
+msgid "Header Divider"
+msgstr "خط جداکنندهٔ هدر"
+
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:519
 #: widgets/class-mdotcar-elementor-widget-title.php:521
 #: widgets/class-mdotcar-elementor-widget-video-gallery.php:501
@@ -1027,6 +1031,7 @@ msgstr "ام‌دات‌کار"
 #. translators: 1: required Elementor version, 2: current Elementor version.
 #. translators: 1: required Elementor version, 2: current Elementor version.
 #. translators: 1: required Elementor version, 2: current Elementor version.
+#. translators: 1: required Elementor version, 2: current Elementor version.
 msgid "MDotCar Elementor Widgets requires Elementor %1$s or newer. You are running %2$s."
 msgstr "افزونهٔ ویجت‌های المنتور ام‌دات‌کار به المنتور %1$s یا بالاتر نیاز دارد. نسخهٔ فعلی شما %2$s است."
 
@@ -1037,11 +1042,13 @@ msgstr "افزونهٔ ویجت‌های المنتور ام‌دات‌کار �
 #. translators: 1: required PHP version, 2: current PHP version.
 #. translators: 1: required PHP version, 2: current PHP version.
 #. translators: 1: required PHP version, 2: current PHP version.
+#. translators: 1: required PHP version, 2: current PHP version.
 msgid "MDotCar Elementor Widgets requires PHP %1$s or newer. You are running %2$s."
 msgstr "افزونهٔ ویجت‌های المنتور ام‌دات‌کار به PHP %1$s یا بالاتر نیاز دارد. نسخهٔ فعلی شما %2$s است."
 
 #. translators: 1: required WordPress version, 2: current WordPress version.
 #: includes/class-mdotcar-elementor-requirements.php:76
+#. translators: 1: required WordPress version, 2: current WordPress version.
 #. translators: 1: required WordPress version, 2: current WordPress version.
 #. translators: 1: required WordPress version, 2: current WordPress version.
 #. translators: 1: required WordPress version, 2: current WordPress version.
@@ -1383,7 +1390,7 @@ msgstr "قیمت‌ها"
 #: widgets/class-mdotcar-elementor-widget-video-gallery.php:453
 #: widgets/class-mdotcar-elementor-widget-video-gallery.php:502
 #: widgets/class-mdotcar-elementor-widget-video-gallery.php:607
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:890
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:900
 msgid "Radius"
 msgstr "گردی گوشه"
 
@@ -1622,6 +1629,7 @@ msgstr "بر آیکون نشان اولویت دارد. برای تصویر کل
 #. translators: %d: tariff column number.
 #. translators: %d: tariff column number.
 #. translators: %d: tariff column number.
+#. translators: %d: tariff column number.
 msgid "Tariff %d"
 msgstr "تعرفهٔ %d"
 
@@ -1852,7 +1860,7 @@ msgstr "«سفید» هر آیکونی را سفید می‌کند (برای د�
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:945
 #: widgets/class-mdotcar-elementor-widget-title.php:475
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:643
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:889
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:899
 msgid "Width"
 msgstr "عرض"
 

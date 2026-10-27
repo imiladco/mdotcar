@@ -1323,6 +1323,9 @@
 			this.labels = {};
 		}
 
+		this.list = el.querySelector( '.mdotcar-vmodal__list' );
+		this.buildList();
+
 		el.addEventListener( 'click', function ( event ) {
 			var target = event.target.closest ? event.target : null;
 			if ( ! target ) {
@@ -1335,6 +1338,11 @@
 			var step = target.closest( '.mdotcar-vmodal__step' );
 			if ( step ) {
 				self.go( self.index + +step.getAttribute( 'data-step' ) );
+			}
+			var pick = target.closest( '.mdotcar-vmodal__pick' );
+			if ( pick && +pick.getAttribute( 'data-index' ) !== self.index ) {
+				self.go( +pick.getAttribute( 'data-index' ) );
+				self.stage.scrollIntoView( { block: 'nearest' } );
 			}
 		} );
 
@@ -1351,6 +1359,55 @@
 			}
 		} );
 	}
+
+	/**
+	 * The list of every video under the text (shown on phones, where the
+	 * window is the whole screen and the room is there).
+	 */
+	Modal.prototype.buildList = function () {
+		var self = this;
+		var items = this.gallery.items;
+		if ( ! this.list || items.length < 2 ) {
+			return;
+		}
+		var head = document.createElement( 'p' );
+		head.className = 'mdotcar-vmodal__list-head';
+		head.textContent = this.labels.list || '';
+		this.list.appendChild( head );
+		items.forEach( function ( item, index ) {
+			var pick = document.createElement( 'button' );
+			pick.type = 'button';
+			pick.className = 'mdotcar-vmodal__pick';
+			pick.setAttribute( 'data-index', index );
+			var thumb = document.createElement( 'span' );
+			thumb.className = 'mdotcar-vmodal__thumb';
+			if ( item.image ) {
+				var img = document.createElement( 'img' );
+				img.src = item.image;
+				img.alt = '';
+				img.loading = 'lazy';
+				thumb.appendChild( img );
+			}
+			thumb.insertAdjacentHTML( 'beforeend', icon( 'play' ) );
+			var text = document.createElement( 'span' );
+			text.className = 'mdotcar-vmodal__pick-text';
+			var title = document.createElement( 'span' );
+			title.className = 'mdotcar-vmodal__pick-title';
+			title.textContent = item.title || '';
+			var meta = document.createElement( 'span' );
+			meta.className = 'mdotcar-vmodal__pick-meta';
+			meta.textContent = item.desc || '';
+			var now = document.createElement( 'span' );
+			now.className = 'mdotcar-vmodal__now';
+			now.textContent = self.labels.now || '';
+			text.appendChild( now );
+			text.appendChild( title );
+			text.appendChild( meta );
+			pick.appendChild( thumb );
+			pick.appendChild( text );
+			self.list.appendChild( pick );
+		} );
+	};
 
 	/**
 	 * Opens on a video.
@@ -1401,6 +1458,15 @@
 		this.nav.hidden = items.length < 2;
 		this.steps[ 0 ].disabled = 0 === index;
 		this.steps[ 1 ].disabled = items.length - 1 === index;
+		Array.prototype.forEach.call( this.el.querySelectorAll( '.mdotcar-vmodal__pick' ), function ( pick ) {
+			var current = +pick.getAttribute( 'data-index' ) === index;
+			pick.classList.toggle( 'is-current', current );
+			if ( current ) {
+				pick.setAttribute( 'aria-current', 'true' );
+			} else {
+				pick.removeAttribute( 'aria-current' );
+			}
+		} );
 
 		if ( item.image ) {
 			var poster = document.createElement( 'img' );

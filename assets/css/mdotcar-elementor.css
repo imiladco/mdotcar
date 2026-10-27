@@ -1886,6 +1886,7 @@ html.mdotcar-hmenu-locked body {
 	--mdotcar-vm-bg: #FFFFFF;
 	--mdotcar-vm-width: 960px;
 	--mdotcar-vm-radius: 20px;
+	--mdotcar-vm-line: #EEEEEE;
 	--mdotcar-vm-ease: cubic-bezier( 0.2, 0.8, 0.2, 1 );
 	position: fixed;
 	z-index: 100000;
@@ -1893,7 +1894,7 @@ html.mdotcar-hmenu-locked body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 72px 24px 24px;
+	padding: 24px;
 	color: #212121;
 	font-family: inherit;
 	direction: inherit;
@@ -1924,9 +1925,12 @@ html.mdotcar-hmenu-locked body {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	max-width: min( var( --mdotcar-vm-width ), calc( ( 100vh - 220px ) * 16 / 9 + 20px ) );
-	max-width: min( var( --mdotcar-vm-width ), calc( ( 100dvh - 220px ) * 16 / 9 + 20px ) );
-	padding: 10px;
+	/* As wide as asked, but never so wide that the panel is taller than the screen. */
+	max-width: min( var( --mdotcar-vm-width ), calc( ( 100vh - 230px ) * 16 / 9 + 24px ) );
+	max-width: min( var( --mdotcar-vm-width ), calc( ( 100dvh - 230px ) * 16 / 9 + 24px ) );
+	max-height: 100%;
+	overflow: hidden;
+	padding: 0;
 	border-radius: var( --mdotcar-vm-radius );
 	background-color: var( --mdotcar-vm-bg );
 	box-shadow: 0 32px 80px -24px rgba( 0, 0, 0, 0.5 );
@@ -1983,27 +1987,58 @@ html.mdotcar-hmenu-locked body {
 	pointer-events: none;
 }
 
+/* The header: what the video is for on the start side, the way out on the end side. */
+
+.mdotcar-vmodal__head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	min-height: 56px;
+	padding: 10px 12px 10px 16px;
+	border-bottom: 1px solid var( --mdotcar-vm-line );
+}
+
+[dir="rtl"] .mdotcar-vmodal__head,
+.rtl .mdotcar-vmodal__head {
+	padding: 10px 16px 10px 12px;
+}
+
 .mdotcar-vmodal .mdotcar-vmodal__close {
-	position: absolute;
-	z-index: 2;
-	bottom: calc( 100% + 12px );
-	inset-inline-end: 0;
-	width: 44px;
-	height: 44px;
-	background-color: rgba( 255, 255, 255, 0.14 );
-	color: #FFFFFF;
-	-webkit-backdrop-filter: blur( 12px );
-	backdrop-filter: blur( 12px );
-	box-shadow: inset 0 0 0 1px rgba( 255, 255, 255, 0.18 );
+	gap: 6px;
+	height: 36px;
+	margin-inline-start: auto;
+	padding: 0 10px 0 12px;
+	border-radius: 10px;
+	color: #616161;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 20px;
 }
 
 .mdotcar-vmodal .mdotcar-vmodal__close:hover {
-	background-color: rgba( 255, 255, 255, 0.24 );
-	transform: rotate( 90deg );
+	background-color: #F5F5F5;
+	color: #212121;
 }
 
-.mdotcar-vmodal .mdotcar-vmodal__close:focus-visible {
-	outline-color: #FFFFFF;
+.mdotcar-vmodal__close svg {
+	width: 20px;
+	height: 20px;
+}
+
+.mdotcar-vmodal__close kbd {
+	margin-inline-start: 2px;
+	padding: 1px 6px;
+	border: 1px solid #E0E0E0;
+	border-bottom-width: 2px;
+	border-radius: 6px;
+	background: #FAFAFA;
+	color: #9E9E9E;
+	font-family: inherit;
+	font-size: 11px;
+	font-weight: 500;
+	line-height: 16px;
+	box-shadow: none;
 }
 
 /* The stage: the video, 16:9, and the player over it. */
@@ -2012,8 +2047,11 @@ html.mdotcar-hmenu-locked body {
 	position: relative;
 	overflow: hidden;
 	width: 100%;
+	flex: none;
+	width: auto;
 	aspect-ratio: 16 / 9;
-	border-radius: calc( var( --mdotcar-vm-radius ) - 6px );
+	margin: 12px 12px 0;
+	border-radius: calc( var( --mdotcar-vm-radius ) - 8px );
 	background-color: #0E1024;
 	color: #FFFFFF;
 	isolation: isolate;
@@ -2567,7 +2605,7 @@ html.mdotcar-hmenu-locked body {
 	display: flex;
 	align-items: center;
 	gap: 16px;
-	padding: 14px 10px 6px;
+	padding: 14px 16px 16px;
 }
 
 .mdotcar-vmodal__text {
@@ -2580,7 +2618,7 @@ html.mdotcar-hmenu-locked body {
 }
 
 .mdotcar-vmodal__badge {
-	padding: 2px 8px;
+	padding: 6px;
 	border-radius: 6px;
 	background-color: #E6F4FF;
 	color: #0095FF;
@@ -2590,11 +2628,11 @@ html.mdotcar-hmenu-locked body {
 }
 
 .mdotcar-vmodal__badge:empty {
-	display: none;
+	visibility: hidden;
 }
 
 .mdotcar-vmodal .mdotcar-vmodal__title {
-	margin: 2px 0 0;
+	margin: 0;
 	padding: 0;
 	color: #212121;
 	font-size: 18px;
@@ -2658,6 +2696,12 @@ html.mdotcar-hmenu-locked body {
 	font-variant-numeric: tabular-nums;
 }
 
+/* Every video, as a list: phones only (see below). */
+
+.mdotcar-vmodal__list {
+	display: none;
+}
+
 /* Changing videos: the stage cross-fades. */
 
 .mdotcar-vmodal__stage > * {
@@ -2675,29 +2719,67 @@ html.mdotcar-vmodal-locked body {
 	overflow: hidden;
 }
 
-/* Phones: the window spans the screen's width, the info stacks. */
+/*
+ * Phones: the window is the whole screen. The header stays on top, the video
+ * runs edge to edge under it, the text follows, and the way to the other
+ * videos sits at the bottom within the thumb's reach.
+ */
 
 @media ( max-width: 767px ) {
 
 	.mdotcar-vmodal {
-		padding: 72px 12px 12px;
+		align-items: stretch;
+		padding: 0;
+	}
+
+	.mdotcar-vmodal__scrim {
+		-webkit-backdrop-filter: none;
+		backdrop-filter: none;
 	}
 
 	.mdotcar-vmodal__dialog {
-		max-width: 100%;
-		padding: 6px;
-		border-radius: 16px;
+		width: 100%;
+		max-width: none;
+		height: 100%;
+		max-height: none;
+		border-radius: 0;
+		box-shadow: none;
+		transform: translateY( 32px );
+	}
+
+	.mdotcar-vmodal__head,
+	[dir="rtl"] .mdotcar-vmodal__head,
+	.rtl .mdotcar-vmodal__head {
+		padding-top: calc( 10px + env( safe-area-inset-top ) );
+		padding-inline: 16px 8px;
+	}
+
+	.mdotcar-vmodal__close kbd {
+		display: none;
 	}
 
 	.mdotcar-vmodal__stage {
-		border-radius: 12px;
+		margin: 0;
+		border-radius: 0;
 	}
 
 	.mdotcar-vmodal__info {
+		flex: 1 1 auto;
 		flex-direction: column;
 		align-items: stretch;
-		gap: 12px;
-		padding: 12px 8px 6px;
+		gap: 0;
+		min-height: 0;
+		padding: 0;
+	}
+
+	.mdotcar-vmodal__text {
+		flex: 1 1 auto;
+		align-items: stretch;
+		gap: 6px;
+		overflow-x: hidden;
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		padding: 16px;
 	}
 
 	.mdotcar-vmodal .mdotcar-vmodal__title {
@@ -2705,14 +2787,134 @@ html.mdotcar-vmodal-locked body {
 		line-height: 24px;
 	}
 
+	.mdotcar-vmodal__list {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		margin-top: 16px;
+		padding-top: 16px;
+		border-top: 1px solid var( --mdotcar-vm-line );
+	}
+
+	.mdotcar-vmodal .mdotcar-vmodal__list-head {
+		margin: 0 0 8px;
+		color: #212121;
+		font-size: 14px;
+		font-weight: 700;
+		line-height: 22px;
+	}
+
+	.mdotcar-vmodal .mdotcar-vmodal__pick {
+		display: flex;
+		min-width: 0;
+		justify-content: flex-start;
+		gap: 12px;
+		width: 100%;
+		padding: 6px;
+		border-radius: 12px;
+		text-align: start;
+	}
+
+	.mdotcar-vmodal .mdotcar-vmodal__pick:hover {
+		background-color: #FAFAFA;
+	}
+
+	.mdotcar-vmodal .mdotcar-vmodal__pick.is-current {
+		background-color: #E8EAF6;
+		cursor: default;
+	}
+
+	.mdotcar-vmodal__thumb {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex: none;
+		width: 104px;
+		height: 60px;
+		overflow: hidden;
+		border-radius: 8px;
+		background: linear-gradient( 135deg, #E8EAF6, #C5CAE9 );
+		color: #FFFFFF;
+	}
+
+	.mdotcar-vmodal__thumb img {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		max-width: none;
+		object-fit: cover;
+	}
+
+	.mdotcar-vmodal__thumb svg {
+		position: relative;
+		width: 28px;
+		height: 28px;
+		padding: 7px;
+		border-radius: 50%;
+		background-color: rgba( 255, 255, 255, 0.25 );
+		-webkit-backdrop-filter: blur( 6px );
+		backdrop-filter: blur( 6px );
+	}
+
+	.mdotcar-vmodal__pick-text {
+		display: flex;
+		flex: 1 1 auto;
+		flex-direction: column;
+		gap: 2px;
+		min-width: 0;
+	}
+
+	.mdotcar-vmodal__pick-title,
+	.mdotcar-vmodal__pick-meta {
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	.mdotcar-vmodal__pick-title {
+		color: #212121;
+		font-size: 14px;
+		font-weight: 700;
+		line-height: 22px;
+	}
+
+	.mdotcar-vmodal__pick-meta {
+		color: #757575;
+		font-size: 12px;
+		line-height: 18px;
+	}
+
+	.mdotcar-vmodal__now {
+		display: none;
+		color: var( --mdotcar-vm-accent );
+		font-size: 11px;
+		font-weight: 700;
+		line-height: 16px;
+	}
+
+	.is-current .mdotcar-vmodal__now {
+		display: block;
+	}
+
+	.is-current .mdotcar-vmodal__pick-title {
+		color: var( --mdotcar-vm-accent );
+	}
+
 	.mdotcar-vmodal__nav {
 		justify-content: space-between;
-		padding-top: 12px;
-		border-top: 1px solid #F5F5F5;
+		padding: 12px 16px calc( 12px + env( safe-area-inset-bottom ) );
+		border-top: 1px solid var( --mdotcar-vm-line );
+	}
+
+	.mdotcar-vmodal .mdotcar-vmodal__step {
+		width: 44px;
+		height: 44px;
 	}
 
 	.mdotcar-player__bar {
-		padding: 28px 6px 4px;
+		padding: 20px 6px 2px;
 	}
 
 	.mdotcar-vmodal .mdotcar-player__btn {
@@ -2739,7 +2941,8 @@ html.mdotcar-vmodal-locked body {
 
 @media ( hover: none ) {
 
-	.mdotcar-player__level {
+	.mdotcar-player__level,
+	.mdotcar-vmodal__close kbd {
 		display: none;
 	}
 }

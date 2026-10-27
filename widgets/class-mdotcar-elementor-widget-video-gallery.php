@@ -886,6 +886,16 @@ class MDotCar_Elementor_Widget_Video_Gallery extends Widget_Base {
 			)
 		);
 
+		$this->add_control(
+			'modal_divider',
+			array(
+				'label'     => __( 'Header Divider', 'mdotcar-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#EEEEEE',
+				'selectors' => array( self::MODAL => '--mdotcar-vm-line: {{VALUE}};' ),
+			)
+		);
+
 		$this->add_responsive_control( 'modal_width', self::px( __( 'Width', 'mdotcar-elementor' ), 960, 1600, array( self::MODAL => '--mdotcar-vm-width: {{SIZE}}{{UNIT}};' ), 320 ) );
 		$this->add_responsive_control( 'modal_radius', self::px( __( 'Radius', 'mdotcar-elementor' ), 20, 40, array( self::MODAL => '--mdotcar-vm-radius: {{SIZE}}{{UNIT}};' ) ) );
 
@@ -1031,18 +1041,27 @@ class MDotCar_Elementor_Widget_Video_Gallery extends Widget_Base {
 			'next'     => 'ویدیوی بعدی',
 			'replay'   => 'پخش دوباره',
 			'error'    => 'پخش این ویدیو ممکن نشد.',
+			'list'     => 'همهٔ ویدیوها',
+			'now'      => 'در حال پخش',
 		);
 		?>
 		<div class="mdotcar-vmodal" data-for="<?php echo esc_attr( $id ); ?>" data-labels="<?php echo esc_attr( wp_json_encode( $labels ) ); ?>" hidden>
 			<div class="mdotcar-vmodal__scrim" data-close></div>
 			<div class="mdotcar-vmodal__dialog" role="dialog" aria-modal="true" aria-labelledby="mdotcar-vm-title-<?php echo esc_attr( $id ); ?>" tabindex="-1">
-				<button type="button" class="mdotcar-vmodal__close" data-close aria-label="<?php echo esc_attr( $labels['close'] ); ?>"><?php echo self::svg( 'close' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static markup. ?></button>
+				<header class="mdotcar-vmodal__head">
+					<span class="mdotcar-vmodal__badge"></span>
+					<button type="button" class="mdotcar-vmodal__close" data-close>
+						<?php echo self::svg( 'close' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static markup. ?>
+						<span><?php echo esc_html( $labels['close'] ); ?></span>
+						<kbd aria-hidden="true">Esc</kbd>
+					</button>
+				</header>
 				<div class="mdotcar-vmodal__stage"></div>
 				<div class="mdotcar-vmodal__info">
 					<div class="mdotcar-vmodal__text">
-						<span class="mdotcar-vmodal__badge"></span>
 						<h2 class="mdotcar-vmodal__title" id="mdotcar-vm-title-<?php echo esc_attr( $id ); ?>"></h2>
 						<p class="mdotcar-vmodal__desc"></p>
+						<div class="mdotcar-vmodal__list"></div>
 					</div>
 					<div class="mdotcar-vmodal__nav">
 						<button type="button" class="mdotcar-vmodal__step" data-step="-1" aria-label="<?php echo esc_attr( $labels['prev'] ); ?>"><?php echo self::svg( 'prev' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static markup. ?></button>
