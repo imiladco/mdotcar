@@ -1534,3 +1534,1227 @@ html.mdotcar-hmenu-locked body {
 		text-align: start;
 	}
 }
+
+/* -----------------------------------------------------------------------------
+ * Video Gallery — cards in a slider, each opening the video window
+ *
+ * The slider is the viewport's own scroll with snapping; the arrows sit beside
+ * it, centred on the cards. The values here are the style controls' defaults.
+ * -------------------------------------------------------------------------- */
+
+.mdotcar-vgal {
+	--mdotcar-vgal-per: 3;
+	--mdotcar-vgal-gap: 12px;
+	box-sizing: border-box;
+	display: grid;
+	grid-template-columns: auto minmax( 0, 1fr ) auto;
+	align-items: center;
+	width: 100%;
+}
+
+.mdotcar-vgal *,
+.mdotcar-vgal *::before,
+.mdotcar-vgal *::after {
+	box-sizing: border-box;
+}
+
+.mdotcar-vgal__viewport {
+	grid-column: 2;
+	overflow-x: auto;
+	overflow-y: hidden;
+	overscroll-behavior-x: contain;
+	scroll-snap-type: x mandatory;
+	scroll-behavior: smooth;
+	scrollbar-width: none;
+	-webkit-overflow-scrolling: touch;
+	/* Room under the cards for their hover shadow, taken back with the margin. */
+	padding: 0 0 16px;
+	margin: 0 0 -16px;
+	outline: none;
+}
+
+.mdotcar-vgal__viewport::-webkit-scrollbar {
+	display: none;
+}
+
+.mdotcar-vgal__viewport:focus-visible .mdotcar-vgal__card {
+	border-color: #7986CB;
+}
+
+.mdotcar-vgal .mdotcar-vgal__track {
+	display: flex;
+	gap: var( --mdotcar-vgal-gap );
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.mdotcar-vgal .mdotcar-vgal__slide {
+	flex: 0 0 calc( ( 100% - ( var( --mdotcar-vgal-per ) - 1 ) * var( --mdotcar-vgal-gap ) ) / var( --mdotcar-vgal-per ) );
+	min-width: 0;
+	margin: 0;
+	padding: 0;
+	scroll-snap-align: start;
+	list-style: none;
+}
+
+.mdotcar-vgal .mdotcar-vgal__slide::before,
+.mdotcar-vgal .mdotcar-vgal__slide::marker {
+	content: none;
+}
+
+/* The card. */
+
+.mdotcar-vgal__card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	padding: 6px 6px 20px;
+	border: 1px solid #E0E0E0;
+	border-radius: 16px;
+	background-color: #FFFFFF;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.mdotcar-vgal__card:hover {
+	border-color: #C5CAE9;
+	box-shadow: 0 8px 24px -12px rgba( 63, 81, 181, 0.28 );
+}
+
+.mdotcar-vgal__card:focus-within {
+	border-color: #C5CAE9;
+}
+
+.mdotcar-vgal__card:has( .mdotcar-vgal__open:focus-visible ) {
+	outline: 2px solid #3F51B5;
+	outline-offset: -2px;
+}
+
+.mdotcar-vgal__media {
+	position: relative;
+	flex: none;
+	height: 194px;
+	overflow: hidden;
+	border-radius: 12px;
+	background: linear-gradient( 135deg, #E8EAF6, #C5CAE9 );
+	/* Clips the zoom in Safari, which ignores the radius on a transformed child. */
+	isolation: isolate;
+}
+
+.mdotcar-vgal__media img {
+	position: absolute;
+	inset: 0;
+	display: block;
+	width: 100%;
+	max-width: none;
+	height: 100%;
+	margin: 0;
+	border: 0;
+	border-radius: 0;
+	object-fit: cover;
+	object-position: center center;
+	transition: transform 0.6s cubic-bezier( 0.2, 0.7, 0.2, 1 );
+}
+
+.mdotcar-vgal-zoom-yes .mdotcar-vgal__card:hover .mdotcar-vgal__media img {
+	transform: scale( 1.04 );
+}
+
+.mdotcar-vgal__veil {
+	position: absolute;
+	inset: 0;
+	-webkit-backdrop-filter: blur( 2px );
+	backdrop-filter: blur( 2px );
+	background-color: rgba( 255, 255, 255, 0 );
+	pointer-events: none;
+}
+
+.mdotcar-vgal__badge {
+	position: absolute;
+	z-index: 1;
+	top: 12px;
+	inset-inline-start: 12px;
+	max-width: calc( 100% - 24px );
+	overflow: hidden;
+	padding: 6px;
+	border-radius: 6px;
+	background-color: #E6F4FF;
+	color: #0095FF;
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 18px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.mdotcar-vgal__play {
+	position: absolute;
+	z-index: 1;
+	top: 50%;
+	left: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 56px;
+	height: 56px;
+	border-radius: 50%;
+	background-color: #FFFFFF40;
+	color: #FFFFFF;
+	-webkit-backdrop-filter: blur( 11.67px );
+	backdrop-filter: blur( 11.67px );
+	transform: translate( -50%, -50% );
+	transition: transform 0.3s cubic-bezier( 0.2, 0.7, 0.2, 1 ), background-color 0.2s ease;
+}
+
+/*
+ * The glass edge: a 1px border fading from white to nothing (border-image
+ * cannot follow a radius, so it is a masked layer), and the inner highlight.
+ */
+.mdotcar-vgal-edge-yes .mdotcar-vgal__play {
+	box-shadow: -0.43px 0.43px 0.43px -0.85px #FFFFFF59 inset;
+}
+
+.mdotcar-vgal-edge-yes .mdotcar-vgal__play::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	padding: 1px;
+	border-radius: inherit;
+	background: linear-gradient( 202.36deg, rgba( 255, 255, 255, 0.2 ) 8.26%, rgba( 255, 255, 255, 0 ) 85.43% );
+	-webkit-mask: linear-gradient( #000 0 0 ) content-box, linear-gradient( #000 0 0 );
+	-webkit-mask-composite: xor;
+	mask: linear-gradient( #000 0 0 ) content-box exclude, linear-gradient( #000 0 0 );
+	pointer-events: none;
+}
+
+.mdotcar-vgal__play svg {
+	width: 24px;
+	height: 24px;
+	/* The triangle's weight sits left of its box; this centres it by eye. */
+	margin-inline-start: 2px;
+}
+
+[dir="rtl"] .mdotcar-vgal__play svg,
+.rtl .mdotcar-vgal__play svg {
+	margin-inline-start: 0;
+	margin-inline-end: 2px;
+}
+
+.mdotcar-vgal__card:hover .mdotcar-vgal__play {
+	transform: translate( -50%, -50% ) scale( 1.08 );
+}
+
+.mdotcar-vgal__body {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: 16px 10px 0;
+}
+
+.mdotcar-vgal .mdotcar-vgal__title,
+.mdotcar-vgal .mdotcar-vgal__desc {
+	display: -webkit-box;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+	line-clamp: 1;
+	overflow-wrap: anywhere;
+}
+
+.mdotcar-vgal .mdotcar-vgal__title {
+	color: #212121;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 24px;
+}
+
+.mdotcar-vgal .mdotcar-vgal__desc {
+	color: #616161;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 22px;
+}
+
+/* The button that opens the video: a clear layer over the whole card, named by the title. */
+
+.mdotcar-vgal .mdotcar-vgal__open {
+	position: absolute;
+	z-index: 2;
+	inset: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: inherit;
+	background: transparent;
+	box-shadow: none;
+	cursor: pointer;
+	outline: none;
+	-webkit-tap-highlight-color: transparent;
+}
+
+.mdotcar-vgal .mdotcar-vgal__open:hover,
+.mdotcar-vgal .mdotcar-vgal__open:focus {
+	background: transparent;
+}
+
+/* The arrows. */
+
+.mdotcar-vgal .mdotcar-vgal__arrow {
+	display: var( --mdotcar-vgal-arrow, flex );
+	align-items: center;
+	justify-content: center;
+	flex: none;
+	width: 48px;
+	height: 48px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background-color: #F5F5F5;
+	box-shadow: none;
+	color: #212121;
+	cursor: pointer;
+	transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+}
+
+.mdotcar-vgal .mdotcar-vgal__arrow--prev {
+	grid-column: 1;
+	grid-row: 1;
+	margin-inline-end: var( --mdotcar-vgal-space, 16px );
+}
+
+.mdotcar-vgal .mdotcar-vgal__arrow--next {
+	grid-column: 3;
+	grid-row: 1;
+	margin-inline-start: var( --mdotcar-vgal-space, 16px );
+}
+
+.mdotcar-vgal .mdotcar-vgal__arrow:not( :disabled ):hover {
+	background-color: #E8EAF6;
+	color: #3F51B5;
+}
+
+.mdotcar-vgal .mdotcar-vgal__arrow:not( :disabled ):active {
+	transform: scale( 0.94 );
+}
+
+.mdotcar-vgal .mdotcar-vgal__arrow:focus-visible {
+	outline: 2px solid #3F51B5;
+	outline-offset: 2px;
+}
+
+.mdotcar-vgal .mdotcar-vgal__arrow:disabled {
+	background-color: #FAFAFA;
+	color: #BDBDBD;
+	cursor: default;
+}
+
+.mdotcar-vgal__arrow svg {
+	display: block;
+	width: 24px;
+	height: 24px;
+}
+
+/* The arrows are drawn for RTL (where "next" is on the left); LTR mirrors them. */
+.mdotcar-vgal:not( [dir="rtl"] *, .rtl * ) .mdotcar-vgal__arrow svg,
+.mdotcar-vmodal:not( [dir="rtl"] *, .rtl * ) .mdotcar-vmodal__step svg {
+	transform: scaleX( -1 );
+}
+
+/* Every card fits: no arrows, the cards take the whole row. */
+.mdotcar-vgal.is-static .mdotcar-vgal__arrow {
+	display: none;
+}
+
+/* -----------------------------------------------------------------------------
+ * Video Gallery — the video window and its player
+ *
+ * A white panel on a dimmed, blurred page: the video on top in a dark stage,
+ * the title and the way to the other videos below. The player's controls are
+ * glass on a soft shade, indigo where something is filled or focused.
+ * -------------------------------------------------------------------------- */
+
+.mdotcar-vmodal {
+	--mdotcar-vm-accent: #3F51B5;
+	--mdotcar-vm-scrim: rgba( 17, 20, 39, 0.78 );
+	--mdotcar-vm-bg: #FFFFFF;
+	--mdotcar-vm-width: 960px;
+	--mdotcar-vm-radius: 20px;
+	--mdotcar-vm-ease: cubic-bezier( 0.2, 0.8, 0.2, 1 );
+	position: fixed;
+	z-index: 100000;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 72px 24px 24px;
+	color: #212121;
+	font-family: inherit;
+	direction: inherit;
+}
+
+.mdotcar-vmodal[hidden] {
+	display: none;
+}
+
+.mdotcar-vmodal *,
+.mdotcar-vmodal *::before,
+.mdotcar-vmodal *::after {
+	box-sizing: border-box;
+}
+
+.mdotcar-vmodal__scrim {
+	position: absolute;
+	inset: 0;
+	background-color: var( --mdotcar-vm-scrim );
+	-webkit-backdrop-filter: blur( 8px );
+	backdrop-filter: blur( 8px );
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+
+.mdotcar-vmodal__dialog {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: min( var( --mdotcar-vm-width ), calc( ( 100vh - 220px ) * 16 / 9 + 20px ) );
+	max-width: min( var( --mdotcar-vm-width ), calc( ( 100dvh - 220px ) * 16 / 9 + 20px ) );
+	padding: 10px;
+	border-radius: var( --mdotcar-vm-radius );
+	background-color: var( --mdotcar-vm-bg );
+	box-shadow: 0 32px 80px -24px rgba( 0, 0, 0, 0.5 );
+	outline: none;
+	opacity: 0;
+	transform: translateY( 16px ) scale( 0.97 );
+	transition: opacity 0.3s ease, transform 0.4s var( --mdotcar-vm-ease );
+}
+
+.mdotcar-vmodal.is-open .mdotcar-vmodal__scrim,
+.mdotcar-vmodal.is-open .mdotcar-vmodal__dialog {
+	opacity: 1;
+}
+
+.mdotcar-vmodal.is-open .mdotcar-vmodal__dialog {
+	transform: none;
+}
+
+/* Buttons in the window: nothing from the theme. */
+
+.mdotcar-vmodal button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex: none;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: none;
+	box-shadow: none;
+	color: inherit;
+	font: inherit;
+	line-height: 1;
+	text-transform: none;
+	letter-spacing: normal;
+	cursor: pointer;
+	-webkit-tap-highlight-color: transparent;
+	transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+}
+
+.mdotcar-vmodal button:focus {
+	outline: none;
+}
+
+.mdotcar-vmodal button:focus-visible {
+	outline: 2px solid var( --mdotcar-vm-accent );
+	outline-offset: 2px;
+}
+
+.mdotcar-vmodal svg {
+	display: block;
+	flex: none;
+	pointer-events: none;
+}
+
+.mdotcar-vmodal .mdotcar-vmodal__close {
+	position: absolute;
+	z-index: 2;
+	bottom: calc( 100% + 12px );
+	inset-inline-end: 0;
+	width: 44px;
+	height: 44px;
+	background-color: rgba( 255, 255, 255, 0.14 );
+	color: #FFFFFF;
+	-webkit-backdrop-filter: blur( 12px );
+	backdrop-filter: blur( 12px );
+	box-shadow: inset 0 0 0 1px rgba( 255, 255, 255, 0.18 );
+}
+
+.mdotcar-vmodal .mdotcar-vmodal__close:hover {
+	background-color: rgba( 255, 255, 255, 0.24 );
+	transform: rotate( 90deg );
+}
+
+.mdotcar-vmodal .mdotcar-vmodal__close:focus-visible {
+	outline-color: #FFFFFF;
+}
+
+/* The stage: the video, 16:9, and the player over it. */
+
+.mdotcar-vmodal__stage {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	border-radius: calc( var( --mdotcar-vm-radius ) - 6px );
+	background-color: #0E1024;
+	color: #FFFFFF;
+	isolation: isolate;
+}
+
+.mdotcar-vmodal__stage:fullscreen {
+	border-radius: 0;
+	aspect-ratio: auto;
+}
+
+.mdotcar-vmodal__stage:-webkit-full-screen {
+	width: 100%;
+	height: 100%;
+	border-radius: 0;
+}
+
+.mdotcar-vmodal__poster,
+.mdotcar-vmodal__stage video,
+.mdotcar-vmodal__stage iframe {
+	position: absolute;
+	inset: 0;
+	display: block;
+	width: 100%;
+	max-width: none;
+	height: 100%;
+	margin: 0;
+	border: 0;
+	background: transparent;
+}
+
+.mdotcar-vmodal__poster {
+	object-fit: cover;
+	filter: blur( 24px ) saturate( 1.1 );
+	opacity: 0.45;
+	transform: scale( 1.15 );
+}
+
+.mdotcar-vmodal__stage video {
+	object-fit: contain;
+}
+
+/* The player. */
+
+.mdotcar-player {
+	--mdotcar-p-hide: 0;
+	position: absolute;
+	inset: 0;
+	direction: ltr;
+	font-family: inherit;
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+.mdotcar-player.is-idle {
+	cursor: none;
+}
+
+/* The big button in the middle, the same glass as on the cards. */
+
+.mdotcar-vmodal .mdotcar-player__big {
+	position: absolute;
+	z-index: 2;
+	top: 50%;
+	left: 50%;
+	width: 72px;
+	height: 72px;
+	background-color: rgba( 255, 255, 255, 0.25 );
+	color: #FFFFFF;
+	-webkit-backdrop-filter: blur( 11.67px );
+	backdrop-filter: blur( 11.67px );
+	box-shadow: -0.43px 0.43px 0.43px -0.85px rgba( 255, 255, 255, 0.35 ) inset, 0 12px 32px -8px rgba( 0, 0, 0, 0.4 );
+	transform: translate( -50%, -50% );
+	opacity: 1;
+	transition: opacity 0.25s ease, transform 0.3s var( --mdotcar-vm-ease ), background-color 0.2s ease;
+}
+
+.mdotcar-vmodal .mdotcar-player__big::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	padding: 1px;
+	border-radius: inherit;
+	background: linear-gradient( 202.36deg, rgba( 255, 255, 255, 0.35 ) 8.26%, rgba( 255, 255, 255, 0 ) 85.43% );
+	-webkit-mask: linear-gradient( #000 0 0 ) content-box, linear-gradient( #000 0 0 );
+	-webkit-mask-composite: xor;
+	mask: linear-gradient( #000 0 0 ) content-box exclude, linear-gradient( #000 0 0 );
+}
+
+.mdotcar-vmodal .mdotcar-player__big:hover {
+	background-color: rgba( 255, 255, 255, 0.34 );
+	transform: translate( -50%, -50% ) scale( 1.06 );
+}
+
+.mdotcar-player__big svg {
+	width: 30px;
+	height: 30px;
+	margin-left: 3px;
+}
+
+.mdotcar-player.is-playing .mdotcar-player__big,
+.mdotcar-player.is-waiting .mdotcar-player__big,
+.mdotcar-player.is-ended .mdotcar-player__big,
+.mdotcar-player.is-error .mdotcar-player__big {
+	opacity: 0;
+	pointer-events: none;
+	transform: translate( -50%, -50% ) scale( 0.85 );
+}
+
+/* Loading. */
+
+.mdotcar-player__spinner {
+	position: absolute;
+	z-index: 2;
+	top: 50%;
+	left: 50%;
+	width: 48px;
+	height: 48px;
+	margin: -24px 0 0 -24px;
+	border: 3px solid rgba( 255, 255, 255, 0.18 );
+	border-top-color: #FFFFFF;
+	border-radius: 50%;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.2s ease;
+	animation: mdotcar-spin 0.8s linear infinite;
+}
+
+.mdotcar-player.is-waiting .mdotcar-player__spinner {
+	opacity: 1;
+	transition-delay: 0.15s;
+}
+
+@keyframes mdotcar-spin {
+	to {
+		transform: rotate( 360deg );
+	}
+}
+
+/* At the end, and when it cannot play. */
+
+.mdotcar-player__end,
+.mdotcar-player__error {
+	position: absolute;
+	z-index: 3;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+	padding: 24px;
+	background: rgba( 14, 16, 36, 0.55 );
+	-webkit-backdrop-filter: blur( 6px );
+	backdrop-filter: blur( 6px );
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.mdotcar-player.is-ended .mdotcar-player__end,
+.mdotcar-player.is-error .mdotcar-player__error {
+	opacity: 1;
+	visibility: visible;
+	transition-delay: 0s;
+}
+
+.mdotcar-player__error {
+	flex-direction: column;
+	gap: 12px;
+	font-size: 15px;
+	line-height: 24px;
+	text-align: center;
+	direction: rtl;
+}
+
+.mdotcar-player__error svg {
+	width: 36px;
+	height: 36px;
+	color: #FFD24A;
+}
+
+.mdotcar-vmodal .mdotcar-player__again {
+	flex-direction: column;
+	gap: 8px;
+	width: auto;
+	min-width: 96px;
+	height: auto;
+	padding: 14px 18px;
+	border-radius: 16px;
+	background-color: rgba( 255, 255, 255, 0.12 );
+	color: #FFFFFF;
+	font-size: 13px;
+	line-height: 20px;
+	direction: rtl;
+}
+
+.mdotcar-vmodal .mdotcar-player__again:hover {
+	background-color: rgba( 255, 255, 255, 0.2 );
+}
+
+.mdotcar-vmodal .mdotcar-player__again--next {
+	background-color: var( --mdotcar-vm-accent );
+}
+
+.mdotcar-vmodal .mdotcar-player__again--next:hover {
+	background-color: #3949AB;
+}
+
+.mdotcar-player__again svg {
+	width: 28px;
+	height: 28px;
+}
+
+/* The bar: the progress across, the buttons under it. */
+
+.mdotcar-player__bar {
+	position: absolute;
+	z-index: 4;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	padding: 40px 14px 10px;
+	background: linear-gradient( to top, rgba( 8, 10, 24, 0.82 ), rgba( 8, 10, 24, 0.45 ) 55%, rgba( 8, 10, 24, 0 ) );
+	opacity: 1;
+	transform: none;
+	transition: opacity 0.3s ease, transform 0.3s var( --mdotcar-vm-ease );
+}
+
+.mdotcar-player.is-idle .mdotcar-player__bar,
+.mdotcar-player.is-fresh .mdotcar-player__bar {
+	opacity: 0;
+	transform: translateY( 8px );
+	pointer-events: none;
+}
+
+.mdotcar-player__row {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	height: 40px;
+}
+
+.mdotcar-player__spacer {
+	flex: 1 1 auto;
+}
+
+.mdotcar-vmodal .mdotcar-player__btn {
+	position: relative;
+	width: 40px;
+	height: 40px;
+	border-radius: 12px;
+	color: #FFFFFF;
+}
+
+.mdotcar-vmodal .mdotcar-player__btn:hover,
+.mdotcar-vmodal .mdotcar-player__btn[aria-expanded="true"] {
+	background-color: rgba( 255, 255, 255, 0.14 );
+}
+
+.mdotcar-vmodal .mdotcar-player__btn:focus-visible {
+	outline-color: #FFFFFF;
+	outline-offset: -2px;
+}
+
+.mdotcar-player__btn svg {
+	width: 22px;
+	height: 22px;
+}
+
+.mdotcar-vmodal .mdotcar-player__btn--speed {
+	width: auto;
+	min-width: 48px;
+	padding: 0 8px;
+	font-size: 13px;
+	font-weight: 700;
+	font-variant-numeric: tabular-nums;
+}
+
+.mdotcar-player__time {
+	padding: 0 8px;
+	color: rgba( 255, 255, 255, 0.92 );
+	font-size: 13px;
+	line-height: 1;
+	white-space: nowrap;
+	font-variant-numeric: tabular-nums;
+}
+
+.mdotcar-player__time span:last-child {
+	color: rgba( 255, 255, 255, 0.6 );
+}
+
+/* Progress: what is buffered, what is played, and a time label where the pointer is. */
+
+.mdotcar-player__seek {
+	position: relative;
+	height: 18px;
+	margin: 0 4px 2px;
+	cursor: pointer;
+	touch-action: none;
+	outline: none;
+}
+
+.mdotcar-player__rail,
+.mdotcar-player__buffered,
+.mdotcar-player__played {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	height: 4px;
+	margin-top: -2px;
+	border-radius: 4px;
+	transition: height 0.15s ease, margin 0.15s ease;
+}
+
+.mdotcar-player__rail {
+	right: 0;
+	background-color: rgba( 255, 255, 255, 0.22 );
+}
+
+.mdotcar-player__buffered {
+	width: 0;
+	background-color: rgba( 255, 255, 255, 0.36 );
+}
+
+.mdotcar-player__played {
+	width: 0;
+	background: linear-gradient( 90deg, #7986CB, var( --mdotcar-vm-accent ) );
+}
+
+.mdotcar-player__thumb {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 14px;
+	height: 14px;
+	margin: -7px 0 0 -7px;
+	border-radius: 50%;
+	background-color: #FFFFFF;
+	box-shadow: 0 0 0 4px rgba( 63, 81, 181, 0.45 ), 0 2px 6px rgba( 0, 0, 0, 0.3 );
+	transform: scale( 0 );
+	transition: transform 0.15s ease;
+}
+
+.mdotcar-player__seek:hover .mdotcar-player__rail,
+.mdotcar-player__seek:hover .mdotcar-player__buffered,
+.mdotcar-player__seek:hover .mdotcar-player__played,
+.mdotcar-player__seek.is-dragging .mdotcar-player__rail,
+.mdotcar-player__seek.is-dragging .mdotcar-player__buffered,
+.mdotcar-player__seek.is-dragging .mdotcar-player__played,
+.mdotcar-player__seek:focus-visible .mdotcar-player__rail,
+.mdotcar-player__seek:focus-visible .mdotcar-player__buffered,
+.mdotcar-player__seek:focus-visible .mdotcar-player__played {
+	height: 6px;
+	margin-top: -3px;
+}
+
+.mdotcar-player__seek:hover .mdotcar-player__thumb,
+.mdotcar-player__seek.is-dragging .mdotcar-player__thumb,
+.mdotcar-player__seek:focus-visible .mdotcar-player__thumb {
+	transform: scale( 1 );
+}
+
+.mdotcar-player__seek:focus-visible .mdotcar-player__rail {
+	box-shadow: 0 0 0 2px rgba( 255, 255, 255, 0.5 );
+}
+
+.mdotcar-player__tip {
+	position: absolute;
+	bottom: calc( 100% + 6px );
+	left: 0;
+	padding: 4px 8px;
+	border-radius: 8px;
+	background-color: rgba( 14, 16, 36, 0.9 );
+	color: #FFFFFF;
+	font-size: 12px;
+	line-height: 16px;
+	white-space: nowrap;
+	font-variant-numeric: tabular-nums;
+	opacity: 0;
+	pointer-events: none;
+	transform: translateX( -50% );
+	transition: opacity 0.15s ease;
+}
+
+.mdotcar-player__seek:hover .mdotcar-player__tip,
+.mdotcar-player__seek.is-dragging .mdotcar-player__tip {
+	opacity: 1;
+}
+
+/* Volume: the button, and a slider that opens beside it. */
+
+.mdotcar-player__volume {
+	display: flex;
+	align-items: center;
+}
+
+.mdotcar-player__level {
+	width: 0;
+	overflow: hidden;
+	opacity: 0;
+	transition: width 0.25s var( --mdotcar-vm-ease ), opacity 0.2s ease;
+}
+
+.mdotcar-player__volume:hover .mdotcar-player__level,
+.mdotcar-player__volume:focus-within .mdotcar-player__level {
+	width: 84px;
+	opacity: 1;
+}
+
+.mdotcar-vmodal input.mdotcar-player__range {
+	--v: 100%;
+	display: block;
+	width: 72px;
+	height: 18px;
+	margin: 0 6px;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	box-shadow: none;
+	cursor: pointer;
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+.mdotcar-player__range::-webkit-slider-runnable-track {
+	height: 4px;
+	border-radius: 4px;
+	background: linear-gradient( 90deg, #FFFFFF var( --v ), rgba( 255, 255, 255, 0.25 ) var( --v ) );
+}
+
+.mdotcar-player__range::-moz-range-track {
+	height: 4px;
+	border-radius: 4px;
+	background: linear-gradient( 90deg, #FFFFFF var( --v ), rgba( 255, 255, 255, 0.25 ) var( --v ) );
+}
+
+.mdotcar-player__range::-webkit-slider-thumb {
+	width: 12px;
+	height: 12px;
+	margin-top: -4px;
+	border: 0;
+	border-radius: 50%;
+	background: #FFFFFF;
+	box-shadow: 0 1px 4px rgba( 0, 0, 0, 0.35 );
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+.mdotcar-player__range::-moz-range-thumb {
+	width: 12px;
+	height: 12px;
+	border: 0;
+	border-radius: 50%;
+	background: #FFFFFF;
+}
+
+.mdotcar-player__range:focus-visible {
+	outline: 2px solid #FFFFFF;
+	outline-offset: 2px;
+	border-radius: 4px;
+}
+
+/* Speed: a small menu above its button. */
+
+.mdotcar-player__menu {
+	position: absolute;
+	z-index: 5;
+	right: 0;
+	bottom: calc( 100% + 8px );
+	display: flex;
+	flex-direction: column;
+	min-width: 112px;
+	padding: 6px;
+	border-radius: 14px;
+	background-color: rgba( 20, 23, 48, 0.92 );
+	-webkit-backdrop-filter: blur( 16px );
+	backdrop-filter: blur( 16px );
+	box-shadow: 0 16px 40px -12px rgba( 0, 0, 0, 0.6 ), inset 0 0 0 1px rgba( 255, 255, 255, 0.08 );
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY( 6px );
+	transition: opacity 0.2s ease, transform 0.2s var( --mdotcar-vm-ease ), visibility 0s linear 0.2s;
+}
+
+.mdotcar-player__menu.is-open {
+	opacity: 1;
+	visibility: visible;
+	transform: none;
+	transition-delay: 0s;
+}
+
+.mdotcar-vmodal .mdotcar-player__option {
+	justify-content: space-between;
+	gap: 12px;
+	width: 100%;
+	height: 34px;
+	padding: 0 10px;
+	border-radius: 9px;
+	color: rgba( 255, 255, 255, 0.86 );
+	font-size: 13px;
+	font-variant-numeric: tabular-nums;
+}
+
+.mdotcar-vmodal .mdotcar-player__option:hover {
+	background-color: rgba( 255, 255, 255, 0.1 );
+	color: #FFFFFF;
+}
+
+.mdotcar-vmodal .mdotcar-player__option[aria-checked="true"] {
+	color: #FFFFFF;
+	font-weight: 700;
+}
+
+.mdotcar-vmodal .mdotcar-player__option[aria-checked="true"]::after {
+	content: "";
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background-color: #FFB300;
+}
+
+/* A short sign in the middle for a key press: +5, -5, the volume. */
+
+.mdotcar-player__flash {
+	position: absolute;
+	z-index: 3;
+	top: 50%;
+	left: 50%;
+	padding: 8px 14px;
+	border-radius: 12px;
+	background-color: rgba( 14, 16, 36, 0.6 );
+	-webkit-backdrop-filter: blur( 8px );
+	backdrop-filter: blur( 8px );
+	color: #FFFFFF;
+	font-size: 14px;
+	line-height: 20px;
+	font-variant-numeric: tabular-nums;
+	opacity: 0;
+	pointer-events: none;
+	transform: translate( -50%, -50% ) scale( 0.9 );
+	transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.mdotcar-player__flash.is-on {
+	opacity: 1;
+	transform: translate( -50%, -50% );
+}
+
+/* Below the video: what it is, and the way to the others. */
+
+.mdotcar-vmodal__info {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	padding: 14px 10px 6px;
+}
+
+.mdotcar-vmodal__text {
+	display: flex;
+	flex: 1 1 auto;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 4px;
+	min-width: 0;
+}
+
+.mdotcar-vmodal__badge {
+	padding: 2px 8px;
+	border-radius: 6px;
+	background-color: #E6F4FF;
+	color: #0095FF;
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 18px;
+}
+
+.mdotcar-vmodal__badge:empty {
+	display: none;
+}
+
+.mdotcar-vmodal .mdotcar-vmodal__title {
+	margin: 2px 0 0;
+	padding: 0;
+	color: #212121;
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 28px;
+}
+
+.mdotcar-vmodal .mdotcar-vmodal__desc {
+	margin: 0;
+	padding: 0;
+	color: #616161;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 22px;
+}
+
+.mdotcar-vmodal__desc:empty {
+	display: none;
+}
+
+.mdotcar-vmodal__nav {
+	display: flex;
+	align-items: center;
+	flex: none;
+	gap: 8px;
+}
+
+.mdotcar-vmodal__nav[hidden] {
+	display: none;
+}
+
+.mdotcar-vmodal .mdotcar-vmodal__step {
+	width: 40px;
+	height: 40px;
+	background-color: #F5F5F5;
+	color: #212121;
+}
+
+.mdotcar-vmodal .mdotcar-vmodal__step:not( :disabled ):hover {
+	background-color: #E8EAF6;
+	color: var( --mdotcar-vm-accent );
+}
+
+.mdotcar-vmodal .mdotcar-vmodal__step:disabled {
+	background-color: #FAFAFA;
+	color: #BDBDBD;
+	cursor: default;
+}
+
+.mdotcar-vmodal__step svg {
+	width: 20px;
+	height: 20px;
+}
+
+.mdotcar-vmodal__count {
+	min-width: 44px;
+	color: #616161;
+	font-size: 13px;
+	line-height: 20px;
+	text-align: center;
+	font-variant-numeric: tabular-nums;
+}
+
+/* Changing videos: the stage cross-fades. */
+
+.mdotcar-vmodal__stage > * {
+	animation: mdotcar-vm-in 0.35s ease both;
+}
+
+@keyframes mdotcar-vm-in {
+	from {
+		opacity: 0;
+	}
+}
+
+html.mdotcar-vmodal-locked,
+html.mdotcar-vmodal-locked body {
+	overflow: hidden;
+}
+
+/* Phones: the window spans the screen's width, the info stacks. */
+
+@media ( max-width: 767px ) {
+
+	.mdotcar-vmodal {
+		padding: 72px 12px 12px;
+	}
+
+	.mdotcar-vmodal__dialog {
+		max-width: 100%;
+		padding: 6px;
+		border-radius: 16px;
+	}
+
+	.mdotcar-vmodal__stage {
+		border-radius: 12px;
+	}
+
+	.mdotcar-vmodal__info {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 12px;
+		padding: 12px 8px 6px;
+	}
+
+	.mdotcar-vmodal .mdotcar-vmodal__title {
+		font-size: 16px;
+		line-height: 24px;
+	}
+
+	.mdotcar-vmodal__nav {
+		justify-content: space-between;
+		padding-top: 12px;
+		border-top: 1px solid #F5F5F5;
+	}
+
+	.mdotcar-player__bar {
+		padding: 28px 6px 4px;
+	}
+
+	.mdotcar-vmodal .mdotcar-player__btn {
+		width: 36px;
+		height: 36px;
+	}
+
+	.mdotcar-player__time {
+		padding: 0 4px;
+		font-size: 12px;
+	}
+
+	/* Phones have their own volume keys. */
+	.mdotcar-player__level,
+	.mdotcar-vmodal .mdotcar-player__btn--pip {
+		display: none;
+	}
+
+	.mdotcar-vmodal .mdotcar-player__big {
+		width: 60px;
+		height: 60px;
+	}
+}
+
+@media ( hover: none ) {
+
+	.mdotcar-player__level {
+		display: none;
+	}
+}
+
+@media ( prefers-reduced-motion: reduce ) {
+
+	.mdotcar-vgal__viewport {
+		scroll-behavior: auto;
+	}
+
+	.mdotcar-vgal *,
+	.mdotcar-vmodal *,
+	.mdotcar-vmodal *::before,
+	.mdotcar-vmodal *::after {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+	}
+}

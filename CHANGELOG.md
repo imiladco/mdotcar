@@ -17,6 +17,34 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.12.0] - 2026-10-27
+
+### Added
+
+- **MDotCar Video Gallery** widget: videos as cards in a slider, each opening
+  in a video window with the site's own player.
+  - Card: cover (194px, centred, a 2px blur over it), a badge in the top
+    corner, the glass play button (56px, `#FFFFFF40`, a fading 1px edge,
+    11.67px blur, inner highlight), the title (16/24, 700, `#212121`) and the
+    description (14/22, 400, `#616161`), each cut to one line, with the line
+    count editable.
+  - Slider: 3 cards in view on desktop, 2 on tablet, 1.2 on phones; a 12px
+    gap; swipe, trackpad and keyboard scroll with snapping; arrows beside it,
+    centred on the cards, stepping one card and greying out at the ends.
+  - Video window: a white panel on a dimmed, blurred page; the title, badge
+    and description under the video, and previous / next to the other videos
+    without closing. Focus stays inside, the page does not scroll, Esc and the
+    scrim close it, and closing stops the download and returns to the card
+    last watched.
+  - Player: play / pause, progress with what is buffered and a time label
+    under the pointer, time in Persian digits, volume, speed, picture in
+    picture, fullscreen; the controls hide while it plays; a loader while it
+    waits; replay and next video at the end. Keys: Space / K, ← → (5s),
+    J / L (10s), ↑ ↓ (volume), M, F, Esc.
+  - A video is an uploaded file, a file address, or an Aparat or YouTube
+    link, which plays embedded in the same window.
+  - Every style control holds the design's value as its default.
+
 ## [0.11.0] - 2026-10-27
 
 ### Added

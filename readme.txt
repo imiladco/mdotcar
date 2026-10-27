@@ -4,7 +4,7 @@ Tags: elementor, widget, title, heading, flexbox
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.11.0
+Stable tag: 0.12.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,6 +30,11 @@ attributes, and the site's looks with every value adjustable per device.
 prices: a header row with icons, rows in two shades, prices grouped in Persian
 digits.
 
+**MDotCar Video Gallery** — video cards in a slider (three in view on desktop)
+that open in a video window with the site's own player: progress with what is
+buffered, volume, speed, fullscreen and keys; Aparat and YouTube links play in
+the same window.
+
 **MDotCar Vehicle Tariff (Style 1)** — car-wash tariff cards. Define any number
 of vehicles, each with an image, badge, title, up to three tariff columns, a
 link the whole card follows, and a value saved to localStorage or a cookie when
@@ -54,6 +59,11 @@ and height can each be left to fit the content or set to a custom value.
    *MDotCar*.
 
 == Changelog ==
+
+= 0.12.0 =
+* New: MDotCar Video Gallery widget, video cards in a slider that open in a
+  video window with the site's own player, with the design's values as the
+  style controls' defaults.
 
 = 0.11.0 =
 * New: MDotCar Price List widget, a table of parts, the vehicles they fit and

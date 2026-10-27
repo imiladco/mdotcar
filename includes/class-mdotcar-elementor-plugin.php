@@ -120,6 +120,7 @@ final class MDotCar_Elementor_Plugin {
 				'MDotCar_Elementor_Widget_Mobile_Menu',
 				'MDotCar_Elementor_Widget_Header_Buttons',
 				'MDotCar_Elementor_Widget_Price_List',
+				'MDotCar_Elementor_Widget_Video_Gallery',
 			)
 		);
 
