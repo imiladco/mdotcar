@@ -10,11 +10,11 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Domain: mdotcar-elementor\n"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:188
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:197
 msgid "A file (uploaded or its address)"
 msgstr "فایل (آپلودشده یا آدرس آن)"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:269
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:278
 msgid "A fraction shows a part of the next one, e.g. 1.2 on phones."
 msgstr "عدد اعشاری بخشی از کارت بعدی را نشان می‌دهد؛ مثلاً ۱٫۲ در موبایل."
 
@@ -34,7 +34,7 @@ msgstr "یک صفحه، یا tel:‎، mailto:‎، https://wa.me/… و مان�
 msgid "A saved template (Templates → Saved Templates) with everything the drawer shows: the logo, the search, the MDotCar Mobile Menu widget, buttons."
 msgstr "یک قالب ذخیره‌شده (قالب‌ها ← قالب‌های ذخیره‌شده) با همهٔ محتوای منوی کشویی: لوگو، جستجو، ویجت منوی موبایل امداتکار و دکمه‌ها."
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:525
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:575
 msgid "A soft layer over the image so the button and the badge stand out; 0 for none."
 msgstr "لایه‌ای نرم روی تصویر تا دکمه و برچسب بهتر دیده شوند؛ ۰ یعنی بدون بلور."
 
@@ -51,7 +51,7 @@ msgstr "هر زیرآیتم به نزدیک‌ترین آیتم اصلی بال�
 msgid "A top item with sub items opens them instead."
 msgstr "آیتم اصلیِ دارای زیرآیتم، به‌جای لینک، زیرآیتم‌ها را باز می‌کند."
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:861
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:911
 msgid "Accent"
 msgstr "رنگ اصلی"
 
@@ -120,7 +120,7 @@ msgstr "رنگ مبلغ"
 msgid "Amount Typography"
 msgstr "تایپوگرافی مبلغ"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:209
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:218
 msgid "An .mp4 or .webm link; used when no file is chosen."
 msgstr "لینک ‎.mp4 یا ‎.webm؛ وقتی فایلی انتخاب نشده باشد استفاده می‌شود."
 
@@ -132,7 +132,7 @@ msgstr "تصویر یا SVGای که روی پس‌زمینهٔ کارت و پش
 msgid "Anything in the template with the class mdotcar-menu-close closes the drawer (Advanced → CSS Classes); so does following a link in it."
 msgstr "هر چیزی در قالب با کلاس mdotcar-menu-close منوی کشویی را می‌بندد (پیشرفته ← کلاس‌های CSS)؛ کلیک روی هر لینک داخل آن هم همین‌طور."
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:189
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:198
 msgid "Aparat or YouTube"
 msgstr "آپارات یا یوتیوب"
 
@@ -141,8 +141,8 @@ msgstr "آپارات یا یوتیوب"
 msgid "Arrow Color"
 msgstr "رنگ فلش"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:299
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:782
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:308
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:832
 msgid "Arrows"
 msgstr "فلش‌ها"
 
@@ -150,7 +150,7 @@ msgstr "فلش‌ها"
 msgid "As the look has it"
 msgstr "مطابق ظاهر انتخاب‌شده"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:836
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:886
 msgid "At the End: Icon Color"
 msgstr "در انتها: رنگ آیکون"
 
@@ -181,10 +181,10 @@ msgstr "لایهٔ پس‌زمینه"
 #: widgets/class-mdotcar-elementor-widget-price-list.php:536
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:958
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1648
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:433
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:580
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:633
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:796
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:483
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:630
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:683
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:846
 msgid "Background"
 msgstr "پس‌زمینه"
 
@@ -197,8 +197,8 @@ msgid "Background (odd rows)"
 msgstr "پس‌زمینه (ردیف‌های فرد)"
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:861
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:152
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:560
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:161
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:610
 msgid "Badge"
 msgstr "نشان"
 
@@ -218,7 +218,7 @@ msgstr "قبل از متن"
 msgid "Behaviour"
 msgstr "رفتار"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:524
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:574
 msgid "Blur Over the Image"
 msgstr "بلور روی تصویر"
 
@@ -245,7 +245,7 @@ msgid "Both"
 msgstr "هر دو"
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1031
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:513
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:563
 msgid "Bottom"
 msgstr "پایین"
 
@@ -285,7 +285,7 @@ msgstr "دکمه‌ها"
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:316
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:549
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:425
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:475
 msgid "Card"
 msgstr "کارت"
 
@@ -293,7 +293,7 @@ msgstr "کارت"
 msgid "Card Backdrop"
 msgstr "لایهٔ پس‌زمینهٔ کارت"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:268
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:277
 msgid "Cards in View"
 msgstr "تعداد کارت در دید"
 
@@ -305,7 +305,7 @@ msgstr "تعداد کارت در دید"
 #: widgets/class-mdotcar-elementor-widget-title.php:326
 #: widgets/class-mdotcar-elementor-widget-title.php:761
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1029
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:511
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:561
 msgid "Center"
 msgstr "وسط"
 
@@ -354,8 +354,8 @@ msgstr "بستن منوی کشویی با"
 #: widgets/class-mdotcar-elementor-widget-price-list.php:879
 #: widgets/class-mdotcar-elementor-widget-title.php:783
 #: widgets/class-mdotcar-elementor-widget-title.php:944
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:704
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:744
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:754
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:794
 msgid "Color"
 msgstr "رنگ"
 
@@ -428,8 +428,8 @@ msgstr "سازمانی"
 msgid "Cover"
 msgstr "پوشش کامل"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:143
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:494
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:152
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:544
 msgid "Cover Image"
 msgstr "تصویر کاور"
 
@@ -477,8 +477,8 @@ msgstr "پیش‌فرض"
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:193
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:763
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:173
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:735
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:182
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:785
 msgid "Description"
 msgstr "توضیح"
 
@@ -506,7 +506,7 @@ msgstr "جهت"
 msgid "Display"
 msgstr "نمایش"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:608
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:658
 msgid "Distance From the Corner"
 msgstr "فاصله از گوشه"
 
@@ -562,6 +562,10 @@ msgstr "سمت منوی کشویی"
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:852
 msgid "Drawer Toggle"
 msgstr "دکمهٔ منوی کشویی"
+
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:362
+msgid "Empty means the built-in icon. An uploaded SVG takes the colors of the Style tab (its fills and strokes are recolored)."
+msgstr "خالی یعنی آیکون پیش‌فرض. SVG آپلودشده رنگ‌های تب استایل را می‌گیرد (رنگ پر و خط‌های آن بازرنگ می‌شوند)."
 
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:545
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:512
@@ -646,7 +650,7 @@ msgstr "جعبهٔ ثابت"
 msgid "Flex"
 msgstr "فلکس"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:507
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:557
 msgid "Focal Point"
 msgstr "نقطهٔ کانونی"
 
@@ -672,7 +676,7 @@ msgid "Gap Between Buttons"
 msgstr "فاصلهٔ دکمه‌ها"
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:662
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:284
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:293
 msgid "Gap Between Cards"
 msgstr "فاصلهٔ کارت‌ها"
 
@@ -694,7 +698,7 @@ msgstr "فاصلهٔ آیتم‌ها"
 msgid "Gap Between Rows"
 msgstr "فاصلهٔ ردیف‌ها"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:690
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:740
 msgid "Gap Between Title and Description"
 msgstr "فاصلهٔ عنوان و توضیحات"
 
@@ -706,11 +710,11 @@ msgstr "به‌جای این‌که اندازه را خودِ آیکون تعی
 msgid "Gives the label the accent colour, as VIP has in the design."
 msgstr "برچسب را به رنگ تأکیدی درمی‌آورد، همان‌طور که VIP در طرح دارد."
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:650
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:700
 msgid "Glass Blur"
 msgstr "بلور شیشه‌ای"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:655
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:705
 msgid "Glass Edge"
 msgstr "لبهٔ شیشه‌ای"
 
@@ -743,13 +747,13 @@ msgstr "تگ HTML"
 msgid "Header"
 msgstr "سطر عنوان"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:892
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:942
 msgid "Header Divider"
 msgstr "خط جداکنندهٔ هدر"
 
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:519
 #: widgets/class-mdotcar-elementor-widget-title.php:521
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:501
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:551
 msgid "Height"
 msgstr "ارتفاع"
 
@@ -757,7 +761,7 @@ msgstr "ارتفاع"
 msgid "Height Value"
 msgstr "مقدار ارتفاع"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:306
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:315
 msgid "Hide"
 msgstr "مخفی"
 
@@ -796,16 +800,16 @@ msgid "Hover Transition (ms)"
 msgstr "مدت انتقال هاور (میلی‌ثانیه)"
 
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:412
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:816
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:866
 msgid "Hover: Background"
 msgstr "هاور: پس‌زمینه"
 
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:413
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:477
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:527
 msgid "Hover: Border Color"
 msgstr "هاور: رنگ حاشیه"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:826
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:876
 msgid "Hover: Icon Color"
 msgstr "هاور: رنگ آیکون"
 
@@ -834,8 +838,8 @@ msgid "Icon"
 msgstr "آیکون"
 
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:476
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:643
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:806
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:693
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:856
 msgid "Icon Color"
 msgstr "رنگ آیکون"
 
@@ -862,14 +866,18 @@ msgstr "جای آیکون"
 #: widgets/class-mdotcar-elementor-widget-title.php:821
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:935
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1587
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:628
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:790
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:678
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:840
 msgid "Icon Size"
 msgstr "اندازهٔ آیکون"
 
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:170
 msgid "Icon When Open or Current"
 msgstr "آیکون در حالت باز یا صفحهٔ فعلی"
+
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:353
+msgid "Icons"
+msgstr "آیکون‌ها"
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:749
 msgid "Image"
@@ -988,7 +996,7 @@ msgstr "برای استفاده از واحد کلی لیست خالی بگذا�
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:378
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1032
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:515
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:565
 msgid "Left"
 msgstr "چپ"
 
@@ -1001,8 +1009,8 @@ msgstr "سطح"
 msgid "Lift"
 msgstr "بالا آمدن"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:723
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:763
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:773
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:813
 msgid "Lines at Most"
 msgstr "حداکثر تعداد خط"
 
@@ -1033,6 +1041,8 @@ msgstr "ام‌دات‌کار"
 #. translators: 1: required Elementor version, 2: current Elementor version.
 #. translators: 1: required Elementor version, 2: current Elementor version.
 #. translators: 1: required Elementor version, 2: current Elementor version.
+#. translators: 1: required Elementor version, 2: current Elementor version.
+#. translators: 1: required Elementor version, 2: current Elementor version.
 msgid "MDotCar Elementor Widgets requires Elementor %1$s or newer. You are running %2$s."
 msgstr "افزونهٔ ویجت‌های المنتور ام‌دات‌کار به المنتور %1$s یا بالاتر نیاز دارد. نسخهٔ فعلی شما %2$s است."
 
@@ -1045,11 +1055,15 @@ msgstr "افزونهٔ ویجت‌های المنتور ام‌دات‌کار �
 #. translators: 1: required PHP version, 2: current PHP version.
 #. translators: 1: required PHP version, 2: current PHP version.
 #. translators: 1: required PHP version, 2: current PHP version.
+#. translators: 1: required PHP version, 2: current PHP version.
+#. translators: 1: required PHP version, 2: current PHP version.
 msgid "MDotCar Elementor Widgets requires PHP %1$s or newer. You are running %2$s."
 msgstr "افزونهٔ ویجت‌های المنتور ام‌دات‌کار به PHP %1$s یا بالاتر نیاز دارد. نسخهٔ فعلی شما %2$s است."
 
 #. translators: 1: required WordPress version, 2: current WordPress version.
 #: includes/class-mdotcar-elementor-requirements.php:76
+#. translators: 1: required WordPress version, 2: current WordPress version.
+#. translators: 1: required WordPress version, 2: current WordPress version.
 #. translators: 1: required WordPress version, 2: current WordPress version.
 #. translators: 1: required WordPress version, 2: current WordPress version.
 #. translators: 1: required WordPress version, 2: current WordPress version.
@@ -1088,7 +1102,7 @@ msgstr "عنوان ام‌دات‌کار"
 msgid "MDotCar Vehicle Tariff"
 msgstr "تعرفهٔ خودرو ام‌دات‌کار"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:59
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:67
 msgid "MDotCar Video Gallery"
 msgstr "ویدیو گالری امداتکار"
 
@@ -1148,7 +1162,7 @@ msgstr "منوی کشویی موبایل"
 msgid "Mobile only (767px)"
 msgstr "فقط موبایل (۷۶۷ پیکسل)"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:244
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:253
 msgid "Name for Screen Readers"
 msgstr "نام برای صفحه‌خوان"
 
@@ -1156,7 +1170,11 @@ msgstr "نام برای صفحه‌خوان"
 msgid "Name for Screen Readers (aria-label)"
 msgstr "نام برای صفحه‌خوان (aria-label)"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:328
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:369
+msgid "Next Arrow"
+msgstr "فلش بعدی"
+
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:337
 msgid "Next, for Screen Readers"
 msgstr "«بعدی» برای صفحه‌خوان"
 
@@ -1257,7 +1275,7 @@ msgstr "باز شدن با"
 msgid "Optional: a coloured version, shown while its sub items are open or it is the current page."
 msgstr "اختیاری: نسخهٔ رنگی، وقتی زیرآیتم‌ها باز است یا صفحهٔ فعلی است نمایش داده می‌شود."
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:208
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:217
 msgid "Or Its Address"
 msgstr "یا آدرس آن"
 
@@ -1288,12 +1306,12 @@ msgstr "دورخط: متن"
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:870
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1416
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1516
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:458
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:599
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:508
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:649
 msgid "Padding"
 msgstr "فاصلهٔ داخلی"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:682
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:732
 msgid "Padding Around the Text"
 msgstr "فاصلهٔ داخلی متن"
 
@@ -1303,7 +1321,7 @@ msgstr "محوی صفحه"
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:673
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:990
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:872
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:922
 msgid "Page Dim Color"
 msgstr "رنگ تیرگی صفحه"
 
@@ -1311,7 +1329,7 @@ msgstr "رنگ تیرگی صفحه"
 msgid "Pages"
 msgstr "صفحه‌ها"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:882
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:932
 msgid "Panel Background"
 msgstr "پس‌زمینهٔ پنل"
 
@@ -1347,15 +1365,23 @@ msgstr "ارقام فارسی"
 msgid "Personal"
 msgstr "شخصی"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:620
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:670
 msgid "Play Button"
 msgstr "دکمهٔ پخش"
+
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:370
+msgid "Play Button Icon"
+msgstr "آیکون دکمهٔ پخش"
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1025
 msgid "Position"
 msgstr "موقعیت"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:319
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:368
+msgid "Previous Arrow"
+msgstr "فلش قبلی"
+
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:328
 msgid "Previous, for Screen Readers"
 msgstr "«قبلی» برای صفحه‌خوان"
 
@@ -1390,10 +1416,10 @@ msgstr "قیمت‌ها"
 #: widgets/class-mdotcar-elementor-widget-price-list.php:715
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:893
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1445
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:453
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:502
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:607
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:900
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:503
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:552
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:657
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:950
 msgid "Radius"
 msgstr "گردی گوشه"
 
@@ -1424,7 +1450,7 @@ msgstr "تکرار عمودی"
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:374
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1033
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:514
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:564
 msgid "Right"
 msgstr "راست"
 
@@ -1485,7 +1511,7 @@ msgid "Shared by every card; a vehicle can override it in its own settings. It s
 msgstr "برای همهٔ کارت‌ها مشترک است؛ هر خودرو می‌تواند در تنظیمات خودش آن را جایگزین کند. روی پس‌زمینهٔ کارت و زیر محتوا می‌نشیند."
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:217
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:305
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:314
 msgid "Show"
 msgstr "نمایش"
 
@@ -1512,8 +1538,8 @@ msgstr "در نشان گرد روی تصویر دیده می‌شود. برای 
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:860
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1008
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:627
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:789
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:677
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:839
 msgid "Size"
 msgstr "اندازه"
 
@@ -1521,7 +1547,7 @@ msgstr "اندازه"
 msgid "Size of the glyph itself. The stylesheet scales both font icons and SVGs from it, so one value covers both."
 msgstr "اندازهٔ خودِ آیکون. استایل افزونه هم فونت‌آیکون و هم SVG را با همین مقدار مقیاس می‌دهد، پس یک عدد برای هر دو کافی است."
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:260
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:269
 msgid "Slider"
 msgstr "اسلایدر"
 
@@ -1551,7 +1577,7 @@ msgstr "فاصلهٔ بین"
 msgid "Space Evenly"
 msgstr "فاصلهٔ یکسان"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:791
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:841
 msgid "Space to the Cards"
 msgstr "فاصله تا کارت‌ها"
 
@@ -1634,6 +1660,8 @@ msgstr "بر آیکون نشان اولویت دارد. برای تصویر کل
 #. translators: %d: tariff column number.
 #. translators: %d: tariff column number.
 #. translators: %d: tariff column number.
+#. translators: %d: tariff column number.
+#. translators: %d: tariff column number.
 msgid "Tariff %d"
 msgstr "تعرفهٔ %d"
 
@@ -1653,7 +1681,7 @@ msgstr "تراز متن"
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:396
 #: widgets/class-mdotcar-elementor-widget-price-list.php:546
 #: widgets/class-mdotcar-elementor-widget-price-list.php:665
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:570
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:620
 msgid "Text Color"
 msgstr "رنگ متن"
 
@@ -1681,7 +1709,7 @@ msgstr "ارتفاعی که موس در آن هاور می‌کند؛ معمول
 msgid "The layer the action button sits inside — it carries the divider above the button."
 msgstr "لایه‌ای که دکمهٔ اقدام داخل آن است — همان‌جا که خط جداکنندهٔ بالای دکمه قرار دارد."
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:656
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:706
 msgid "The light border fading across the button, and its inner highlight."
 msgstr "حاشیهٔ روشنی که روی دکمه محو می‌شود، و برجستگی داخلی آن."
 
@@ -1697,7 +1725,7 @@ msgstr "نوار منو"
 msgid "The panel's top edge. \"Header\" is the header template, or the outermost container the widget is in."
 msgstr "لبهٔ بالای پنل. «هدر» یعنی قالب هدر، یا بیرونی‌ترین کانتینری که ویجت داخل آن است."
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:862
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:912
 msgid "The progress bar, the volume and the focus ring."
 msgstr "نوار پیشرفت، صدا و حلقهٔ فوکوس."
 
@@ -1737,7 +1765,7 @@ msgstr "گردی کاشی"
 msgid "Tile Size"
 msgstr "اندازهٔ کاشی"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:532
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:582
 msgid "Tint Over the Image"
 msgstr "رنگ روی تصویر"
 
@@ -1746,8 +1774,8 @@ msgstr "رنگ روی تصویر"
 #: widgets/class-mdotcar-elementor-widget-title.php:135
 #: widgets/class-mdotcar-elementor-widget-title.php:736
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1088
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:162
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:695
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:171
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:745
 msgid "Title"
 msgstr "عنوان"
 
@@ -1755,7 +1783,7 @@ msgstr "عنوان"
 msgid "Title HTML Tag"
 msgstr "تگ HTML عنوان"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:674
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:724
 msgid "Title and Description"
 msgstr "عنوان و توضیحات"
 
@@ -1773,7 +1801,7 @@ msgstr "تومان"
 
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:561
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1030
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:512
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:562
 msgid "Top"
 msgstr "بالا"
 
@@ -1827,24 +1855,24 @@ msgstr "خودروها"
 msgid "Vertical Alignment"
 msgstr "چینش عمودی"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:184
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:193
 msgid "Video"
 msgstr "ویدیو"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:198
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:207
 msgid "Video File"
 msgstr "فایل ویدیو"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:221
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:230
 msgid "Video Page Address"
 msgstr "آدرس صفحهٔ ویدیو"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:853
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:903
 msgid "Video Window"
 msgstr "پنجرهٔ ویدیو"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:133
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:233
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:142
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:242
 msgid "Videos"
 msgstr "ویدیوها"
 
@@ -1864,7 +1892,7 @@ msgstr "«سفید» هر آیکونی را سفید می‌کند (برای د�
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:945
 #: widgets/class-mdotcar-elementor-widget-title.php:475
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:643
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:899
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:949
 msgid "Width"
 msgstr "عرض"
 
@@ -1881,11 +1909,11 @@ msgstr "لایهٔ اطراف"
 msgid "Written to localStorage or a cookie when the card is clicked, for the booking flow to read back. Typically the vehicle slug or id."
 msgstr "هنگام کلیک روی کارت در localStorage یا کوکی نوشته می‌شود تا فرایند ثبت درخواست آن را بخواند. معمولاً شناسه یا اسلاگ خودرو."
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:542
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:592
 msgid "Zoom on Hover"
 msgstr "بزرگ‌نمایی در هاور"
 
-#: widgets/class-mdotcar-elementor-widget-video-gallery.php:222
+#: widgets/class-mdotcar-elementor-widget-video-gallery.php:231
 msgid "e.g. https://www.aparat.com/v/abc123 or https://youtu.be/abc123"
 msgstr "مثلاً https://www.aparat.com/v/abc123 یا https://youtu.be/abc123"
 

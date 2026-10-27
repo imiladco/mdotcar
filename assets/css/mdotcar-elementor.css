@@ -1728,15 +1728,16 @@ html.mdotcar-hmenu-locked body {
 	pointer-events: none;
 }
 
-.mdotcar-vgal__play svg {
-	width: 24px;
-	height: 24px;
+.mdotcar-vgal__play > svg,
+.mdotcar-vgal__play .mdotcar-vgal__icon {
+	width: var( --mdotcar-vgal-icon, 24px );
+	height: var( --mdotcar-vgal-icon, 24px );
 	/* The triangle's weight sits left of its box; this centres it by eye. */
 	margin-inline-start: 2px;
 }
 
-[dir="rtl"] .mdotcar-vgal__play svg,
-.rtl .mdotcar-vgal__play svg {
+[dir="rtl"] .mdotcar-vgal__play > svg,
+.rtl .mdotcar-vgal__play > svg {
 	margin-inline-start: 0;
 	margin-inline-end: 2px;
 }
@@ -1855,15 +1856,53 @@ html.mdotcar-hmenu-locked body {
 	cursor: default;
 }
 
-.mdotcar-vgal__arrow svg {
+.mdotcar-vgal__arrow > svg,
+.mdotcar-vgal__arrow .mdotcar-vgal__icon {
 	display: block;
-	width: 24px;
-	height: 24px;
+	width: var( --mdotcar-vgal-icon, 24px );
+	height: var( --mdotcar-vgal-icon, 24px );
+}
+
+/*
+ * An icon from the panel: an uploaded SVG fills the box and takes the
+ * control's colour (its own fills and strokes are recoloured, "none" stays);
+ * a library icon is a glyph of the same size.
+ */
+.mdotcar-vgal__icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex: none;
+	font-size: var( --mdotcar-vgal-icon, 24px );
+	line-height: 1;
+}
+
+.mdotcar-vgal__icon svg {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.mdotcar-vgal__icon svg:not( [fill] ) {
+	fill: currentColor;
+}
+
+.mdotcar-vgal__icon svg [fill]:not( [fill="none"] ) {
+	fill: currentColor;
+}
+
+.mdotcar-vgal__icon svg [stroke]:not( [stroke="none"] ) {
+	stroke: currentColor;
+}
+
+.mdotcar-vgal__icon i {
+	color: inherit;
+	font-size: inherit;
 }
 
 /* The arrows are drawn for RTL (where "next" is on the left); LTR mirrors them. */
-.mdotcar-vgal:not( [dir="rtl"] *, .rtl * ) .mdotcar-vgal__arrow svg,
-.mdotcar-vmodal:not( [dir="rtl"] *, .rtl * ) .mdotcar-vmodal__step svg {
+.mdotcar-vgal:not( [dir="rtl"] *, .rtl * ) .mdotcar-vgal__arrow > svg,
+.mdotcar-vmodal:not( [dir="rtl"] *, .rtl * ) .mdotcar-vmodal__step > svg {
 	transform: scaleX( -1 );
 }
 
@@ -2745,7 +2784,9 @@ html.mdotcar-hmenu-locked body {
 	color: #BDBDBD;
 }
 
-.mdotcar-vmodal__step svg {
+.mdotcar-vmodal__step > svg,
+.mdotcar-vmodal__step .mdotcar-vgal__icon {
+	--mdotcar-vgal-icon: 20px;
 	width: 20px;
 	height: 20px;
 }
@@ -2953,6 +2994,36 @@ html.mdotcar-hmenu-locked body {
 	line-height: 18px;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+}
+
+/* Phone-only parts: the pull handle and the actions under the title. */
+
+.mdotcar-vmodal__grip,
+.mdotcar-vmodal__actions {
+	display: none;
+}
+
+.mdotcar-vmodal__toast {
+	position: absolute;
+	z-index: 6;
+	bottom: calc( 24px + env( safe-area-inset-bottom ) );
+	left: 50%;
+	padding: 10px 16px;
+	border-radius: 999px;
+	background-color: rgba( 14, 16, 36, 0.92 );
+	color: #FFFFFF;
+	font-size: 13px;
+	line-height: 20px;
+	white-space: nowrap;
+	opacity: 0;
+	pointer-events: none;
+	transform: translate( -50%, 8px );
+	transition: opacity 0.2s ease, transform 0.25s var( --mdotcar-vm-ease );
+}
+
+.mdotcar-vmodal__toast.is-on {
+	opacity: 1;
+	transform: translate( -50%, 0 );
 }
 
 /* Changing videos: the stage cross-fades. */
@@ -3377,8 +3448,11 @@ html.mdotcar-vmodal-locked body {
 }
 
 /*
- * Phones: the whole screen. The header on top, the video edge to edge and
- * staying in view while the text and the list scroll under it.
+ * Phones: the whole screen, made like an app's player. The header and the
+ * video are one dark block (a handle in it: pull down to close); under it a
+ * white sheet with rounded top corners holds the title, the next video and
+ * share, then the list of every video. The video stays in view while the
+ * sheet scrolls; turned sideways, the video takes the whole screen.
  */
 
 @media ( max-width: 767px ) {
@@ -3389,6 +3463,7 @@ html.mdotcar-vmodal-locked body {
 	}
 
 	.mdotcar-vmodal__scrim {
+		background-color: #0E1024;
 		-webkit-backdrop-filter: none;
 		backdrop-filter: none;
 	}
@@ -3399,33 +3474,72 @@ html.mdotcar-vmodal-locked body {
 		height: 100%;
 		max-height: none;
 		border-radius: 0;
+		background-color: #0E1024;
 		box-shadow: none;
 	}
 
 	.mdotcar-vmodal__head {
-		min-height: 56px;
-		padding-top: calc( 10px + env( safe-area-inset-top ) );
+		min-height: 60px;
+		padding-top: calc( 14px + env( safe-area-inset-top ) );
 		padding-bottom: 10px;
 		padding-inline: 16px 8px;
+		border-bottom: 0;
+		background-color: #0E1024;
+		touch-action: none;
+	}
+
+	.mdotcar-vmodal__grip {
+		position: absolute;
+		top: calc( 6px + env( safe-area-inset-top ) );
+		left: 50%;
+		display: block;
+		width: 36px;
+		height: 4px;
+		margin-left: -18px;
+		border-radius: 2px;
+		background-color: rgba( 255, 255, 255, 0.28 );
+	}
+
+	.mdotcar-vmodal .mdotcar-vmodal__close {
+		height: 36px;
+		padding-inline: 12px 10px;
+		border-radius: 999px;
+		background-color: rgba( 255, 255, 255, 0.1 );
+		color: #FFFFFF;
+		font-size: 13px;
+	}
+
+	.mdotcar-vmodal .mdotcar-vmodal__close:hover,
+	.mdotcar-vmodal .mdotcar-vmodal__close:active {
+		background-color: rgba( 255, 255, 255, 0.18 );
+		color: #FFFFFF;
+	}
+
+	.mdotcar-vmodal .mdotcar-vmodal__close:focus-visible {
+		outline-color: #FFFFFF;
+	}
+
+	.mdotcar-vmodal__close svg {
+		width: 18px;
+		height: 18px;
 	}
 
 	.mdotcar-vmodal__close kbd {
 		display: none;
 	}
 
+	/* Dark behind the sheet's rounded corners, white below; it scrolls with the content. */
 	.mdotcar-vmodal__body {
 		display: block;
 		overflow-y: auto;
 		overscroll-behavior: contain;
 		padding-bottom: env( safe-area-inset-bottom );
+		background: linear-gradient( #0E1024 calc( 56.25vw + 24px ), var( --mdotcar-vm-bg ) calc( 56.25vw + 24px ) ) local;
 	}
 
-	.mdotcar-vmodal__side-in {
-		position: static;
-	}
-
+	/* Out of the way, so the video stays in view down the whole list, not only past the title. */
 	.mdotcar-vmodal__main {
-		padding: 0;
+		display: contents;
 	}
 
 	.mdotcar-vmodal__stage {
@@ -3434,19 +3548,92 @@ html.mdotcar-vmodal-locked body {
 		border-radius: 0;
 	}
 
+	/* The sheet. */
+
 	.mdotcar-vmodal__info {
-		padding: 16px 16px 20px;
+		position: relative;
+		z-index: 1;
+		gap: 6px;
+		padding: 20px 16px 20px;
+		border-radius: 20px 20px 0 0;
+		background-color: var( --mdotcar-vm-bg );
 	}
 
 	.mdotcar-vmodal .mdotcar-vmodal__title {
-		font-size: 17px;
+		font-size: 18px;
 		line-height: 28px;
 	}
+
+	.mdotcar-vmodal .mdotcar-vmodal__desc {
+		font-size: 14px;
+		line-height: 22px;
+	}
+
+	.mdotcar-vmodal__actions {
+		display: flex;
+		gap: 8px;
+		margin-top: 12px;
+	}
+
+	.mdotcar-vmodal .mdotcar-vmodal__cta {
+		flex: 1 1 auto;
+		gap: 8px;
+		height: 48px;
+		padding: 0 16px;
+		border-radius: 14px;
+		background-color: var( --mdotcar-vm-accent );
+		box-shadow: 0 10px 24px -12px rgba( 63, 81, 181, 0.8 );
+		color: #FFFFFF;
+		font-size: 15px;
+		font-weight: 700;
+	}
+
+	.mdotcar-vmodal .mdotcar-vmodal__cta:active {
+		transform: scale( 0.98 );
+	}
+
+	.mdotcar-vmodal .mdotcar-vmodal__cta[hidden] {
+		display: none;
+	}
+
+	.mdotcar-vmodal__cta > svg,
+	.mdotcar-vmodal__cta .mdotcar-vgal__icon {
+		--mdotcar-vgal-icon: 20px;
+		width: 20px;
+		height: 20px;
+	}
+
+	.mdotcar-vmodal .mdotcar-vmodal__share {
+		width: 48px;
+		height: 48px;
+		border-radius: 14px;
+		background-color: #F5F5F5;
+		color: #424242;
+	}
+
+	.mdotcar-vmodal .mdotcar-vmodal__share:active {
+		background-color: #EEEEEE;
+	}
+
+	.mdotcar-vmodal__share svg {
+		width: 22px;
+		height: 22px;
+	}
+
+	.mdotcar-vmodal.is-single .mdotcar-vmodal__share {
+		flex: 1 1 auto;
+	}
+
+	/* The list. */
 
 	.mdotcar-vmodal__side {
 		border-inline-start: 0;
 		border-top: 8px solid #F5F5F5;
 		background-color: var( --mdotcar-vm-bg );
+	}
+
+	.mdotcar-vmodal__side-in {
+		position: static;
 	}
 
 	.mdotcar-vmodal__side-head {
@@ -3462,18 +3649,45 @@ html.mdotcar-vmodal-locked body {
 		grid-template-columns: 136px minmax( 0, 1fr );
 	}
 
+	.mdotcar-vmodal .mdotcar-vmodal__pick:active {
+		background-color: #F5F5F5;
+	}
+
 	.mdotcar-vmodal .mdotcar-vmodal__step {
 		width: 40px;
 		height: 40px;
 	}
 
+	/* Opening: the sheet rises after the picture has landed. */
+
+	.mdotcar-vmodal.is-open .mdotcar-vmodal__info,
+	.mdotcar-vmodal.is-open .mdotcar-vmodal__side {
+		animation: mdotcar-vm-rise 0.5s var( --mdotcar-vm-ease ) both;
+		animation-delay: 0.18s;
+	}
+
+	.mdotcar-vmodal.is-open .mdotcar-vmodal__side {
+		animation-delay: 0.28s;
+	}
+
+	/* The player, for fingers. */
+
 	.mdotcar-player__bar {
 		padding: 20px 6px 2px;
 	}
 
+	.mdotcar-player__seek {
+		height: 26px;
+		margin-bottom: 0;
+	}
+
+	.mdotcar-player__seek .mdotcar-player__thumb {
+		transform: scale( 1 );
+	}
+
 	.mdotcar-vmodal .mdotcar-player__btn {
-		width: 36px;
-		height: 36px;
+		width: 40px;
+		height: 40px;
 	}
 
 	.mdotcar-player__time {
@@ -3488,14 +3702,68 @@ html.mdotcar-vmodal-locked body {
 	}
 
 	.mdotcar-vmodal .mdotcar-player__big {
-		width: 60px;
-		height: 60px;
+		width: 64px;
+		height: 64px;
 	}
 
 	.mdotcar-player__resume {
 		top: 10px;
 		right: 10px;
 		font-size: 12px;
+	}
+}
+
+@keyframes mdotcar-vm-rise {
+	from {
+		opacity: 0;
+		transform: translateY( 24px );
+	}
+}
+
+/* A phone turned sideways: the video is the whole screen. */
+
+@media ( max-height: 500px ) and ( max-width: 950px ) and ( orientation: landscape ) and ( hover: none ) {
+
+	.mdotcar-vmodal {
+		padding: 0;
+	}
+
+	.mdotcar-vmodal__dialog {
+		width: 100%;
+		max-width: none;
+		height: 100%;
+		max-height: none;
+		border-radius: 0;
+		background-color: #000000;
+	}
+
+	.mdotcar-vmodal__head,
+	.mdotcar-vmodal__info,
+	.mdotcar-vmodal__side,
+	.mdotcar-vmodal__side-head {
+		display: none;
+	}
+
+	.mdotcar-vmodal__body,
+	.mdotcar-vmodal.is-single .mdotcar-vmodal__body {
+		display: block;
+		height: 100%;
+		padding: 0;
+	}
+
+	.mdotcar-vmodal__main {
+		display: block;
+		height: 100%;
+		padding: 0;
+	}
+
+	.mdotcar-vmodal__stage {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		aspect-ratio: auto;
+		border-radius: 0;
+		background-color: #000000;
 	}
 }
 

@@ -17,6 +17,32 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.16.0] - 2026-10-27
+
+### Added
+
+- **MDotCar Video Gallery**, new **Icons** section: the previous arrow, the
+  next arrow and the play button's icon can each be an uploaded SVG or a
+  library icon (empty: the built-in one). An uploaded SVG takes the Style
+  tab's colours, hover and "at the end" included (its fills and strokes are
+  recoloured; "none" stays). The arrows serve the slider and the window.
+
+### Changed
+
+- Video window on phones, made like an app's player:
+  - the header and the video are one dark block with a handle; pull down from
+    the header (or from the video, at the top) and the window follows the
+    finger and closes, or springs back;
+  - under the video a white sheet with rounded top corners: the title, the
+    description, a «ویدیوی بعدی» button and share (the phone's share sheet;
+    elsewhere the link is copied, with a note);
+  - the sheet rises after the picture has landed; the video stays in view down
+    the whole list;
+  - turned sideways, the video takes the whole screen;
+  - a bigger progress bar with its handle always shown, bigger buttons, a
+    short vibration on the double tap.
+- Computers and tablets: unchanged.
+
 ## [0.15.0] - 2026-10-27
 
 ### Changed

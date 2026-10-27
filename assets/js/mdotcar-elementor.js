@@ -1094,6 +1094,9 @@
 			this.lastTap = now;
 			this.skip( side * 10, true );
 			this.ripple( side );
+			if ( navigator.vibrate ) {
+				navigator.vibrate( 8 );
+			}
 			return;
 		}
 		this.lastTap = now;
@@ -1563,6 +1566,7 @@
 		this.side = el.querySelector( '.mdotcar-vmodal__side' );
 		this.list = el.querySelector( '.mdotcar-vmodal__list' );
 		this.steps = el.querySelectorAll( '.mdotcar-vmodal__step' );
+		this.cta = el.querySelector( '.mdotcar-vmodal__cta' );
 		this.isOpen = false;
 		this.timer = 0;
 		this.player = null;
@@ -1575,6 +1579,7 @@
 
 		this.el.classList.toggle( 'is-single', gallery.items.length < 2 );
 		this.buildList();
+		this.bindSwipe();
 
 		el.addEventListener( 'click', function ( event ) {
 			var target = event.target.closest ? event.target : null;
@@ -1585,9 +1590,13 @@
 				self.close();
 				return;
 			}
-			var step = target.closest( '.mdotcar-vmodal__step' );
+			var step = target.closest( '.mdotcar-vmodal__step, [data-go]' );
 			if ( step ) {
-				self.go( self.index + +step.getAttribute( 'data-step' ) );
+				self.go( self.index + +( step.getAttribute( 'data-step' ) || step.getAttribute( 'data-go' ) ) );
+				return;
+			}
+			if ( target.closest( '.mdotcar-vmodal__share' ) ) {
+				self.share();
 				return;
 			}
 			var pick = target.closest( '.mdotcar-vmodal__pick' );
@@ -1806,6 +1815,9 @@
 		this.count.textContent = fa( index + 1 ) + ' از ' + fa( items.length );
 		this.steps[ 0 ].disabled = 0 === index;
 		this.steps[ 1 ].disabled = items.length - 1 === index;
+		if ( this.cta ) {
+			this.cta.hidden = items.length - 1 === index;
+		}
 		this.el.classList.remove( 'is-playing' );
 
 		items.forEach( function ( other, at ) {
@@ -1864,6 +1876,130 @@
 	};
 
 	/**
+	 * Shares the page with the phone's own sheet; where there is none, copies its address.
+	 */
+	Modal.prototype.share = function () {
+		var self = this;
+		var item = this.gallery.items[ this.index ] || {};
+		var url = window.location.href.split( '#' )[ 0 ];
+		if ( navigator.share ) {
+			navigator.share( { title: item.title || document.title, text: item.desc || '', url: url } ).catch( function () {} );
+			return;
+		}
+		var done = function () {
+			self.toast( self.labels.copied );
+		};
+		if ( navigator.clipboard && navigator.clipboard.writeText ) {
+			navigator.clipboard.writeText( url ).then( done, function () {} );
+		}
+	};
+
+	/**
+	 * A short message at the bottom of the window.
+	 *
+	 * @param {string} text What it says.
+	 */
+	Modal.prototype.toast = function ( text ) {
+		var toast = this.dialog.querySelector( '.mdotcar-vmodal__toast' );
+		if ( ! toast ) {
+			toast = document.createElement( 'div' );
+			toast.className = 'mdotcar-vmodal__toast';
+			toast.setAttribute( 'role', 'status' );
+			this.dialog.appendChild( toast );
+		}
+		toast.textContent = text;
+		toast.classList.add( 'is-on' );
+		clearTimeout( this.toastTimer );
+		this.toastTimer = setTimeout( function () {
+			toast.classList.remove( 'is-on' );
+		}, 1800 );
+	};
+
+	/**
+	 * Phones: the window follows a finger pulling it down from the header (or
+	 * from the video, when the page under it is at its top) and closes when let
+	 * go far or fast enough; otherwise it springs back.
+	 */
+	Modal.prototype.bindSwipe = function () {
+		var self = this;
+		var dialog = this.dialog;
+		var scrim = this.el.querySelector( '.mdotcar-vmodal__scrim' );
+		var start = null;
+		var drag = false;
+		var last = 0;
+
+		var phone = function () {
+			return window.matchMedia && window.matchMedia( '(max-width: 767px)' ).matches;
+		};
+		var reset = function ( animate ) {
+			dialog.style.transition = animate ? 'transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)' : '';
+			dialog.style.transform = '';
+			scrim.style.opacity = '';
+		};
+
+		dialog.addEventListener( 'touchstart', function ( event ) {
+			var target = event.target;
+			start = null;
+			if ( ! phone() || 1 !== event.touches.length || ! target.closest ) {
+				return;
+			}
+			var onHead = target.closest( '.mdotcar-vmodal__head' ) && ! target.closest( 'button' );
+			var onVideo = target.closest( '.mdotcar-vmodal__stage' ) && ! target.closest( '.mdotcar-player__bar, .mdotcar-player__end, .mdotcar-player__menu, .mdotcar-player__resume, iframe' ) && self.body.scrollTop <= 0;
+			if ( onHead || onVideo ) {
+				start = { x: event.touches[ 0 ].clientX, y: event.touches[ 0 ].clientY, t: Date.now() };
+				drag = false;
+			}
+		}, { passive: true } );
+
+		dialog.addEventListener( 'touchmove', function ( event ) {
+			if ( ! start ) {
+				return;
+			}
+			var dx = event.touches[ 0 ].clientX - start.x;
+			var dy = event.touches[ 0 ].clientY - start.y;
+			if ( ! drag ) {
+				if ( dy > 12 && dy > Math.abs( dx ) * 1.5 ) {
+					drag = true;
+					dialog.style.transition = 'none';
+				} else if ( Math.abs( dx ) > 12 || dy < -12 ) {
+					start = null;
+					return;
+				} else {
+					return;
+				}
+			}
+			event.preventDefault();
+			last = Math.max( 0, dy - 12 );
+			dialog.style.transform = 'translateY(' + last + 'px)';
+			scrim.style.opacity = String( Math.max( 0.2, 1 - last / 500 ) );
+		}, { passive: false } );
+
+		var end = function () {
+			if ( ! start ) {
+				return;
+			}
+			var speed = last / Math.max( 1, Date.now() - start.t );
+			start = null;
+			if ( ! drag ) {
+				return;
+			}
+			drag = false;
+			if ( last > 120 || speed > 0.6 ) {
+				dialog.style.transition = 'transform 0.28s cubic-bezier(0.4, 0, 1, 1)';
+				dialog.style.transform = 'translateY(100%)';
+				self.close( true );
+				setTimeout( function () {
+					reset( false );
+				}, 400 );
+			} else {
+				reset( true );
+			}
+		};
+		dialog.addEventListener( 'touchend', end );
+		dialog.addEventListener( 'touchcancel', end );
+	};
+
+	/**
 	 * Empties the stage.
 	 */
 	Modal.prototype.unload = function () {
@@ -1879,8 +2015,10 @@
 	/**
 	 * Closes: the picture flies back to its card, the video stops, the page
 	 * scrolls again, the focus goes back to the card last watched.
+	 *
+	 * @param {boolean} swiped Pulled down by a finger: it leaves downwards, no flight.
 	 */
-	Modal.prototype.close = function () {
+	Modal.prototype.close = function ( swiped ) {
 		var self = this;
 		if ( ! this.isOpen ) {
 			return;
@@ -1891,7 +2029,9 @@
 			this.gallery.reveal( opener );
 		}
 		var media = opener ? opener.closest( '.mdotcar-vgal__card' ).querySelector( '.mdotcar-vgal__media img' ) : null;
-		this.fly( media, false );
+		if ( true !== swiped ) {
+			this.fly( media, false );
+		}
 
 		this.isOpen = false;
 		this.unload();

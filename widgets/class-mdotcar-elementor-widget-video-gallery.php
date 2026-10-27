@@ -11,6 +11,7 @@ use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
+use Elementor\Icons_Manager;
 use Elementor\Plugin as Elementor;
 use Elementor\Repeater;
 use Elementor\Widget_Base;
@@ -40,6 +41,13 @@ class MDotCar_Elementor_Widget_Video_Gallery extends Widget_Base {
 
 	/** The modal, wherever the script moved it (it is portalled to <body>). */
 	const MODAL = '.mdotcar-vmodal[data-for="{{ID}}"]';
+
+	/**
+	 * The icons of this render (the panel's choice, or the built-in ones).
+	 *
+	 * @var string[]
+	 */
+	private $icons = array();
 
 	/**
 	 * Widget key used in templates and the panel.
@@ -110,6 +118,7 @@ class MDotCar_Elementor_Widget_Video_Gallery extends Widget_Base {
 	protected function register_controls() {
 		$this->register_videos_controls();
 		$this->register_slider_controls();
+		$this->register_icon_controls();
 		$this->register_card_style_controls();
 		$this->register_media_style_controls();
 		$this->register_badge_style_controls();
@@ -330,6 +339,47 @@ class MDotCar_Elementor_Widget_Video_Gallery extends Widget_Base {
 				'default' => 'ویدیوهای بعدی',
 			)
 		);
+
+		$this->end_controls_section();
+	}
+
+	/**
+	 * Content tab: the icons, each an uploaded SVG or one from the library.
+	 */
+	private function register_icon_controls() {
+		$this->start_controls_section(
+			'section_icons',
+			array(
+				'label' => __( 'Icons', 'mdotcar-elementor' ),
+				'tab'   => Controls_Manager::TAB_CONTENT,
+			)
+		);
+
+		$this->add_control(
+			'icons_note',
+			array(
+				'type'            => Controls_Manager::RAW_HTML,
+				'raw'             => __( 'Empty means the built-in icon. An uploaded SVG takes the colors of the Style tab (its fills and strokes are recolored).', 'mdotcar-elementor' ),
+				'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
+			)
+		);
+
+		$icons = array(
+			'prev_icon' => __( 'Previous Arrow', 'mdotcar-elementor' ),
+			'next_icon' => __( 'Next Arrow', 'mdotcar-elementor' ),
+			'play_icon' => __( 'Play Button Icon', 'mdotcar-elementor' ),
+		);
+		foreach ( $icons as $key => $label ) {
+			$this->add_control(
+				$key,
+				array(
+					'label'       => $label,
+					'type'        => Controls_Manager::ICONS,
+					'skin'        => 'inline',
+					'label_block' => false,
+				)
+			);
+		}
 
 		$this->end_controls_section();
 	}
@@ -625,7 +675,7 @@ class MDotCar_Elementor_Widget_Video_Gallery extends Widget_Base {
 		$play = self::CARD . ' .mdotcar-vgal__play';
 
 		$this->add_responsive_control( 'play_size', self::px( __( 'Size', 'mdotcar-elementor' ), 56, 120, array( $play => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};' ), 32 ) );
-		$this->add_responsive_control( 'play_icon', self::px( __( 'Icon Size', 'mdotcar-elementor' ), 24, 64, array( $play . ' svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};' ), 12 ) );
+		$this->add_responsive_control( 'play_icon_size', self::px( __( 'Icon Size', 'mdotcar-elementor' ), 24, 64, array( $play => '--mdotcar-vgal-icon: {{SIZE}}{{UNIT}};' ), 12 ) );
 
 		$this->add_control(
 			'play_bg',
@@ -787,7 +837,7 @@ class MDotCar_Elementor_Widget_Video_Gallery extends Widget_Base {
 		$arrow = self::ROOT . ' .mdotcar-vgal__arrow';
 
 		$this->add_responsive_control( 'arrow_size', self::px( __( 'Size', 'mdotcar-elementor' ), 48, 96, array( $arrow => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};' ), 24 ) );
-		$this->add_responsive_control( 'arrow_icon', self::px( __( 'Icon Size', 'mdotcar-elementor' ), 24, 48, array( $arrow . ' svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};' ), 12 ) );
+		$this->add_responsive_control( 'arrow_icon', self::px( __( 'Icon Size', 'mdotcar-elementor' ), 24, 48, array( $arrow => '--mdotcar-vgal-icon: {{SIZE}}{{UNIT}};' ), 12 ) );
 		$this->add_responsive_control( 'arrow_space', self::px( __( 'Space to the Cards', 'mdotcar-elementor' ), 16, 64, array( self::ROOT => '--mdotcar-vgal-space: {{SIZE}}{{UNIT}};' ) ) );
 
 		$this->add_control(
@@ -953,10 +1003,16 @@ class MDotCar_Elementor_Widget_Video_Gallery extends Widget_Base {
 		$s      = $this->get_settings_for_display();
 		$id     = $this->get_id();
 		$videos = (array) $s['videos'];
+
+		$this->icons = array(
+			'prev' => self::icon( $s['prev_icon'], 'prev' ),
+			'next' => self::icon( $s['next_icon'], 'next' ),
+			'play' => self::icon( $s['play_icon'], 'play' ),
+		);
 		?>
 		<div class="mdotcar-vgal" data-mdotcar-vgal="<?php echo esc_attr( $id ); ?>">
 			<button type="button" class="mdotcar-vgal__arrow mdotcar-vgal__arrow--prev" aria-label="<?php echo esc_attr( $s['prev_label'] ); ?>" disabled>
-				<?php echo self::svg( 'prev' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static markup. ?>
+				<?php echo $this->icons['prev']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- icon markup. ?>
 			</button>
 			<div class="mdotcar-vgal__viewport" role="region" aria-roledescription="carousel" aria-label="<?php echo esc_attr( $s['gallery_label'] ); ?>" tabindex="0">
 				<ul class="mdotcar-vgal__track">
@@ -968,7 +1024,7 @@ class MDotCar_Elementor_Widget_Video_Gallery extends Widget_Base {
 				</ul>
 			</div>
 			<button type="button" class="mdotcar-vgal__arrow mdotcar-vgal__arrow--next" aria-label="<?php echo esc_attr( $s['next_label'] ); ?>">
-				<?php echo self::svg( 'next' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static markup. ?>
+				<?php echo $this->icons['next']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- icon markup. ?>
 			</button>
 		</div>
 		<?php
@@ -1003,7 +1059,7 @@ class MDotCar_Elementor_Widget_Video_Gallery extends Widget_Base {
 					<?php if ( '' !== trim( (string) $row['badge'] ) ) : ?>
 						<span class="mdotcar-vgal__badge"><?php echo esc_html( $row['badge'] ); ?></span>
 					<?php endif; ?>
-					<span class="mdotcar-vgal__play" aria-hidden="true"><?php echo self::svg( 'play' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static markup. ?></span>
+					<span class="mdotcar-vgal__play" aria-hidden="true"><?php echo $this->icons['play']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- icon markup. ?></span>
 				</div>
 				<div class="mdotcar-vgal__body">
 					<h3 class="mdotcar-vgal__title" id="<?php echo esc_attr( $label ); ?>"><?php echo esc_html( $row['title'] ); ?></h3>
@@ -1050,12 +1106,15 @@ class MDotCar_Elementor_Widget_Video_Gallery extends Widget_Base {
 			'resume'   => 'ادامه از %s',
 			'restart'  => 'از اول',
 			'seconds'  => '%s ثانیه',
+			'share'    => 'اشتراک‌گذاری',
+			'copied'   => 'لینک کپی شد',
 		);
 		?>
 		<div class="mdotcar-vmodal" data-for="<?php echo esc_attr( $id ); ?>" data-labels="<?php echo esc_attr( wp_json_encode( $labels ) ); ?>" hidden>
 			<div class="mdotcar-vmodal__scrim" data-close></div>
 			<div class="mdotcar-vmodal__dialog" role="dialog" aria-modal="true" aria-labelledby="mdotcar-vm-title-<?php echo esc_attr( $id ); ?>" tabindex="-1">
 				<header class="mdotcar-vmodal__head">
+					<span class="mdotcar-vmodal__grip" aria-hidden="true"></span>
 					<span class="mdotcar-vmodal__badge"></span>
 					<button type="button" class="mdotcar-vmodal__close" data-close>
 						<?php echo self::svg( 'close' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static markup. ?>
@@ -1069,6 +1128,10 @@ class MDotCar_Elementor_Widget_Video_Gallery extends Widget_Base {
 						<div class="mdotcar-vmodal__info">
 							<h2 class="mdotcar-vmodal__title" id="mdotcar-vm-title-<?php echo esc_attr( $id ); ?>"></h2>
 							<p class="mdotcar-vmodal__desc"></p>
+							<div class="mdotcar-vmodal__actions">
+								<button type="button" class="mdotcar-vmodal__cta" data-go="1"><span><?php echo esc_html( $labels['next'] ); ?></span><?php echo $this->icons['next']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- icon markup. ?></button>
+								<button type="button" class="mdotcar-vmodal__share" aria-label="<?php echo esc_attr( $labels['share'] ); ?>"><?php echo self::svg( 'share' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static markup. ?></button>
+							</div>
 						</div>
 					</div>
 					<aside class="mdotcar-vmodal__side" aria-label="<?php echo esc_attr( $labels['list'] ); ?>">
@@ -1077,8 +1140,8 @@ class MDotCar_Elementor_Widget_Video_Gallery extends Widget_Base {
 								<span class="mdotcar-vmodal__side-title"><?php echo esc_html( $labels['list'] ); ?></span>
 								<span class="mdotcar-vmodal__count" aria-live="polite"></span>
 								<span class="mdotcar-vmodal__nav">
-									<button type="button" class="mdotcar-vmodal__step" data-step="-1" aria-label="<?php echo esc_attr( $labels['prev'] ); ?>"><?php echo self::svg( 'prev' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static markup. ?></button>
-									<button type="button" class="mdotcar-vmodal__step" data-step="1" aria-label="<?php echo esc_attr( $labels['next'] ); ?>"><?php echo self::svg( 'next' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static markup. ?></button>
+									<button type="button" class="mdotcar-vmodal__step" data-step="-1" aria-label="<?php echo esc_attr( $labels['prev'] ); ?>"><?php echo $this->icons['prev']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- icon markup. ?></button>
+									<button type="button" class="mdotcar-vmodal__step" data-step="1" aria-label="<?php echo esc_attr( $labels['next'] ); ?>"><?php echo $this->icons['next']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- icon markup. ?></button>
 								</span>
 							</div>
 							<div class="mdotcar-vmodal__list"></div>
@@ -1091,9 +1154,30 @@ class MDotCar_Elementor_Widget_Video_Gallery extends Widget_Base {
 	}
 
 	/**
+	 * An icon from the panel (an uploaded SVG or a library icon), or the built-in one.
+	 *
+	 * @param mixed  $value    The ICONS control's value.
+	 * @param string $fallback The built-in icon's name.
+	 * @return string
+	 */
+	private static function icon( $value, $fallback ) {
+		if ( is_array( $value ) && ! empty( $value['value'] ) ) {
+			// A library icon needs its font; Elementor alone loads it only on sites past its icon migration.
+			if ( ! empty( $value['library'] ) && 'svg' !== $value['library'] && wp_style_is( 'elementor-icons-' . $value['library'], 'registered' ) ) {
+				wp_enqueue_style( 'elementor-icons-' . $value['library'] );
+			}
+			$html = Icons_Manager::try_get_icon_html( $value, array( 'aria-hidden' => 'true' ) );
+			if ( '' !== trim( (string) $html ) ) {
+				return '<span class="mdotcar-vgal__icon is-custom" aria-hidden="true">' . $html . '</span>';
+			}
+		}
+		return self::svg( $fallback );
+	}
+
+	/**
 	 * The widget's icons (currentColor). The arrows point to the reading direction's ends; CSS flips them for LTR.
 	 *
-	 * @param string $name play, prev, next or close.
+	 * @param string $name play, prev, next, close or share.
 	 * @return string
 	 */
 	private static function svg( $name ) {
@@ -1102,6 +1186,7 @@ class MDotCar_Elementor_Widget_Video_Gallery extends Widget_Base {
 			'prev'  => '<path d="M14.43 5.93 20.5 12l-6.07 6.07M3.5 12h16.83" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>',
 			'next'  => '<path d="M9.57 5.93 3.5 12l6.07 6.07M20.5 12H3.67" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>',
 			'close' => '<path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+			'share' => '<path d="M12 14.5V3.5M7.75 7.25 12 3l4.25 4.25M5 11.5v7A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5v-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>',
 		);
 		return '<svg class="mdotcar-vgal__svg mdotcar-vgal__svg--' . $name . '" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">' . $shapes[ $name ] . '</svg>';
 	}
