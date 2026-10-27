@@ -17,6 +17,18 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.20.0] - 2026-10-27
+
+### Changed
+
+- **MDotCar Header Menu**, hovering the mega menu's cards: one highlight
+  glides from card to card under the pointer (and the keyboard's focus),
+  taking each card's size and corners, across rows too; it fades out when
+  the pointer leaves the cards and comes back where it enters, and stays put
+  over the gaps between cards. Its colour is still Card Hover Background. The
+  card under it lifts its icon a little. Reduced motion: it fades instead of
+  gliding.
+
 ## [0.19.0] - 2026-10-27
 
 ### Changed

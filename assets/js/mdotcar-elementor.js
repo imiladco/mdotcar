@@ -183,6 +183,10 @@
 		var panel = item.querySelector( '.mdotcar-hmenu__mega' );
 		var lastPointer = 'mouse';
 
+		if ( panel ) {
+			this.bindGlow( panel );
+		}
+
 		if ( caret ) {
 			caret.addEventListener( 'click', function () {
 				if ( self.open === item ) {
@@ -247,6 +251,76 @@
 				self.close();
 			}
 		} );
+	};
+
+	/**
+	 * One highlight for a panel's cards that glides from card to card under
+	 * the pointer (or the focus), taking each one's size; it fades out when
+	 * the pointer leaves the cards and comes back where it enters.
+	 *
+	 * @param {Element} panel The .mdotcar-hmenu__mega.
+	 */
+	HeaderMenu.prototype.bindGlow = function ( panel ) {
+		var grid = panel.querySelector( '.mdotcar-hmenu__mega-grid' );
+		if ( ! grid ) {
+			return;
+		}
+		var glow = document.createElement( 'span' );
+		glow.className = 'mdotcar-hmenu__glow';
+		glow.setAttribute( 'aria-hidden', 'true' );
+		grid.appendChild( glow );
+		this.root.classList.add( 'has-glow' );
+
+		var lit = null;
+		var to = function ( card ) {
+			if ( card === lit ) {
+				return;
+			}
+			var outer = grid.getBoundingClientRect();
+			var box = card.getBoundingClientRect();
+			glow.classList.toggle( 'is-sliding', !! lit );
+			glow.style.width = box.width + 'px';
+			glow.style.height = box.height + 'px';
+			glow.style.borderRadius = window.getComputedStyle( card ).borderTopLeftRadius;
+			glow.style.transform = 'translate3d(' + ( box.left - outer.left ) + 'px, ' + ( box.top - outer.top ) + 'px, 0)';
+			glow.classList.add( 'is-on' );
+			if ( lit ) {
+				lit.classList.remove( 'is-lit' );
+			}
+			card.classList.add( 'is-lit' );
+			lit = card;
+		};
+		var off = function () {
+			glow.classList.remove( 'is-on' );
+			if ( lit ) {
+				lit.classList.remove( 'is-lit' );
+			}
+			lit = null;
+		};
+		var cardOf = function ( target ) {
+			var card = target && target.closest ? target.closest( 'a.mdotcar-hmenu__card' ) : null;
+			return card && grid.contains( card ) ? card : null;
+		};
+
+		grid.addEventListener( 'pointerover', function ( event ) {
+			var card = cardOf( event.target );
+			if ( card && 'mouse' === event.pointerType ) {
+				to( card );
+			}
+		} );
+		grid.addEventListener( 'pointerleave', off );
+		grid.addEventListener( 'focusin', function ( event ) {
+			var card = cardOf( event.target );
+			if ( card && card.matches( ':focus-visible' ) ) {
+				to( card );
+			}
+		} );
+		grid.addEventListener( 'focusout', function ( event ) {
+			if ( ! grid.contains( event.relatedTarget ) ) {
+				off();
+			}
+		} );
+		panel.mdotcarGlowOff = off;
 	};
 
 	/**
@@ -495,6 +569,10 @@
 		}
 		this.settle();
 		this.open = null;
+		var panel = item.querySelector( '.mdotcar-hmenu__mega' );
+		if ( panel && panel.mdotcarGlowOff ) {
+			setTimeout( panel.mdotcarGlowOff, 340 ); // after the panel has rolled up, so it does not flash out first
+		}
 		item.classList.remove( 'is-open' );
 		item.classList.add( 'is-closing' );
 		clearTimeout( item.mdotcarClosing );

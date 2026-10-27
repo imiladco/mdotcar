@@ -732,6 +732,70 @@ a.mdotcar-hmenu__card:focus-visible {
 	background-color: var( --mdotcar-card-hover-bg );
 }
 
+/*
+ * With the script: one highlight glides between the cards instead of each
+ * card lighting up on its own. The cards sit above it.
+ */
+.mdotcar-hmenu__mega-grid {
+	position: relative;
+}
+
+.mdotcar-hmenu__mega-grid > li {
+	position: relative;
+	z-index: 1;
+}
+
+.mdotcar-hmenu.has-glow a.mdotcar-hmenu__card:hover,
+.mdotcar-hmenu.has-glow a.mdotcar-hmenu__card:focus-visible {
+	background-color: transparent;
+}
+
+.mdotcar-hmenu__glow {
+	position: absolute;
+	z-index: 0;
+	top: 0;
+	left: 0;
+	border-radius: 16px;
+	background-color: var( --mdotcar-card-hover-bg );
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.3s ease;
+}
+
+.mdotcar-hmenu__glow.is-on {
+	opacity: 1;
+	transition: opacity 0.18s ease;
+}
+
+.mdotcar-hmenu__glow.is-sliding {
+	transition:
+		opacity 0.18s ease,
+		transform 0.42s cubic-bezier( 0.22, 1, 0.36, 1 ),
+		width 0.42s cubic-bezier( 0.22, 1, 0.36, 1 ),
+		height 0.42s cubic-bezier( 0.22, 1, 0.36, 1 );
+}
+
+/* The card under the highlight: its icon lifts a little. */
+.mdotcar-hmenu__card-icon {
+	transition: transform 0.4s cubic-bezier( 0.22, 1, 0.36, 1 ), border-color 0.3s ease;
+}
+
+a.mdotcar-hmenu__card:hover .mdotcar-hmenu__card-icon,
+a.mdotcar-hmenu__card.is-lit .mdotcar-hmenu__card-icon {
+	transform: translateY( -2px );
+}
+
+@media ( prefers-reduced-motion: reduce ) {
+	.mdotcar-hmenu__glow.is-sliding {
+		transition: opacity 0.18s ease;
+	}
+
+	a.mdotcar-hmenu__card:hover .mdotcar-hmenu__card-icon,
+	a.mdotcar-hmenu__card.is-lit .mdotcar-hmenu__card-icon {
+		transform: none;
+	}
+}
+
 .mdotcar-hmenu__card.is-soon {
 	opacity: 0.3;
 	cursor: default;
