@@ -4,7 +4,7 @@ Tags: elementor, widget, title, heading, flexbox
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.10.1
+Stable tag: 0.11.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,6 +25,10 @@ an accordion for sub items along a guide line with dots, and buttons below.
 **MDotCar Header Buttons** — the header's buttons (call, sign in) as a
 repeater: shown on chosen pages only, cookies or storage written on click, any
 attributes, and the site's looks with every value adjustable per device.
+
+**MDotCar Price List** — a table of parts, the vehicles they fit and their
+prices: a header row with icons, rows in two shades, prices grouped in Persian
+digits.
 
 **MDotCar Vehicle Tariff (Style 1)** — car-wash tariff cards. Define any number
 of vehicles, each with an image, badge, title, up to three tariff columns, a
@@ -50,6 +54,11 @@ and height can each be left to fit the content or set to a custom value.
    *MDotCar*.
 
 == Changelog ==
+
+= 0.11.0 =
+* New: MDotCar Price List widget, a table of parts, the vehicles they fit and
+  their prices, with grouped Persian digits and the design's values as the
+  style controls' defaults.
 
 = 0.10.1 =
 * Fixed: Header Buttons are all the same height by default.

@@ -17,6 +17,27 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.11.0] - 2026-10-27
+
+### Added
+
+- **MDotCar Price List** widget: parts and their prices. A header row (part,
+  the vehicles it fits, price — each with an icon, built-in ones when none is
+  set) and one row per part from a repeater: an icon in a tile, the part
+  (optionally a link), what it fits, and the price with its currency unit.
+  - A real table (head, body, rows and cells, roles stated), laid out as a
+    grid so every column lines up; rows white and #F5F5F5 in turn.
+  - A numeric price is grouped (3450000 → ۳،۴۵۰،۰۰۰) in Persian or Latin
+    digits with a separator of your choice; anything else (call for a price)
+    is shown as typed, without the unit. A row can override the unit.
+  - **Every style control carries the design as its default**, so the Style
+    tab shows the values in use: the box (white, a 1px #FFD24A border, 24px
+    radius, 12px padding), the header (#FFEBAA, 12px 16px, 16/24 500, icon gap
+    8), the rows (14/22 400 #212121, 12px 16px, radius 12), the part icon's
+    tile (32px, white, radius 8, icon 20), the price (500) and its unit (12px).
+    Column widths, gaps and each column's alignment too, per device.
+  - On phones the part takes its own line and the fit and price sit under it.
+
 ## [0.10.1] - 2026-10-24
 
 ### Fixed

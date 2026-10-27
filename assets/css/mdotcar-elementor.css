@@ -1367,3 +1367,170 @@ html.mdotcar-hmenu-locked body {
 	opacity: 0.35;
 	outline: 1px dashed #9E9E9E;
 }
+
+/* -----------------------------------------------------------------------------
+ * Price List — parts and prices: a header row, then the rows, white and grey
+ *
+ * A table laid out as a grid (every row shares the column template, so the
+ * columns line up). The values here are the style controls' defaults; the
+ * panel sets them again with a higher specificity.
+ * -------------------------------------------------------------------------- */
+
+.mdotcar-plist {
+	--mdotcar-plist-cols: 1fr 1fr 1fr;
+	box-sizing: border-box;
+	display: block;
+	width: 100%;
+	margin: 0;
+	padding: 12px;
+	border: 1px solid #FFD24A;
+	border-collapse: separate;
+	border-spacing: 0;
+	border-radius: 24px;
+	background-color: #FFFFFF;
+	color: #212121;
+}
+
+.mdotcar-plist *,
+.mdotcar-plist *::before,
+.mdotcar-plist *::after {
+	box-sizing: border-box;
+}
+
+.mdotcar-plist__head,
+.mdotcar-plist__body {
+	display: grid;
+	grid-template-columns: minmax( 0, 1fr );
+}
+
+.mdotcar-plist .mdotcar-plist__row {
+	display: grid;
+	grid-template-columns: var( --mdotcar-plist-cols );
+	align-items: center;
+	column-gap: 16px;
+	padding: 12px 16px;
+	border: 0;
+	border-radius: 12px;
+	background: none;
+	transition: background-color 0.2s ease;
+}
+
+.mdotcar-plist .mdotcar-plist__cell {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	min-width: 0;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	color: inherit;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 22px;
+	text-align: start;
+	vertical-align: middle;
+}
+
+.mdotcar-plist__cell--part {
+	justify-content: start;
+}
+
+.mdotcar-plist__cell--fits {
+	justify-content: center;
+	text-align: center;
+}
+
+.mdotcar-plist__cell--price {
+	justify-content: end;
+	gap: 4px;
+	text-align: end;
+	white-space: nowrap;
+}
+
+/* The header row. */
+.mdotcar-plist__head .mdotcar-plist__row {
+	border-radius: 16px;
+	background-color: #FFEBAA;
+	color: #212121;
+}
+
+.mdotcar-plist__head .mdotcar-plist__cell {
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 24px;
+}
+
+.mdotcar-plist__head-icon {
+	display: block;
+	flex: 0 0 auto;
+	width: 24px;
+	height: 24px;
+	object-fit: contain;
+}
+
+/* The rows. */
+.mdotcar-plist__body .mdotcar-plist__row:nth-child( odd ) {
+	background-color: #FFFFFF;
+}
+
+.mdotcar-plist__body .mdotcar-plist__row:nth-child( even ) {
+	background-color: #F5F5F5;
+}
+
+.mdotcar-plist__tile {
+	display: inline-flex;
+	flex: 0 0 auto;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	border-radius: 8px;
+	background-color: #FFFFFF;
+}
+
+.mdotcar-plist__tile img {
+	display: block;
+	width: 20px;
+	height: 20px;
+	object-fit: contain;
+}
+
+.mdotcar-plist__name {
+	min-width: 0;
+}
+
+.mdotcar-plist a.mdotcar-plist__link {
+	color: inherit;
+	text-decoration: none;
+}
+
+.mdotcar-plist a.mdotcar-plist__link:hover {
+	text-decoration: underline;
+	text-underline-offset: 4px;
+}
+
+.mdotcar-plist__amount {
+	font-weight: 500;
+}
+
+.mdotcar-plist__unit {
+	font-size: 12px;
+}
+
+/* Phones: the part on its own line, the fit and the price under it. */
+@media ( max-width: 767px ) {
+	.mdotcar-plist .mdotcar-plist__row {
+		grid-template-columns: minmax( 0, 1fr ) auto;
+		row-gap: 4px;
+	}
+
+	.mdotcar-plist .mdotcar-plist__cell--part {
+		grid-column: 1 / -1;
+	}
+
+	.mdotcar-plist .mdotcar-plist__cell--fits {
+		justify-content: start;
+		text-align: start;
+	}
+}

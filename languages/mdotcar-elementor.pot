@@ -10,6 +10,14 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Domain: mdotcar-elementor\n"
 
+#: widgets/class-mdotcar-elementor-widget-price-list.php:162
+msgid "A number, written without separators (3450000); or any text, shown as typed."
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:293
+msgid "A numeric price gets a separator every three digits."
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:206
 msgid "A page, or tel:, mailto:, https://wa.me/… and the like."
 msgstr ""
@@ -136,9 +144,19 @@ msgstr ""
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:397
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:625
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:917
+#: widgets/class-mdotcar-elementor-widget-price-list.php:392
+#: widgets/class-mdotcar-elementor-widget-price-list.php:536
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:958
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1648
 msgid "Background"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:685
+msgid "Background (even rows)"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:675
+msgid "Background (odd rows)"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:861
@@ -191,6 +209,7 @@ msgstr ""
 msgid "Bottom Padding"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-price-list.php:384
 #: widgets/class-mdotcar-elementor-widget-title.php:467
 msgid "Box"
 msgstr ""
@@ -231,6 +250,7 @@ msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:541
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:508
+#: widgets/class-mdotcar-elementor-widget-price-list.php:502
 #: widgets/class-mdotcar-elementor-widget-title.php:287
 #: widgets/class-mdotcar-elementor-widget-title.php:308
 #: widgets/class-mdotcar-elementor-widget-title.php:326
@@ -281,6 +301,7 @@ msgstr ""
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:876
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:360
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:469
+#: widgets/class-mdotcar-elementor-widget-price-list.php:879
 #: widgets/class-mdotcar-elementor-widget-title.php:783
 #: widgets/class-mdotcar-elementor-widget-title.php:944
 msgid "Color"
@@ -303,6 +324,10 @@ msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1152
 msgid "Column Gap"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:445
+msgid "Column Widths"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:272
@@ -363,6 +388,12 @@ msgstr ""
 msgid "Currency Typography"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-price-list.php:172
+#: widgets/class-mdotcar-elementor-widget-price-list.php:283
+#: widgets/class-mdotcar-elementor-widget-price-list.php:861
+msgid "Currency Unit"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:533
 msgid "Current Page"
 msgstr ""
@@ -394,6 +425,10 @@ msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:652
 msgid "Desktop"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:313
+msgid "Digits"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:239
@@ -467,6 +502,7 @@ msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:545
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:512
+#: widgets/class-mdotcar-elementor-widget-price-list.php:506
 #: widgets/class-mdotcar-elementor-widget-title.php:288
 #: widgets/class-mdotcar-elementor-widget-title.php:309
 #: widgets/class-mdotcar-elementor-widget-title.php:327
@@ -523,6 +559,18 @@ msgstr ""
 msgid "Fit to content"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-price-list.php:149
+msgid "Fits"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:240
+msgid "Fits Column"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:486
+msgid "Fits Column Alignment"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-title.php:527
 msgid "Fixed"
 msgstr ""
@@ -548,6 +596,10 @@ msgstr ""
 msgid "Gap"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-price-list.php:889
+msgid "Gap Before the Unit"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:522
 msgid "Gap Between Buttons"
 msgstr ""
@@ -556,12 +608,22 @@ msgstr ""
 msgid "Gap Between Cards"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-price-list.php:457
+msgid "Gap Between Columns"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:603
+#: widgets/class-mdotcar-elementor-widget-price-list.php:611
+#: widgets/class-mdotcar-elementor-widget-price-list.php:812
 msgid "Gap Between Icon and Text"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:472
 msgid "Gap Between Items"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:472
+msgid "Gap Between Rows"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-title.php:857
@@ -580,6 +642,10 @@ msgstr ""
 msgid "Gray Until Hovered"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-price-list.php:292
+msgid "Group the Digits"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:478
 msgid "Guide Line Color"
 msgstr ""
@@ -590,6 +656,11 @@ msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-title.php:144
 msgid "HTML Tag"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:223
+#: widgets/class-mdotcar-elementor-widget-price-list.php:525
+msgid "Header"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:519
@@ -617,6 +688,7 @@ msgid "Hover / Open"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:719
+#: widgets/class-mdotcar-elementor-widget-price-list.php:695
 msgid "Hover Background"
 msgstr ""
 
@@ -659,6 +731,8 @@ msgstr ""
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:789
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:160
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:268
+#: widgets/class-mdotcar-elementor-widget-price-list.php:140
+#: widgets/class-mdotcar-elementor-widget-price-list.php:257
 #: widgets/class-mdotcar-elementor-widget-title.php:154
 #: widgets/class-mdotcar-elementor-widget-title.php:812
 msgid "Icon"
@@ -686,6 +760,8 @@ msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:460
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:387
+#: widgets/class-mdotcar-elementor-widget-price-list.php:591
+#: widgets/class-mdotcar-elementor-widget-price-list.php:767
 #: widgets/class-mdotcar-elementor-widget-title.php:821
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:935
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1587
@@ -788,6 +864,10 @@ msgstr ""
 msgid "Large Iranian sedan"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-price-list.php:318
+msgid "Latin (012)"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:514
 #: widgets/class-mdotcar-elementor-widget-title.php:202
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:483
@@ -799,7 +879,12 @@ msgid "Leave empty for the built-in chevron."
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:352
+#: widgets/class-mdotcar-elementor-widget-price-list.php:258
 msgid "Leave empty for the built-in one."
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:173
+msgid "Leave empty for the list's own."
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:378
@@ -820,6 +905,7 @@ msgstr ""
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:172
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:149
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:259
+#: widgets/class-mdotcar-elementor-widget-price-list.php:181
 #: widgets/class-mdotcar-elementor-widget-title.php:177
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:182
 msgid "Link"
@@ -862,6 +948,10 @@ msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:44
 msgid "MDotCar Mobile Menu"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:55
+msgid "MDotCar Price List"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-title.php:55
@@ -1049,6 +1139,9 @@ msgstr ""
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:634
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:698
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:926
+#: widgets/class-mdotcar-elementor-widget-price-list.php:426
+#: widgets/class-mdotcar-elementor-widget-price-list.php:565
+#: widgets/class-mdotcar-elementor-widget-price-list.php:704
 #: widgets/class-mdotcar-elementor-widget-title.php:592
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:870
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1416
@@ -1069,6 +1162,30 @@ msgstr ""
 msgid "Pages"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-price-list.php:129
+msgid "Part"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:239
+msgid "Part Column"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:485
+msgid "Part Column Alignment"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:737
+msgid "Part Icon"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:446
+msgid "Part, fits, price; e.g. 1fr 1fr 1fr, or 2fr 1fr 1fr for a wider part column."
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:317
+msgid "Persian (۰۱۲)"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:344
 msgid "Persian Digits"
 msgstr ""
@@ -1081,11 +1198,35 @@ msgstr ""
 msgid "Position"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-price-list.php:161
+#: widgets/class-mdotcar-elementor-widget-price-list.php:834
+msgid "Price"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:851
+msgid "Price Color"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:241
+msgid "Price Column"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:487
+msgid "Price Column Alignment"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:275
+msgid "Prices"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:439
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:644
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:708
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:979
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:535
+#: widgets/class-mdotcar-elementor-widget-price-list.php:415
+#: widgets/class-mdotcar-elementor-widget-price-list.php:576
+#: widgets/class-mdotcar-elementor-widget-price-list.php:715
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:893
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1445
 msgid "Radius"
@@ -1139,6 +1280,9 @@ msgid "Row Height"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:328
+#: widgets/class-mdotcar-elementor-widget-price-list.php:119
+#: widgets/class-mdotcar-elementor-widget-price-list.php:198
+#: widgets/class-mdotcar-elementor-widget-price-list.php:648
 msgid "Rows"
 msgstr ""
 
@@ -1162,6 +1306,10 @@ msgstr ""
 msgid "Separated by spaces, e.g. kalameh-font for the site's heading font."
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-price-list.php:303
+msgid "Separator"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:421
 msgid "Separator Color"
 msgstr ""
@@ -1180,6 +1328,10 @@ msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:442
 msgid "Show the Drawer in the Editor"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:231
+msgid "Show the Header"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:205
@@ -1213,6 +1365,10 @@ msgstr ""
 msgid "Space Around the Icon"
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-price-list.php:626
+msgid "Space Below"
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-title.php:289
 #: widgets/class-mdotcar-elementor-widget-title.php:328
 msgid "Space Between"
@@ -1224,6 +1380,7 @@ msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:537
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:504
+#: widgets/class-mdotcar-elementor-widget-price-list.php:498
 #: widgets/class-mdotcar-elementor-widget-title.php:286
 #: widgets/class-mdotcar-elementor-widget-title.php:307
 #: widgets/class-mdotcar-elementor-widget-title.php:325
@@ -1310,6 +1467,8 @@ msgid "Text Align"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:396
+#: widgets/class-mdotcar-elementor-widget-price-list.php:546
+#: widgets/class-mdotcar-elementor-widget-price-list.php:665
 msgid "Text Color"
 msgstr ""
 
@@ -1353,6 +1512,10 @@ msgstr ""
 msgid "The text is hidden there (still read out to screen readers)."
 msgstr ""
 
+#: widgets/class-mdotcar-elementor-widget-price-list.php:150
+msgid "The vehicles it fits."
+msgstr ""
+
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:183
 msgid "The whole card follows this link, not only the button."
 msgstr ""
@@ -1367,6 +1530,18 @@ msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:970
 msgid "Thumb"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:787
+msgid "Tile Background"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:797
+msgid "Tile Radius"
+msgstr ""
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:747
+msgid "Tile Size"
 msgstr ""
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:728

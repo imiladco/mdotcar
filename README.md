@@ -57,6 +57,7 @@ and recompile whenever a new panel label is introduced.
 | MDotCar Header Menu | `MDotCar_Elementor_Widget_Header_Menu` | MDotCar → MDotCar Header Menu |
 | MDotCar Mobile Menu | `MDotCar_Elementor_Widget_Mobile_Menu` | MDotCar → MDotCar Mobile Menu |
 | MDotCar Header Buttons | `MDotCar_Elementor_Widget_Header_Buttons` | MDotCar → MDotCar Header Buttons |
+| MDotCar Price List | `MDotCar_Elementor_Widget_Price_List` | MDotCar → MDotCar Price List |
 
 ### Adding a widget
 
