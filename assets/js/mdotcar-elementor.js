@@ -251,22 +251,47 @@
 	/**
 	 * Puts the panels' top edge under the header (or the bar). The panel is
 	 * fixed, so it is measured too: an ancestor with a transform would move it.
+	 *
+	 * A header made sticky (Elementor's Sticky, or position: sticky) is
+	 * measured where it is on the screen: its section is the one fixed or
+	 * stuck, while the page's <header> around it scrolls away.
 	 */
 	HeaderMenu.prototype.place = function () {
 		var anchor = this.root;
 		if ( 'header' === this.root.getAttribute( 'data-anchor' ) ) {
-			anchor = this.root.closest( '.elementor-location-header, header' ) || this.topContainer() || this.root;
+			anchor = this.stuck() || this.root.closest( '.elementor-location-header, header' ) || this.topContainer() || this.root;
 		}
-		var bottom = Math.max( 0, anchor.getBoundingClientRect().bottom );
+		var bottom = Math.max( 0, anchor.getBoundingClientRect().bottom, 'header' === this.root.getAttribute( 'data-anchor' ) ? 0 : this.root.getBoundingClientRect().bottom );
 		this.root.style.setProperty( '--mdotcar-mega-top', bottom + 'px' );
 
 		var panel = ( this.open || this.items[ 0 ] || this.root ).querySelector( '.mdotcar-hmenu__mega' );
 		if ( panel ) {
-			var off = panel.getBoundingClientRect().top - bottom;
+			// Less its own slide (the closed state is drawn a little higher).
+			var lift = window.DOMMatrixReadOnly ? new window.DOMMatrixReadOnly( window.getComputedStyle( panel ).transform ).m42 : 0;
+			var off = panel.getBoundingClientRect().top - lift - bottom;
 			if ( Math.abs( off ) > 1 ) {
 				this.root.style.setProperty( '--mdotcar-mega-top', ( bottom - off ) + 'px' );
 			}
 		}
+	};
+
+	/**
+	 * The outermost ancestor that is fixed, or sticky and stuck to the top: the
+	 * bar the visitor sees.
+	 *
+	 * @return {Element|null}
+	 */
+	HeaderMenu.prototype.stuck = function () {
+		var found = null;
+		var el = this.root.parentElement;
+		while ( el && el !== document.body ) {
+			var position = window.getComputedStyle( el ).position;
+			if ( 'fixed' === position || ( 'sticky' === position && el.getBoundingClientRect().top <= parseFloat( window.getComputedStyle( el ).top ) + 1 ) ) {
+				found = el;
+			}
+			el = el.parentElement;
+		}
+		return found;
 	};
 
 	/**
@@ -292,8 +317,16 @@
 	 * @param {Element} item The <li>.
 	 */
 	HeaderMenu.prototype.show = function ( item ) {
+		var root = this.root;
 		if ( this.open && this.open !== item ) {
+			// From one item to another: the panel stays, only its cards change.
+			root.classList.add( 'is-switching' );
 			this.close();
+			window.requestAnimationFrame( function () {
+				window.requestAnimationFrame( function () {
+					root.classList.remove( 'is-switching' );
+				} );
+			} );
 		}
 		this.open = item;
 		this.place();
@@ -478,6 +511,10 @@
 	 */
 	function start( scope ) {
 		Array.prototype.forEach.call( ( scope || document ).querySelectorAll( '[data-mdotcar-hmenu]' ), function ( root ) {
+			// Elementor's Sticky leaves a hidden copy of the section in its place: not a menu of its own.
+			if ( root.closest( '.elementor-sticky__spacer' ) ) {
+				return;
+			}
 			if ( ! root.mdotcarHeaderMenu ) {
 				root.mdotcarHeaderMenu = new HeaderMenu( root );
 			}

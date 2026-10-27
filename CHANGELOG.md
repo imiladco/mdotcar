@@ -17,6 +17,28 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.18.0] - 2026-10-27
+
+### Fixed
+
+- **MDotCar Header Menu** with a sticky header (Elementor's Sticky): after
+  scrolling, the mega menu opened at the top of the window, over the bar,
+  because it was placed under the page's <header>, which scrolls away while
+  the sticky section stays. It is now placed under the bar the visitor sees
+  (the outermost fixed or stuck ancestor), and follows it while scrolling.
+- The mega menu sat 8px low: it was measured while still in its closed,
+  raised state.
+- The hidden copy Elementor's Sticky leaves in the section's place is not
+  started as a second menu.
+
+### Changed
+
+- The mega menu's opening: it unfolds down from the header's edge (a clip
+  wipe with a slight drop, easing out over 0.55s) and its cards come in one
+  after another; closing is quicker and all at once. Moving from one item to
+  another keeps the panel open and only brings the new cards in. The caret
+  turns with the same easing. Reduced motion: a plain fade.
+
 ## [0.17.0] - 2026-10-27
 
 ### Added

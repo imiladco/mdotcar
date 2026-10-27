@@ -1185,8 +1185,8 @@ class MDotCar_Elementor_Widget_Header_Menu extends Widget_Base {
 					</button>
 					<div class="mdotcar-hmenu__mega" id="<?php echo esc_attr( $mega ); ?>">
 						<ul class="mdotcar-hmenu__mega-grid">
-							<?php foreach ( $kids as $kid ) : ?>
-								<li>
+							<?php foreach ( $kids as $n => $kid ) : ?>
+								<li style="--i: <?php echo (int) $n; ?>">
 									<?php $this->render_card( $kid, $s ); ?>
 								</li>
 							<?php endforeach; ?>

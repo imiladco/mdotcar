@@ -503,7 +503,7 @@ a.mdotcar-hmenu__link:hover,
 	align-items: center;
 	margin-inline-start: 8px !important;
 	color: var( --mdotcar-hmenu-caret-normal ) !important;
-	transition: color 0.25s ease, transform 0.3s ease;
+	transition: color 0.25s ease, transform 0.45s cubic-bezier( 0.22, 1, 0.36, 1 );
 }
 
 .mdotcar-hmenu__caret svg {
@@ -549,30 +549,56 @@ a.mdotcar-hmenu__link:hover,
 	background: var( --mdotcar-hmenu-divider );
 }
 
-/* The mega menu: the window's full width; its cards in a centred column. */
+/*
+ * The mega menu: the window's full width; its cards in a centred column.
+ *
+ * Opening, it unfolds down from the header's edge (a clip wipe, with a slight
+ * drop) and its cards follow one after another; closing is quicker and all at
+ * once. Moving from one item to another keeps the panel and only brings the
+ * new cards in.
+ */
 
 .mdotcar-hmenu__mega {
+	--mdotcar-mega-ease: cubic-bezier( 0.22, 1, 0.36, 1 );
 	position: fixed;
 	z-index: 1000;
 	top: var( --mdotcar-mega-top, var( --mdotcar-hmenu-height ) );
 	right: 0;
 	left: 0;
 	max-height: calc( 100vh - var( --mdotcar-mega-top, var( --mdotcar-hmenu-height ) ) );
+	max-height: calc( 100dvh - var( --mdotcar-mega-top, var( --mdotcar-hmenu-height ) ) );
 	overflow-y: auto;
+	overscroll-behavior: contain;
 	padding: 40px 16px 69px;
 	border-radius: 0 0 24px 24px;
 	background: var( --mdotcar-mega-bg );
 	box-shadow: 0 10px 20px rgba( 0, 0, 0, 0.15 );
 	visibility: hidden;
 	opacity: 0;
-	transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+	clip-path: inset( 0 0 100% 0 );
+	transform: translateY( -8px );
+	transition:
+		clip-path 0.26s cubic-bezier( 0.4, 0, 1, 1 ),
+		transform 0.26s cubic-bezier( 0.4, 0, 1, 1 ),
+		opacity 0.18s ease 0.08s,
+		visibility 0s linear 0.26s;
 }
 
 .mdotcar-hmenu__item.is-open > .mdotcar-hmenu__mega,
 .mdotcar-hmenu.is-editor-mega .mdotcar-hmenu__mega {
 	visibility: visible;
 	opacity: 1;
-	transition: opacity 0.2s ease;
+	/* Below the bottom edge too, so the shadow shows. */
+	clip-path: inset( 0 0 -48px 0 );
+	transform: none;
+	transition:
+		clip-path 0.55s var( --mdotcar-mega-ease ),
+		transform 0.55s var( --mdotcar-mega-ease ),
+		opacity 0.1s linear;
+}
+
+.mdotcar-hmenu.is-switching .mdotcar-hmenu__mega {
+	transition: none;
 }
 
 .mdotcar-hmenu__mega-grid {
@@ -581,12 +607,25 @@ a.mdotcar-hmenu__link:hover,
 	gap: 24px;
 	max-width: var( --mdotcar-mega-width );
 	margin: 0 auto !important;
-	transform: translateY( -6px );
-	transition: transform 0.3s cubic-bezier( 0.2, 0.7, 0.2, 1 );
 }
 
-.mdotcar-hmenu__item.is-open .mdotcar-hmenu__mega-grid {
+/* The cards, one after another (--i is each card's place). */
+.mdotcar-hmenu__mega-grid > li {
+	opacity: 0;
+	transform: translateY( 12px );
+	transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.mdotcar-hmenu__item.is-open .mdotcar-hmenu__mega-grid > li,
+.mdotcar-hmenu.is-editor-mega .mdotcar-hmenu__mega-grid > li {
+	opacity: 1;
 	transform: none;
+	transition: opacity 0.4s ease, transform 0.55s var( --mdotcar-mega-ease );
+	transition-delay: calc( 90ms + min( var( --i, 0 ), 9 ) * 35ms );
+}
+
+.mdotcar-hmenu.is-switching .mdotcar-hmenu__item.is-open .mdotcar-hmenu__mega-grid > li {
+	transition-delay: calc( min( var( --i, 0 ), 9 ) * 25ms );
 }
 
 .mdotcar-hmenu__dim {
@@ -600,14 +639,26 @@ a.mdotcar-hmenu__link:hover,
 	visibility: hidden;
 	opacity: 0;
 	pointer-events: none;
-	transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+	transition: opacity 0.25s ease, visibility 0s linear 0.25s;
 }
 
 .mdotcar-hmenu.is-mega-open[data-dim="1"] .mdotcar-hmenu__dim {
 	visibility: visible;
 	opacity: 1;
 	pointer-events: auto;
-	transition: opacity 0.2s ease;
+	transition: opacity 0.4s ease;
+}
+
+@media ( prefers-reduced-motion: reduce ) {
+	.mdotcar-hmenu__mega,
+	.mdotcar-hmenu__item.is-open > .mdotcar-hmenu__mega,
+	.mdotcar-hmenu__mega-grid > li,
+	.mdotcar-hmenu__item.is-open .mdotcar-hmenu__mega-grid > li {
+		clip-path: none;
+		transform: none;
+		transition-property: opacity, visibility;
+		transition-delay: 0s;
+	}
 }
 
 .mdotcar-hmenu__card {

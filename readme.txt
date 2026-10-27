@@ -4,7 +4,7 @@ Tags: elementor, widget, title, heading, flexbox
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.17.0
+Stable tag: 0.18.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,6 +59,10 @@ and height can each be left to fit the content or set to a custom value.
    *MDotCar*.
 
 == Changelog ==
+
+= 0.18.0 =
+* Fixed: Header Menu's mega menu under a sticky header after scrolling.
+* Changed: the mega menu unfolds from the header, its cards one after another.
 
 = 0.17.0 =
 * New: Price List shows a card per row on phones, and rows can have a badge.
