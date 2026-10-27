@@ -17,6 +17,28 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.17.0] - 2026-10-27
+
+### Added
+
+- **MDotCar Price List** on phones: a card per row (new **Phones** section in
+  the Style tab, every value of the design as its default). The part with its
+  icon and badge on top, a divider, what it fits under its label, then the
+  price on a grey footer, the label on one side and the amount on the other.
+  The yellow header row is not shown on phones; its words label the cards
+  (the price's without its «(تومان)»). «The table, compact» keeps the old
+  layout.
+- Price List rows have an optional **Badge** (e.g. «اجرت تعمیر: توافقی»): a
+  yellow pill on the card, a small one after the name in the table.
+
+### Changed
+
+- **MDotCar Video Gallery**, the window on phones: back to the 0.15.0 look
+  (white header, no dark block, no next / share buttons). Kept: pull down to
+  close, full screen when turned sideways, bigger touch targets, the video in
+  view down the whole list.
+- The video playing is no longer in the list; the list is «ویدیوهای دیگر».
+
 ## [0.16.0] - 2026-10-27
 
 ### Added

@@ -10,6 +10,10 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Domain: mdotcar-elementor\n"
 
+#: widgets/class-mdotcar-elementor-widget-price-list.php:986
+msgid "A card per row"
+msgstr "هر ردیف یک کارت"
+
 #: widgets/class-mdotcar-elementor-widget-video-gallery.php:197
 msgid "A file (uploaded or its address)"
 msgstr "فایل (آپلودشده یا آدرس آن)"
@@ -18,11 +22,11 @@ msgstr "فایل (آپلودشده یا آدرس آن)"
 msgid "A fraction shows a part of the next one, e.g. 1.2 on phones."
 msgstr "عدد اعشاری بخشی از کارت بعدی را نشان می‌دهد؛ مثلاً ۱٫۲ در موبایل."
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:162
+#: widgets/class-mdotcar-elementor-widget-price-list.php:174
 msgid "A number, written without separators (3450000); or any text, shown as typed."
 msgstr "یک عدد، بدون جداکننده (3450000)؛ یا هر متنی، که همان‌طور نمایش داده می‌شود."
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:293
+#: widgets/class-mdotcar-elementor-widget-price-list.php:305
 msgid "A numeric price gets a separator every three digits."
 msgstr "قیمت عددی هر سه رقم یک جداکننده می‌گیرد."
 
@@ -177,8 +181,8 @@ msgstr "لایهٔ پس‌زمینه"
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:397
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:625
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:917
-#: widgets/class-mdotcar-elementor-widget-price-list.php:392
-#: widgets/class-mdotcar-elementor-widget-price-list.php:536
+#: widgets/class-mdotcar-elementor-widget-price-list.php:404
+#: widgets/class-mdotcar-elementor-widget-price-list.php:548
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:958
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1648
 #: widgets/class-mdotcar-elementor-widget-video-gallery.php:483
@@ -188,19 +192,24 @@ msgstr "لایهٔ پس‌زمینه"
 msgid "Background"
 msgstr "پس‌زمینه"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:685
+#: widgets/class-mdotcar-elementor-widget-price-list.php:697
 msgid "Background (even rows)"
 msgstr "پس‌زمینه (ردیف‌های زوج)"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:675
+#: widgets/class-mdotcar-elementor-widget-price-list.php:687
 msgid "Background (odd rows)"
 msgstr "پس‌زمینه (ردیف‌های فرد)"
 
+#: widgets/class-mdotcar-elementor-widget-price-list.php:141
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:861
 #: widgets/class-mdotcar-elementor-widget-video-gallery.php:161
 #: widgets/class-mdotcar-elementor-widget-video-gallery.php:610
 msgid "Badge"
 msgstr "نشان"
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:1010
+msgid "Badge Background"
+msgstr "پس‌زمینهٔ برچسب"
 
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:172
 msgid "Badge Icon"
@@ -209,6 +218,10 @@ msgstr "آیکون نشان"
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:152
 msgid "Badge Image"
 msgstr "تصویر نشان"
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:1011
+msgid "Badge Text"
+msgstr "رنگ متن برچسب"
 
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:229
 msgid "Before the text"
@@ -240,6 +253,10 @@ msgstr "گردی گوشه"
 msgid "Border Width"
 msgstr "ضخامت حاشیه"
 
+#: widgets/class-mdotcar-elementor-widget-price-list.php:995
+msgid "Border and Dividers"
+msgstr "حاشیه و خط‌های جداکننده"
+
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:426
 msgid "Both"
 msgstr "هر دو"
@@ -253,7 +270,7 @@ msgstr "پایین"
 msgid "Bottom Padding"
 msgstr "فاصلهٔ داخلی پایین"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:384
+#: widgets/class-mdotcar-elementor-widget-price-list.php:396
 #: widgets/class-mdotcar-elementor-widget-title.php:467
 msgid "Box"
 msgstr "باکس"
@@ -293,13 +310,25 @@ msgstr "کارت"
 msgid "Card Backdrop"
 msgstr "لایهٔ پس‌زمینهٔ کارت"
 
+#: widgets/class-mdotcar-elementor-widget-price-list.php:994
+msgid "Card Background"
+msgstr "پس‌زمینهٔ کارت"
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:997
+msgid "Card Padding (sides)"
+msgstr "فاصلهٔ داخلی کارت (دو طرف)"
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:996
+msgid "Card Radius"
+msgstr "گردی کارت"
+
 #: widgets/class-mdotcar-elementor-widget-video-gallery.php:277
 msgid "Cards in View"
 msgstr "تعداد کارت در دید"
 
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:541
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:508
-#: widgets/class-mdotcar-elementor-widget-price-list.php:502
+#: widgets/class-mdotcar-elementor-widget-price-list.php:514
 #: widgets/class-mdotcar-elementor-widget-title.php:287
 #: widgets/class-mdotcar-elementor-widget-title.php:308
 #: widgets/class-mdotcar-elementor-widget-title.php:326
@@ -351,7 +380,8 @@ msgstr "بستن منوی کشویی با"
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:876
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:360
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:469
-#: widgets/class-mdotcar-elementor-widget-price-list.php:879
+#: widgets/class-mdotcar-elementor-widget-price-list.php:891
+#: widgets/class-mdotcar-elementor-widget-price-list.php:1008
 #: widgets/class-mdotcar-elementor-widget-title.php:783
 #: widgets/class-mdotcar-elementor-widget-title.php:944
 #: widgets/class-mdotcar-elementor-widget-video-gallery.php:754
@@ -378,7 +408,7 @@ msgstr "ستونی - عمودی"
 msgid "Column Gap"
 msgstr "فاصلهٔ ستون‌ها"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:445
+#: widgets/class-mdotcar-elementor-widget-price-list.php:457
 msgid "Column Widths"
 msgstr "عرض ستون‌ها"
 
@@ -445,9 +475,9 @@ msgstr "برچسب واحد پول"
 msgid "Currency Typography"
 msgstr "تایپوگرافی واحد پول"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:172
-#: widgets/class-mdotcar-elementor-widget-price-list.php:283
-#: widgets/class-mdotcar-elementor-widget-price-list.php:861
+#: widgets/class-mdotcar-elementor-widget-price-list.php:184
+#: widgets/class-mdotcar-elementor-widget-price-list.php:295
+#: widgets/class-mdotcar-elementor-widget-price-list.php:873
 msgid "Currency Unit"
 msgstr "واحد پول"
 
@@ -486,7 +516,7 @@ msgstr "توضیح"
 msgid "Desktop"
 msgstr "دسکتاپ"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:313
+#: widgets/class-mdotcar-elementor-widget-price-list.php:325
 msgid "Digits"
 msgstr "ارقام"
 
@@ -569,7 +599,7 @@ msgstr "خالی یعنی آیکون پیش‌فرض. SVG آپلودشده رن�
 
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:545
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:512
-#: widgets/class-mdotcar-elementor-widget-price-list.php:506
+#: widgets/class-mdotcar-elementor-widget-price-list.php:518
 #: widgets/class-mdotcar-elementor-widget-title.php:288
 #: widgets/class-mdotcar-elementor-widget-title.php:309
 #: widgets/class-mdotcar-elementor-widget-title.php:327
@@ -626,15 +656,16 @@ msgstr "توپُر: متن"
 msgid "Fit to content"
 msgstr "اندازهٔ محتوا"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:149
+#: widgets/class-mdotcar-elementor-widget-price-list.php:161
+#: widgets/class-mdotcar-elementor-widget-price-list.php:1016
 msgid "Fits"
 msgstr "تناسب خودرو"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:240
+#: widgets/class-mdotcar-elementor-widget-price-list.php:252
 msgid "Fits Column"
 msgstr "ستون تناسب خودرو"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:486
+#: widgets/class-mdotcar-elementor-widget-price-list.php:498
 msgid "Fits Column Alignment"
 msgstr "چینش ستون تناسب خودرو"
 
@@ -654,6 +685,14 @@ msgstr "فلکس"
 msgid "Focal Point"
 msgstr "نقطهٔ کانونی"
 
+#: widgets/class-mdotcar-elementor-widget-price-list.php:1009
+msgid "Font Size"
+msgstr "اندازهٔ فونت"
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:1034
+msgid "Footer Background"
+msgstr "پس‌زمینهٔ پایین کارت"
+
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:877
 msgid "For the built-in icon."
 msgstr "برای آیکون داخلی."
@@ -667,7 +706,7 @@ msgstr "تمام عرض (۱۰۰٪)"
 msgid "Gap"
 msgstr "فاصله"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:889
+#: widgets/class-mdotcar-elementor-widget-price-list.php:901
 msgid "Gap Before the Unit"
 msgstr "فاصله تا واحد پول"
 
@@ -676,17 +715,18 @@ msgid "Gap Between Buttons"
 msgstr "فاصلهٔ دکمه‌ها"
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:662
+#: widgets/class-mdotcar-elementor-widget-price-list.php:993
 #: widgets/class-mdotcar-elementor-widget-video-gallery.php:293
 msgid "Gap Between Cards"
 msgstr "فاصلهٔ کارت‌ها"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:457
+#: widgets/class-mdotcar-elementor-widget-price-list.php:469
 msgid "Gap Between Columns"
 msgstr "فاصلهٔ ستون‌ها"
 
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:603
-#: widgets/class-mdotcar-elementor-widget-price-list.php:611
-#: widgets/class-mdotcar-elementor-widget-price-list.php:812
+#: widgets/class-mdotcar-elementor-widget-price-list.php:623
+#: widgets/class-mdotcar-elementor-widget-price-list.php:824
 msgid "Gap Between Icon and Text"
 msgstr "فاصلهٔ آیکون و متن"
 
@@ -694,7 +734,7 @@ msgstr "فاصلهٔ آیکون و متن"
 msgid "Gap Between Items"
 msgstr "فاصلهٔ آیتم‌ها"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:472
+#: widgets/class-mdotcar-elementor-widget-price-list.php:484
 msgid "Gap Between Rows"
 msgstr "فاصلهٔ ردیف‌ها"
 
@@ -726,7 +766,7 @@ msgstr "خاکستری"
 msgid "Gray Until Hovered"
 msgstr "خاکستری تا هاور"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:292
+#: widgets/class-mdotcar-elementor-widget-price-list.php:304
 msgid "Group the Digits"
 msgstr "جداکردن سه‌رقمی"
 
@@ -742,8 +782,8 @@ msgstr "HTML"
 msgid "HTML Tag"
 msgstr "تگ HTML"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:223
-#: widgets/class-mdotcar-elementor-widget-price-list.php:525
+#: widgets/class-mdotcar-elementor-widget-price-list.php:235
+#: widgets/class-mdotcar-elementor-widget-price-list.php:537
 msgid "Header"
 msgstr "سطر عنوان"
 
@@ -781,7 +821,7 @@ msgid "Hover / Open"
 msgstr "هاور / باز"
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:719
-#: widgets/class-mdotcar-elementor-widget-price-list.php:695
+#: widgets/class-mdotcar-elementor-widget-price-list.php:707
 msgid "Hover Background"
 msgstr "پس‌زمینهٔ هاور"
 
@@ -830,8 +870,8 @@ msgstr "شناسه (ID)"
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:789
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:160
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:268
-#: widgets/class-mdotcar-elementor-widget-price-list.php:140
-#: widgets/class-mdotcar-elementor-widget-price-list.php:257
+#: widgets/class-mdotcar-elementor-widget-price-list.php:152
+#: widgets/class-mdotcar-elementor-widget-price-list.php:269
 #: widgets/class-mdotcar-elementor-widget-title.php:154
 #: widgets/class-mdotcar-elementor-widget-title.php:812
 msgid "Icon"
@@ -861,8 +901,8 @@ msgstr "جای آیکون"
 
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:460
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:387
-#: widgets/class-mdotcar-elementor-widget-price-list.php:591
-#: widgets/class-mdotcar-elementor-widget-price-list.php:767
+#: widgets/class-mdotcar-elementor-widget-price-list.php:603
+#: widgets/class-mdotcar-elementor-widget-price-list.php:779
 #: widgets/class-mdotcar-elementor-widget-title.php:821
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:935
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1587
@@ -959,6 +999,10 @@ msgstr "نام کلید"
 msgid "Label"
 msgstr "برچسب"
 
+#: widgets/class-mdotcar-elementor-widget-price-list.php:1022
+msgid "Label Color"
+msgstr "رنگ برچسب"
+
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1230
 msgid "Label Colour"
 msgstr "رنگ برچسب"
@@ -971,7 +1015,7 @@ msgstr "تایپوگرافی برچسب"
 msgid "Large Iranian sedan"
 msgstr "سواری ایرانی بزرگ"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:318
+#: widgets/class-mdotcar-elementor-widget-price-list.php:330
 msgid "Latin (012)"
 msgstr "لاتین (012)"
 
@@ -981,16 +1025,20 @@ msgstr "لاتین (012)"
 msgid "Layout"
 msgstr "چیدمان"
 
+#: widgets/class-mdotcar-elementor-widget-price-list.php:982
+msgid "Layout on Phones"
+msgstr "چیدمان در موبایل"
+
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:367
 msgid "Leave empty for the built-in chevron."
 msgstr "برای فلش پیش‌فرض خالی بگذارید."
 
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:352
-#: widgets/class-mdotcar-elementor-widget-price-list.php:258
+#: widgets/class-mdotcar-elementor-widget-price-list.php:270
 msgid "Leave empty for the built-in one."
 msgstr "برای آیکون داخلی خالی بگذارید."
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:173
+#: widgets/class-mdotcar-elementor-widget-price-list.php:185
 msgid "Leave empty for the list's own."
 msgstr "برای استفاده از واحد کلی لیست خالی بگذارید."
 
@@ -1018,7 +1066,7 @@ msgstr "حداکثر تعداد خط"
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:172
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:149
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:259
-#: widgets/class-mdotcar-elementor-widget-price-list.php:181
+#: widgets/class-mdotcar-elementor-widget-price-list.php:193
 #: widgets/class-mdotcar-elementor-widget-title.php:177
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:182
 msgid "Link"
@@ -1043,6 +1091,7 @@ msgstr "ام‌دات‌کار"
 #. translators: 1: required Elementor version, 2: current Elementor version.
 #. translators: 1: required Elementor version, 2: current Elementor version.
 #. translators: 1: required Elementor version, 2: current Elementor version.
+#. translators: 1: required Elementor version, 2: current Elementor version.
 msgid "MDotCar Elementor Widgets requires Elementor %1$s or newer. You are running %2$s."
 msgstr "افزونهٔ ویجت‌های المنتور ام‌دات‌کار به المنتور %1$s یا بالاتر نیاز دارد. نسخهٔ فعلی شما %2$s است."
 
@@ -1057,11 +1106,13 @@ msgstr "افزونهٔ ویجت‌های المنتور ام‌دات‌کار �
 #. translators: 1: required PHP version, 2: current PHP version.
 #. translators: 1: required PHP version, 2: current PHP version.
 #. translators: 1: required PHP version, 2: current PHP version.
+#. translators: 1: required PHP version, 2: current PHP version.
 msgid "MDotCar Elementor Widgets requires PHP %1$s or newer. You are running %2$s."
 msgstr "افزونهٔ ویجت‌های المنتور ام‌دات‌کار به PHP %1$s یا بالاتر نیاز دارد. نسخهٔ فعلی شما %2$s است."
 
 #. translators: 1: required WordPress version, 2: current WordPress version.
 #: includes/class-mdotcar-elementor-requirements.php:76
+#. translators: 1: required WordPress version, 2: current WordPress version.
 #. translators: 1: required WordPress version, 2: current WordPress version.
 #. translators: 1: required WordPress version, 2: current WordPress version.
 #. translators: 1: required WordPress version, 2: current WordPress version.
@@ -1271,6 +1322,10 @@ msgstr "باز شدن زیرِ"
 msgid "Opens On"
 msgstr "باز شدن با"
 
+#: widgets/class-mdotcar-elementor-widget-price-list.php:142
+msgid "Optional, e.g. اجرت تعمیر: توافقی"
+msgstr "اختیاری، مثلاً اجرت تعمیر: توافقی"
+
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:171
 msgid "Optional: a coloured version, shown while its sub items are open or it is the current page."
 msgstr "اختیاری: نسخهٔ رنگی، وقتی زیرآیتم‌ها باز است یا صفحهٔ فعلی است نمایش داده می‌شود."
@@ -1299,9 +1354,9 @@ msgstr "دورخط: متن"
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:634
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:698
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:926
-#: widgets/class-mdotcar-elementor-widget-price-list.php:426
-#: widgets/class-mdotcar-elementor-widget-price-list.php:565
-#: widgets/class-mdotcar-elementor-widget-price-list.php:704
+#: widgets/class-mdotcar-elementor-widget-price-list.php:438
+#: widgets/class-mdotcar-elementor-widget-price-list.php:577
+#: widgets/class-mdotcar-elementor-widget-price-list.php:716
 #: widgets/class-mdotcar-elementor-widget-title.php:592
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:870
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1416
@@ -1333,27 +1388,28 @@ msgstr "صفحه‌ها"
 msgid "Panel Background"
 msgstr "پس‌زمینهٔ پنل"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:129
+#: widgets/class-mdotcar-elementor-widget-price-list.php:130
+#: widgets/class-mdotcar-elementor-widget-price-list.php:1002
 msgid "Part"
 msgstr "قطعه / کالا"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:239
+#: widgets/class-mdotcar-elementor-widget-price-list.php:251
 msgid "Part Column"
 msgstr "ستون قطعه"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:485
+#: widgets/class-mdotcar-elementor-widget-price-list.php:497
 msgid "Part Column Alignment"
 msgstr "چینش ستون قطعه"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:737
+#: widgets/class-mdotcar-elementor-widget-price-list.php:749
 msgid "Part Icon"
 msgstr "آیکون قطعه"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:446
+#: widgets/class-mdotcar-elementor-widget-price-list.php:458
 msgid "Part, fits, price; e.g. 1fr 1fr 1fr, or 2fr 1fr 1fr for a wider part column."
 msgstr "قطعه، تناسب، قیمت؛ مثلاً 1fr 1fr 1fr، یا 2fr 1fr 1fr برای ستون قطعهٔ پهن‌تر."
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:317
+#: widgets/class-mdotcar-elementor-widget-price-list.php:329
 msgid "Persian (۰۱۲)"
 msgstr "فارسی (۰۱۲)"
 
@@ -1364,6 +1420,10 @@ msgstr "ارقام فارسی"
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:302
 msgid "Personal"
 msgstr "شخصی"
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:974
+msgid "Phones"
+msgstr "موبایل"
 
 #: widgets/class-mdotcar-elementor-widget-video-gallery.php:670
 msgid "Play Button"
@@ -1385,24 +1445,30 @@ msgstr "فلش قبلی"
 msgid "Previous, for Screen Readers"
 msgstr "«قبلی» برای صفحه‌خوان"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:161
-#: widgets/class-mdotcar-elementor-widget-price-list.php:834
+#: widgets/class-mdotcar-elementor-widget-price-list.php:173
+#: widgets/class-mdotcar-elementor-widget-price-list.php:846
+#: widgets/class-mdotcar-elementor-widget-price-list.php:1028
 msgid "Price"
 msgstr "قیمت"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:851
+#: widgets/class-mdotcar-elementor-widget-price-list.php:863
+#: widgets/class-mdotcar-elementor-widget-price-list.php:1035
 msgid "Price Color"
 msgstr "رنگ قیمت"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:241
+#: widgets/class-mdotcar-elementor-widget-price-list.php:253
 msgid "Price Column"
 msgstr "ستون قیمت"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:487
+#: widgets/class-mdotcar-elementor-widget-price-list.php:499
 msgid "Price Column Alignment"
 msgstr "چینش ستون قیمت"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:275
+#: widgets/class-mdotcar-elementor-widget-price-list.php:1036
+msgid "Price Font Size"
+msgstr "اندازهٔ فونت قیمت"
+
+#: widgets/class-mdotcar-elementor-widget-price-list.php:287
 msgid "Prices"
 msgstr "قیمت‌ها"
 
@@ -1411,9 +1477,9 @@ msgstr "قیمت‌ها"
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:708
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:979
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:535
-#: widgets/class-mdotcar-elementor-widget-price-list.php:415
-#: widgets/class-mdotcar-elementor-widget-price-list.php:576
-#: widgets/class-mdotcar-elementor-widget-price-list.php:715
+#: widgets/class-mdotcar-elementor-widget-price-list.php:427
+#: widgets/class-mdotcar-elementor-widget-price-list.php:588
+#: widgets/class-mdotcar-elementor-widget-price-list.php:727
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:893
 #: widgets/class-mdotcar-elementor-widget-vehicle-tariff.php:1445
 #: widgets/class-mdotcar-elementor-widget-video-gallery.php:503
@@ -1472,9 +1538,9 @@ msgid "Row Height"
 msgstr "ارتفاع ردیف"
 
 #: widgets/class-mdotcar-elementor-widget-mobile-menu.php:328
-#: widgets/class-mdotcar-elementor-widget-price-list.php:119
-#: widgets/class-mdotcar-elementor-widget-price-list.php:198
-#: widgets/class-mdotcar-elementor-widget-price-list.php:648
+#: widgets/class-mdotcar-elementor-widget-price-list.php:120
+#: widgets/class-mdotcar-elementor-widget-price-list.php:210
+#: widgets/class-mdotcar-elementor-widget-price-list.php:660
 msgid "Rows"
 msgstr "ردیف‌ها"
 
@@ -1498,7 +1564,7 @@ msgstr "نوار اسکرول"
 msgid "Separated by spaces, e.g. kalameh-font for the site's heading font."
 msgstr "با فاصله جدا کنید، مثلاً kalameh-font برای فونت تیترهای سایت."
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:303
+#: widgets/class-mdotcar-elementor-widget-price-list.php:315
 msgid "Separator"
 msgstr "جداکننده"
 
@@ -1523,7 +1589,7 @@ msgstr "نمایش در"
 msgid "Show the Drawer in the Editor"
 msgstr "نمایش منوی کشویی در ویرایشگر"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:231
+#: widgets/class-mdotcar-elementor-widget-price-list.php:243
 msgid "Show the Header"
 msgstr "نمایش سطر عنوان"
 
@@ -1564,7 +1630,7 @@ msgstr "فاصلهٔ پیرامونی"
 msgid "Space Around the Icon"
 msgstr "فاصلهٔ دور آیکون"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:626
+#: widgets/class-mdotcar-elementor-widget-price-list.php:638
 msgid "Space Below"
 msgstr "فاصلهٔ پایین"
 
@@ -1583,7 +1649,7 @@ msgstr "فاصله تا کارت‌ها"
 
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:537
 #: widgets/class-mdotcar-elementor-widget-header-menu.php:504
-#: widgets/class-mdotcar-elementor-widget-price-list.php:498
+#: widgets/class-mdotcar-elementor-widget-price-list.php:510
 #: widgets/class-mdotcar-elementor-widget-title.php:286
 #: widgets/class-mdotcar-elementor-widget-title.php:307
 #: widgets/class-mdotcar-elementor-widget-title.php:325
@@ -1662,6 +1728,7 @@ msgstr "بر آیکون نشان اولویت دارد. برای تصویر کل
 #. translators: %d: tariff column number.
 #. translators: %d: tariff column number.
 #. translators: %d: tariff column number.
+#. translators: %d: tariff column number.
 msgid "Tariff %d"
 msgstr "تعرفهٔ %d"
 
@@ -1679,8 +1746,9 @@ msgid "Text Align"
 msgstr "تراز متن"
 
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:396
-#: widgets/class-mdotcar-elementor-widget-price-list.php:546
-#: widgets/class-mdotcar-elementor-widget-price-list.php:665
+#: widgets/class-mdotcar-elementor-widget-price-list.php:558
+#: widgets/class-mdotcar-elementor-widget-price-list.php:677
+#: widgets/class-mdotcar-elementor-widget-price-list.php:1023
 #: widgets/class-mdotcar-elementor-widget-video-gallery.php:620
 msgid "Text Color"
 msgstr "رنگ متن"
@@ -1729,11 +1797,15 @@ msgstr "لبهٔ بالای پنل. «هدر» یعنی قالب هدر، یا �
 msgid "The progress bar, the volume and the focus ring."
 msgstr "نوار پیشرفت، صدا و حلقهٔ فوکوس."
 
+#: widgets/class-mdotcar-elementor-widget-price-list.php:987
+msgid "The table, compact"
+msgstr "جدول فشرده"
+
 #: widgets/class-mdotcar-elementor-widget-header-buttons.php:239
 msgid "The text is hidden there (still read out to screen readers)."
 msgstr "متن آنجا پنهان می‌شود (برای صفحه‌خوان همچنان خوانده می‌شود)."
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:150
+#: widgets/class-mdotcar-elementor-widget-price-list.php:162
 msgid "The vehicles it fits."
 msgstr "خودروهایی که با آن‌ها سازگار است."
 
@@ -1753,15 +1825,15 @@ msgstr "جداکنندهٔ هزارگان"
 msgid "Thumb"
 msgstr "دستگیره"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:787
+#: widgets/class-mdotcar-elementor-widget-price-list.php:799
 msgid "Tile Background"
 msgstr "پس‌زمینهٔ کاشی"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:797
+#: widgets/class-mdotcar-elementor-widget-price-list.php:809
 msgid "Tile Radius"
 msgstr "گردی کاشی"
 
-#: widgets/class-mdotcar-elementor-widget-price-list.php:747
+#: widgets/class-mdotcar-elementor-widget-price-list.php:759
 msgid "Tile Size"
 msgstr "اندازهٔ کاشی"
 

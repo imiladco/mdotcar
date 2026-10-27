@@ -4,7 +4,7 @@ Tags: elementor, widget, title, heading, flexbox
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.16.0
+Stable tag: 0.17.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,6 +59,11 @@ and height can each be left to fit the content or set to a custom value.
    *MDotCar*.
 
 == Changelog ==
+
+= 0.17.0 =
+* New: Price List shows a card per row on phones, and rows can have a badge.
+* Changed: Video Gallery's window on phones is back to its 0.15.0 look; the
+  video playing is left out of the list.
 
 = 0.16.0 =
 * New: Video Gallery's arrows and play icon can be uploaded SVGs.

@@ -1518,7 +1518,171 @@ html.mdotcar-hmenu-locked body {
 	font-size: 12px;
 }
 
-/* Phones: the part on its own line, the fit and the price under it. */
+/* The labels inside the cells are for the phone cards; the table has its header. */
+.mdotcar-plist__label {
+	display: none;
+}
+
+.mdotcar-plist__value {
+	display: inline-flex;
+	align-items: baseline;
+	gap: 4px;
+}
+
+/* A row's badge: a small pill after the part's name. */
+.mdotcar-plist__badge {
+	flex: 0 0 auto;
+	padding: 2px 8px;
+	border-radius: 8px;
+	background-color: var( --mdotcar-plm-badge-bg, #FFE082 );
+	color: var( --mdotcar-plm-badge, #424242 );
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 18px;
+	white-space: nowrap;
+}
+
+/*
+ * Phones, "a card per row" (the default): each row a card. The part with its
+ * icon and badge on top, a divider, what it fits with its label, then the
+ * price on a grey footer: the label on the start side, the amount on the
+ * end. The table's own box, header and stripes give way. The :not(#…) lifts
+ * these rules over the table's style controls, which stay for larger screens.
+ */
+@media ( max-width: 767px ) {
+	.mdotcar-plist-m-cards .mdotcar-plist:not( #mdotcar-plist-cards ) {
+		display: block;
+		padding: 0;
+		border: 0;
+		border-radius: 0;
+		background: none;
+		box-shadow: none;
+	}
+
+	.mdotcar-plist-m-cards .mdotcar-plist:not( #mdotcar-plist-cards ) .mdotcar-plist__head {
+		display: none;
+	}
+
+	.mdotcar-plist-m-cards .mdotcar-plist:not( #mdotcar-plist-cards ) .mdotcar-plist__body {
+		display: flex;
+		flex-direction: column;
+		gap: var( --mdotcar-plm-gap, 12px );
+	}
+
+	.mdotcar-plist-m-cards .mdotcar-plist:not( #mdotcar-plist-cards ) .mdotcar-plist__row {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 0;
+		overflow: hidden;
+		padding: 0;
+		border: 1px solid var( --mdotcar-plm-line, #EEEEEE );
+		border-radius: var( --mdotcar-plm-radius, 16px );
+		background-color: var( --mdotcar-plm-bg, #FFFFFF );
+		color: var( --mdotcar-plm-text, #424242 );
+	}
+
+	.mdotcar-plist-m-cards .mdotcar-plist:not( #mdotcar-plist-cards ) .mdotcar-plist__cell {
+		justify-content: flex-start;
+		padding: 14px var( --mdotcar-plm-pad, 16px );
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 24px;
+		text-align: start;
+		white-space: normal;
+	}
+
+	/* The part. */
+	.mdotcar-plist-m-cards .mdotcar-plist:not( #mdotcar-plist-cards ) .mdotcar-plist__cell--part {
+		gap: 10px;
+		min-height: 64px;
+		padding-block: 12px;
+		border-bottom: 1px solid var( --mdotcar-plm-line, #EEEEEE );
+		color: var( --mdotcar-plm-title, #212121 );
+		font-size: var( --mdotcar-plm-title-size, 16px );
+		font-weight: 500;
+	}
+
+	.mdotcar-plist-m-cards .mdotcar-plist:not( #mdotcar-plist-cards ) .mdotcar-plist__name {
+		flex: 1 1 auto;
+	}
+
+	.mdotcar-plist-m-cards .mdotcar-plist:not( #mdotcar-plist-cards ) .mdotcar-plist__tile {
+		width: 36px;
+		height: 36px;
+		border-radius: 10px;
+		background-color: #F5F5F5;
+	}
+
+	.mdotcar-plist-m-cards .mdotcar-plist:not( #mdotcar-plist-cards ) .mdotcar-plist__tile img {
+		width: 22px;
+		height: 22px;
+	}
+
+	.mdotcar-plist-m-cards .mdotcar-plist:not( #mdotcar-plist-cards ) .mdotcar-plist__badge {
+		max-width: 55%;
+		overflow: hidden;
+		padding: 6px 12px;
+		border-radius: 12px;
+		font-size: 13px;
+		line-height: 20px;
+		text-overflow: ellipsis;
+	}
+
+	/* What it fits. */
+	.mdotcar-plist-m-cards .mdotcar-plist:not( #mdotcar-plist-cards ) .mdotcar-plist__cell--fits {
+		display: block;
+		padding-block: 12px 14px;
+	}
+
+	.mdotcar-plist-m-cards .mdotcar-plist:not( #mdotcar-plist-cards ) .mdotcar-plist__cell--fits.is-empty {
+		display: none;
+	}
+
+	.mdotcar-plist-m-cards .mdotcar-plist:not( #mdotcar-plist-cards ) .mdotcar-plist__cell--fits .mdotcar-plist__label {
+		display: block;
+		color: var( --mdotcar-plm-label, #616161 );
+		font-size: 13px;
+		line-height: 22px;
+	}
+
+	/* The price, on the footer. */
+	.mdotcar-plist-m-cards .mdotcar-plist:not( #mdotcar-plist-cards ) .mdotcar-plist__cell--price {
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		border-top: 1px solid var( --mdotcar-plm-line, #EEEEEE );
+		background-color: var( --mdotcar-plm-foot, #FAFAFA );
+	}
+
+	.mdotcar-plist-m-cards .mdotcar-plist:not( #mdotcar-plist-cards ) .mdotcar-plist__cell--fits.is-empty + .mdotcar-plist__cell--price {
+		border-top: 0;
+	}
+
+	.mdotcar-plist-m-cards .mdotcar-plist:not( #mdotcar-plist-cards ) .mdotcar-plist__cell--price .mdotcar-plist__label {
+		display: block;
+		color: var( --mdotcar-plm-text, #424242 );
+	}
+
+	.mdotcar-plist-m-cards .mdotcar-plist:not( #mdotcar-plist-cards ) .mdotcar-plist__value {
+		margin-inline-start: auto;
+		white-space: nowrap;
+	}
+
+	.mdotcar-plist-m-cards .mdotcar-plist:not( #mdotcar-plist-cards ) .mdotcar-plist__amount {
+		color: var( --mdotcar-plm-price, #212121 );
+		font-size: var( --mdotcar-plm-price-size, 16px );
+		font-weight: 700;
+		line-height: 24px;
+	}
+
+	.mdotcar-plist-m-cards .mdotcar-plist:not( #mdotcar-plist-cards ) .mdotcar-plist__unit {
+		color: var( --mdotcar-plm-label, #616161 );
+		font-size: 13px;
+	}
+}
+
+/* Phones, "the table, compact": the part on its own line, the fit and the price under it. */
 @media ( max-width: 767px ) {
 	.mdotcar-plist .mdotcar-plist__row {
 		grid-template-columns: minmax( 0, 1fr ) auto;
@@ -2828,10 +2992,9 @@ html.mdotcar-hmenu-locked body {
 	background-color: #F0F0F0;
 }
 
+/* The one playing is on the stage, not in the list. */
 .mdotcar-vmodal .mdotcar-vmodal__pick.is-current {
-	background-color: #FFFFFF;
-	box-shadow: 0 0 0 1px #C5CAE9, 0 8px 20px -12px rgba( 63, 81, 181, 0.45 );
-	cursor: default;
+	display: none;
 }
 
 .mdotcar-vmodal__thumb {
@@ -2899,57 +3062,6 @@ html.mdotcar-hmenu-locked body {
 	background-color: #FFB300;
 }
 
-/* The one playing: an equalizer over its picture, moving while it plays. */
-.mdotcar-vmodal__eq {
-	position: absolute;
-	inset: 0;
-	display: flex;
-	align-items: flex-end;
-	justify-content: center;
-	gap: 3px;
-	padding-bottom: 22px;
-	background-color: rgba( 14, 16, 36, 0.5 );
-	opacity: 0;
-	transition: opacity 0.25s ease;
-}
-
-.is-current .mdotcar-vmodal__eq {
-	opacity: 1;
-}
-
-.mdotcar-vmodal__eq i {
-	width: 4px;
-	height: 6px;
-	border-radius: 2px;
-	background-color: #FFFFFF;
-	transform-origin: bottom;
-}
-
-.mdotcar-vmodal.is-playing .is-current .mdotcar-vmodal__eq i {
-	height: 18px;
-	animation: mdotcar-eq 0.9s ease-in-out infinite alternate;
-}
-
-.mdotcar-vmodal.is-playing .is-current .mdotcar-vmodal__eq i:nth-child( 2 ) {
-	animation-duration: 0.6s;
-	animation-delay: -0.3s;
-}
-
-.mdotcar-vmodal.is-playing .is-current .mdotcar-vmodal__eq i:nth-child( 3 ) {
-	animation-duration: 0.75s;
-	animation-delay: -0.5s;
-}
-
-@keyframes mdotcar-eq {
-	from {
-		transform: scaleY( 0.25 );
-	}
-
-	to {
-		transform: scaleY( 1 );
-	}
-}
-
 .mdotcar-vmodal__pick-text {
 	display: flex;
 	flex-direction: column;
@@ -2968,9 +3080,6 @@ html.mdotcar-hmenu-locked body {
 	display: none;
 }
 
-.is-current .mdotcar-vmodal__pick-state {
-	color: var( --mdotcar-vm-accent );
-}
 
 .mdotcar-vmodal__pick-title {
 	display: -webkit-box;
@@ -2983,9 +3092,6 @@ html.mdotcar-hmenu-locked body {
 	-webkit-line-clamp: 2;
 }
 
-.is-current .mdotcar-vmodal__pick-title {
-	color: var( --mdotcar-vm-accent );
-}
 
 .mdotcar-vmodal__pick-meta {
 	overflow: hidden;
@@ -2994,36 +3100,6 @@ html.mdotcar-hmenu-locked body {
 	line-height: 18px;
 	white-space: nowrap;
 	text-overflow: ellipsis;
-}
-
-/* Phone-only parts: the pull handle and the actions under the title. */
-
-.mdotcar-vmodal__grip,
-.mdotcar-vmodal__actions {
-	display: none;
-}
-
-.mdotcar-vmodal__toast {
-	position: absolute;
-	z-index: 6;
-	bottom: calc( 24px + env( safe-area-inset-bottom ) );
-	left: 50%;
-	padding: 10px 16px;
-	border-radius: 999px;
-	background-color: rgba( 14, 16, 36, 0.92 );
-	color: #FFFFFF;
-	font-size: 13px;
-	line-height: 20px;
-	white-space: nowrap;
-	opacity: 0;
-	pointer-events: none;
-	transform: translate( -50%, 8px );
-	transition: opacity 0.2s ease, transform 0.25s var( --mdotcar-vm-ease );
-}
-
-.mdotcar-vmodal__toast.is-on {
-	opacity: 1;
-	transform: translate( -50%, 0 );
 }
 
 /* Changing videos: the stage cross-fades. */
@@ -3448,11 +3524,9 @@ html.mdotcar-vmodal-locked body {
 }
 
 /*
- * Phones: the whole screen, made like an app's player. The header and the
- * video are one dark block (a handle in it: pull down to close); under it a
- * white sheet with rounded top corners holds the title, the next video and
- * share, then the list of every video. The video stays in view while the
- * sheet scrolls; turned sideways, the video takes the whole screen.
+ * Phones: the whole screen. The header on top, the video edge to edge and
+ * staying in view while the text and the other videos scroll under it. Pull
+ * the header (or the video, at the top) down to close.
  */
 
 @media ( max-width: 767px ) {
@@ -3463,7 +3537,6 @@ html.mdotcar-vmodal-locked body {
 	}
 
 	.mdotcar-vmodal__scrim {
-		background-color: #0E1024;
 		-webkit-backdrop-filter: none;
 		backdrop-filter: none;
 	}
@@ -3474,67 +3547,26 @@ html.mdotcar-vmodal-locked body {
 		height: 100%;
 		max-height: none;
 		border-radius: 0;
-		background-color: #0E1024;
 		box-shadow: none;
 	}
 
 	.mdotcar-vmodal__head {
-		min-height: 60px;
-		padding-top: calc( 14px + env( safe-area-inset-top ) );
+		min-height: 56px;
+		padding-top: calc( 10px + env( safe-area-inset-top ) );
 		padding-bottom: 10px;
 		padding-inline: 16px 8px;
-		border-bottom: 0;
-		background-color: #0E1024;
 		touch-action: none;
-	}
-
-	.mdotcar-vmodal__grip {
-		position: absolute;
-		top: calc( 6px + env( safe-area-inset-top ) );
-		left: 50%;
-		display: block;
-		width: 36px;
-		height: 4px;
-		margin-left: -18px;
-		border-radius: 2px;
-		background-color: rgba( 255, 255, 255, 0.28 );
-	}
-
-	.mdotcar-vmodal .mdotcar-vmodal__close {
-		height: 36px;
-		padding-inline: 12px 10px;
-		border-radius: 999px;
-		background-color: rgba( 255, 255, 255, 0.1 );
-		color: #FFFFFF;
-		font-size: 13px;
-	}
-
-	.mdotcar-vmodal .mdotcar-vmodal__close:hover,
-	.mdotcar-vmodal .mdotcar-vmodal__close:active {
-		background-color: rgba( 255, 255, 255, 0.18 );
-		color: #FFFFFF;
-	}
-
-	.mdotcar-vmodal .mdotcar-vmodal__close:focus-visible {
-		outline-color: #FFFFFF;
-	}
-
-	.mdotcar-vmodal__close svg {
-		width: 18px;
-		height: 18px;
 	}
 
 	.mdotcar-vmodal__close kbd {
 		display: none;
 	}
 
-	/* Dark behind the sheet's rounded corners, white below; it scrolls with the content. */
 	.mdotcar-vmodal__body {
 		display: block;
 		overflow-y: auto;
 		overscroll-behavior: contain;
 		padding-bottom: env( safe-area-inset-bottom );
-		background: linear-gradient( #0E1024 calc( 56.25vw + 24px ), var( --mdotcar-vm-bg ) calc( 56.25vw + 24px ) ) local;
 	}
 
 	/* Out of the way, so the video stays in view down the whole list, not only past the title. */
@@ -3548,83 +3580,14 @@ html.mdotcar-vmodal-locked body {
 		border-radius: 0;
 	}
 
-	/* The sheet. */
-
 	.mdotcar-vmodal__info {
-		position: relative;
-		z-index: 1;
-		gap: 6px;
-		padding: 20px 16px 20px;
-		border-radius: 20px 20px 0 0;
-		background-color: var( --mdotcar-vm-bg );
+		padding: 16px 16px 20px;
 	}
 
 	.mdotcar-vmodal .mdotcar-vmodal__title {
-		font-size: 18px;
+		font-size: 17px;
 		line-height: 28px;
 	}
-
-	.mdotcar-vmodal .mdotcar-vmodal__desc {
-		font-size: 14px;
-		line-height: 22px;
-	}
-
-	.mdotcar-vmodal__actions {
-		display: flex;
-		gap: 8px;
-		margin-top: 12px;
-	}
-
-	.mdotcar-vmodal .mdotcar-vmodal__cta {
-		flex: 1 1 auto;
-		gap: 8px;
-		height: 48px;
-		padding: 0 16px;
-		border-radius: 14px;
-		background-color: var( --mdotcar-vm-accent );
-		box-shadow: 0 10px 24px -12px rgba( 63, 81, 181, 0.8 );
-		color: #FFFFFF;
-		font-size: 15px;
-		font-weight: 700;
-	}
-
-	.mdotcar-vmodal .mdotcar-vmodal__cta:active {
-		transform: scale( 0.98 );
-	}
-
-	.mdotcar-vmodal .mdotcar-vmodal__cta[hidden] {
-		display: none;
-	}
-
-	.mdotcar-vmodal__cta > svg,
-	.mdotcar-vmodal__cta .mdotcar-vgal__icon {
-		--mdotcar-vgal-icon: 20px;
-		width: 20px;
-		height: 20px;
-	}
-
-	.mdotcar-vmodal .mdotcar-vmodal__share {
-		width: 48px;
-		height: 48px;
-		border-radius: 14px;
-		background-color: #F5F5F5;
-		color: #424242;
-	}
-
-	.mdotcar-vmodal .mdotcar-vmodal__share:active {
-		background-color: #EEEEEE;
-	}
-
-	.mdotcar-vmodal__share svg {
-		width: 22px;
-		height: 22px;
-	}
-
-	.mdotcar-vmodal.is-single .mdotcar-vmodal__share {
-		flex: 1 1 auto;
-	}
-
-	/* The list. */
 
 	.mdotcar-vmodal__side {
 		border-inline-start: 0;
@@ -3658,18 +3621,6 @@ html.mdotcar-vmodal-locked body {
 		height: 40px;
 	}
 
-	/* Opening: the sheet rises after the picture has landed. */
-
-	.mdotcar-vmodal.is-open .mdotcar-vmodal__info,
-	.mdotcar-vmodal.is-open .mdotcar-vmodal__side {
-		animation: mdotcar-vm-rise 0.5s var( --mdotcar-vm-ease ) both;
-		animation-delay: 0.18s;
-	}
-
-	.mdotcar-vmodal.is-open .mdotcar-vmodal__side {
-		animation-delay: 0.28s;
-	}
-
 	/* The player, for fingers. */
 
 	.mdotcar-player__bar {
@@ -3679,10 +3630,6 @@ html.mdotcar-vmodal-locked body {
 	.mdotcar-player__seek {
 		height: 26px;
 		margin-bottom: 0;
-	}
-
-	.mdotcar-player__seek .mdotcar-player__thumb {
-		transform: scale( 1 );
 	}
 
 	.mdotcar-vmodal .mdotcar-player__btn {
@@ -3702,21 +3649,14 @@ html.mdotcar-vmodal-locked body {
 	}
 
 	.mdotcar-vmodal .mdotcar-player__big {
-		width: 64px;
-		height: 64px;
+		width: 60px;
+		height: 60px;
 	}
 
 	.mdotcar-player__resume {
 		top: 10px;
 		right: 10px;
 		font-size: 12px;
-	}
-}
-
-@keyframes mdotcar-vm-rise {
-	from {
-		opacity: 0;
-		transform: translateY( 24px );
 	}
 }
 

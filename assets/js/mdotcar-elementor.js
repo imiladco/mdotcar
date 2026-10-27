@@ -1566,7 +1566,6 @@
 		this.side = el.querySelector( '.mdotcar-vmodal__side' );
 		this.list = el.querySelector( '.mdotcar-vmodal__list' );
 		this.steps = el.querySelectorAll( '.mdotcar-vmodal__step' );
-		this.cta = el.querySelector( '.mdotcar-vmodal__cta' );
 		this.isOpen = false;
 		this.timer = 0;
 		this.player = null;
@@ -1590,13 +1589,9 @@
 				self.close();
 				return;
 			}
-			var step = target.closest( '.mdotcar-vmodal__step, [data-go]' );
+			var step = target.closest( '.mdotcar-vmodal__step' );
 			if ( step ) {
-				self.go( self.index + +( step.getAttribute( 'data-step' ) || step.getAttribute( 'data-go' ) ) );
-				return;
-			}
-			if ( target.closest( '.mdotcar-vmodal__share' ) ) {
-				self.share();
+				self.go( self.index + +step.getAttribute( 'data-step' ) );
 				return;
 			}
 			var pick = target.closest( '.mdotcar-vmodal__pick' );
@@ -1624,7 +1619,7 @@
 
 	/**
 	 * Every video as a row: its picture (with how much of it was watched and
-	 * how long it is), its title and description.
+	 * how long it is), its title and description. The one playing is left out.
 	 */
 	Modal.prototype.buildList = function () {
 		var self = this;
@@ -1640,7 +1635,6 @@
 			pick.innerHTML =
 				'<span class="mdotcar-vmodal__thumb">' +
 					( item.image ? '<img src="' + esc( item.image ) + '" alt="" loading="lazy" decoding="async">' : '' ) +
-					'<span class="mdotcar-vmodal__eq" aria-hidden="true"><i></i><i></i><i></i></span>' +
 					'<span class="mdotcar-vmodal__len"></span>' +
 					'<span class="mdotcar-vmodal__seen"><i></i></span>' +
 				'</span>' +
@@ -1677,7 +1671,7 @@
 			item.pick.querySelector( '.mdotcar-vmodal__len' ).textContent = clock( item.duration );
 		}
 		var current = item.pick.classList.contains( 'is-current' );
-		item.pick.querySelector( '.mdotcar-vmodal__pick-state' ).textContent = current ? this.labels.now : ( seen ? '✓ ' + this.labels.watched : '' );
+		item.pick.querySelector( '.mdotcar-vmodal__pick-state' ).textContent = ! current && seen ? '✓ ' + this.labels.watched : '';
 	};
 
 	/**
@@ -1744,10 +1738,6 @@
 		this.measure();
 		window.requestAnimationFrame( function () {
 			self.dialog.focus( { preventScroll: true } );
-			var current = self.list.querySelector( '.is-current' );
-			if ( current ) {
-				self.list.scrollTop = Math.max( 0, current.offsetTop - self.list.clientHeight / 2 + current.offsetHeight / 2 );
-			}
 		} );
 	};
 
@@ -1815,9 +1805,6 @@
 		this.count.textContent = fa( index + 1 ) + ' از ' + fa( items.length );
 		this.steps[ 0 ].disabled = 0 === index;
 		this.steps[ 1 ].disabled = items.length - 1 === index;
-		if ( this.cta ) {
-			this.cta.hidden = items.length - 1 === index;
-		}
 		this.el.classList.remove( 'is-playing' );
 
 		items.forEach( function ( other, at ) {
@@ -1831,13 +1818,6 @@
 				self.paintPick( other );
 			}
 		} );
-		if ( item.pick && this.isOpen ) {
-			var list = this.list;
-			var top = item.pick.offsetTop - list.offsetTop;
-			if ( top < list.scrollTop || top + item.pick.offsetHeight > list.scrollTop + list.clientHeight ) {
-				list.scrollTo( { top: Math.max( 0, top - 8 ), behavior: calm() ? 'auto' : 'smooth' } );
-			}
-		}
 
 		if ( item.image ) {
 			var poster = document.createElement( 'img' );
@@ -1873,46 +1853,6 @@
 				this.dialog.focus( { preventScroll: true } );
 			}
 		}
-	};
-
-	/**
-	 * Shares the page with the phone's own sheet; where there is none, copies its address.
-	 */
-	Modal.prototype.share = function () {
-		var self = this;
-		var item = this.gallery.items[ this.index ] || {};
-		var url = window.location.href.split( '#' )[ 0 ];
-		if ( navigator.share ) {
-			navigator.share( { title: item.title || document.title, text: item.desc || '', url: url } ).catch( function () {} );
-			return;
-		}
-		var done = function () {
-			self.toast( self.labels.copied );
-		};
-		if ( navigator.clipboard && navigator.clipboard.writeText ) {
-			navigator.clipboard.writeText( url ).then( done, function () {} );
-		}
-	};
-
-	/**
-	 * A short message at the bottom of the window.
-	 *
-	 * @param {string} text What it says.
-	 */
-	Modal.prototype.toast = function ( text ) {
-		var toast = this.dialog.querySelector( '.mdotcar-vmodal__toast' );
-		if ( ! toast ) {
-			toast = document.createElement( 'div' );
-			toast.className = 'mdotcar-vmodal__toast';
-			toast.setAttribute( 'role', 'status' );
-			this.dialog.appendChild( toast );
-		}
-		toast.textContent = text;
-		toast.classList.add( 'is-on' );
-		clearTimeout( this.toastTimer );
-		this.toastTimer = setTimeout( function () {
-			toast.classList.remove( 'is-on' );
-		}, 1800 );
 	};
 
 	/**

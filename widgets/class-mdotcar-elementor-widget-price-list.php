@@ -103,6 +103,7 @@ class MDotCar_Elementor_Widget_Price_List extends Widget_Base {
 		$this->register_row_style_controls();
 		$this->register_part_style_controls();
 		$this->register_price_style_controls();
+		$this->register_mobile_style_controls();
 	}
 
 	/*
@@ -130,6 +131,17 @@ class MDotCar_Elementor_Widget_Price_List extends Widget_Base {
 				'type'        => Controls_Manager::TEXT,
 				'dynamic'     => array( 'active' => true ),
 				'default'     => 'باتری ۶۰ آمپر تویوتا',
+				'label_block' => true,
+			)
+		);
+
+		$repeater->add_control(
+			'badge',
+			array(
+				'label'       => __( 'Badge', 'mdotcar-elementor' ),
+				'description' => __( 'Optional, e.g. اجرت تعمیر: توافقی', 'mdotcar-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'dynamic'     => array( 'active' => true ),
 				'label_block' => true,
 			)
 		);
@@ -901,6 +913,131 @@ class MDotCar_Elementor_Widget_Price_List extends Widget_Base {
 		$this->end_controls_section();
 	}
 
+	/**
+	 * A colour control that sets a variable of the phone cards.
+	 *
+	 * @param string $id      Control id.
+	 * @param string $label   Label.
+	 * @param string $value   Default.
+	 * @param string $name    Variable, without --mdotcar-plm-.
+	 */
+	private function card_color( $id, $label, $value, $name ) {
+		$this->add_control(
+			$id,
+			array(
+				'label'     => $label,
+				'type'      => Controls_Manager::COLOR,
+				'default'   => $value,
+				'selectors' => array( self::ROOT => '--mdotcar-plm-' . $name . ': {{VALUE}};' ),
+				'condition' => array( 'mobile_layout' => 'cards' ),
+			)
+		);
+	}
+
+	/**
+	 * A px control that sets a variable of the phone cards.
+	 *
+	 * @param string $id      Control id.
+	 * @param string $label   Label.
+	 * @param int    $value   Default.
+	 * @param int    $max     Range end.
+	 * @param string $name    Variable, without --mdotcar-plm-.
+	 */
+	private function card_px( $id, $label, $value, $max, $name ) {
+		$this->add_control(
+			$id,
+			array(
+				'label'      => $label,
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px' ),
+				'range'      => array( 'px' => array( 'max' => $max ) ),
+				'default'    => array(
+					'unit' => 'px',
+					'size' => $value,
+				),
+				'selectors'  => array( self::ROOT => '--mdotcar-plm-' . $name . ': {{SIZE}}{{UNIT}};' ),
+				'condition'  => array( 'mobile_layout' => 'cards' ),
+			)
+		);
+	}
+
+	/**
+	 * Style tab: phones. Each row a card: the part with its badge, what it
+	 * fits, and the price in a grey footer; the header row is not shown, its
+	 * words label the card instead. The values only act on phones, so they
+	 * are variables the phone layout reads.
+	 */
+	private function register_mobile_style_controls() {
+		$this->start_controls_section(
+			'section_style_mobile',
+			array(
+				'label' => __( 'Phones', 'mdotcar-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_control(
+			'mobile_layout',
+			array(
+				'label'        => __( 'Layout on Phones', 'mdotcar-elementor' ),
+				'type'         => Controls_Manager::SELECT,
+				'default'      => 'cards',
+				'options'      => array(
+					'cards' => __( 'A card per row', 'mdotcar-elementor' ),
+					'table' => __( 'The table, compact', 'mdotcar-elementor' ),
+				),
+				'prefix_class' => 'mdotcar-plist-m-',
+			)
+		);
+
+		$this->card_px( 'm_gap', __( 'Gap Between Cards', 'mdotcar-elementor' ), 12, 40, 'gap' );
+		$this->card_color( 'm_bg', __( 'Card Background', 'mdotcar-elementor' ), '#FFFFFF', 'bg' );
+		$this->card_color( 'm_line', __( 'Border and Dividers', 'mdotcar-elementor' ), '#EEEEEE', 'line' );
+		$this->card_px( 'm_radius', __( 'Card Radius', 'mdotcar-elementor' ), 16, 40, 'radius' );
+		$this->card_px( 'm_pad', __( 'Card Padding (sides)', 'mdotcar-elementor' ), 16, 32, 'pad' );
+
+		$this->add_control(
+			'm_title_heading',
+			array(
+				'label'     => __( 'Part', 'mdotcar-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+				'condition' => array( 'mobile_layout' => 'cards' ),
+			)
+		);
+		$this->card_color( 'm_title', __( 'Color', 'mdotcar-elementor' ), '#212121', 'title' );
+		$this->card_px( 'm_title_size', __( 'Font Size', 'mdotcar-elementor' ), 16, 28, 'title-size' );
+		$this->card_color( 'm_badge_bg', __( 'Badge Background', 'mdotcar-elementor' ), '#FFE082', 'badge-bg' );
+		$this->card_color( 'm_badge', __( 'Badge Text', 'mdotcar-elementor' ), '#424242', 'badge' );
+
+		$this->add_control(
+			'm_body_heading',
+			array(
+				'label'     => __( 'Fits', 'mdotcar-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+				'condition' => array( 'mobile_layout' => 'cards' ),
+			)
+		);
+		$this->card_color( 'm_label', __( 'Label Color', 'mdotcar-elementor' ), '#616161', 'label' );
+		$this->card_color( 'm_text', __( 'Text Color', 'mdotcar-elementor' ), '#424242', 'text' );
+
+		$this->add_control(
+			'm_foot_heading',
+			array(
+				'label'     => __( 'Price', 'mdotcar-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+				'condition' => array( 'mobile_layout' => 'cards' ),
+			)
+		);
+		$this->card_color( 'm_foot', __( 'Footer Background', 'mdotcar-elementor' ), '#FAFAFA', 'foot' );
+		$this->card_color( 'm_price', __( 'Price Color', 'mdotcar-elementor' ), '#212121', 'price' );
+		$this->card_px( 'm_price_size', __( 'Price Font Size', 'mdotcar-elementor' ), 16, 28, 'price-size' );
+
+		$this->end_controls_section();
+	}
+
 	/*
 	 * Render
 	 */
@@ -934,6 +1071,10 @@ class MDotCar_Elementor_Widget_Price_List extends Widget_Base {
 		MDotCar_Elementor_Plugin::enqueue();
 
 		$s = $this->get_settings_for_display();
+
+		// The header's words label each card on phones; the price's without its "(تومان)", which the price already says.
+		$s['label_fits']  = trim( (string) $s['head_fits'] );
+		$s['label_price'] = trim( (string) preg_replace( '/\s*[(（][^)）]*[)）]\s*/u', ' ', (string) $s['head_price'] ) );
 		?>
 		<table class="mdotcar-plist" role="table">
 			<?php if ( 'yes' === $s['show_header'] ) : ?>
@@ -988,13 +1129,26 @@ class MDotCar_Elementor_Widget_Price_List extends Widget_Base {
 					<span class="mdotcar-plist__tile" aria-hidden="true"><img src="<?php echo esc_url( $row['icon']['url'] ); ?>" alt="" loading="lazy" decoding="async"></span>
 				<?php endif; ?>
 				<span class="mdotcar-plist__name"><?php echo $name; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped above. ?></span>
-			</td>
-			<td class="mdotcar-plist__cell mdotcar-plist__cell--fits" role="cell"><?php echo esc_html( $row['fits'] ); ?></td>
-			<td class="mdotcar-plist__cell mdotcar-plist__cell--price" role="cell">
-				<span class="mdotcar-plist__amount"><?php echo esc_html( $price ); ?></span>
-				<?php if ( $numeric && '' !== trim( (string) $unit ) ) : ?>
-					<span class="mdotcar-plist__unit"><?php echo esc_html( $unit ); ?></span>
+				<?php if ( '' !== trim( (string) $row['badge'] ) ) : ?>
+					<span class="mdotcar-plist__badge"><?php echo esc_html( $row['badge'] ); ?></span>
 				<?php endif; ?>
+			</td>
+			<td class="mdotcar-plist__cell mdotcar-plist__cell--fits<?php echo '' === trim( (string) $row['fits'] ) ? ' is-empty' : ''; ?>" role="cell">
+				<?php if ( '' !== $s['label_fits'] ) : ?>
+					<span class="mdotcar-plist__label"><?php echo esc_html( $s['label_fits'] ); ?>:</span>
+				<?php endif; ?>
+				<span class="mdotcar-plist__fits"><?php echo esc_html( $row['fits'] ); ?></span>
+			</td>
+			<td class="mdotcar-plist__cell mdotcar-plist__cell--price" role="cell">
+				<?php if ( '' !== $s['label_price'] ) : ?>
+					<span class="mdotcar-plist__label"><?php echo esc_html( $s['label_price'] ); ?></span>
+				<?php endif; ?>
+				<span class="mdotcar-plist__value">
+					<span class="mdotcar-plist__amount"><?php echo esc_html( $price ); ?></span>
+					<?php if ( $numeric && '' !== trim( (string) $unit ) ) : ?>
+						<span class="mdotcar-plist__unit"><?php echo esc_html( $unit ); ?></span>
+					<?php endif; ?>
+				</span>
 			</td>
 		</tr>
 		<?php
