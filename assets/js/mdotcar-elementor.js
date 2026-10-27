@@ -1539,8 +1539,9 @@
 	}
 
 	/**
-	 * The video window of one gallery: a header (badge, close), the video with
-	 * its title, and beside it (under it on phones) every video of the gallery.
+	 * The video window of one gallery: a header (badge, close), the video, its
+	 * title and the way to the other videos; on phones the whole screen, with
+	 * every video of the gallery listed under it.
 	 *
 	 * @param {Element} el      The window (moved to <body>).
 	 * @param {Gallery} gallery Its gallery.
@@ -1560,11 +1561,9 @@
 		this.side = el.querySelector( '.mdotcar-vmodal__side' );
 		this.list = el.querySelector( '.mdotcar-vmodal__list' );
 		this.steps = el.querySelectorAll( '.mdotcar-vmodal__step' );
-		this.ambient = el.querySelector( '.mdotcar-vmodal__ambient' );
 		this.isOpen = false;
 		this.timer = 0;
 		this.player = null;
-		this.frame = 0;
 
 		try {
 			this.labels = JSON.parse( el.getAttribute( 'data-labels' ) ) || {};
@@ -1731,7 +1730,6 @@
 		void this.el.offsetWidth; // let the closed state paint, so it fades in
 		this.el.classList.add( 'is-open' );
 		this.fly( from, true );
-		this.startAmbient();
 		this.measure();
 		window.requestAnimationFrame( function () {
 			self.dialog.focus( { preventScroll: true } );
@@ -1803,7 +1801,7 @@
 		this.badge.textContent = item.badge || '';
 		this.title.textContent = item.title || '';
 		this.desc.textContent = item.desc || '';
-		this.count.textContent = fa( index + 1 ) + ' / ' + fa( items.length );
+		this.count.textContent = fa( index + 1 ) + ' از ' + fa( items.length );
 		this.steps[ 0 ].disabled = 0 === index;
 		this.steps[ 1 ].disabled = items.length - 1 === index;
 		this.el.classList.remove( 'is-playing' );
@@ -1833,9 +1831,6 @@
 			poster.src = item.image;
 			poster.alt = '';
 			this.stage.appendChild( poster );
-			this.cover = poster;
-		} else {
-			this.cover = null;
 		}
 
 		if ( 'embed' === item.type ) {
@@ -1863,67 +1858,6 @@
 			if ( keepFocus ) {
 				this.dialog.focus( { preventScroll: true } );
 			}
-		}
-		this.paintAmbient( true );
-	};
-
-	/**
-	 * Ambient light: the page behind the window takes the video's colours,
-	 * from a tiny copy of the picture, blurred far beyond recognition.
-	 */
-	Modal.prototype.startAmbient = function () {
-		var self = this;
-		var last = 0;
-		if ( ! this.ambient || ! this.ambient.getContext ) {
-			return;
-		}
-		var loop = function ( now ) {
-			if ( ! self.isOpen ) {
-				self.frame = 0;
-				return;
-			}
-			if ( now - last > 180 ) {
-				last = now;
-				self.paintAmbient( false );
-			}
-			self.frame = window.requestAnimationFrame( loop );
-		};
-		if ( ! this.frame ) {
-			this.frame = window.requestAnimationFrame( loop );
-		}
-	};
-
-	/**
-	 * Draws one ambient frame: the playing picture, else the cover.
-	 *
-	 * @param {boolean} cover Draw the cover even if the video could be drawn.
-	 */
-	Modal.prototype.paintAmbient = function ( cover ) {
-		var context = this.ambient && this.ambient.getContext && this.ambient.offsetWidth ? this.ambient.getContext( '2d' ) : null;
-		if ( ! context || ( ! this.isOpen && ! cover ) ) {
-			return;
-		}
-		var video = this.player ? this.player.video : null;
-		try {
-			if ( ! cover && video && video.readyState >= 2 && ! video.paused ) {
-				context.drawImage( video, 0, 0, 32, 18 );
-			} else if ( cover && this.cover ) {
-				var image = this.cover;
-				var draw = function () {
-					try {
-						context.drawImage( image, 0, 0, 32, 18 );
-					} catch ( error ) {
-						// Not drawable: the glow keeps its last colours.
-					}
-				};
-				if ( image.complete ) {
-					draw();
-				} else {
-					image.addEventListener( 'load', draw, { once: true } );
-				}
-			}
-		} catch ( error ) {
-			// Not drawable: the glow keeps its last colours.
 		}
 	};
 

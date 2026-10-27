@@ -4,7 +4,7 @@ Tags: elementor, widget, title, heading, flexbox
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.14.0
+Stable tag: 0.15.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,6 +59,10 @@ and height can each be left to fit the content or set to a custom value.
    *MDotCar*.
 
 == Changelog ==
+
+= 0.15.0 =
+* Changed: Video Gallery's window is the 0.13.0 design on computers and
+  tablets; the 0.14.0 design stays on phones.
 
 = 0.14.0 =
 * Changed: Video Gallery's window redesigned: the picture flies from the card,

@@ -17,6 +17,22 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.15.0] - 2026-10-27
+
+### Changed
+
+- **MDotCar Video Gallery**: on computers and tablets the video window is
+  back to the 0.13.0 design (one panel: header, video, title with previous ·
+  count · next; 960px wide, the page dimmed as before). The 0.14.0 design
+  stays on phones (whole screen, sticky video, the list of every video,
+  double tap to jump). The picture's flight from the card, resuming where a
+  video was left and the countdown to the next video stay everywhere.
+
+### Removed
+
+- The ambient light behind the window, and the list beside the video on
+  computers.
+
 ## [0.14.0] - 2026-10-27
 
 ### Changed

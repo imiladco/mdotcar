@@ -1875,18 +1875,17 @@ html.mdotcar-hmenu-locked body {
 /* -----------------------------------------------------------------------------
  * Video Gallery — the video window and its player
  *
- * A cinema, not a pop-up: the card's picture flies into the stage, the dark
- * page behind glows with the video's own colours (ambient light), and the
- * white panel holds the video with its title on one side and every video of
- * the gallery on the other. On phones it is the whole screen, the video
- * staying on top while the list scrolls under it.
+ * The card's picture flies into the stage. On a computer or a tablet: a white
+ * panel with a header (badge, close), the video, and under it the title with
+ * the way to the other videos. On phones: the whole screen, the video staying
+ * on top while the text and the list of every video scroll under it.
  * -------------------------------------------------------------------------- */
 
 .mdotcar-vmodal {
 	--mdotcar-vm-accent: #3F51B5;
-	--mdotcar-vm-scrim: rgba( 12, 14, 32, 0.86 );
+	--mdotcar-vm-scrim: rgba( 17, 20, 39, 0.78 );
 	--mdotcar-vm-bg: #FFFFFF;
-	--mdotcar-vm-width: 1200px;
+	--mdotcar-vm-width: 960px;
 	--mdotcar-vm-radius: 20px;
 	--mdotcar-vm-line: #EEEEEE;
 	--mdotcar-vm-side: 360px;
@@ -1917,35 +1916,10 @@ html.mdotcar-hmenu-locked body {
 	position: absolute;
 	inset: 0;
 	background-color: var( --mdotcar-vm-scrim );
-	-webkit-backdrop-filter: blur( 10px );
-	backdrop-filter: blur( 10px );
+	-webkit-backdrop-filter: blur( 8px );
+	backdrop-filter: blur( 8px );
 	opacity: 0;
-	transition: opacity 0.35s ease;
-}
-
-/*
- * Ambient light: a 32×18 copy of the picture, shown small and blurred, then
- * scaled up (the blur scales with it, so it costs little to paint).
- */
-.mdotcar-vmodal__ambient {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 320px;
-	height: 180px;
-	filter: blur( 16px ) saturate( 1.6 );
-	opacity: 0;
-	pointer-events: none;
-	transform: translate( -50%, -50% ) scale( 5.5 );
-	transition: opacity 1s ease;
-}
-
-.mdotcar-vmodal.is-open .mdotcar-vmodal__ambient {
-	opacity: 0.42;
-}
-
-.mdotcar-vmodal.is-open.is-playing .mdotcar-vmodal__ambient {
-	opacity: 0.55;
+	transition: opacity 0.3s ease;
 }
 
 .mdotcar-vmodal__dialog {
@@ -2746,7 +2720,7 @@ html.mdotcar-hmenu-locked body {
 	font-weight: 700;
 	line-height: 18px;
 	font-variant-numeric: tabular-nums;
-	direction: ltr;
+	white-space: nowrap;
 }
 
 .mdotcar-vmodal__nav {
@@ -3305,33 +3279,100 @@ html.mdotcar-vmodal-locked body {
 }
 
 /*
- * Tablets: one column. The video and its title, then the list, the whole
- * panel scrolling.
+ * Computers and tablets: one panel. The video under the header, and under it
+ * the title on the start side, previous · count · next on the end side. The
+ * list is the phones' only.
  */
 
-@media ( max-width: 1024px ) {
+@media ( min-width: 768px ) {
 
 	.mdotcar-vmodal__dialog {
-		max-width: min( 760px, var( --mdotcar-vm-width ) );
+		max-width: min( var( --mdotcar-vm-width ), calc( ( 100vh - 230px ) * 16 / 9 + 24px ) );
+		max-width: min( var( --mdotcar-vm-width ), calc( ( 100dvh - 230px ) * 16 / 9 + 24px ) );
 	}
 
-	.mdotcar-vmodal__body {
-		display: block;
-		overflow-y: auto;
-		overscroll-behavior: contain;
+	.mdotcar-vmodal__body,
+	.mdotcar-vmodal.is-single .mdotcar-vmodal__body {
+		grid-template-columns: minmax( 0, 1fr ) auto;
+		align-items: center;
+		column-gap: 16px;
+		padding: 12px 12px 0;
 	}
 
-	.mdotcar-vmodal__side {
-		border-inline-start: 0;
-		border-top: 1px solid var( --mdotcar-vm-line );
+	.mdotcar-vmodal__main,
+	.mdotcar-vmodal__side,
+	.mdotcar-vmodal__side-in,
+	.mdotcar-vmodal__nav {
+		display: contents;
 	}
 
-	.mdotcar-vmodal__side-in {
-		position: static;
+	.mdotcar-vmodal__stage {
+		grid-column: 1 / -1;
+		border-radius: calc( var( --mdotcar-vm-radius ) - 8px );
 	}
 
+	.mdotcar-vmodal__info {
+		grid-column: 1;
+		gap: 4px;
+		min-width: 0;
+		padding: 14px 4px 18px;
+	}
+
+	.mdotcar-vmodal .mdotcar-vmodal__title {
+		font-size: 18px;
+		line-height: 28px;
+	}
+
+	.mdotcar-vmodal .mdotcar-vmodal__desc {
+		line-height: 22px;
+	}
+
+	.mdotcar-vmodal__side-head {
+		grid-column: 2;
+		gap: 8px;
+		padding: 0 0 4px;
+	}
+
+	.mdotcar-vmodal__side-title,
 	.mdotcar-vmodal__list {
-		overflow: visible;
+		display: none;
+	}
+
+	.mdotcar-vmodal__step[data-step="-1"] {
+		order: 1;
+	}
+
+	.mdotcar-vmodal__count {
+		order: 2;
+		min-width: 44px;
+		padding: 0;
+		background: none;
+		color: #616161;
+		font-size: 13px;
+		font-weight: 400;
+		line-height: 20px;
+		text-align: center;
+	}
+
+	.mdotcar-vmodal__step[data-step="1"] {
+		order: 3;
+	}
+
+	.mdotcar-vmodal .mdotcar-vmodal__step {
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		background-color: #F5F5F5;
+		color: #212121;
+	}
+
+	.mdotcar-vmodal .mdotcar-vmodal__step:disabled {
+		background-color: #FAFAFA;
+		color: #BDBDBD;
+	}
+
+	.mdotcar-vmodal.is-single .mdotcar-vmodal__side-head {
+		display: none;
 	}
 }
 
@@ -3350,10 +3391,6 @@ html.mdotcar-vmodal-locked body {
 	.mdotcar-vmodal__scrim {
 		-webkit-backdrop-filter: none;
 		backdrop-filter: none;
-	}
-
-	.mdotcar-vmodal__ambient {
-		display: none;
 	}
 
 	.mdotcar-vmodal__dialog {
@@ -3377,7 +3414,14 @@ html.mdotcar-vmodal-locked body {
 	}
 
 	.mdotcar-vmodal__body {
+		display: block;
+		overflow-y: auto;
+		overscroll-behavior: contain;
 		padding-bottom: env( safe-area-inset-bottom );
+	}
+
+	.mdotcar-vmodal__side-in {
+		position: static;
 	}
 
 	.mdotcar-vmodal__main {
@@ -3400,6 +3444,7 @@ html.mdotcar-vmodal-locked body {
 	}
 
 	.mdotcar-vmodal__side {
+		border-inline-start: 0;
 		border-top: 8px solid #F5F5F5;
 		background-color: var( --mdotcar-vm-bg );
 	}
@@ -3409,6 +3454,7 @@ html.mdotcar-vmodal-locked body {
 	}
 
 	.mdotcar-vmodal__list {
+		overflow: visible;
 		padding: 0 8px 16px;
 	}
 

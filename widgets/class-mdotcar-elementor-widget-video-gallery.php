@@ -871,7 +871,7 @@ class MDotCar_Elementor_Widget_Video_Gallery extends Widget_Base {
 			array(
 				'label'     => __( 'Page Dim Color', 'mdotcar-elementor' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => 'rgba(12,14,32,0.86)',
+				'default'   => 'rgba(17,20,39,0.78)',
 				'selectors' => array( self::MODAL => '--mdotcar-vm-scrim: {{VALUE}};' ),
 			)
 		);
@@ -896,7 +896,7 @@ class MDotCar_Elementor_Widget_Video_Gallery extends Widget_Base {
 			)
 		);
 
-		$this->add_responsive_control( 'modal_width', self::px( __( 'Width', 'mdotcar-elementor' ), 1200, 1800, array( self::MODAL => '--mdotcar-vm-width: {{SIZE}}{{UNIT}};' ), 320 ) );
+		$this->add_responsive_control( 'modal_width', self::px( __( 'Width', 'mdotcar-elementor' ), 960, 1600, array( self::MODAL => '--mdotcar-vm-width: {{SIZE}}{{UNIT}};' ), 320 ) );
 		$this->add_responsive_control( 'modal_radius', self::px( __( 'Radius', 'mdotcar-elementor' ), 20, 40, array( self::MODAL => '--mdotcar-vm-radius: {{SIZE}}{{UNIT}};' ) ) );
 
 		$this->end_controls_section();
@@ -1054,7 +1054,6 @@ class MDotCar_Elementor_Widget_Video_Gallery extends Widget_Base {
 		?>
 		<div class="mdotcar-vmodal" data-for="<?php echo esc_attr( $id ); ?>" data-labels="<?php echo esc_attr( wp_json_encode( $labels ) ); ?>" hidden>
 			<div class="mdotcar-vmodal__scrim" data-close></div>
-			<canvas class="mdotcar-vmodal__ambient" width="32" height="18" aria-hidden="true"></canvas>
 			<div class="mdotcar-vmodal__dialog" role="dialog" aria-modal="true" aria-labelledby="mdotcar-vm-title-<?php echo esc_attr( $id ); ?>" tabindex="-1">
 				<header class="mdotcar-vmodal__head">
 					<span class="mdotcar-vmodal__badge"></span>
