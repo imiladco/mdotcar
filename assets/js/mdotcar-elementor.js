@@ -934,6 +934,8 @@
 					break;
 				case 'cancel':
 					self.countdown( false );
+					// The button goes with the countdown: the focus moves on, not out of the window.
+					el.querySelector( '.mdotcar-player__chip[data-act="replay"]' ).focus( { preventScroll: true } );
 					break;
 				case 'mute':
 					self.mute();

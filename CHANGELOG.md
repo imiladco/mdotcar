@@ -28,6 +28,10 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
   double tap to jump). The picture's flight from the card, resuming where a
   video was left and the countdown to the next video stay everywhere.
 
+### Fixed
+
+- After «لغو» on the countdown the focus stays in the window (Esc closes it).
+
 ### Removed
 
 - The ambient light behind the window, and the list beside the video on
