@@ -464,6 +464,8 @@ a.mdotcar-title {
 }
 
 .mdotcar-hmenu__bar {
+	/* Holds the sliding line. */
+	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -553,9 +555,11 @@ a.mdotcar-hmenu__link:hover,
  * The mega menu: the window's full width; its cards in a centred column.
  *
  * Opening, it unfolds down from the header's edge (a clip wipe, with a slight
- * drop) and its cards follow one after another; closing is quicker and all at
- * once. Moving from one item to another keeps the panel and only brings the
- * new cards in.
+ * drop) and its cards follow one after another. Closing is the same played
+ * back, quicker: the panel rolls up into the header like a blind, its cards
+ * riding up with it and fading, opaque until it is almost gone. Moving from one item
+ * to another keeps the panel: the script eases its height to the new cards
+ * and slides the cards across (is-switching, is-leaving).
  */
 
 .mdotcar-hmenu__mega {
@@ -578,10 +582,10 @@ a.mdotcar-hmenu__link:hover,
 	clip-path: inset( 0 0 100% 0 );
 	transform: translateY( -8px );
 	transition:
-		clip-path 0.26s cubic-bezier( 0.4, 0, 1, 1 ),
-		transform 0.26s cubic-bezier( 0.4, 0, 1, 1 ),
-		opacity 0.18s ease 0.08s,
-		visibility 0s linear 0.26s;
+		clip-path 0.34s cubic-bezier( 0.5, 0, 0.2, 1 ),
+		transform 0.34s cubic-bezier( 0.5, 0, 0.2, 1 ),
+		opacity 0.1s ease 0.24s,
+		visibility 0s linear 0.34s;
 }
 
 .mdotcar-hmenu__item.is-open > .mdotcar-hmenu__mega,
@@ -601,6 +605,16 @@ a.mdotcar-hmenu__link:hover,
 	transition: none;
 }
 
+/* The panel being left while the next one takes its place: shown, under it. */
+.mdotcar-hmenu__item.is-leaving > .mdotcar-hmenu__mega {
+	z-index: 999;
+	visibility: visible;
+	opacity: 1;
+	clip-path: inset( 0 0 -48px 0 );
+	transform: none;
+	transition: none;
+}
+
 .mdotcar-hmenu__mega-grid {
 	display: grid;
 	grid-template-columns: repeat( 3, minmax( 0, 1fr ) );
@@ -613,7 +627,21 @@ a.mdotcar-hmenu__link:hover,
 .mdotcar-hmenu__mega-grid > li {
 	opacity: 0;
 	transform: translateY( 12px );
-	transition: opacity 0.15s ease, transform 0.15s ease;
+	transition: opacity 0.15s ease, transform 0s linear 0.15s;
+}
+
+/* Closing: the cards go up with the panel's edge, fading as they go. */
+.mdotcar-hmenu__item.is-closing .mdotcar-hmenu__mega-grid > li {
+	opacity: 0;
+	transform: translateY( -10px );
+	transition: opacity 0.26s ease, transform 0.34s cubic-bezier( 0.5, 0, 0.2, 1 );
+}
+
+.mdotcar-hmenu__item.is-leaving .mdotcar-hmenu__mega-grid > li,
+.mdotcar-hmenu.is-switching .mdotcar-hmenu__item.is-open .mdotcar-hmenu__mega-grid > li {
+	opacity: 1;
+	transform: none;
+	transition: none;
 }
 
 .mdotcar-hmenu__item.is-open .mdotcar-hmenu__mega-grid > li,
@@ -622,10 +650,6 @@ a.mdotcar-hmenu__link:hover,
 	transform: none;
 	transition: opacity 0.4s ease, transform 0.55s var( --mdotcar-mega-ease );
 	transition-delay: calc( 90ms + min( var( --i, 0 ), 9 ) * 35ms );
-}
-
-.mdotcar-hmenu.is-switching .mdotcar-hmenu__item.is-open .mdotcar-hmenu__mega-grid > li {
-	transition-delay: calc( min( var( --i, 0 ), 9 ) * 25ms );
 }
 
 .mdotcar-hmenu__dim {
@@ -649,11 +673,42 @@ a.mdotcar-hmenu__link:hover,
 	transition: opacity 0.4s ease;
 }
 
+/* The line under the open item, one for the bar: it slides from item to item. */
+.mdotcar-hmenu__ink {
+	--mdotcar-ink-reach: 18px;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	height: 1px;
+	background: var( --mdotcar-hmenu-indicator );
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.3s ease;
+}
+
+.mdotcar-hmenu__ink.is-on {
+	opacity: 1;
+	transition: opacity 0.2s ease;
+}
+
+.mdotcar-hmenu__ink.is-sliding {
+	transition:
+		opacity 0.2s ease,
+		transform 0.42s cubic-bezier( 0.22, 1, 0.36, 1 ),
+		width 0.42s cubic-bezier( 0.22, 1, 0.36, 1 );
+}
+
+.mdotcar-hmenu.has-ink .mdotcar-hmenu__item.has-mega::after {
+	display: none;
+}
+
 @media ( prefers-reduced-motion: reduce ) {
 	.mdotcar-hmenu__mega,
 	.mdotcar-hmenu__item.is-open > .mdotcar-hmenu__mega,
 	.mdotcar-hmenu__mega-grid > li,
-	.mdotcar-hmenu__item.is-open .mdotcar-hmenu__mega-grid > li {
+	.mdotcar-hmenu__item.is-open .mdotcar-hmenu__mega-grid > li,
+	.mdotcar-hmenu__item.is-closing .mdotcar-hmenu__mega-grid > li {
 		clip-path: none;
 		transform: none;
 		transition-property: opacity, visibility;

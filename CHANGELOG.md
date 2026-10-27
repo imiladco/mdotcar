@@ -17,6 +17,21 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.19.0] - 2026-10-27
+
+### Changed
+
+- **MDotCar Header Menu**, moving the pointer from one item to another: the
+  panel stays open. Its height eases from the old cards to the new ones, the
+  old cards slide out and fade towards where the pointer came from, the new
+  ones slide in from the side it goes to, one after another. The line under
+  the open item is now one line that slides to the next item (and fades in
+  and out on open and close). Quick back-and-forth moves settle at once,
+  with nothing left half-way.
+- Closing: the panel rolls up into the header like a blind, its cards riding
+  up with it and fading, opaque until it is almost gone; no empty panel on
+  the way.
+
 ## [0.18.0] - 2026-10-27
 
 ### Fixed

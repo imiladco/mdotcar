@@ -154,6 +154,7 @@
 		window.addEventListener( 'resize', function () {
 			if ( self.open ) {
 				self.place();
+				self.ink( self.open, false );
 			}
 		} );
 
@@ -312,34 +313,179 @@
 	};
 
 	/**
-	 * Opens one item's mega menu (closing any other).
+	 * Whether motion should be kept to a minimum.
+	 *
+	 * @return {boolean}
+	 */
+	function still() {
+		return !! ( window.matchMedia && window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches ) || ! document.body.animate;
+	}
+
+	/**
+	 * Opens one item's mega menu; from another one, moves to it.
 	 *
 	 * @param {Element} item The <li>.
 	 */
 	HeaderMenu.prototype.show = function ( item ) {
-		var root = this.root;
-		if ( this.open && this.open !== item ) {
-			// From one item to another: the panel stays, only its cards change.
-			root.classList.add( 'is-switching' );
-			this.close();
-			window.requestAnimationFrame( function () {
-				window.requestAnimationFrame( function () {
-					root.classList.remove( 'is-switching' );
-				} );
-			} );
+		if ( this.open === item ) {
+			return;
 		}
+		if ( this.open ) {
+			this.move( this.open, item );
+			return;
+		}
+		this.settle();
+		item.classList.remove( 'is-closing' );
 		this.open = item;
 		this.place();
 		item.classList.add( 'is-open' );
 		this.root.classList.add( 'is-mega-open' );
+		this.expanded( item, true );
+		this.ink( item, false );
+	};
+
+	/**
+	 * From one open item to another: the panel stays. Its height goes from the
+	 * old cards' to the new ones', the old cards leave towards where the
+	 * pointer comes from and the new ones come in from the side it goes to.
+	 *
+	 * @param {Element} from The open <li>.
+	 * @param {Element} to   The <li> to open.
+	 */
+	HeaderMenu.prototype.move = function ( from, to ) {
+		var self = this;
+		var root = this.root;
+		var oldPanel = from.querySelector( '.mdotcar-hmenu__mega' );
+		var newPanel = to.querySelector( '.mdotcar-hmenu__mega' );
+
+		this.settle();
+		var oldHeight = oldPanel.offsetHeight;
+
+		root.classList.add( 'is-switching' );
+		from.classList.remove( 'is-open' );
+		from.classList.add( 'is-leaving' );
+		this.expanded( from, false );
+
+		this.open = to;
+		to.classList.remove( 'is-closing' );
+		this.place();
+		to.classList.add( 'is-open' );
+		this.expanded( to, true );
+		this.ink( to, true );
+
+		var done = function () {
+			self.moving = null;
+			from.classList.remove( 'is-leaving' );
+			root.classList.remove( 'is-switching' );
+		};
+
+		if ( still() ) {
+			done();
+			return;
+		}
+
+		var newHeight = newPanel.offsetHeight;
+		var items = this.items;
+		var ahead = items.indexOf( to ) > items.indexOf( from );
+		var rtl = 'rtl' === window.getComputedStyle( root ).direction;
+		// Further along the bar is to the left in RTL: the new cards come from that side.
+		var shift = ( ahead === rtl ? -1 : 1 ) * 28;
+		var ease = 'cubic-bezier(0.22, 1, 0.36, 1)';
+		var shadow = '-48px';
+		var runs = [];
+
+		runs.push( newPanel.animate( [
+			{ clipPath: 'inset(0 0 ' + Math.max( 0, newHeight - oldHeight ) + 'px 0)' },
+			{ clipPath: 'inset(0 0 ' + shadow + ' 0)' }
+		], { duration: 420, easing: ease } ) );
+		runs.push( oldPanel.animate( [
+			{ clipPath: 'inset(0 0 ' + shadow + ' 0)', opacity: 1 },
+			{ clipPath: 'inset(0 0 ' + Math.max( 0, oldHeight - newHeight ) + 'px 0)', opacity: 0 }
+		], { duration: 420, easing: ease, fill: 'forwards' } ) );
+
+		Array.prototype.forEach.call( oldPanel.querySelectorAll( '.mdotcar-hmenu__mega-grid > li' ), function ( card ) {
+			runs.push( card.animate( [
+				{ opacity: 1, transform: 'none' },
+				{ opacity: 0, transform: 'translateX(' + ( -shift ) + 'px)' }
+			], { duration: 200, easing: 'cubic-bezier(0.4, 0, 1, 1)', fill: 'forwards' } ) );
+		} );
+		Array.prototype.forEach.call( newPanel.querySelectorAll( '.mdotcar-hmenu__mega-grid > li' ), function ( card, index ) {
+			runs.push( card.animate( [
+				{ opacity: 0, transform: 'translateX(' + shift + 'px)' },
+				{ opacity: 1, transform: 'none' }
+			], { duration: 460, delay: 60 + Math.min( index, 8 ) * 22, easing: ease, fill: 'backwards' } ) );
+		} );
+
+		this.moving = { runs: runs, done: done };
+		runs[ 0 ].onfinish = function () {
+			if ( self.moving && self.moving.runs === runs ) {
+				self.settle();
+			}
+		};
+	};
+
+	/**
+	 * Ends a move still under way at once (another one, or a close, comes).
+	 */
+	HeaderMenu.prototype.settle = function () {
+		var moving = this.moving;
+		if ( ! moving ) {
+			return;
+		}
+		moving.runs.forEach( function ( run ) {
+			run.cancel();
+		} );
+		moving.done();
+	};
+
+	/**
+	 * The line under the open item: it slides from item to item.
+	 *
+	 * @param {Element|null} item  The <li>; null hides it.
+	 * @param {boolean}      slide Slide there (from the item before), or appear in place.
+	 */
+	HeaderMenu.prototype.ink = function ( item, slide ) {
+		var bar = this.root.querySelector( '.mdotcar-hmenu__bar' );
+		if ( ! bar ) {
+			return;
+		}
+		if ( ! this.inkEl ) {
+			this.inkEl = document.createElement( 'span' );
+			this.inkEl.className = 'mdotcar-hmenu__ink';
+			this.inkEl.setAttribute( 'aria-hidden', 'true' );
+			bar.appendChild( this.inkEl );
+			this.root.classList.add( 'has-ink' );
+		}
+		var ink = this.inkEl;
+		if ( ! item ) {
+			ink.classList.remove( 'is-on' );
+			return;
+		}
+		var outer = bar.getBoundingClientRect();
+		var box = item.getBoundingClientRect();
+		var reach = parseFloat( window.getComputedStyle( ink ).getPropertyValue( '--mdotcar-ink-reach' ) ) || 18;
+		ink.classList.toggle( 'is-sliding', slide && ink.classList.contains( 'is-on' ) );
+		ink.style.width = ( box.width + reach * 2 ) + 'px';
+		ink.style.transform = 'translate3d(' + ( box.left - outer.left - reach ) + 'px, ' + ( box.bottom - outer.top - 1 ) + 'px, 0)';
+		ink.classList.add( 'is-on' );
+	};
+
+	/**
+	 * Marks an item's caret open or closed.
+	 *
+	 * @param {Element} item The <li>.
+	 * @param {boolean} open Whether it is open.
+	 */
+	HeaderMenu.prototype.expanded = function ( item, open ) {
 		var caret = item.querySelector( '.mdotcar-hmenu__caret' );
 		if ( caret ) {
-			caret.setAttribute( 'aria-expanded', 'true' );
+			caret.setAttribute( 'aria-expanded', open ? 'true' : 'false' );
 		}
 	};
 
 	/**
-	 * Closes the open mega menu.
+	 * Closes the open mega menu: the cards lift and fade together, then the
+	 * panel folds up into the header.
 	 */
 	HeaderMenu.prototype.close = function () {
 		var item = this.open;
@@ -347,13 +493,17 @@
 		if ( ! item ) {
 			return;
 		}
+		this.settle();
 		this.open = null;
 		item.classList.remove( 'is-open' );
+		item.classList.add( 'is-closing' );
+		clearTimeout( item.mdotcarClosing );
+		item.mdotcarClosing = setTimeout( function () {
+			item.classList.remove( 'is-closing' );
+		}, 450 );
 		this.root.classList.remove( 'is-mega-open' );
-		var caret = item.querySelector( '.mdotcar-hmenu__caret' );
-		if ( caret ) {
-			caret.setAttribute( 'aria-expanded', 'false' );
-		}
+		this.expanded( item, false );
+		this.ink( null );
 	};
 
 	/**
