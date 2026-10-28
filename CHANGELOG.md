@@ -17,6 +17,13 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.21.1] - 2026-10-28
+
+### Changed
+
+- Price List: on an RTL site the rows' scrollbar is on the right, the header's
+  gutter with it, so the columns stay in line.
+
 ## [0.21.0] - 2026-10-28
 
 ### Added

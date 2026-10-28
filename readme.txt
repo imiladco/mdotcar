@@ -4,7 +4,7 @@ Tags: elementor, widget, title, heading, flexbox
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.21.0
+Stable tag: 0.21.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,6 +59,9 @@ and height can each be left to fit the content or set to a custom value.
    *MDotCar*.
 
 == Changelog ==
+
+= 0.21.1 =
+* Changed: Price List's scrollbar is on the right on RTL sites.
 
 = 0.21.0 =
 * New: Price List rows scroll inside the list past a set height (360px on

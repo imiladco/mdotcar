@@ -1601,6 +1601,21 @@ html.mdotcar-hmenu-locked body {
 	scrollbar-width: thin;
 }
 
+/*
+ * In RTL the scrollbar goes on the right too: the scroll box reads left to
+ * right (which puts its bar on the right), its rows still right to left. The
+ * header does the same, so its gutter is on the same side.
+ */
+.mdotcar-plist:dir( rtl ) .mdotcar-plist__body.is-scrolling,
+.mdotcar-plist:dir( rtl ) .mdotcar-plist__head.is-scrolling {
+	direction: ltr;
+}
+
+.mdotcar-plist:dir( rtl ) .mdotcar-plist__body.is-scrolling > .mdotcar-plist__row,
+.mdotcar-plist:dir( rtl ) .mdotcar-plist__head.is-scrolling > .mdotcar-plist__row {
+	direction: rtl;
+}
+
 .mdotcar-plist__body.has-more {
 	-webkit-mask-image: linear-gradient( to bottom, #000000 calc( 100% - 48px ), transparent );
 	mask-image: linear-gradient( to bottom, #000000 calc( 100% - 48px ), transparent );
