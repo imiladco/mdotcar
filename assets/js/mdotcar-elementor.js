@@ -2428,3 +2428,73 @@
 		start( document );
 	}
 }() );
+
+/**
+ * Price List: when its rows scroll inside it (MDotCar_Elementor_Widget_Price_List,
+ * Max Height of the Rows), marks it so the header keeps the scrollbar's gutter
+ * and the last rows fade while there is more below.
+ */
+( function () {
+	'use strict';
+
+	/**
+	 * Updates one list's marks.
+	 *
+	 * @param {Element} body The list's <tbody>.
+	 */
+	function mark( body ) {
+		var scrolling = body.scrollHeight > body.clientHeight + 1;
+		var head = body.parentNode.querySelector( '.mdotcar-plist__head' );
+		body.classList.toggle( 'is-scrolling', scrolling );
+		body.classList.toggle( 'has-more', scrolling && body.scrollTop + body.clientHeight < body.scrollHeight - 2 );
+		if ( head ) {
+			head.classList.toggle( 'is-scrolling', scrolling );
+		}
+	}
+
+	/**
+	 * Watches every list in a part of the page (once each).
+	 *
+	 * @param {ParentNode} scope Where to look.
+	 */
+	function start( scope ) {
+		Array.prototype.forEach.call( ( scope || document ).querySelectorAll( '.mdotcar-plist__body' ), function ( body ) {
+			if ( body.mdotcarScroll ) {
+				return;
+			}
+			body.mdotcarScroll = true;
+			var frame = 0;
+			var later = function () {
+				if ( ! frame ) {
+					frame = window.requestAnimationFrame( function () {
+						frame = 0;
+						mark( body );
+					} );
+				}
+			};
+			body.addEventListener( 'scroll', later, { passive: true } );
+			if ( window.ResizeObserver ) {
+				new window.ResizeObserver( later ).observe( body );
+			} else {
+				window.addEventListener( 'resize', later );
+			}
+			mark( body );
+		} );
+	}
+
+	window.addEventListener( 'elementor/frontend/init', function () {
+		if ( window.elementorFrontend && window.elementorFrontend.hooks ) {
+			window.elementorFrontend.hooks.addAction( 'frontend/element_ready/mdotcar-price-list.default', function ( $scope ) {
+				start( $scope[ 0 ] || $scope );
+			} );
+		}
+	} );
+
+	if ( 'loading' === document.readyState ) {
+		document.addEventListener( 'DOMContentLoaded', function () {
+			start( document );
+		} );
+	} else {
+		start( document );
+	}
+}() );

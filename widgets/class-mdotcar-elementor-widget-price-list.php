@@ -92,6 +92,15 @@ class MDotCar_Elementor_Widget_Price_List extends Widget_Base {
 	}
 
 	/**
+	 * Scripts enqueued only when the widget is on the page (the rows' scroll marks).
+	 *
+	 * @return string[]
+	 */
+	public function get_script_depends() {
+		return array( MDotCar_Elementor_Plugin::HANDLE );
+	}
+
+	/**
 	 * Registers panel controls.
 	 */
 	protected function register_controls() {
@@ -490,6 +499,56 @@ class MDotCar_Elementor_Widget_Price_List extends Widget_Base {
 					'size' => 0,
 				),
 				'selectors'  => array( self::ROOT . ' .mdotcar-plist__body' => 'gap: {{SIZE}}{{UNIT}};' ),
+			)
+		);
+
+		$this->add_responsive_control(
+			'rows_max_height',
+			array(
+				'label'          => __( 'Max Height of the Rows', 'mdotcar-elementor' ),
+				'description'    => __( 'Past it the rows scroll inside the list, under a header that stays. Empty: the list grows with its rows.', 'mdotcar-elementor' ),
+				'type'           => Controls_Manager::SLIDER,
+				'size_units'     => array( 'px', 'vh' ),
+				'range'          => array(
+					'px' => array(
+						'min' => 120,
+						'max' => 1200,
+					),
+					'vh' => array(
+						'min' => 20,
+						'max' => 100,
+					),
+				),
+				'default'        => array(
+					'unit' => 'px',
+					'size' => 360,
+				),
+				'mobile_default' => array(
+					'unit' => 'px',
+					'size' => 640,
+				),
+				'separator'      => 'before',
+				'selectors'      => array( self::ROOT => '--mdotcar-plist-max: {{SIZE}}{{UNIT}};' ),
+			)
+		);
+
+		$this->add_control(
+			'scroll_thumb',
+			array(
+				'label'     => __( 'Scrollbar Color', 'mdotcar-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#AAAAAA',
+				'selectors' => array( self::ROOT => '--mdotcar-plist-thumb: {{VALUE}};' ),
+			)
+		);
+
+		$this->add_control(
+			'scroll_track',
+			array(
+				'label'     => __( 'Scrollbar Track', 'mdotcar-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#F1F1F1',
+				'selectors' => array( self::ROOT => '--mdotcar-plist-track: {{VALUE}};' ),
 			)
 		);
 

@@ -17,6 +17,23 @@ Use `bin/bump-version.sh <new-version>` to update all three at once.
 
 - Further Title widget presets (Style 2 and beyond).
 
+## [0.21.0] - 2026-10-28
+
+### Added
+
+- **MDotCar Price List**: many rows scroll inside the list. **Max Height of
+  the Rows** (Style → Box; 360px on computers, six rows; 640px on phones, two
+  cards and a half) caps the rows, the header row staying above them and in
+  line with them; empty lets the list grow as before. A thin scrollbar
+  (**Scrollbar Color** #AAAAAA, **Scrollbar Track** #F1F1F1), and the last
+  rows fade while there is more below. A list shorter than the cap does not
+  change.
+
+### Fixed
+
+- Price List cards on phones keep their height under a max height (they
+  scroll rather than squeeze).
+
 ## [0.20.0] - 2026-10-27
 
 ### Changed

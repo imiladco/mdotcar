@@ -1573,6 +1573,53 @@ html.mdotcar-hmenu-locked body {
 	grid-template-columns: minmax( 0, 1fr );
 }
 
+/*
+ * Many rows: past --mdotcar-plist-max they scroll inside the list, the header
+ * staying above them. The header keeps the same gutter as the scrollbar, so
+ * the columns stay in line; while there is more below, the last rows fade
+ * (has-more, set by the script).
+ */
+.mdotcar-plist__body {
+	max-height: var( --mdotcar-plist-max, none );
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	scrollbar-width: thin;
+	scrollbar-color: var( --mdotcar-plist-thumb, #AAAAAA ) var( --mdotcar-plist-track, #F1F1F1 );
+	-webkit-mask-image: linear-gradient( #000000, #000000 );
+	mask-image: linear-gradient( #000000, #000000 );
+	transition: -webkit-mask-image 0.2s ease, mask-image 0.2s ease;
+}
+
+.mdotcar-plist__body.is-scrolling,
+.mdotcar-plist__head.is-scrolling {
+	scrollbar-gutter: stable;
+}
+
+.mdotcar-plist__head.is-scrolling {
+	overflow: hidden;
+	/* The same scrollbar as the rows', so the same gutter. */
+	scrollbar-width: thin;
+}
+
+.mdotcar-plist__body.has-more {
+	-webkit-mask-image: linear-gradient( to bottom, #000000 calc( 100% - 48px ), transparent );
+	mask-image: linear-gradient( to bottom, #000000 calc( 100% - 48px ), transparent );
+}
+
+.mdotcar-plist__body::-webkit-scrollbar {
+	width: 5px;
+}
+
+.mdotcar-plist__body::-webkit-scrollbar-track {
+	border-radius: 10px;
+	background: var( --mdotcar-plist-track, #F1F1F1 );
+}
+
+.mdotcar-plist__body::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background: var( --mdotcar-plist-thumb, #AAAAAA );
+}
+
 .mdotcar-plist .mdotcar-plist__row {
 	display: grid;
 	grid-template-columns: var( --mdotcar-plist-cols );
@@ -1741,6 +1788,8 @@ html.mdotcar-hmenu-locked body {
 
 	.mdotcar-plist-m-cards .mdotcar-plist:not( #mdotcar-plist-cards ) .mdotcar-plist__row {
 		display: flex;
+		/* Under a max height the cards keep their size and scroll, not squeeze. */
+		flex: none;
 		flex-direction: column;
 		align-items: stretch;
 		gap: 0;

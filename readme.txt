@@ -4,7 +4,7 @@ Tags: elementor, widget, title, heading, flexbox
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.20.0
+Stable tag: 0.21.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,6 +59,10 @@ and height can each be left to fit the content or set to a custom value.
    *MDotCar*.
 
 == Changelog ==
+
+= 0.21.0 =
+* New: Price List rows scroll inside the list past a set height (360px on
+  computers, 640px on phones), under a header that stays.
 
 = 0.20.0 =
 * Changed: Header Menu's mega menu cards share one hover highlight that glides
